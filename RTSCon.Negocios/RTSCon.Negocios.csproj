@@ -46,6 +46,9 @@
     <Reference Include="ExcelNumberFormat, Version=1.1.0.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelNumberFormat.1.1.0\lib\net20\ExcelNumberFormat.dll</HintPath>
     </Reference>
+    <Reference Include="Krypton.Navigator, Version=95.25.10.293, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
+      <HintPath>..\packages\Krypton.Navigator.95.25.10.293\lib\net48\Krypton.Navigator.dll</HintPath>
+    </Reference>
     <Reference Include="Krypton.Toolkit, Version=95.25.10.293, Culture=neutral, PublicKeyToken=a87e673e9ecb6e8e, processorArchitecture=MSIL">
       <HintPath>..\packages\Krypton.Toolkit.95.25.10.293\lib\net48\Krypton.Toolkit.dll</HintPath>
     </Reference>
