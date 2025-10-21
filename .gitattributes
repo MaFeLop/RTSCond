@@ -1,0 +1,27 @@
+# --- Normalización por defecto ---
+# En el REPO todo va como LF (Unix). Git convierte al checkout si corresponde.
+* text=auto eol=lf
+
+# --- Archivos que DEBEN ir con CRLF (Windows) ---
+*.sln     text eol=crlf
+*.bat     text eol=crlf
+*.cmd     text eol=crlf
+*.ps1     text eol=crlf
+
+# --- Binarios (nunca tocar saltos de línea) ---
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.zip  binary
+*.7z   binary
+*.dll  binary
+*.exe  binary
+*.pdb  binary
+*.nupkg binary
+*.snk  binary
+*.ttf  binary
+*.woff binary
+*.woff2 binary
