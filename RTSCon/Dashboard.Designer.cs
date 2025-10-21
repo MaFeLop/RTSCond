@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.DashboardPanel = new Krypton.Toolkit.KryptonPanel();
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             this.DashboardName = new Krypton.Toolkit.KryptonLabel();
@@ -38,12 +39,22 @@
             this.CondominiosBorde = new Krypton.Toolkit.KryptonBorderEdge();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.lblCondnum = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.kryptonBorderEdge1 = new Krypton.Toolkit.KryptonBorderEdge();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DashboardPanel)).BeginInit();
             this.DashboardPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // DashboardPanel
             // 
+            this.DashboardPanel.Controls.Add(this.label4);
+            this.DashboardPanel.Controls.Add(this.label3);
+            this.DashboardPanel.Controls.Add(this.label5);
+            this.DashboardPanel.Controls.Add(this.kryptonBorderEdge1);
+            this.DashboardPanel.Controls.Add(this.lblCondnum);
             this.DashboardPanel.Controls.Add(this.label2);
             this.DashboardPanel.Controls.Add(this.label1);
             this.DashboardPanel.Controls.Add(this.CondominiosBorde);
@@ -106,7 +117,7 @@
             // CondominiosBorde
             // 
             this.CondominiosBorde.AutoSize = false;
-            this.CondominiosBorde.Location = new System.Drawing.Point(204, 153);
+            this.CondominiosBorde.Location = new System.Drawing.Point(159, 143);
             this.CondominiosBorde.Name = "CondominiosBorde";
             this.CondominiosBorde.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.CondominiosBorde.Size = new System.Drawing.Size(163, 126);
@@ -117,7 +128,7 @@
             this.label1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(212, 162);
+            this.label1.Location = new System.Drawing.Point(167, 152);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(110, 23);
             this.label1.TabIndex = 8;
@@ -125,11 +136,63 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(293, 207);
+            this.label2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
+            this.label2.Location = new System.Drawing.Point(283, 150);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 23);
+            this.label2.Size = new System.Drawing.Size(29, 23);
             this.label2.TabIndex = 9;
-            this.label2.Text = "label2";
+            // 
+            // lblCondnum
+            // 
+            this.lblCondnum.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblCondnum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCondnum.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblCondnum.Location = new System.Drawing.Point(179, 199);
+            this.lblCondnum.Name = "lblCondnum";
+            this.lblCondnum.Size = new System.Drawing.Size(57, 23);
+            this.lblCondnum.TabIndex = 10;
+            this.lblCondnum.Text = "N/A";
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Location = new System.Drawing.Point(375, 199);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 23);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "N/A";
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label5.Location = new System.Drawing.Point(363, 152);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(110, 23);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "Facturas Embedidas:";
+            // 
+            // kryptonBorderEdge1
+            // 
+            this.kryptonBorderEdge1.AutoSize = false;
+            this.kryptonBorderEdge1.Location = new System.Drawing.Point(355, 143);
+            this.kryptonBorderEdge1.Name = "kryptonBorderEdge1";
+            this.kryptonBorderEdge1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
+            this.kryptonBorderEdge1.Size = new System.Drawing.Size(163, 126);
+            this.kryptonBorderEdge1.Text = "kryptonBorderEdge1";
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label4.Image = ((System.Drawing.Image)(resources.GetObject("label4.Image")));
+            this.label4.Location = new System.Drawing.Point(489, 150);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 23);
+            this.label4.TabIndex = 16;
             // 
             // Dashboard
             // 
@@ -158,6 +221,11 @@
         private Krypton.Toolkit.KryptonBorderEdge CondominiosBorde;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblCondnum;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label5;
+        private Krypton.Toolkit.KryptonBorderEdge kryptonBorderEdge1;
+        private System.Windows.Forms.Label label4;
     }
 }
 
