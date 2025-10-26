@@ -31,6 +31,20 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.DashboardPanel = new Krypton.Toolkit.KryptonPanel();
+            this.kryptonPictureBox1 = new Krypton.Toolkit.KryptonPictureBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblDeudaVencida = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.kryptonBorderEdge4 = new Krypton.Toolkit.KryptonBorderEdge();
+            this.label8 = new System.Windows.Forms.Label();
+            this.lblPagosRecibidos = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.kryptonBorderEdge3 = new Krypton.Toolkit.KryptonBorderEdge();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblFacturado = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.kryptonBorderEdge2 = new Krypton.Toolkit.KryptonBorderEdge();
             this.label4 = new System.Windows.Forms.Label();
             this.lblFacturasEmdedidas = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -44,20 +58,6 @@
             this.BorderTopBar = new Krypton.Toolkit.KryptonBorderEdge();
             this.BorderDashboard = new Krypton.Toolkit.KryptonBorderEdge();
             this.kryptonManager1 = new Krypton.Toolkit.KryptonManager(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblFacturado = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.kryptonBorderEdge2 = new Krypton.Toolkit.KryptonBorderEdge();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblPagosRecibidos = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.kryptonBorderEdge3 = new Krypton.Toolkit.KryptonBorderEdge();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblDeudaVencida = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.kryptonBorderEdge4 = new Krypton.Toolkit.KryptonBorderEdge();
-            this.label9 = new System.Windows.Forms.Label();
-            this.kryptonPictureBox1 = new Krypton.Toolkit.KryptonPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.DashboardPanel)).BeginInit();
             this.DashboardPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPictureBox1)).BeginInit();
@@ -96,6 +96,157 @@
             this.DashboardPanel.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverLightMode;
             this.DashboardPanel.Size = new System.Drawing.Size(1201, 632);
             this.DashboardPanel.TabIndex = 0;
+            // 
+            // kryptonPictureBox1
+            // 
+            this.kryptonPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("kryptonPictureBox1.Image")));
+            this.kryptonPictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("kryptonPictureBox1.InitialImage")));
+            this.kryptonPictureBox1.Location = new System.Drawing.Point(7, 0);
+            this.kryptonPictureBox1.Name = "kryptonPictureBox1";
+            this.kryptonPictureBox1.Size = new System.Drawing.Size(32, 32);
+            this.kryptonPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.kryptonPictureBox1.TabIndex = 37;
+            this.kryptonPictureBox1.TabStop = false;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label9.Location = new System.Drawing.Point(40, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(77, 32);
+            this.label9.TabIndex = 36;
+            this.label9.Text = "RTSCond";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label6.Image = ((System.Drawing.Image)(resources.GetObject("label6.Image")));
+            this.label6.Location = new System.Drawing.Point(1080, 150);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(29, 23);
+            this.label6.TabIndex = 34;
+            // 
+            // lblDeudaVencida
+            // 
+            this.lblDeudaVencida.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblDeudaVencida.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDeudaVencida.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblDeudaVencida.Location = new System.Drawing.Point(976, 199);
+            this.lblDeudaVencida.Name = "lblDeudaVencida";
+            this.lblDeudaVencida.Size = new System.Drawing.Size(57, 23);
+            this.lblDeudaVencida.TabIndex = 33;
+            this.lblDeudaVencida.Text = "N/A";
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label11.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label11.Location = new System.Drawing.Point(963, 150);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(97, 23);
+            this.label11.TabIndex = 32;
+            this.label11.Text = "Deuda Vencida:";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // kryptonBorderEdge4
+            // 
+            this.kryptonBorderEdge4.AutoSize = false;
+            this.kryptonBorderEdge4.Location = new System.Drawing.Point(956, 143);
+            this.kryptonBorderEdge4.Name = "kryptonBorderEdge4";
+            this.kryptonBorderEdge4.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
+            this.kryptonBorderEdge4.Size = new System.Drawing.Size(163, 126);
+            this.kryptonBorderEdge4.Text = "kryptonBorderEdge4";
+            // 
+            // label8
+            // 
+            this.label8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label8.Image = ((System.Drawing.Image)(resources.GetObject("label8.Image")));
+            this.label8.Location = new System.Drawing.Point(876, 150);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(29, 23);
+            this.label8.TabIndex = 29;
+            // 
+            // lblPagosRecibidos
+            // 
+            this.lblPagosRecibidos.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblPagosRecibidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPagosRecibidos.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblPagosRecibidos.Location = new System.Drawing.Point(772, 199);
+            this.lblPagosRecibidos.Name = "lblPagosRecibidos";
+            this.lblPagosRecibidos.Size = new System.Drawing.Size(57, 23);
+            this.lblPagosRecibidos.TabIndex = 28;
+            this.lblPagosRecibidos.Text = "N/A";
+            // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label10.Location = new System.Drawing.Point(759, 150);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(97, 23);
+            this.label10.TabIndex = 27;
+            this.label10.Text = "Pagos Recibidos:";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label10.Click += new System.EventHandler(this.label10_Click);
+            // 
+            // kryptonBorderEdge3
+            // 
+            this.kryptonBorderEdge3.AutoSize = false;
+            this.kryptonBorderEdge3.Location = new System.Drawing.Point(752, 143);
+            this.kryptonBorderEdge3.Name = "kryptonBorderEdge3";
+            this.kryptonBorderEdge3.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
+            this.kryptonBorderEdge3.Size = new System.Drawing.Size(163, 126);
+            this.kryptonBorderEdge3.Text = "kryptonBorderEdge3";
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
+            this.label3.Location = new System.Drawing.Point(674, 150);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 23);
+            this.label3.TabIndex = 24;
+            // 
+            // lblFacturado
+            // 
+            this.lblFacturado.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lblFacturado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFacturado.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblFacturado.Location = new System.Drawing.Point(570, 199);
+            this.lblFacturado.Name = "lblFacturado";
+            this.lblFacturado.Size = new System.Drawing.Size(57, 23);
+            this.lblFacturado.TabIndex = 23;
+            this.lblFacturado.Text = "N/A";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label7.Location = new System.Drawing.Point(557, 150);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(86, 23);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "Total Facturado:";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // kryptonBorderEdge2
+            // 
+            this.kryptonBorderEdge2.AutoSize = false;
+            this.kryptonBorderEdge2.Location = new System.Drawing.Point(550, 143);
+            this.kryptonBorderEdge2.Name = "kryptonBorderEdge2";
+            this.kryptonBorderEdge2.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
+            this.kryptonBorderEdge2.Size = new System.Drawing.Size(163, 126);
+            this.kryptonBorderEdge2.Text = "kryptonBorderEdge2";
             // 
             // label4
             // 
@@ -227,162 +378,11 @@
             this.BorderDashboard.Size = new System.Drawing.Size(142, 629);
             this.BorderDashboard.Text = "kryptonBorderEdge1";
             // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
-            this.label3.Location = new System.Drawing.Point(674, 150);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(29, 23);
-            this.label3.TabIndex = 24;
-            // 
-            // lblFacturado
-            // 
-            this.lblFacturado.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblFacturado.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFacturado.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblFacturado.Location = new System.Drawing.Point(570, 199);
-            this.lblFacturado.Name = "lblFacturado";
-            this.lblFacturado.Size = new System.Drawing.Size(57, 23);
-            this.lblFacturado.TabIndex = 23;
-            this.lblFacturado.Text = "N/A";
-            // 
-            // label7
-            // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(557, 150);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(86, 23);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "Total Facturado:";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // kryptonBorderEdge2
-            // 
-            this.kryptonBorderEdge2.AutoSize = false;
-            this.kryptonBorderEdge2.Location = new System.Drawing.Point(550, 143);
-            this.kryptonBorderEdge2.Name = "kryptonBorderEdge2";
-            this.kryptonBorderEdge2.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
-            this.kryptonBorderEdge2.Size = new System.Drawing.Size(163, 126);
-            this.kryptonBorderEdge2.Text = "kryptonBorderEdge2";
-            // 
-            // label8
-            // 
-            this.label8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label8.Image = ((System.Drawing.Image)(resources.GetObject("label8.Image")));
-            this.label8.Location = new System.Drawing.Point(876, 150);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(29, 23);
-            this.label8.TabIndex = 29;
-            // 
-            // lblPagosRecibidos
-            // 
-            this.lblPagosRecibidos.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblPagosRecibidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPagosRecibidos.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblPagosRecibidos.Location = new System.Drawing.Point(772, 199);
-            this.lblPagosRecibidos.Name = "lblPagosRecibidos";
-            this.lblPagosRecibidos.Size = new System.Drawing.Size(57, 23);
-            this.lblPagosRecibidos.TabIndex = 28;
-            this.lblPagosRecibidos.Text = "N/A";
-            // 
-            // label10
-            // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label10.Location = new System.Drawing.Point(759, 150);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(97, 23);
-            this.label10.TabIndex = 27;
-            this.label10.Text = "Pagos Recibidos:";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label10.Click += new System.EventHandler(this.label10_Click);
-            // 
-            // kryptonBorderEdge3
-            // 
-            this.kryptonBorderEdge3.AutoSize = false;
-            this.kryptonBorderEdge3.Location = new System.Drawing.Point(752, 143);
-            this.kryptonBorderEdge3.Name = "kryptonBorderEdge3";
-            this.kryptonBorderEdge3.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
-            this.kryptonBorderEdge3.Size = new System.Drawing.Size(163, 126);
-            this.kryptonBorderEdge3.Text = "kryptonBorderEdge3";
-            // 
-            // label6
-            // 
-            this.label6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label6.Image = ((System.Drawing.Image)(resources.GetObject("label6.Image")));
-            this.label6.Location = new System.Drawing.Point(1080, 150);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 23);
-            this.label6.TabIndex = 34;
-            // 
-            // lblDeudaVencida
-            // 
-            this.lblDeudaVencida.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblDeudaVencida.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDeudaVencida.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblDeudaVencida.Location = new System.Drawing.Point(976, 199);
-            this.lblDeudaVencida.Name = "lblDeudaVencida";
-            this.lblDeudaVencida.Size = new System.Drawing.Size(57, 23);
-            this.lblDeudaVencida.TabIndex = 33;
-            this.lblDeudaVencida.Text = "N/A";
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label11.Location = new System.Drawing.Point(963, 150);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(97, 23);
-            this.label11.TabIndex = 32;
-            this.label11.Text = "Deuda Vencida:";
-            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // kryptonBorderEdge4
-            // 
-            this.kryptonBorderEdge4.AutoSize = false;
-            this.kryptonBorderEdge4.Location = new System.Drawing.Point(956, 143);
-            this.kryptonBorderEdge4.Name = "kryptonBorderEdge4";
-            this.kryptonBorderEdge4.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
-            this.kryptonBorderEdge4.Size = new System.Drawing.Size(163, 126);
-            this.kryptonBorderEdge4.Text = "kryptonBorderEdge4";
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(40, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(77, 32);
-            this.label9.TabIndex = 36;
-            this.label9.Text = "RTSCond";
-            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // kryptonPictureBox1
-            // 
-            this.kryptonPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("kryptonPictureBox1.Image")));
-            this.kryptonPictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("kryptonPictureBox1.InitialImage")));
-            this.kryptonPictureBox1.Location = new System.Drawing.Point(7, 0);
-            this.kryptonPictureBox1.Name = "kryptonPictureBox1";
-            this.kryptonPictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.kryptonPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.kryptonPictureBox1.TabIndex = 37;
-            this.kryptonPictureBox1.TabStop = false;
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1197, 613);
+            this.ClientSize = new System.Drawing.Size(1201, 601);
             this.Controls.Add(this.DashboardPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);

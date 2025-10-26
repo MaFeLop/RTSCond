@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|c:\\users\\pc\\source\\repos\\rtscon\\rtscond\\rtscon\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|c:\\users\\pc\\source\\repos\\rtscon\\rtscond\\rtscon\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\mainform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
@@ -19,7 +23,7 @@
       "RelativeMoniker": "D:0:0:{21C80035-1CCA-4DFC-A9E9-DAC5332E0C72}|RTSCon.Datos\\RTSCon.Datos.csproj|solutionrelative:rtscon.datos\\db\\dbexecutor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|c:\\users\\pc\\source\\repos\\rtscon\\rtscond\\rtscon.negocios\\servicios\\pagoservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.negocios\\servicios\\pagoservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|solutionrelative:rtscon.negocios\\servicios\\pagoservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -69,20 +73,16 @@
     {
       "AbsoluteMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.entidad\\facturadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|solutionrelative:rtscon.entidad\\facturadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\Sistema.Presentacion.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\Sistema.Presentacion.csproj|solutionrelative:rtscon\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
-      "VerticalTabListWidth": 256,
+      "VerticalTabListWidth": 180,
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -94,16 +94,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainForm.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\MainForm.cs",
-              "RelativeDocumentMoniker": "RTSCon\\MainForm.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\MainForm.cs",
-              "RelativeToolTip": "RTSCon\\MainForm.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABcAAABcAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Dashboard.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Dashboard.Designer.cs",
+              "RelativeDocumentMoniker": "RTSCon\\Dashboard.Designer.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Dashboard.Designer.cs",
+              "RelativeToolTip": "RTSCon\\Dashboard.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-21T17:56:28.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Dashboard.cs",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Dashboard.cs",
+              "RelativeDocumentMoniker": "RTSCon\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Dashboard.cs",
+              "RelativeToolTip": "RTSCon\\Dashboard.cs",
+              "ViewState": "AgIAABsAAAAAAAAAAAAuwCsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-21T15:01:09.502Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Dashboard.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Dashboard.cs",
+              "RelativeDocumentMoniker": "RTSCon\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Dashboard.cs [Design]",
+              "RelativeToolTip": "RTSCon\\Dashboard.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-15T19:13:16.729Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Bookmark",
@@ -111,7 +136,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "PagoServicio.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Servicios\\PagoServicio.cs",
               "RelativeDocumentMoniker": "RTSCon.Negocios\\Servicios\\PagoServicio.cs",
@@ -124,7 +149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "ICobranzaService.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Interfaces\\ICobranzaService.cs",
               "RelativeDocumentMoniker": "RTSCon.Negocios\\Interfaces\\ICobranzaService.cs",
@@ -137,7 +162,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "CobranzaService.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Servicios\\CobranzaService.cs",
               "RelativeDocumentMoniker": "RTSCon.Negocios\\Servicios\\CobranzaService.cs",
@@ -150,7 +175,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "FacturaService.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Servicios\\FacturaService.cs",
               "RelativeDocumentMoniker": "RTSCon.Negocios\\Servicios\\FacturaService.cs",
@@ -163,7 +188,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "SqlConnectionFactorycs.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Datos\\Db\\SqlConnectionFactorycs.cs",
               "RelativeDocumentMoniker": "RTSCon.Datos\\Db\\SqlConnectionFactorycs.cs",
@@ -176,7 +201,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "DbExecutor.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Datos\\Db\\DbExecutor.cs",
               "RelativeDocumentMoniker": "RTSCon.Datos\\Db\\DbExecutor.cs",
@@ -189,7 +214,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "PeriodoService.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Servicios\\PeriodoService.cs",
               "RelativeDocumentMoniker": "RTSCon.Negocios\\Servicios\\PeriodoService.cs",
@@ -202,7 +227,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "IPagoService.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Interfaces\\IPagoService.cs",
               "RelativeDocumentMoniker": "RTSCon.Negocios\\Interfaces\\IPagoService.cs",
@@ -215,7 +240,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "IFacturaService.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Interfaces\\IFacturaService.cs",
               "RelativeDocumentMoniker": "RTSCon.Negocios\\Interfaces\\IFacturaService.cs",
@@ -228,7 +253,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "IPeriodoService.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Interfaces\\IPeriodoService.cs",
               "RelativeDocumentMoniker": "RTSCon.Negocios\\Interfaces\\IPeriodoService.cs",
@@ -241,7 +266,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "PagoDto.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Entidad\\PagoDto.cs",
               "RelativeDocumentMoniker": "RTSCon.Entidad\\PagoDto.cs",
@@ -254,7 +279,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "DunningDto.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Entidad\\DunningDto.cs",
               "RelativeDocumentMoniker": "RTSCon.Entidad\\DunningDto.cs",
@@ -267,7 +292,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "CierreLog.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Entidad\\CierreLog.cs",
               "RelativeDocumentMoniker": "RTSCon.Entidad\\CierreLog.cs",
@@ -280,7 +305,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\App.config",
               "RelativeDocumentMoniker": "RTSCon\\App.config",
@@ -293,7 +318,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "FacturaDto.cs",
               "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Entidad\\FacturaDto.cs",
               "RelativeDocumentMoniker": "RTSCon.Entidad\\FacturaDto.cs",
@@ -303,30 +328,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-16T12:33:56.827Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Program.cs",
-              "RelativeDocumentMoniker": "RTSCon\\Program.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Program.cs",
-              "RelativeToolTip": "RTSCon\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAQAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T12:27:43.03Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainForm.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\MainForm.cs",
-              "RelativeDocumentMoniker": "RTSCon\\MainForm.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\MainForm.cs [Design]",
-              "RelativeToolTip": "RTSCon\\MainForm.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T19:13:16.729Z",
-              "EditorCaption": " [Design]"
             }
           ]
         },
