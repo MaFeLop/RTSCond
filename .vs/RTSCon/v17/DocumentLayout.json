@@ -1,97 +1,77 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\",
+  "WorkspaceRootPath": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|c:\\users\\pc\\source\\repos\\rtscon\\rtscond\\rtscon\\cierredemes\\cierredemes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\cierredemes\\cierredemes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|c:\\users\\pc\\source\\repos\\rtscon\\rtscond\\rtscon\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|c:\\users\\feliz\\onedrive\\documents\\github\\rtscond\\rtscon\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|c:\\users\\pc\\source\\repos\\rtscon\\rtscond\\rtscon\\cierredemes\\cierredemes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\cierredemes\\cierredemes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|c:\\users\\pc\\source\\repos\\rtscon\\rtscond\\rtscon\\cierredemes\\cierredemes.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\cierredemes\\cierredemes.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|c:\\users\\pc\\source\\repos\\rtscon\\rtscond\\rtscon\\properties\\resources.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\properties\\resources.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|c:\\users\\pc\\source\\repos\\rtscon\\rtscond\\rtscon\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21C80035-1CCA-4DFC-A9E9-DAC5332E0C72}|RTSCon.Datos\\RTSCon.Datos.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.datos\\db\\dbexecutor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21C80035-1CCA-4DFC-A9E9-DAC5332E0C72}|RTSCon.Datos\\RTSCon.Datos.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.datos\\db\\dbexecutor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21C80035-1CCA-4DFC-A9E9-DAC5332E0C72}|RTSCon.Datos\\RTSCon.Datos.csproj|solutionrelative:rtscon.datos\\db\\dbexecutor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.negocios\\servicios\\pagoservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.negocios\\servicios\\pagoservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|solutionrelative:rtscon.negocios\\servicios\\pagoservicio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.negocios\\interfaces\\ipagoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.negocios\\interfaces\\ipagoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|solutionrelative:rtscon.negocios\\interfaces\\ipagoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.negocios\\servicios\\periodoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.negocios\\servicios\\periodoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|solutionrelative:rtscon.negocios\\servicios\\periodoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.negocios\\servicios\\cobranzaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.negocios\\servicios\\cobranzaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|solutionrelative:rtscon.negocios\\servicios\\cobranzaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.negocios\\interfaces\\icobranzaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.negocios\\interfaces\\icobranzaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|solutionrelative:rtscon.negocios\\interfaces\\icobranzaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.negocios\\servicios\\facturaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.negocios\\servicios\\facturaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|solutionrelative:rtscon.negocios\\servicios\\facturaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{21C80035-1CCA-4DFC-A9E9-DAC5332E0C72}|RTSCon.Datos\\RTSCon.Datos.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.datos\\db\\sqlconnectionfactorycs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{21C80035-1CCA-4DFC-A9E9-DAC5332E0C72}|RTSCon.Datos\\RTSCon.Datos.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.datos\\db\\sqlconnectionfactorycs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21C80035-1CCA-4DFC-A9E9-DAC5332E0C72}|RTSCon.Datos\\RTSCon.Datos.csproj|solutionrelative:rtscon.datos\\db\\sqlconnectionfactorycs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.negocios\\interfaces\\ifacturaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.negocios\\interfaces\\ifacturaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|solutionrelative:rtscon.negocios\\interfaces\\ifacturaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.negocios\\interfaces\\iperiodoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.negocios\\interfaces\\iperiodoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|solutionrelative:rtscon.negocios\\interfaces\\iperiodoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.entidad\\pagodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.entidad\\pagodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|solutionrelative:rtscon.entidad\\pagodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.entidad\\dunningdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.entidad\\dunningdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|solutionrelative:rtscon.entidad\\dunningdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.entidad\\cierrelog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.entidad\\cierrelog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|solutionrelative:rtscon.entidad\\cierrelog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\rtscon.entidad\\facturadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.entidad\\facturadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|solutionrelative:rtscon.entidad\\facturadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -102,99 +82,27 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CierreDeMes.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\CierreDeMes\\CierreDeMes.Designer.cs",
-              "RelativeDocumentMoniker": "RTSCon\\CierreDeMes\\CierreDeMes.Designer.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\CierreDeMes\\CierreDeMes.Designer.cs",
-              "RelativeToolTip": "RTSCon\\CierreDeMes\\CierreDeMes.Designer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "Dashboard.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Dashboard.cs",
+              "RelativeDocumentMoniker": "RTSCon\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Dashboard.cs [Dise\u00F1o]",
+              "RelativeToolTip": "RTSCon\\Dashboard.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T20:49:57.126Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Resources.resx",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Properties\\Resources.resx",
-              "RelativeDocumentMoniker": "RTSCon\\Properties\\Resources.resx",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Properties\\Resources.resx",
-              "RelativeToolTip": "RTSCon\\Properties\\Resources.resx",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAYwHoAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2025-10-27T20:44:04.978Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-15T19:13:16.729Z",
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "CierreDeMes.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\CierreDeMes\\CierreDeMes.cs",
-              "RelativeDocumentMoniker": "RTSCon\\CierreDeMes\\CierreDeMes.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\CierreDeMes\\CierreDeMes.cs",
-              "RelativeToolTip": "RTSCon\\CierreDeMes\\CierreDeMes.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAA0wBwAAABXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T20:43:40.964Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "CierreDeMes.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\CierreDeMes\\CierreDeMes.cs",
-              "RelativeDocumentMoniker": "RTSCon\\CierreDeMes\\CierreDeMes.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\CierreDeMes\\CierreDeMes.cs [Design]",
-              "RelativeToolTip": "RTSCon\\CierreDeMes\\CierreDeMes.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T20:42:59.006Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Program.cs",
-              "RelativeDocumentMoniker": "RTSCon\\Program.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Program.cs",
-              "RelativeToolTip": "RTSCon\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T20:41:16.662Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Dashboard.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Dashboard.cs",
-              "RelativeDocumentMoniker": "RTSCon\\Dashboard.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Dashboard.cs [Design]",
-              "RelativeToolTip": "RTSCon\\Dashboard.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-15T19:13:16.729Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
               "Title": "Dashboard.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Dashboard.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Dashboard.Designer.cs",
               "RelativeDocumentMoniker": "RTSCon\\Dashboard.Designer.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Dashboard.Designer.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Dashboard.Designer.cs",
               "RelativeToolTip": "RTSCon\\Dashboard.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -203,184 +111,193 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Dashboard.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Dashboard.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Dashboard.cs",
               "RelativeDocumentMoniker": "RTSCon\\Dashboard.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\Dashboard.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Dashboard.cs",
               "RelativeToolTip": "RTSCon\\Dashboard.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAuwCsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-21T15:01:09.502Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 5,
               "Title": "PagoServicio.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Servicios\\PagoServicio.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Servicios\\PagoServicio.cs",
               "RelativeDocumentMoniker": "RTSCon.Negocios\\Servicios\\PagoServicio.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Servicios\\PagoServicio.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Servicios\\PagoServicio.cs",
               "RelativeToolTip": "RTSCon.Negocios\\Servicios\\PagoServicio.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T19:09:13.934Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ICobranzaService.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Interfaces\\ICobranzaService.cs",
-              "RelativeDocumentMoniker": "RTSCon.Negocios\\Interfaces\\ICobranzaService.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Interfaces\\ICobranzaService.cs",
-              "RelativeToolTip": "RTSCon.Negocios\\Interfaces\\ICobranzaService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T19:08:21.057Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "CobranzaService.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Servicios\\CobranzaService.cs",
-              "RelativeDocumentMoniker": "RTSCon.Negocios\\Servicios\\CobranzaService.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Servicios\\CobranzaService.cs",
-              "RelativeToolTip": "RTSCon.Negocios\\Servicios\\CobranzaService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T19:07:06.975Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "FacturaService.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Servicios\\FacturaService.cs",
-              "RelativeDocumentMoniker": "RTSCon.Negocios\\Servicios\\FacturaService.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Servicios\\FacturaService.cs",
-              "RelativeToolTip": "RTSCon.Negocios\\Servicios\\FacturaService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T18:22:21.475Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "SqlConnectionFactorycs.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Datos\\Db\\SqlConnectionFactorycs.cs",
-              "RelativeDocumentMoniker": "RTSCon.Datos\\Db\\SqlConnectionFactorycs.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Datos\\Db\\SqlConnectionFactorycs.cs",
-              "RelativeToolTip": "RTSCon.Datos\\Db\\SqlConnectionFactorycs.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T18:07:06.847Z"
+              "WhenOpened": "2025-10-16T19:09:13.934Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "DbExecutor.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Datos\\Db\\DbExecutor.cs",
-              "RelativeDocumentMoniker": "RTSCon.Datos\\Db\\DbExecutor.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Datos\\Db\\DbExecutor.cs",
-              "RelativeToolTip": "RTSCon.Datos\\Db\\DbExecutor.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
+              "Title": "ICobranzaService.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Interfaces\\ICobranzaService.cs",
+              "RelativeDocumentMoniker": "RTSCon.Negocios\\Interfaces\\ICobranzaService.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Interfaces\\ICobranzaService.cs",
+              "RelativeToolTip": "RTSCon.Negocios\\Interfaces\\ICobranzaService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T18:06:17.971Z"
+              "WhenOpened": "2025-10-16T19:08:21.057Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "PeriodoService.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Servicios\\PeriodoService.cs",
-              "RelativeDocumentMoniker": "RTSCon.Negocios\\Servicios\\PeriodoService.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Servicios\\PeriodoService.cs",
-              "RelativeToolTip": "RTSCon.Negocios\\Servicios\\PeriodoService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAUAAAAAAAAAA==",
+              "DocumentIndex": 8,
+              "Title": "CobranzaService.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Servicios\\CobranzaService.cs",
+              "RelativeDocumentMoniker": "RTSCon.Negocios\\Servicios\\CobranzaService.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Servicios\\CobranzaService.cs",
+              "RelativeToolTip": "RTSCon.Negocios\\Servicios\\CobranzaService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T18:04:59.989Z"
+              "WhenOpened": "2025-10-16T19:07:06.975Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "FacturaService.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Servicios\\FacturaService.cs",
+              "RelativeDocumentMoniker": "RTSCon.Negocios\\Servicios\\FacturaService.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Servicios\\FacturaService.cs",
+              "RelativeToolTip": "RTSCon.Negocios\\Servicios\\FacturaService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T18:22:21.475Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 11,
-              "Title": "IPagoService.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Interfaces\\IPagoService.cs",
-              "RelativeDocumentMoniker": "RTSCon.Negocios\\Interfaces\\IPagoService.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Interfaces\\IPagoService.cs",
-              "RelativeToolTip": "RTSCon.Negocios\\Interfaces\\IPagoService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAhAAAAAAAAAA==",
+              "Title": "SqlConnectionFactorycs.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Datos\\Db\\SqlConnectionFactorycs.cs",
+              "RelativeDocumentMoniker": "RTSCon.Datos\\Db\\SqlConnectionFactorycs.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Datos\\Db\\SqlConnectionFactorycs.cs",
+              "RelativeToolTip": "RTSCon.Datos\\Db\\SqlConnectionFactorycs.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T18:03:06.097Z"
+              "WhenOpened": "2025-10-16T18:07:06.847Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "IFacturaService.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Interfaces\\IFacturaService.cs",
-              "RelativeDocumentMoniker": "RTSCon.Negocios\\Interfaces\\IFacturaService.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Interfaces\\IFacturaService.cs",
-              "RelativeToolTip": "RTSCon.Negocios\\Interfaces\\IFacturaService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "DbExecutor.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Datos\\Db\\DbExecutor.cs",
+              "RelativeDocumentMoniker": "RTSCon.Datos\\Db\\DbExecutor.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Datos\\Db\\DbExecutor.cs",
+              "RelativeToolTip": "RTSCon.Datos\\Db\\DbExecutor.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAgAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T17:53:36.007Z"
+              "WhenOpened": "2025-10-16T18:06:17.971Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "IPeriodoService.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Interfaces\\IPeriodoService.cs",
-              "RelativeDocumentMoniker": "RTSCon.Negocios\\Interfaces\\IPeriodoService.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Negocios\\Interfaces\\IPeriodoService.cs",
-              "RelativeToolTip": "RTSCon.Negocios\\Interfaces\\IPeriodoService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAzAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "PeriodoService.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Servicios\\PeriodoService.cs",
+              "RelativeDocumentMoniker": "RTSCon.Negocios\\Servicios\\PeriodoService.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Servicios\\PeriodoService.cs",
+              "RelativeToolTip": "RTSCon.Negocios\\Servicios\\PeriodoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T17:40:59.645Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
-              "Title": "PagoDto.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Entidad\\PagoDto.cs",
-              "RelativeDocumentMoniker": "RTSCon.Entidad\\PagoDto.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Entidad\\PagoDto.cs",
-              "RelativeToolTip": "RTSCon.Entidad\\PagoDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T17:10:57.554Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 20,
-              "Title": "DunningDto.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Entidad\\DunningDto.cs",
-              "RelativeDocumentMoniker": "RTSCon.Entidad\\DunningDto.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Entidad\\DunningDto.cs",
-              "RelativeToolTip": "RTSCon.Entidad\\DunningDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T16:02:50.882Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "CierreLog.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Entidad\\CierreLog.cs",
-              "RelativeDocumentMoniker": "RTSCon.Entidad\\CierreLog.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Entidad\\CierreLog.cs",
-              "RelativeToolTip": "RTSCon.Entidad\\CierreLog.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T16:01:18.279Z"
+              "WhenOpened": "2025-10-16T18:04:59.989Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "IPagoService.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Interfaces\\IPagoService.cs",
+              "RelativeDocumentMoniker": "RTSCon.Negocios\\Interfaces\\IPagoService.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Interfaces\\IPagoService.cs",
+              "RelativeToolTip": "RTSCon.Negocios\\Interfaces\\IPagoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T18:03:06.097Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IFacturaService.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Interfaces\\IFacturaService.cs",
+              "RelativeDocumentMoniker": "RTSCon.Negocios\\Interfaces\\IFacturaService.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Interfaces\\IFacturaService.cs",
+              "RelativeToolTip": "RTSCon.Negocios\\Interfaces\\IFacturaService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T17:53:36.007Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IPeriodoService.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Interfaces\\IPeriodoService.cs",
+              "RelativeDocumentMoniker": "RTSCon.Negocios\\Interfaces\\IPeriodoService.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Interfaces\\IPeriodoService.cs",
+              "RelativeToolTip": "RTSCon.Negocios\\Interfaces\\IPeriodoService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T17:40:59.645Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PagoDto.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Entidad\\PagoDto.cs",
+              "RelativeDocumentMoniker": "RTSCon.Entidad\\PagoDto.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Entidad\\PagoDto.cs",
+              "RelativeToolTip": "RTSCon.Entidad\\PagoDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T17:10:57.554Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DunningDto.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Entidad\\DunningDto.cs",
+              "RelativeDocumentMoniker": "RTSCon.Entidad\\DunningDto.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Entidad\\DunningDto.cs",
+              "RelativeToolTip": "RTSCon.Entidad\\DunningDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T16:02:50.882Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CierreLog.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Entidad\\CierreLog.cs",
+              "RelativeDocumentMoniker": "RTSCon.Entidad\\CierreLog.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Entidad\\CierreLog.cs",
+              "RelativeToolTip": "RTSCon.Entidad\\CierreLog.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-16T16:01:18.279Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "App.config",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\App.config",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\App.config",
               "RelativeDocumentMoniker": "RTSCon\\App.config",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon\\App.config",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\App.config",
               "RelativeToolTip": "RTSCon\\App.config",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
@@ -389,25 +306,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 17,
               "Title": "FacturaDto.cs",
-              "DocumentMoniker": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Entidad\\FacturaDto.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Entidad\\FacturaDto.cs",
               "RelativeDocumentMoniker": "RTSCon.Entidad\\FacturaDto.cs",
-              "ToolTip": "C:\\Users\\PC\\source\\repos\\RTSCon\\RTSCond\\RTSCon.Entidad\\FacturaDto.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Entidad\\FacturaDto.cs",
               "RelativeToolTip": "RTSCon.Entidad\\FacturaDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA3AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-16T12:33:56.827Z"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+              "WhenOpened": "2025-10-16T12:33:56.827Z",
+              "EditorCaption": ""
             }
           ]
         }
