@@ -733,7 +733,7 @@
             this.btnFacturacion.Size = new System.Drawing.Size(90, 23);
             this.btnFacturacion.TabIndex = 49;
             this.btnFacturacion.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnFacturacion.Values.Text = "Cierre de Mes";
+            this.btnFacturacion.Values.Text = "Facturacion";
             // 
             // label17
             // 
