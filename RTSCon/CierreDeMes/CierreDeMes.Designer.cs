@@ -57,21 +57,45 @@
             this.btnDunning = new Krypton.Toolkit.KryptonButton();
             this.btnPagos = new Krypton.Toolkit.KryptonButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
+            this.dgvLogDeCierre = new Krypton.Toolkit.KryptonDataGridView();
             this.cmbSeleccion = new Krypton.Toolkit.KryptonComboBox();
+            this.btnLimpiarFiltros = new Krypton.Toolkit.KryptonButton();
+            this.txtBuscar = new Krypton.Toolkit.KryptonTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblMontoMax = new System.Windows.Forms.Label();
+            this.txtMontoMax = new Krypton.Toolkit.KryptonTextBox();
+            this.txtMontoMin = new Krypton.Toolkit.KryptonTextBox();
+            this.lblMontoMin = new System.Windows.Forms.Label();
+            this.lblFechaIni = new System.Windows.Forms.Label();
+            this.txtFechaIni = new Krypton.Toolkit.KryptonTextBox();
+            this.lblFechaFin = new System.Windows.Forms.Label();
+            this.txtFechaFin = new Krypton.Toolkit.KryptonTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.DashboardPanel)).BeginInit();
             this.DashboardPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelSideBar)).BeginInit();
             this.panelSideBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLogDeCierre)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbSeleccion)).BeginInit();
             this.SuspendLayout();
             // 
             // DashboardPanel
             // 
+            this.DashboardPanel.Controls.Add(this.lblFechaFin);
+            this.DashboardPanel.Controls.Add(this.txtFechaFin);
+            this.DashboardPanel.Controls.Add(this.lblFechaIni);
+            this.DashboardPanel.Controls.Add(this.txtFechaIni);
+            this.DashboardPanel.Controls.Add(this.lblMontoMax);
+            this.DashboardPanel.Controls.Add(this.txtMontoMax);
+            this.DashboardPanel.Controls.Add(this.lblMontoMin);
+            this.DashboardPanel.Controls.Add(this.txtMontoMin);
+            this.DashboardPanel.Controls.Add(this.label3);
+            this.DashboardPanel.Controls.Add(this.label2);
+            this.DashboardPanel.Controls.Add(this.txtBuscar);
+            this.DashboardPanel.Controls.Add(this.btnLimpiarFiltros);
             this.DashboardPanel.Controls.Add(this.cmbSeleccion);
-            this.DashboardPanel.Controls.Add(this.kryptonDataGridView1);
+            this.DashboardPanel.Controls.Add(this.dgvLogDeCierre);
             this.DashboardPanel.Controls.Add(this.label1);
             this.DashboardPanel.Controls.Add(this.btnPagos);
             this.DashboardPanel.Controls.Add(this.btnDunning);
@@ -95,7 +119,7 @@
             this.kryptonBorderEdge11.Location = new System.Drawing.Point(163, 153);
             this.kryptonBorderEdge11.Name = "kryptonBorderEdge11";
             this.kryptonBorderEdge11.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
-            this.kryptonBorderEdge11.Size = new System.Drawing.Size(1038, 458);
+            this.kryptonBorderEdge11.Size = new System.Drawing.Size(1038, 532);
             this.kryptonBorderEdge11.Text = "kryptonBorderEdge11";
             // 
             // panelSideBar
@@ -220,7 +244,7 @@
             this.btnFacturacion.Size = new System.Drawing.Size(90, 23);
             this.btnFacturacion.TabIndex = 49;
             this.btnFacturacion.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnFacturacion.Values.Text = "Cierre de Mes";
+            this.btnFacturacion.Values.Text = "Facturacion";
             // 
             // label15
             // 
@@ -381,26 +405,29 @@
             this.label1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(180, 166);
+            this.label1.Location = new System.Drawing.Point(180, 160);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 23);
             this.label1.TabIndex = 85;
             this.label1.Text = "Log de Cierre:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // kryptonDataGridView1
+            // dgvLogDeCierre
             // 
-            this.kryptonDataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.kryptonDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.kryptonDataGridView1.Location = new System.Drawing.Point(183, 209);
-            this.kryptonDataGridView1.Name = "kryptonDataGridView1";
-            this.kryptonDataGridView1.Size = new System.Drawing.Size(988, 377);
-            this.kryptonDataGridView1.TabIndex = 86;
+            this.dgvLogDeCierre.AllowUserToAddRows = false;
+            this.dgvLogDeCierre.AllowUserToDeleteRows = false;
+            this.dgvLogDeCierre.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvLogDeCierre.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLogDeCierre.Location = new System.Drawing.Point(183, 307);
+            this.dgvLogDeCierre.Name = "dgvLogDeCierre";
+            this.dgvLogDeCierre.ReadOnly = true;
+            this.dgvLogDeCierre.Size = new System.Drawing.Size(988, 362);
+            this.dgvLogDeCierre.TabIndex = 86;
             // 
             // cmbSeleccion
             // 
             this.cmbSeleccion.DropDownWidth = 129;
-            this.cmbSeleccion.Location = new System.Drawing.Point(311, 165);
+            this.cmbSeleccion.Location = new System.Drawing.Point(311, 180);
             this.cmbSeleccion.Name = "cmbSeleccion";
             this.cmbSeleccion.Size = new System.Drawing.Size(129, 22);
             this.cmbSeleccion.StateCommon.ComboBox.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
@@ -408,6 +435,139 @@
             this.cmbSeleccion.TabIndex = 87;
             this.cmbSeleccion.Text = "Seleccione:";
             this.cmbSeleccion.SelectedIndexChanged += new System.EventHandler(this.cmbSeleccion_SelectedIndexChanged);
+            // 
+            // btnLimpiarFiltros
+            // 
+            this.btnLimpiarFiltros.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnLimpiarFiltros.Location = new System.Drawing.Point(1023, 179);
+            this.btnLimpiarFiltros.Name = "btnLimpiarFiltros";
+            this.btnLimpiarFiltros.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
+            this.btnLimpiarFiltros.Size = new System.Drawing.Size(28, 23);
+            this.btnLimpiarFiltros.TabIndex = 88;
+            this.btnLimpiarFiltros.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnLimpiarFiltros.Values.Image = ((System.Drawing.Image)(resources.GetObject("kryptonButton5.Values.Image")));
+            this.btnLimpiarFiltros.Values.Text = "Limpiar Filtros";
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Location = new System.Drawing.Point(460, 179);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(557, 23);
+            this.txtBuscar.TabIndex = 89;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(457, 153);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(205, 23);
+            this.label2.TabIndex = 90;
+            this.label2.Text = "Buscar por Paso o Mensaje:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Location = new System.Drawing.Point(308, 154);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(124, 23);
+            this.label3.TabIndex = 91;
+            this.label3.Text = "Estado:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblMontoMax
+            // 
+            this.lblMontoMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMontoMax.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblMontoMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMontoMax.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblMontoMax.Location = new System.Drawing.Point(181, 252);
+            this.lblMontoMax.Name = "lblMontoMax";
+            this.lblMontoMax.Size = new System.Drawing.Size(124, 23);
+            this.lblMontoMax.TabIndex = 95;
+            this.lblMontoMax.Text = "Monto Maximo:";
+            this.lblMontoMax.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblMontoMax.Visible = false;
+            // 
+            // txtMontoMax
+            // 
+            this.txtMontoMax.Location = new System.Drawing.Point(183, 278);
+            this.txtMontoMax.Name = "txtMontoMax";
+            this.txtMontoMax.Size = new System.Drawing.Size(282, 23);
+            this.txtMontoMax.TabIndex = 94;
+            this.txtMontoMax.Visible = false;
+            // 
+            // txtMontoMin
+            // 
+            this.txtMontoMin.Location = new System.Drawing.Point(183, 225);
+            this.txtMontoMin.Name = "txtMontoMin";
+            this.txtMontoMin.Size = new System.Drawing.Size(282, 23);
+            this.txtMontoMin.TabIndex = 92;
+            this.txtMontoMin.Visible = false;
+            // 
+            // lblMontoMin
+            // 
+            this.lblMontoMin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMontoMin.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblMontoMin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMontoMin.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblMontoMin.Location = new System.Drawing.Point(181, 199);
+            this.lblMontoMin.Name = "lblMontoMin";
+            this.lblMontoMin.Size = new System.Drawing.Size(124, 23);
+            this.lblMontoMin.TabIndex = 93;
+            this.lblMontoMin.Text = "Monto Minimo:";
+            this.lblMontoMin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblMontoMin.Visible = false;
+            // 
+            // lblFechaIni
+            // 
+            this.lblFechaIni.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFechaIni.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblFechaIni.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaIni.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblFechaIni.Location = new System.Drawing.Point(503, 205);
+            this.lblFechaIni.Name = "lblFechaIni";
+            this.lblFechaIni.Size = new System.Drawing.Size(124, 17);
+            this.lblFechaIni.TabIndex = 97;
+            this.lblFechaIni.Text = "Fecha Inicio:";
+            this.lblFechaIni.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblFechaIni.Visible = false;
+            // 
+            // txtFechaIni
+            // 
+            this.txtFechaIni.Location = new System.Drawing.Point(506, 225);
+            this.txtFechaIni.Name = "txtFechaIni";
+            this.txtFechaIni.Size = new System.Drawing.Size(282, 23);
+            this.txtFechaIni.TabIndex = 96;
+            this.txtFechaIni.Visible = false;
+            // 
+            // lblFechaFin
+            // 
+            this.lblFechaFin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFechaFin.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblFechaFin.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaFin.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblFechaFin.Location = new System.Drawing.Point(503, 258);
+            this.lblFechaFin.Name = "lblFechaFin";
+            this.lblFechaFin.Size = new System.Drawing.Size(124, 17);
+            this.lblFechaFin.TabIndex = 99;
+            this.lblFechaFin.Text = "Fecha Fin:";
+            this.lblFechaFin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblFechaFin.Visible = false;
+            // 
+            // txtFechaFin
+            // 
+            this.txtFechaFin.Location = new System.Drawing.Point(506, 278);
+            this.txtFechaFin.Name = "txtFechaFin";
+            this.txtFechaFin.Size = new System.Drawing.Size(282, 23);
+            this.txtFechaFin.TabIndex = 98;
+            this.txtFechaFin.Visible = false;
             // 
             // CierreDeMes
             // 
@@ -421,10 +581,11 @@
             this.Load += new System.EventHandler(this.CierreDeMes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DashboardPanel)).EndInit();
             this.DashboardPanel.ResumeLayout(false);
+            this.DashboardPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelSideBar)).EndInit();
             this.panelSideBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvLogDeCierre)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cmbSeleccion)).EndInit();
             this.ResumeLayout(false);
 
@@ -460,7 +621,19 @@
         private Krypton.Toolkit.KryptonButton btnFacturas;
         private Krypton.Toolkit.KryptonButton btnLog;
         private Krypton.Toolkit.KryptonComboBox cmbSeleccion;
-        private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
+        private Krypton.Toolkit.KryptonDataGridView dgvLogDeCierre;
         private System.Windows.Forms.Label label1;
+        private Krypton.Toolkit.KryptonButton btnLimpiarFiltros;
+        private Krypton.Toolkit.KryptonTextBox txtBuscar;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        public System.Windows.Forms.Label lblMontoMax;
+        public Krypton.Toolkit.KryptonTextBox txtMontoMax;
+        private System.Windows.Forms.Label lblFechaFin;
+        private Krypton.Toolkit.KryptonTextBox txtFechaFin;
+        private System.Windows.Forms.Label lblFechaIni;
+        private Krypton.Toolkit.KryptonTextBox txtFechaIni;
+        private System.Windows.Forms.Label lblMontoMin;
+        private Krypton.Toolkit.KryptonTextBox txtMontoMin;
     }
 }
