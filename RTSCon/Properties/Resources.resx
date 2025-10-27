@@ -121,16 +121,4 @@
   <data name="apartment_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\apartment_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="apartment_18dp_E3E3E3_FILL0_wght400_GRAD0_opsz20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apartment_18dp_E3E3E3_FILL0_wght400_GRAD0_opsz20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="apartment_20dp_E3E3E3_FILL0_wght400_GRAD0_opsz20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apartment_20dp_E3E3E3_FILL0_wght400_GRAD0_opsz20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="apartment_20dp_E3E3E3_FILL0_wght400_GRAD0_opsz201" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apartment_20dp_E3E3E3_FILL0_wght400_GRAD0_opsz20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="apartment_20dp_FFFFFF_FILL0_wght400_GRAD0_opsz20" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\apartment_20dp_FFFFFF_FILL0_wght400_GRAD0_opsz20.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
 </root>
