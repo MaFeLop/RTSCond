@@ -7,14 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Krypton.Toolkit;
 
 namespace RTSCon.Catalogos.Condominio
 {
-    public partial class CrearCondominio : Form
+    public partial class CrearCondominio : KryptonForm
     {
         public CrearCondominio()
         {
             InitializeComponent();
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

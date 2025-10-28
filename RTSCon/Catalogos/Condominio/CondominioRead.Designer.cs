@@ -50,7 +50,7 @@
             // 
             // kryptonButton1
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(93, 388);
+            this.kryptonButton1.Location = new System.Drawing.Point(181, 388);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
             this.kryptonButton1.Size = new System.Drawing.Size(178, 51);
@@ -72,7 +72,7 @@
             // 
             // kryptonButton3
             // 
-            this.kryptonButton3.Location = new System.Drawing.Point(829, 388);
+            this.kryptonButton3.Location = new System.Drawing.Point(725, 388);
             this.kryptonButton3.Name = "kryptonButton3";
             this.kryptonButton3.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
             this.kryptonButton3.Size = new System.Drawing.Size(178, 51);
