@@ -91,6 +91,7 @@
   <ItemGroup>
     <Compile Include="CierreLog.cs" />
     <Compile Include="DunningDto.cs" />
+    <Compile Include="EPropiedad.cs" />
     <Compile Include="FacturaDto.cs" />
     <Compile Include="PagoDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

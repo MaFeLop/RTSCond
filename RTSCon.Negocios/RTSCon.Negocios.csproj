@@ -103,6 +103,7 @@
     <Compile Include="Interfaces\IPagoService.cs" />
     <Compile Include="Interfaces\IPeriodoService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Propiedad\NPropiedad.cs" />
     <Compile Include="Servicios\CobranzaService.cs" />
     <Compile Include="Servicios\FacturaService.cs" />
     <Compile Include="Servicios\PagoServicio.cs" />
