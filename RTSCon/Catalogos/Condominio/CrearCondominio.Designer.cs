@@ -62,9 +62,9 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(38, 62);
+            this.label2.Location = new System.Drawing.Point(38, 55);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(206, 23);
+            this.label2.Size = new System.Drawing.Size(210, 23);
             this.label2.TabIndex = 95;
             this.label2.Text = "Nombre de Condominio:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -84,9 +84,9 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(38, 125);
+            this.label1.Location = new System.Drawing.Point(38, 119);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(206, 23);
+            this.label1.Size = new System.Drawing.Size(210, 23);
             this.label1.TabIndex = 97;
             this.label1.Text = "Direccion del Condominio:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -105,9 +105,9 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(38, 247);
+            this.label3.Location = new System.Drawing.Point(38, 241);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(206, 23);
+            this.label3.Size = new System.Drawing.Size(210, 23);
             this.label3.TabIndex = 99;
             this.label3.Text = "Identificacion del Propietario:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -127,9 +127,9 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(38, 187);
+            this.label4.Location = new System.Drawing.Point(38, 181);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(206, 23);
+            this.label4.Size = new System.Drawing.Size(210, 23);
             this.label4.TabIndex = 100;
             this.label4.Text = "Tipo de Condominio:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -149,9 +149,9 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(38, 312);
+            this.label5.Location = new System.Drawing.Point(38, 306);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(206, 23);
+            this.label5.Size = new System.Drawing.Size(210, 23);
             this.label5.TabIndex = 103;
             this.label5.Text = "Fecha de Constitución:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -171,9 +171,9 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(38, 380);
+            this.label6.Location = new System.Drawing.Point(38, 374);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(219, 23);
+            this.label6.Size = new System.Drawing.Size(222, 23);
             this.label6.TabIndex = 105;
             this.label6.Text = "Cuota de Mantenimiento Base:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -208,7 +208,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1098, 459);
+            this.ClientSize = new System.Drawing.Size(1105, 436);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label6);
