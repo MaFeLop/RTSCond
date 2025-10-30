@@ -22,5 +22,10 @@ namespace RTSCon.Catalogos.Condominio
         {
 
         }
+
+        private void kryptonTextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
