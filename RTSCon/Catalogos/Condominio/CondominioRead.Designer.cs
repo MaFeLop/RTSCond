@@ -87,9 +87,9 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(9, 11);
+            this.label2.Location = new System.Drawing.Point(9, 5);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(205, 23);
+            this.label2.Size = new System.Drawing.Size(209, 23);
             this.label2.TabIndex = 93;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -117,7 +117,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1097, 451);
+            this.ClientSize = new System.Drawing.Size(1101, 439);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.btnLimpiarFiltros);

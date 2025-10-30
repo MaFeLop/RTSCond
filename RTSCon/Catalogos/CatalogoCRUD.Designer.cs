@@ -71,7 +71,7 @@
             // 
             this.btnCondominio.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnCondominio.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnCondominio.Location = new System.Drawing.Point(111, 280);
+            this.btnCondominio.Location = new System.Drawing.Point(111, 274);
             this.btnCondominio.Name = "btnCondominio";
             this.btnCondominio.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
             this.btnCondominio.Size = new System.Drawing.Size(154, 45);
@@ -86,10 +86,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBloque.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnBloque.Location = new System.Drawing.Point(300, 280);
+            this.btnBloque.Location = new System.Drawing.Point(300, 274);
             this.btnBloque.Name = "btnBloque";
             this.btnBloque.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.btnBloque.Size = new System.Drawing.Size(154, 45);
+            this.btnBloque.Size = new System.Drawing.Size(158, 45);
             this.btnBloque.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBloque.TabIndex = 23;
             this.btnBloque.Values.DropDownArrowColor = System.Drawing.Color.Empty;
@@ -99,7 +99,7 @@
             // 
             this.kryptonButton2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.kryptonButton2.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.kryptonButton2.Location = new System.Drawing.Point(486, 280);
+            this.kryptonButton2.Location = new System.Drawing.Point(486, 274);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
             this.kryptonButton2.Size = new System.Drawing.Size(154, 45);
@@ -112,7 +112,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 438);
+            this.ClientSize = new System.Drawing.Size(808, 426);
             this.Controls.Add(this.kryptonButton2);
             this.Controls.Add(this.btnBloque);
             this.Controls.Add(this.btnCondominio);

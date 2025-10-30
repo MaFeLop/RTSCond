@@ -3,24 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\catalogos\\condominio\\updatecondominio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\catalogos\\condominio\\updatecondominio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|c:\\users\\feliz\\onedrive\\documents\\github\\rtscond\\rtscon.negocios\\propiedad\\npropiedad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|solutionrelative:rtscon.negocios\\propiedad\\npropiedad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{21C80035-1CCA-4DFC-A9E9-DAC5332E0C72}|RTSCon.Datos\\RTSCon.Datos.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.datos\\propiedad\\dpropiedad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{21C80035-1CCA-4DFC-A9E9-DAC5332E0C72}|RTSCon.Datos\\RTSCon.Datos.csproj|solutionrelative:rtscon.datos\\propiedad\\dpropiedad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{21C80035-1CCA-4DFC-A9E9-DAC5332E0C72}|RTSCon.Datos\\RTSCon.Datos.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.datos\\db\\dbutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{21C80035-1CCA-4DFC-A9E9-DAC5332E0C72}|RTSCon.Datos\\RTSCon.Datos.csproj|solutionrelative:rtscon.datos\\db\\dbutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.entidad\\epropiedad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|solutionrelative:rtscon.entidad\\epropiedad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\catalogos\\condominio\\crearcondominio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -31,8 +15,28 @@
       "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\catalogos\\condominio\\condominioread.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\catalogos\\catalogocrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\catalogos\\catalogocrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|c:\\users\\feliz\\onedrive\\documents\\github\\rtscond\\rtscon\\catalogos\\condominio\\updatecondominio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\catalogos\\condominio\\updatecondominio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\catalogos\\condominio\\crearcondominio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\catalogos\\condominio\\crearcondominio.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.negocios\\propiedad\\npropiedad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|solutionrelative:rtscon.negocios\\propiedad\\npropiedad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{21C80035-1CCA-4DFC-A9E9-DAC5332E0C72}|RTSCon.Datos\\RTSCon.Datos.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.datos\\db\\dbutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{21C80035-1CCA-4DFC-A9E9-DAC5332E0C72}|RTSCon.Datos\\RTSCon.Datos.csproj|solutionrelative:rtscon.datos\\db\\dbutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.entidad\\epropiedad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{684C5BAF-B008-4981-A458-B01075AFC514}|RTSCon.Entidad\\RTSCon.Entidad.csproj|solutionrelative:rtscon.entidad\\epropiedad.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\cierredemes\\cierredemes.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -41,10 +45,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\catalogos\\condominio\\confirmardesactivacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\catalogos\\condominio\\confirmardesactivacion.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\catalogos\\catalogocrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\catalogos\\catalogocrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\catalogos\\condominio\\condominioread.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -82,60 +82,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "NPropiedad.cs",
-              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Propiedad\\NPropiedad.cs",
-              "RelativeDocumentMoniker": "RTSCon.Negocios\\Propiedad\\NPropiedad.cs",
-              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Propiedad\\NPropiedad.cs",
-              "RelativeToolTip": "RTSCon.Negocios\\Propiedad\\NPropiedad.cs",
-              "ViewState": "AgIAAAEAAAAAAAAAAADwvw8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T19:53:09.055Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DbUtil.cs",
-              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Datos\\Db\\DbUtil.cs",
-              "RelativeDocumentMoniker": "RTSCon.Datos\\Db\\DbUtil.cs",
-              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Datos\\Db\\DbUtil.cs",
-              "RelativeToolTip": "RTSCon.Datos\\Db\\DbUtil.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAiwBsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T18:19:43.18Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DPropiedad.cs",
-              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Datos\\Propiedad\\DPropiedad.cs",
-              "RelativeDocumentMoniker": "RTSCon.Datos\\Propiedad\\DPropiedad.cs",
-              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Datos\\Propiedad\\DPropiedad.cs",
-              "RelativeToolTip": "RTSCon.Datos\\Propiedad\\DPropiedad.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAQwGAAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T17:36:21.098Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "EPropiedad.cs",
-              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Entidad\\EPropiedad.cs",
-              "RelativeDocumentMoniker": "RTSCon.Entidad\\EPropiedad.cs",
-              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Entidad\\EPropiedad.cs",
-              "RelativeToolTip": "RTSCon.Entidad\\EPropiedad.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAA7wBUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-29T17:29:59.526Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "UpdateCondominio.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\UpdateCondominio.cs",
               "RelativeDocumentMoniker": "RTSCon\\Catalogos\\Condominio\\UpdateCondominio.cs",
@@ -147,29 +98,105 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "CrearCondominio.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs",
               "RelativeDocumentMoniker": "RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs",
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs [Dise\u00F1o]",
               "RelativeToolTip": "RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T15:56:34.807Z"
+              "WhenOpened": "2025-10-28T15:56:34.807Z",
+              "EditorCaption": " [Dise\u00F1o]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "CondominioRead.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\CondominioRead.cs",
               "RelativeDocumentMoniker": "RTSCon\\Catalogos\\Condominio\\CondominioRead.cs",
-              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\CondominioRead.cs [Dise\u00F1o]",
-              "RelativeToolTip": "RTSCon\\Catalogos\\Condominio\\CondominioRead.cs [Dise\u00F1o]",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\CondominioRead.cs [Dise\u00F1o]*",
+              "RelativeToolTip": "RTSCon\\Catalogos\\Condominio\\CondominioRead.cs [Dise\u00F1o]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T15:38:49.717Z"
+              "WhenOpened": "2025-10-28T15:38:49.717Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CrearCondominio.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs",
+              "RelativeDocumentMoniker": "RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs",
+              "RelativeToolTip": "RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAxwB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T16:56:33.661Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CatalogoCRUD.cs [Dise\u00F1o]",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\CatalogoCRUD.cs",
+              "RelativeDocumentMoniker": "RTSCon\\Catalogos\\CatalogoCRUD.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\CatalogoCRUD.cs [Dise\u00F1o]*",
+              "RelativeToolTip": "RTSCon\\Catalogos\\CatalogoCRUD.cs [Dise\u00F1o]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-28T15:23:11.333Z",
+              "EditorCaption": " [Dise\u00F1o]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DPropiedad.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Datos\\Propiedad\\DPropiedad.cs",
+              "RelativeDocumentMoniker": "RTSCon.Datos\\Propiedad\\DPropiedad.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Datos\\Propiedad\\DPropiedad.cs",
+              "RelativeToolTip": "RTSCon.Datos\\Propiedad\\DPropiedad.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAQwGAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T17:36:21.098Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
+              "Title": "EPropiedad.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Entidad\\EPropiedad.cs",
+              "RelativeDocumentMoniker": "RTSCon.Entidad\\EPropiedad.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Entidad\\EPropiedad.cs",
+              "RelativeToolTip": "RTSCon.Entidad\\EPropiedad.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAA7wBUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T17:29:59.526Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "DbUtil.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Datos\\Db\\DbUtil.cs",
+              "RelativeDocumentMoniker": "RTSCon.Datos\\Db\\DbUtil.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Datos\\Db\\DbUtil.cs",
+              "RelativeToolTip": "RTSCon.Datos\\Db\\DbUtil.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAiwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T18:19:43.18Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "NPropiedad.cs",
+              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Propiedad\\NPropiedad.cs",
+              "RelativeDocumentMoniker": "RTSCon.Negocios\\Propiedad\\NPropiedad.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Propiedad\\NPropiedad.cs",
+              "RelativeToolTip": "RTSCon.Negocios\\Propiedad\\NPropiedad.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAADwvw8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-29T19:53:09.055Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "CierreDeMes.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\CierreDeMes\\CierreDeMes.cs",
               "RelativeDocumentMoniker": "RTSCon\\CierreDeMes\\CierreDeMes.cs",
@@ -180,19 +207,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "CrearCondominio.cs",
-              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs",
-              "RelativeDocumentMoniker": "RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs",
-              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs",
-              "RelativeToolTip": "RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAyAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T16:56:33.661Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "ConfirmarDesactivacion.cs [Dise\u00F1o]",
               "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\ConfirmarDesactivacion.cs",
               "RelativeDocumentMoniker": "RTSCon\\Catalogos\\Condominio\\ConfirmarDesactivacion.cs",
@@ -200,17 +215,6 @@
               "RelativeToolTip": "RTSCon\\Catalogos\\Condominio\\ConfirmarDesactivacion.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-28T15:59:02.9Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "CatalogoCRUD.cs [Dise\u00F1o]",
-              "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\CatalogoCRUD.cs",
-              "RelativeDocumentMoniker": "RTSCon\\Catalogos\\CatalogoCRUD.cs",
-              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\CatalogoCRUD.cs [Dise\u00F1o]",
-              "RelativeToolTip": "RTSCon\\Catalogos\\CatalogoCRUD.cs [Dise\u00F1o]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T15:23:11.333Z"
             },
             {
               "$type": "Document",
@@ -241,11 +245,12 @@
               "Title": "CondominioRead.cs",
               "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\CondominioRead.cs",
               "RelativeDocumentMoniker": "RTSCon\\Catalogos\\Condominio\\CondominioRead.cs",
-              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\CondominioRead.cs",
-              "RelativeToolTip": "RTSCon\\Catalogos\\Condominio\\CondominioRead.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\CondominioRead.cs*",
+              "RelativeToolTip": "RTSCon\\Catalogos\\Condominio\\CondominioRead.cs*",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA1AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T15:38:55.072Z"
+              "WhenOpened": "2025-10-28T15:38:55.072Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -253,11 +258,12 @@
               "Title": "CatalogoCRUD.cs",
               "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\CatalogoCRUD.cs",
               "RelativeDocumentMoniker": "RTSCon\\Catalogos\\CatalogoCRUD.cs",
-              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\CatalogoCRUD.cs",
-              "RelativeToolTip": "RTSCon\\Catalogos\\CatalogoCRUD.cs",
+              "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\CatalogoCRUD.cs*",
+              "RelativeToolTip": "RTSCon\\Catalogos\\CatalogoCRUD.cs*",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T15:23:18.576Z"
+              "WhenOpened": "2025-10-28T15:23:18.576Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
