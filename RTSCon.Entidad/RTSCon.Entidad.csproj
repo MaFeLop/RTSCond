@@ -89,6 +89,8 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Bloque\EBloque.cs" />
+    <Compile Include="Bloque\EUnidad.cs" />
     <Compile Include="CierreLog.cs" />
     <Compile Include="DunningDto.cs" />
     <Compile Include="EPropiedad.cs" />
