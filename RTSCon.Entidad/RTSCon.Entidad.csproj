@@ -90,13 +90,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bloque\EBloque.cs" />
-    <Compile Include="Bloque\EUnidad.cs" />
     <Compile Include="CierreLog.cs" />
     <Compile Include="DunningDto.cs" />
     <Compile Include="EPropiedad.cs" />
     <Compile Include="FacturaDto.cs" />
     <Compile Include="PagoDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unidad\EUnidad.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
