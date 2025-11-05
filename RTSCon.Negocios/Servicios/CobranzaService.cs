@@ -1,5 +1,5 @@
 ﻿using RTSCon.Negocios.Interfaces;
-using RTSCon.Datos.Db;
+using RTSCon.Datos;
 using System;
 using System.Data;
 using System.Data.SqlClient;

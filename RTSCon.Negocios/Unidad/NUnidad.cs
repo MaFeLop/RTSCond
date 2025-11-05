@@ -1,9 +1,10 @@
 ﻿using RTSCon.Datos;
 using RTSCon.Entidad;
-using RTSCon.Entidad.Unidad;
 using System.Data;
 
 // NUnidad.cs
+
+
 public sealed class NUnidad
 {
     private readonly DUnidad _dal;

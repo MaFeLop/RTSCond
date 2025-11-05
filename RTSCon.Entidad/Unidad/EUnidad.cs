@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RTSCon.Entidad.Unidad
+namespace RTSCon.Entidad
 {
     public sealed class EUnidad
     {

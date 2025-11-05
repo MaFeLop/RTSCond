@@ -99,6 +99,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bloque\NBloque.cs" />
+    <Compile Include="Condominio\NCondominio.cs" />
+    <Compile Include="Documento\NDocumento.cs" />
     <Compile Include="Interfaces\ICobranzaService.cs" />
     <Compile Include="Interfaces\IFacturaService.cs" />
     <Compile Include="Interfaces\IPagoService.cs" />

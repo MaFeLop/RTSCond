@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RTSCon.Datos.Db
+namespace RTSCon.Datos
 {
     public static class SqlConnectionFactory
     {

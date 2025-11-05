@@ -1,76 +1,81 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace RTSCon.Datos.Documento
+namespace RTSCon.Datos
 {
-    public sealed class DDocumento
+    public class DDocumento
     {
         private readonly string _cn;
-        public DDocumento(string cn) => _cn = cn;
-
-        public int Subir(string nombreArchivo, string tipoContenido, long tamanoBytes, string ubicacion, string usuario = null)
+        public DDocumento(string connectionString)
         {
-            using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_documento_subir", cn) { CommandType = CommandType.StoredProcedure })
-            {
-                cmd.Parameters.AddWithValue("@NombreArchivo", nombreArchivo);
-                cmd.Parameters.AddWithValue("@TipoContenido", tipoContenido ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@TamanoBytes", tamanoBytes);
-                cmd.Parameters.AddWithValue("@Ubicacion", ubicacion);
-                cmd.Parameters.AddWithValue("@Usuario", (object)usuario ?? DBNull.Value);
-
-                var pOut = new SqlParameter("@NuevoId", SqlDbType.Int) { Direction = ParameterDirection.Output };
-                cmd.Parameters.Add(pOut);
-
-                cn.Open();
-                cmd.ExecuteNonQuery();
-                return (int)pOut.Value;
-            }
+            if (string.IsNullOrWhiteSpace(connectionString))
+                throw new ArgumentNullException(nameof(connectionString));
+            _cn = connectionString;
         }
 
-        public void Actualizar(int id, string nombreArchivo = null, string tipoContenido = null, long? tamanoBytes = null,
-                               string ubicacion = null, byte[] rowVersion = null, string usuario = null)
+        // === MÉTODO QUE ESPERA NDocumento.InsertarProvisional(...) ===
+        public int Insertar(string nombreArchivo, string tipoContenido, long tamanoBytes, string ubicacion, int version, string usuario)
         {
             using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_documento_actualizar", cn) { CommandType = CommandType.StoredProcedure })
+            using (var cmd = new SqlCommand("dbo.sp_documento_insertar", cn) { CommandType = CommandType.StoredProcedure })
             {
-                cmd.Parameters.AddWithValue("@Id", id);
                 cmd.Parameters.AddWithValue("@NombreArchivo", (object)nombreArchivo ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@TipoContenido", (object)tipoContenido ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@TamanoBytes", (object)tamanoBytes ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@TamanoBytes", tamanoBytes);
                 cmd.Parameters.AddWithValue("@Ubicacion", (object)ubicacion ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Version", version);
                 cmd.Parameters.AddWithValue("@Usuario", (object)usuario ?? DBNull.Value);
-                cmd.Parameters.Add("@RowVersion", SqlDbType.Timestamp).Value = (object)rowVersion ?? DBNull.Value;
 
                 cn.Open();
-                cmd.ExecuteNonQuery();
+                var idObj = cmd.ExecuteScalar();
+                return Convert.ToInt32(idObj);
             }
         }
-    }
 
-    public sealed class DCondominioDocs
-    {
-        private readonly string _cn;
-        public DCondominioDocs(string cn) => _cn = cn;
-
-        public void AsignarReglamento(int condominioId, int documentoId, string usuario = null)
+        // === MÉTODO QUE ESPERA NDocumento.FinalizarUbicacion(...) ===
+        public void ActualizarUbicacion(int id, string ubicacion, string usuario = null)
         {
             using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_condominio_reglamento_set", cn) { CommandType = CommandType.StoredProcedure })
+            using (var cmd = new SqlCommand("dbo.sp_documento_actualizar_ubicacion", cn) { CommandType = CommandType.StoredProcedure })
             {
-                cmd.Parameters.AddWithValue("@CondominioId", condominioId);
-                cmd.Parameters.AddWithValue("@DocumentoId", documentoId);
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Ubicacion", (object)ubicacion ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Usuario", (object)usuario ?? DBNull.Value);
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
-    }
 
+        // (Opcionales, por si ya los tenías)
+        public DataRow ObtenerPorId(int id)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var da = new SqlDataAdapter("dbo.sp_documento_obtener", cn))
+            {
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.AddWithValue("@Id", id);
+                var dt = new DataTable();
+                da.Fill(dt);
+                return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+            }
+        }
+
+        public void Desactivar(int id, byte[] rowVersion = null, string usuario = null)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand("dbo.sp_documento_desactivar", cn) { CommandType = CommandType.StoredProcedure })
+            {
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Usuario", (object)usuario ?? DBNull.Value);
+
+                var pRv = cmd.Parameters.Add("@RowVersion", SqlDbType.Timestamp);
+                pRv.Value = (object)rowVersion ?? DBNull.Value;
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+    }
 }
