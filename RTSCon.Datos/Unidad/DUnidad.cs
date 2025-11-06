@@ -99,5 +99,32 @@ namespace RTSCon.Datos
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public DataRow ObtenerPorId(int id)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var da = new SqlDataAdapter("dbo.sp_unidad_obtener", cn))
+            {
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.AddWithValue("@Id", id);
+                var dt = new DataTable(); da.Fill(dt);
+                return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+            }
+        }
+
+        public DataTable Buscar(int? bloqueId, string buscar, bool soloActivos, int top = 20)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var da = new SqlDataAdapter("dbo.sp_unidad_buscar", cn))
+            {
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.AddWithValue("@BloqueId", (object)bloqueId ?? DBNull.Value);
+                da.SelectCommand.Parameters.AddWithValue("@Buscar", (object)buscar ?? DBNull.Value);
+                da.SelectCommand.Parameters.AddWithValue("@SoloActivos", soloActivos);
+                da.SelectCommand.Parameters.AddWithValue("@Top", top);
+                var dt = new DataTable(); da.Fill(dt); return dt;
+            }
+        }
+
     }
 }

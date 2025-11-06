@@ -79,6 +79,18 @@ namespace RTSCon.Datos.Propiedad
                 return (pRvOut.Value == DBNull.Value) ? new byte[0] : (byte[])pRvOut.Value;
             }
         }
+        public DataRow ResumenPorUnidad(int unidadId)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var da = new SqlDataAdapter("dbo.sp_propiedad_resumen_unidad", cn))
+            {
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.AddWithValue("@UnidadId", unidadId);
+                var dt = new DataTable(); da.Fill(dt);
+                return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+            }
+        }
+
     }
 
     // Asegúrate de que tu entidad no use nullable reference types (string?):
