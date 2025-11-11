@@ -217,5 +217,19 @@
     <Folder Include="Pagos\" />
     <Folder Include="Resources\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\RTSCon.Datos\RTSCon.Datos.csproj">
+      <Project>{21c80035-1cca-4dfc-a9e9-dac5332e0c72}</Project>
+      <Name>RTSCon.Datos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RTSCon.Entidad\RTSCon.Entidad.csproj">
+      <Project>{684c5baf-b008-4981-a458-b01075afc514}</Project>
+      <Name>RTSCon.Entidad</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RTSCon.Negocios\RTSCon.Negocios.csproj">
+      <Project>{2161bd39-f1b6-480f-a40e-e3fab48177d2}</Project>
+      <Name>RTSCon.Negocios</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

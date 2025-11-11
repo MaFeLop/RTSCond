@@ -90,6 +90,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Auth\DAuth.cs" />
     <Compile Include="Bloque\DBloque.cs" />
     <Compile Include="Condominio\DCondominio.cs" />
     <Compile Include="Condominio\DCondominioDocs.cs" />
