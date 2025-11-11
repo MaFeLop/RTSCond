@@ -67,6 +67,7 @@
             this.btnConfirm.TabIndex = 11;
             this.btnConfirm.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnConfirm.Values.Text = "Confirmar";
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click_1);
             // 
             // btnReenviar
             // 
@@ -79,7 +80,7 @@
             this.btnReenviar.TabIndex = 12;
             this.btnReenviar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnReenviar.Values.Text = "Reenviar";
-//            this.btnReenviar.Click += new System.EventHandler(this.kryptonButton1_Click);
+            this.btnReenviar.Click += new System.EventHandler(this.btnReenviar_Click_1);
             // 
             // lblCountdown
             // 
@@ -91,13 +92,12 @@
             this.lblCountdown.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCountdown.TabIndex = 13;
             this.lblCountdown.Values.Text = "00:00";
-//            this.lblCountdown.Click += new System.EventHandler(this.kryptonLabel1_Click);
             // 
             // LoginCodigo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(812, 408);
+            this.ClientSize = new System.Drawing.Size(816, 394);
             this.Controls.Add(this.lblCountdown);
             this.Controls.Add(this.btnReenviar);
             this.Controls.Add(this.btnConfirm);

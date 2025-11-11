@@ -148,5 +148,89 @@ namespace RTSCon
                     KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error);
             }
         }
+
+        private void btnReenviar_Click_1(object sender, EventArgs e)
+        {
+            btnReenviar.Enabled = false;
+            try
+            {
+                var mailProfile = ConfigurationManager.AppSettings["MailProfile"] ?? "RTSCondMail";
+                var minutosCodigo = int.TryParse(ConfigurationManager.AppSettings["CodigoMinutos"], out var m) ? m : 5;
+                var debug = string.Equals(ConfigurationManager.AppSettings["CodigoDebug"], "true", StringComparison.OrdinalIgnoreCase);
+
+                _auth.ReenviarCodigo(_usuarioAuthId, mailProfile, minutosCodigo, debug);
+
+                KryptonMessageBox.Show(this, "Se envió un nuevo código.",
+                    "Verificación 2FA", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information);
+
+                ResetResendTimer(minutosCodigo);
+                txtCodigo.Clear();
+                txtCodigo.Focus();
+            }
+            catch (Exception ex)
+            {
+                KryptonMessageBox.Show(this, ex.Message, "Verificación 2FA",
+                    KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error);
+            }
+            finally
+            {
+                // El timer decidirá cuándo habilitar
+                if (_secondsLeft == 0)
+                    btnReenviar.Enabled = true;
+            }
+        }
+
+        private void btnConfirm_Click_1(object sender, EventArgs e)
+        {
+            if (!txtCodigo.MaskFull)
+            {
+                KryptonMessageBox.Show(this, "Ingrese los 6 dígitos del código.",
+                    "Verificación 2FA", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information);
+                return;
+            }
+
+            btnConfirm.Enabled = false;
+            btnReenviar.Enabled = false;
+            try
+            {
+                var codigo = txtCodigo.Text.Trim();
+
+                // NAuth.Login_Codigo devuelve bool. El SP ahora puede devolver -1/-2 con RAISERROR,
+                // que en DAL/NAuth se propagarán como Exception (si no las atrapas).
+                // Si tu NAuth atrapa y devuelve false, mostramos un mensaje genérico ampliado:
+                if (_auth.Login_Codigo(_usuarioAuthId, codigo))
+                {
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+                else
+                {
+                    KryptonMessageBox.Show(this,
+                        "Código inválido, expirado o se alcanzó el máximo de intentos.\n" +
+                        "Puedes esperar y usar 'Reenviar código'.",
+                        "Verificación 2FA",
+                        KryptonMessageBoxButtons.OK,
+                        KryptonMessageBoxIcon.Error);
+
+                    txtCodigo.Clear();
+                    this.AcceptButton = null;
+                    txtCodigo.Focus();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Si el DAL propaga mensajes específicos del SP (expirado / demasiados intentos), se verán aquí.
+                KryptonMessageBox.Show(this, ex.Message, "Verificación 2FA",
+                    KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error);
+                txtCodigo.Clear();
+                this.AcceptButton = null;
+                txtCodigo.Focus();
+            }
+            finally
+            {
+                btnConfirm.Enabled = txtCodigo.MaskFull;
+                // Reenviar depende del timer; no lo habilitamos manualmente aquí.
+            }
+        }
     }
 }
