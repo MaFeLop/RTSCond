@@ -164,6 +164,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionManager.cs" />
     <EmbeddedResource Include="Catalogos\CatalogoCRUD.resx">
       <DependentUpon>CatalogoCRUD.cs</DependentUpon>
     </EmbeddedResource>
