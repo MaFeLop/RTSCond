@@ -44,18 +44,20 @@
             // kryptonPictureBox1
             // 
             this.kryptonPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("kryptonPictureBox1.Image")));
-            this.kryptonPictureBox1.Location = new System.Drawing.Point(340, 46);
+            this.kryptonPictureBox1.Location = new System.Drawing.Point(468, 85);
+            this.kryptonPictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonPictureBox1.Name = "kryptonPictureBox1";
-            this.kryptonPictureBox1.Size = new System.Drawing.Size(95, 107);
+            this.kryptonPictureBox1.Size = new System.Drawing.Size(96, 103);
             this.kryptonPictureBox1.TabIndex = 0;
             this.kryptonPictureBox1.TabStop = false;
             // 
             // kryptonLabel1
             // 
             this.kryptonLabel1.AutoSize = false;
-            this.kryptonLabel1.Location = new System.Drawing.Point(302, 159);
+            this.kryptonLabel1.Location = new System.Drawing.Point(403, 196);
+            this.kryptonLabel1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel1.Name = "kryptonLabel1";
-            this.kryptonLabel1.Size = new System.Drawing.Size(173, 38);
+            this.kryptonLabel1.Size = new System.Drawing.Size(231, 47);
             this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel1.TabIndex = 1;
             this.kryptonLabel1.Values.Text = "RTSCond";
@@ -63,9 +65,10 @@
             // kryptonLabel2
             // 
             this.kryptonLabel2.AutoSize = false;
-            this.kryptonLabel2.Location = new System.Drawing.Point(340, 203);
+            this.kryptonLabel2.Location = new System.Drawing.Point(453, 250);
+            this.kryptonLabel2.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel2.Name = "kryptonLabel2";
-            this.kryptonLabel2.Size = new System.Drawing.Size(105, 25);
+            this.kryptonLabel2.Size = new System.Drawing.Size(140, 31);
             this.kryptonLabel2.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel2.TabIndex = 2;
             this.kryptonLabel2.Values.Text = "Iniciar Sesion";
@@ -74,67 +77,75 @@
             // kryptonLabel3
             // 
             this.kryptonLabel3.AutoSize = false;
-            this.kryptonLabel3.Location = new System.Drawing.Point(33, 227);
+            this.kryptonLabel3.Location = new System.Drawing.Point(44, 279);
+            this.kryptonLabel3.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel3.Name = "kryptonLabel3";
-            this.kryptonLabel3.Size = new System.Drawing.Size(105, 25);
+            this.kryptonLabel3.Size = new System.Drawing.Size(140, 31);
             this.kryptonLabel3.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel3.TabIndex = 3;
-            this.kryptonLabel3.Values.Text = "Correo:";
+            this.kryptonLabel3.Values.Text = "Usuario:";
             this.kryptonLabel3.Click += new System.EventHandler(this.kryptonLabel3_Click);
             // 
             // kryptonLabel4
             // 
             this.kryptonLabel4.AutoSize = false;
-            this.kryptonLabel4.Location = new System.Drawing.Point(33, 302);
+            this.kryptonLabel4.Location = new System.Drawing.Point(44, 372);
+            this.kryptonLabel4.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel4.Name = "kryptonLabel4";
-            this.kryptonLabel4.Size = new System.Drawing.Size(105, 25);
+            this.kryptonLabel4.Size = new System.Drawing.Size(140, 31);
             this.kryptonLabel4.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel4.TabIndex = 6;
             this.kryptonLabel4.Values.Text = "Contraseña:";
             // 
             // txtCorreo
             // 
-            this.txtCorreo.Location = new System.Drawing.Point(38, 258);
+            this.txtCorreo.Location = new System.Drawing.Point(51, 318);
+            this.txtCorreo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Size = new System.Drawing.Size(467, 31);
+            this.txtCorreo.Size = new System.Drawing.Size(623, 37);
             this.txtCorreo.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCorreo.TabIndex = 8;
             // 
             // txtContrasena
             // 
-            this.txtContrasena.Location = new System.Drawing.Point(38, 333);
+            this.txtContrasena.Location = new System.Drawing.Point(51, 410);
+            this.txtContrasena.Margin = new System.Windows.Forms.Padding(4);
             this.txtContrasena.Name = "txtContrasena";
             this.txtContrasena.PasswordChar = '●';
-            this.txtContrasena.Size = new System.Drawing.Size(467, 29);
+            this.txtContrasena.Size = new System.Drawing.Size(623, 34);
             this.txtContrasena.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtContrasena.TabIndex = 9;
             this.txtContrasena.UseSystemPasswordChar = true;
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(280, 382);
+            this.btnLogin.Location = new System.Drawing.Point(373, 470);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.btnLogin.Size = new System.Drawing.Size(225, 36);
+            this.btnLogin.Size = new System.Drawing.Size(300, 44);
             this.btnLogin.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.TabIndex = 10;
             this.btnLogin.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnLogin.Values.Text = "Iniciar Sesión";
+            this.btnLogin.Values.Text = "Verificar Sesión";
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // lnkForget
             // 
-            this.lnkForget.Location = new System.Drawing.Point(329, 436);
+            this.lnkForget.Location = new System.Drawing.Point(439, 522);
+            this.lnkForget.Margin = new System.Windows.Forms.Padding(4);
             this.lnkForget.Name = "lnkForget";
             this.lnkForget.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.lnkForget.Size = new System.Drawing.Size(146, 20);
+            this.lnkForget.Size = new System.Drawing.Size(181, 24);
             this.lnkForget.TabIndex = 11;
             this.lnkForget.Values.Text = "Olvidaste tu Contraseña?";
+            this.lnkForget.LinkClicked += new System.EventHandler(this.lnkForget_LinkClicked);
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(808, 480);
+            this.ClientSize = new System.Drawing.Size(1085, 579);
             this.Controls.Add(this.lnkForget);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtContrasena);
@@ -146,6 +157,7 @@
             this.Controls.Add(this.kryptonPictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Login";
             this.Text = "RTSCond";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPictureBox1)).EndInit();

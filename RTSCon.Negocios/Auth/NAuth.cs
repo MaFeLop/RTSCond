@@ -107,5 +107,76 @@ namespace RTSCon.Negocios
             byte[] newHash, newSalt; Derive(nueva, iter, out newHash, out newSalt);
             _dal.CambiarPassword(usuarioAuthId, newHash, newSalt, iter, editor);
         }
+
+        public bool Login_Codigo(int usuarioAuthId, string codigo)
+        {
+            if (usuarioAuthId <= 0) return false;
+            if (string.IsNullOrWhiteSpace(codigo)) return false;
+
+            // Si tu DAL.VerificarCodigo lanza excepción cuando el código NO es válido,
+            // este wrapper la captura y devuelve false (lo que espera el formulario).
+            try
+            {
+                _dal.VerificarCodigo(usuarioAuthId, codigo);
+                return true; // válido
+            }
+            catch
+            {
+                return false; // inválido / expirado
+            }
+        }
+
+        public int EnviarCodigoRecuperacion(string usuario, string correo, string mailProfile, int minutosCodigo, bool debug = false)
+        {
+            if (string.IsNullOrWhiteSpace(usuario))
+                throw new ArgumentException("Usuario requerido.", nameof(usuario));
+            if (string.IsNullOrWhiteSpace(correo))
+                throw new ArgumentException("Correo requerido.", nameof(correo));
+
+            // Busca al usuario
+            var row = _dal.ObtenerPorUsuario(usuario.Trim());
+            if (row == null)
+                throw new InvalidOperationException("Usuario no encontrado.");
+
+            // Correo registrado en BD
+            if (row["Correo"] == DBNull.Value)
+                throw new InvalidOperationException("El usuario no tiene un correo vinculado.");
+
+            var correoDb = Convert.ToString(row["Correo"]).Trim();
+
+            // Verifica que el correo ingresado corresponda al usuario
+            if (!string.Equals(correoDb, correo.Trim(), StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("El correo no coincide con el usuario.");
+
+            // Envía código de recuperación y retorna el Id para los siguientes pasos
+            var id = Convert.ToInt32(row["Id"]);
+            _dal.EnviarCodigo(id, mailProfile, minutosCodigo, debug);
+            return id;
+        }
+
+        // En RTSCon.Negocios\NAuth.cs
+        public void ReenviarCodigo(int usuarioAuthId, string mailProfile, int minutosCodigo, bool debug = false)
+        {
+            if (usuarioAuthId <= 0) throw new ArgumentException("UsuarioAuthId inválido.", nameof(usuarioAuthId));
+            _dal.EnviarCodigo(usuarioAuthId, mailProfile, minutosCodigo, debug);
+        }
+
+        public string CorreoEnmascarado(int usuarioAuthId)
+        {
+            var row = _dal.ObtenerPorId(usuarioAuthId);
+            if (row == null || row["Correo"] == DBNull.Value) return "(correo no disponible)";
+            var email = Convert.ToString(row["Correo"]);
+            return MaskEmail(email);
+        }
+
+        private static string MaskEmail(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email) || !email.Contains("@")) return email;
+            var parts = email.Split('@');
+            var user = parts[0];
+            var dom = parts[1];
+            var head = user.Length <= 2 ? user.Substring(0, 1) : user.Substring(0, 2);
+            return head + new string('*', Math.Max(1, user.Length - head.Length)) + "@" + dom;
+        }
     }
 }
