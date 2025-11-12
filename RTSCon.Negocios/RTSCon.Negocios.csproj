@@ -100,9 +100,7 @@
   <ItemGroup>
     <Compile Include="Auth\NAuth.cs" />
     <Compile Include="Bloque\NBloque.cs" />
-    <Compile Include="Condominio\NCondominio.Crear.cs" />
     <Compile Include="Condominio\NCondominio.cs" />
-    <Compile Include="Condominio\NCondominio.Listar.cs" />
     <Compile Include="Documento\NDocumento.cs" />
     <Compile Include="Interfaces\ICobranzaService.cs" />
     <Compile Include="Interfaces\IFacturaService.cs" />

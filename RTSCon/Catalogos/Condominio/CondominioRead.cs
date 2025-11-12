@@ -64,5 +64,25 @@ namespace RTSCon.Catalogos.Condominio
         {
 
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDesactivar_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvCondominios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

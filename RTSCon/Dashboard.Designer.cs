@@ -146,7 +146,7 @@
             this.DashboardPanel.Controls.Add(this.BorderTopBar);
             this.DashboardPanel.Controls.Add(this.BorderDashboard);
             this.DashboardPanel.Location = new System.Drawing.Point(-7, 0);
-            this.DashboardPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DashboardPanel.Margin = new System.Windows.Forms.Padding(4);
             this.DashboardPanel.Name = "DashboardPanel";
             this.DashboardPanel.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverLightMode;
             this.DashboardPanel.Size = new System.Drawing.Size(1601, 778);
@@ -156,7 +156,7 @@
             // 
             this.kryptonBorderEdge11.AutoSize = false;
             this.kryptonBorderEdge11.Location = new System.Drawing.Point(236, 356);
-            this.kryptonBorderEdge11.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonBorderEdge11.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonBorderEdge11.Name = "kryptonBorderEdge11";
             this.kryptonBorderEdge11.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.kryptonBorderEdge11.Size = new System.Drawing.Size(847, 412);
@@ -194,7 +194,7 @@
             // 
             this.kryptonBorderEdge10.AutoSize = false;
             this.kryptonBorderEdge10.Location = new System.Drawing.Point(1129, 708);
-            this.kryptonBorderEdge10.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonBorderEdge10.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonBorderEdge10.Name = "kryptonBorderEdge10";
             this.kryptonBorderEdge10.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverDarkMode;
             this.kryptonBorderEdge10.Size = new System.Drawing.Size(443, 60);
@@ -232,7 +232,7 @@
             // 
             this.kryptonBorderEdge9.AutoSize = false;
             this.kryptonBorderEdge9.Location = new System.Drawing.Point(1129, 640);
-            this.kryptonBorderEdge9.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonBorderEdge9.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonBorderEdge9.Name = "kryptonBorderEdge9";
             this.kryptonBorderEdge9.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverDarkMode;
             this.kryptonBorderEdge9.Size = new System.Drawing.Size(443, 60);
@@ -270,7 +270,7 @@
             // 
             this.kryptonBorderEdge8.AutoSize = false;
             this.kryptonBorderEdge8.Location = new System.Drawing.Point(1129, 572);
-            this.kryptonBorderEdge8.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonBorderEdge8.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonBorderEdge8.Name = "kryptonBorderEdge8";
             this.kryptonBorderEdge8.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverDarkMode;
             this.kryptonBorderEdge8.Size = new System.Drawing.Size(443, 60);
@@ -308,7 +308,7 @@
             // 
             this.kryptonBorderEdge7.AutoSize = false;
             this.kryptonBorderEdge7.Location = new System.Drawing.Point(1129, 505);
-            this.kryptonBorderEdge7.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonBorderEdge7.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonBorderEdge7.Name = "kryptonBorderEdge7";
             this.kryptonBorderEdge7.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverDarkMode;
             this.kryptonBorderEdge7.Size = new System.Drawing.Size(443, 60);
@@ -346,7 +346,7 @@
             // 
             this.kryptonBorderEdge6.AutoSize = false;
             this.kryptonBorderEdge6.Location = new System.Drawing.Point(1129, 437);
-            this.kryptonBorderEdge6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonBorderEdge6.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonBorderEdge6.Name = "kryptonBorderEdge6";
             this.kryptonBorderEdge6.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverDarkMode;
             this.kryptonBorderEdge6.Size = new System.Drawing.Size(443, 60);
@@ -384,7 +384,7 @@
             // 
             this.kryptonBorderEdge5.AutoSize = false;
             this.kryptonBorderEdge5.Location = new System.Drawing.Point(1116, 356);
-            this.kryptonBorderEdge5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonBorderEdge5.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonBorderEdge5.Name = "kryptonBorderEdge5";
             this.kryptonBorderEdge5.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.kryptonBorderEdge5.Size = new System.Drawing.Size(469, 418);
@@ -409,7 +409,7 @@
             this.panelSideBar.Controls.Add(this.kryptonPictureBox1);
             this.panelSideBar.Controls.Add(this.btnDashboard);
             this.panelSideBar.Location = new System.Drawing.Point(9, 4);
-            this.panelSideBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSideBar.Margin = new System.Windows.Forms.Padding(4);
             this.panelSideBar.Name = "panelSideBar";
             this.panelSideBar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
             this.panelSideBar.Size = new System.Drawing.Size(172, 718);
@@ -429,7 +429,7 @@
             // 
             this.kryptonButton4.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
             this.kryptonButton4.Location = new System.Drawing.Point(48, 345);
-            this.kryptonButton4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonButton4.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton4.Name = "kryptonButton4";
             this.kryptonButton4.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
             this.kryptonButton4.Size = new System.Drawing.Size(120, 28);
@@ -451,7 +451,7 @@
             // 
             this.kryptonButton3.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
             this.kryptonButton3.Location = new System.Drawing.Point(48, 299);
-            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton3.Name = "kryptonButton3";
             this.kryptonButton3.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
             this.kryptonButton3.Size = new System.Drawing.Size(120, 28);
@@ -473,7 +473,7 @@
             // 
             this.kryptonButton2.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
             this.kryptonButton2.Location = new System.Drawing.Point(48, 254);
-            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
             this.kryptonButton2.Size = new System.Drawing.Size(120, 28);
@@ -495,7 +495,7 @@
             // 
             this.kryptonButton1.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
             this.kryptonButton1.Location = new System.Drawing.Point(48, 201);
-            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
             this.kryptonButton1.Size = new System.Drawing.Size(120, 28);
@@ -517,7 +517,7 @@
             // 
             this.btnFacturacion.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
             this.btnFacturacion.Location = new System.Drawing.Point(48, 149);
-            this.btnFacturacion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFacturacion.Margin = new System.Windows.Forms.Padding(4);
             this.btnFacturacion.Name = "btnFacturacion";
             this.btnFacturacion.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
             this.btnFacturacion.Size = new System.Drawing.Size(120, 28);
@@ -539,7 +539,7 @@
             // 
             this.btnCierreDeMes.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
             this.btnCierreDeMes.Location = new System.Drawing.Point(48, 98);
-            this.btnCierreDeMes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCierreDeMes.Margin = new System.Windows.Forms.Padding(4);
             this.btnCierreDeMes.Name = "btnCierreDeMes";
             this.btnCierreDeMes.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
             this.btnCierreDeMes.Size = new System.Drawing.Size(120, 28);
@@ -576,7 +576,7 @@
             this.kryptonPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("kryptonPictureBox1.Image")));
             this.kryptonPictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("kryptonPictureBox1.InitialImage")));
             this.kryptonPictureBox1.Location = new System.Drawing.Point(4, 1);
-            this.kryptonPictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonPictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonPictureBox1.Name = "kryptonPictureBox1";
             this.kryptonPictureBox1.Size = new System.Drawing.Size(43, 39);
             this.kryptonPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -587,7 +587,7 @@
             // 
             this.btnDashboard.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
             this.btnDashboard.Location = new System.Drawing.Point(48, 44);
-            this.btnDashboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDashboard.Margin = new System.Windows.Forms.Padding(4);
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
             this.btnDashboard.Size = new System.Drawing.Size(120, 28);
@@ -635,7 +635,7 @@
             // 
             this.kryptonBorderEdge4.AutoSize = false;
             this.kryptonBorderEdge4.Location = new System.Drawing.Point(1368, 176);
-            this.kryptonBorderEdge4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonBorderEdge4.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonBorderEdge4.Name = "kryptonBorderEdge4";
             this.kryptonBorderEdge4.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.kryptonBorderEdge4.Size = new System.Drawing.Size(217, 155);
@@ -682,7 +682,7 @@
             // 
             this.kryptonBorderEdge3.AutoSize = false;
             this.kryptonBorderEdge3.Location = new System.Drawing.Point(1100, 176);
-            this.kryptonBorderEdge3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonBorderEdge3.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonBorderEdge3.Name = "kryptonBorderEdge3";
             this.kryptonBorderEdge3.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.kryptonBorderEdge3.Size = new System.Drawing.Size(217, 155);
@@ -728,7 +728,7 @@
             // 
             this.kryptonBorderEdge2.AutoSize = false;
             this.kryptonBorderEdge2.Location = new System.Drawing.Point(817, 176);
-            this.kryptonBorderEdge2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonBorderEdge2.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonBorderEdge2.Name = "kryptonBorderEdge2";
             this.kryptonBorderEdge2.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.kryptonBorderEdge2.Size = new System.Drawing.Size(217, 155);
@@ -774,7 +774,7 @@
             // 
             this.kryptonBorderEdge1.AutoSize = false;
             this.kryptonBorderEdge1.Location = new System.Drawing.Point(533, 176);
-            this.kryptonBorderEdge1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonBorderEdge1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonBorderEdge1.Name = "kryptonBorderEdge1";
             this.kryptonBorderEdge1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.kryptonBorderEdge1.Size = new System.Drawing.Size(217, 155);
@@ -820,7 +820,7 @@
             // 
             this.CondominiosBorde.AutoSize = false;
             this.CondominiosBorde.Location = new System.Drawing.Point(236, 176);
-            this.CondominiosBorde.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CondominiosBorde.Margin = new System.Windows.Forms.Padding(4);
             this.CondominiosBorde.Name = "CondominiosBorde";
             this.CondominiosBorde.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.CondominiosBorde.Size = new System.Drawing.Size(217, 155);
@@ -831,7 +831,7 @@
             this.kryptonLabel1.AutoSize = false;
             this.kryptonLabel1.LabelStyle = Krypton.Toolkit.LabelStyle.BoldControl;
             this.kryptonLabel1.Location = new System.Drawing.Point(189, 127);
-            this.kryptonLabel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonLabel1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverLightMode;
             this.kryptonLabel1.Size = new System.Drawing.Size(336, 54);
@@ -846,7 +846,7 @@
             this.DashboardName.AutoSize = false;
             this.DashboardName.LabelStyle = Krypton.Toolkit.LabelStyle.BoldControl;
             this.DashboardName.Location = new System.Drawing.Point(189, 60);
-            this.DashboardName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.DashboardName.Margin = new System.Windows.Forms.Padding(4);
             this.DashboardName.Name = "DashboardName";
             this.DashboardName.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverLightMode;
             this.DashboardName.Size = new System.Drawing.Size(264, 70);
@@ -860,7 +860,7 @@
             this.BorderTopBar.AutoSize = false;
             this.BorderTopBar.BorderStyle = Krypton.Toolkit.PaletteBorderStyle.ControlAlternate;
             this.BorderTopBar.Location = new System.Drawing.Point(189, 0);
-            this.BorderTopBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BorderTopBar.Margin = new System.Windows.Forms.Padding(4);
             this.BorderTopBar.Name = "BorderTopBar";
             this.BorderTopBar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkModeAlternate;
             this.BorderTopBar.Size = new System.Drawing.Size(1412, 53);
@@ -870,7 +870,7 @@
             // 
             this.BorderDashboard.AutoSize = false;
             this.BorderDashboard.Location = new System.Drawing.Point(0, 0);
-            this.BorderDashboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.BorderDashboard.Margin = new System.Windows.Forms.Padding(4);
             this.BorderDashboard.Name = "BorderDashboard";
             this.BorderDashboard.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
             this.BorderDashboard.Size = new System.Drawing.Size(189, 774);
@@ -880,11 +880,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1637, 817);
+            this.ClientSize = new System.Drawing.Size(1641, 803);
             this.Controls.Add(this.DashboardPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Dashboard";
             this.Text = "RTSCond: Sistema de Gestión de Condominios";
             this.TransparencyKey = System.Drawing.Color.RoyalBlue;

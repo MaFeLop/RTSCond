@@ -49,6 +49,7 @@
             this.dgvCondominios.RowHeadersWidth = 51;
             this.dgvCondominios.Size = new System.Drawing.Size(1431, 340);
             this.dgvCondominios.TabIndex = 0;
+            this.dgvCondominios.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCondominios_CellContentClick);
             // 
             // btnCrear
             // 
@@ -74,6 +75,7 @@
             this.btnUpdate.TabIndex = 2;
             this.btnUpdate.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnUpdate.Values.Text = "Update";
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnDesactivar
             // 
@@ -86,6 +88,7 @@
             this.btnDesactivar.TabIndex = 3;
             this.btnDesactivar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnDesactivar.Values.Text = "Desactivar";
+            this.btnDesactivar.Click += new System.EventHandler(this.btnDesactivar_Click);
             // 
             // label2
             // 
@@ -108,6 +111,7 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(743, 27);
             this.txtBuscar.TabIndex = 92;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // btnLimpiarFiltros
             // 
