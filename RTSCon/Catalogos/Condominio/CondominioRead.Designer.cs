@@ -29,62 +29,63 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CondominioRead));
-            this.kryptonDataGridView1 = new Krypton.Toolkit.KryptonDataGridView();
-            this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
-            this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
-            this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
+            this.dgvCondominios = new Krypton.Toolkit.KryptonDataGridView();
+            this.btnCrear = new Krypton.Toolkit.KryptonButton();
+            this.btnUpdate = new Krypton.Toolkit.KryptonButton();
+            this.btnDesactivar = new Krypton.Toolkit.KryptonButton();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBuscar = new Krypton.Toolkit.KryptonTextBox();
             this.btnLimpiarFiltros = new Krypton.Toolkit.KryptonButton();
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCondominios)).BeginInit();
             this.SuspendLayout();
             // 
-            // kryptonDataGridView1
+            // dgvCondominios
             // 
-            this.kryptonDataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.kryptonDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.kryptonDataGridView1.Location = new System.Drawing.Point(16, 81);
-            this.kryptonDataGridView1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.kryptonDataGridView1.Name = "kryptonDataGridView1";
-            this.kryptonDataGridView1.RowHeadersWidth = 51;
-            this.kryptonDataGridView1.Size = new System.Drawing.Size(1431, 340);
-            this.kryptonDataGridView1.TabIndex = 0;
+            this.dgvCondominios.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvCondominios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCondominios.Location = new System.Drawing.Point(16, 81);
+            this.dgvCondominios.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvCondominios.Name = "dgvCondominios";
+            this.dgvCondominios.RowHeadersWidth = 51;
+            this.dgvCondominios.Size = new System.Drawing.Size(1431, 340);
+            this.dgvCondominios.TabIndex = 0;
             // 
-            // kryptonButton1
+            // btnCrear
             // 
-            this.kryptonButton1.Location = new System.Drawing.Point(241, 478);
-            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.kryptonButton1.Size = new System.Drawing.Size(237, 63);
-            this.kryptonButton1.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonButton1.TabIndex = 1;
-            this.kryptonButton1.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.kryptonButton1.Values.Text = "Crear";
+            this.btnCrear.Location = new System.Drawing.Point(241, 478);
+            this.btnCrear.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCrear.Name = "btnCrear";
+            this.btnCrear.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnCrear.Size = new System.Drawing.Size(237, 63);
+            this.btnCrear.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCrear.TabIndex = 1;
+            this.btnCrear.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnCrear.Values.Text = "Crear";
+            this.btnCrear.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
-            // kryptonButton2
+            // btnUpdate
             // 
-            this.kryptonButton2.Location = new System.Drawing.Point(604, 478);
-            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.kryptonButton2.Size = new System.Drawing.Size(237, 63);
-            this.kryptonButton2.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonButton2.TabIndex = 2;
-            this.kryptonButton2.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.kryptonButton2.Values.Text = "Update";
+            this.btnUpdate.Location = new System.Drawing.Point(604, 478);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnUpdate.Size = new System.Drawing.Size(237, 63);
+            this.btnUpdate.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.TabIndex = 2;
+            this.btnUpdate.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnUpdate.Values.Text = "Update";
             // 
-            // kryptonButton3
+            // btnDesactivar
             // 
-            this.kryptonButton3.Location = new System.Drawing.Point(967, 478);
-            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.kryptonButton3.Size = new System.Drawing.Size(237, 63);
-            this.kryptonButton3.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonButton3.TabIndex = 3;
-            this.kryptonButton3.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.kryptonButton3.Values.Text = "Desactivar";
+            this.btnDesactivar.Location = new System.Drawing.Point(967, 478);
+            this.btnDesactivar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDesactivar.Name = "btnDesactivar";
+            this.btnDesactivar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnDesactivar.Size = new System.Drawing.Size(237, 63);
+            this.btnDesactivar.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDesactivar.TabIndex = 3;
+            this.btnDesactivar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnDesactivar.Values.Text = "Desactivar";
             // 
             // label2
             // 
@@ -92,10 +93,10 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(12, 3);
+            this.label2.Location = new System.Drawing.Point(13, 14);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(281, 28);
+            this.label2.Size = new System.Drawing.Size(283, 28);
             this.label2.TabIndex = 93;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -103,7 +104,7 @@
             // txtBuscar
             // 
             this.txtBuscar.Location = new System.Drawing.Point(16, 46);
-            this.txtBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(743, 27);
             this.txtBuscar.TabIndex = 92;
@@ -111,34 +112,36 @@
             // btnLimpiarFiltros
             // 
             this.btnLimpiarFiltros.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnLimpiarFiltros.Location = new System.Drawing.Point(767, 46);
-            this.btnLimpiarFiltros.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLimpiarFiltros.Location = new System.Drawing.Point(767, 45);
+            this.btnLimpiarFiltros.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiarFiltros.Name = "btnLimpiarFiltros";
             this.btnLimpiarFiltros.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
-            this.btnLimpiarFiltros.Size = new System.Drawing.Size(37, 28);
+            this.btnLimpiarFiltros.Size = new System.Drawing.Size(140, 28);
             this.btnLimpiarFiltros.TabIndex = 91;
             this.btnLimpiarFiltros.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnLimpiarFiltros.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarFiltros.Values.Image")));
             this.btnLimpiarFiltros.Values.Text = "Limpiar Filtros";
+            this.btnLimpiarFiltros.Click += new System.EventHandler(this.btnLimpiarFiltros_Click);
             // 
             // CondominioRead
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1472, 526);
+            this.ClientSize = new System.Drawing.Size(1476, 598);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.btnLimpiarFiltros);
-            this.Controls.Add(this.kryptonButton3);
-            this.Controls.Add(this.kryptonButton2);
-            this.Controls.Add(this.kryptonButton1);
-            this.Controls.Add(this.kryptonDataGridView1);
+            this.Controls.Add(this.btnDesactivar);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnCrear);
+            this.Controls.Add(this.dgvCondominios);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CondominioRead";
             this.Text = "Condominios";
-            ((System.ComponentModel.ISupportInitialize)(this.kryptonDataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.CondominioRead_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCondominios)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -146,10 +149,10 @@
 
         #endregion
 
-        private Krypton.Toolkit.KryptonDataGridView kryptonDataGridView1;
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
-        private Krypton.Toolkit.KryptonButton kryptonButton2;
-        private Krypton.Toolkit.KryptonButton kryptonButton3;
+        private Krypton.Toolkit.KryptonDataGridView dgvCondominios;
+        private Krypton.Toolkit.KryptonButton btnCrear;
+        private Krypton.Toolkit.KryptonButton btnUpdate;
+        private Krypton.Toolkit.KryptonButton btnDesactivar;
         private System.Windows.Forms.Label label2;
         private Krypton.Toolkit.KryptonTextBox txtBuscar;
         private Krypton.Toolkit.KryptonButton btnLimpiarFiltros;
