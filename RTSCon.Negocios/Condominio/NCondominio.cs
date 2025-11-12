@@ -14,11 +14,30 @@ namespace RTSCon.Negocios
 
         public DataRow PorId(int id) => _dal.PorId(id);
 
-        public int Insertar(string nombre, int? reglamentoDocId, string creador)
+        public int Insertar(
+    string nombre, string direccion, string tipo, string adminResp,
+    DateTime fechaConstitucion, decimal cuotaBase,
+    string emailNotif, bool enviarNotifProp,
+    int? reglamentoDocId, int? idPropietario, int? idSec1, int? idSec2, int? idSec3,
+    string creador)
         {
             if (string.IsNullOrWhiteSpace(nombre)) throw new ArgumentException("Nombre requerido.");
-            return _dal.Insertar(nombre.Trim(), reglamentoDocId, creador);
+            if (string.IsNullOrWhiteSpace(direccion)) throw new ArgumentException("Dirección requerida.");
+            if (string.IsNullOrWhiteSpace(tipo)) throw new ArgumentException("Tipo requerido.");
+            if (string.IsNullOrWhiteSpace(adminResp)) throw new ArgumentException("Administrador responsable requerido.");
+            if (fechaConstitucion == default(DateTime)) throw new ArgumentException("Fecha de constitución requerida.");
+            if (cuotaBase < 0) throw new ArgumentException("La cuota base no puede ser negativa.");
+            if (string.IsNullOrWhiteSpace(emailNotif) || !emailNotif.Contains("@"))
+                throw new ArgumentException("Correo de notificaciones inválido.");
+
+            return _dal.Insertar(
+                nombre.Trim(), direccion.Trim(), tipo.Trim(), adminResp.Trim(),
+                fechaConstitucion.Date, cuotaBase,
+                emailNotif.Trim(), enviarNotifProp,
+                reglamentoDocId, idPropietario, idSec1, idSec2, idSec3,
+                creador);
         }
+
 
         public void Actualizar(int id, string nombre, int? reglamentoDocId, byte[] rowVersion, string editor)
         {

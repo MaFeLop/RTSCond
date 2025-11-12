@@ -1,6 +1,6 @@
 ﻿namespace RTSCon.Catalogos.Condominio
 {
-    partial class CondominioRead
+    partial class chkSoloActivos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CondominioRead));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(chkSoloActivos));
             this.dgvCondominios = new Krypton.Toolkit.KryptonDataGridView();
             this.btnCrear = new Krypton.Toolkit.KryptonButton();
             this.btnUpdate = new Krypton.Toolkit.KryptonButton();
@@ -36,6 +36,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtBuscar = new Krypton.Toolkit.KryptonTextBox();
             this.btnLimpiarFiltros = new Krypton.Toolkit.KryptonButton();
+            this.kryptonCheckBox1 = new Krypton.Toolkit.KryptonCheckBox();
+            this.lblTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCondominios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,10 +98,10 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(13, 14);
+            this.label2.Location = new System.Drawing.Point(13, 5);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(283, 28);
+            this.label2.Size = new System.Drawing.Size(289, 28);
             this.label2.TabIndex = 93;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -116,7 +118,7 @@
             // btnLimpiarFiltros
             // 
             this.btnLimpiarFiltros.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnLimpiarFiltros.Location = new System.Drawing.Point(767, 45);
+            this.btnLimpiarFiltros.Location = new System.Drawing.Point(890, 46);
             this.btnLimpiarFiltros.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiarFiltros.Name = "btnLimpiarFiltros";
             this.btnLimpiarFiltros.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
@@ -127,11 +129,37 @@
             this.btnLimpiarFiltros.Values.Text = "Limpiar Filtros";
             this.btnLimpiarFiltros.Click += new System.EventHandler(this.btnLimpiarFiltros_Click);
             // 
-            // CondominioRead
+            // kryptonCheckBox1
+            // 
+            this.kryptonCheckBox1.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
+            this.kryptonCheckBox1.Location = new System.Drawing.Point(766, 46);
+            this.kryptonCheckBox1.Name = "kryptonCheckBox1";
+            this.kryptonCheckBox1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.kryptonCheckBox1.Size = new System.Drawing.Size(117, 24);
+            this.kryptonCheckBox1.TabIndex = 94;
+            this.kryptonCheckBox1.Values.Text = "Solo Activos";
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTotal.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTotal.Location = new System.Drawing.Point(1160, 422);
+            this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(289, 28);
+            this.lblTotal.TabIndex = 95;
+            this.lblTotal.Text = "Total: ";
+            this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // chkSoloActivos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1476, 598);
+            this.ClientSize = new System.Drawing.Size(1488, 556);
+            this.Controls.Add(this.lblTotal);
+            this.Controls.Add(this.kryptonCheckBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.btnLimpiarFiltros);
@@ -142,7 +170,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "CondominioRead";
+            this.Name = "chkSoloActivos";
             this.Text = "Condominios";
             this.Load += new System.EventHandler(this.CondominioRead_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCondominios)).EndInit();
@@ -160,5 +188,7 @@
         private System.Windows.Forms.Label label2;
         private Krypton.Toolkit.KryptonTextBox txtBuscar;
         private Krypton.Toolkit.KryptonButton btnLimpiarFiltros;
+        private Krypton.Toolkit.KryptonCheckBox kryptonCheckBox1;
+        private System.Windows.Forms.Label lblTotal;
     }
 }

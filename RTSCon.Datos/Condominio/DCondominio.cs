@@ -47,15 +47,32 @@ namespace RTSCon.Datos
             }
         }
 
-        public int Insertar(string nombre, int? reglaDocId, string creador)
+        public int Insertar(
+    string nombre, string direccion, string tipo, string adminResp,
+    DateTime fechaConstitucion, decimal cuotaBase,
+    string emailNotif, bool enviarNotifProp,
+    int? reglamentoDocId, int? idPropietario, int? idSec1, int? idSec2, int? idSec3,
+    string creador)
         {
             using (var cn = new SqlConnection(_cn))
             using (var cmd = new SqlCommand("dbo.sp_condominio_insertar", cn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Nombre", nombre);
-                cmd.Parameters.AddWithValue("@ReglamentoDocumentoId", (object)reglaDocId ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Direccion", direccion);
+                cmd.Parameters.AddWithValue("@Tipo", tipo);
+                cmd.Parameters.AddWithValue("@AdministradorResponsable", adminResp);
+                cmd.Parameters.AddWithValue("@FechaConstitucion", fechaConstitucion);
+                cmd.Parameters.AddWithValue("@CuotaMantenimientoBase", cuotaBase);
+                cmd.Parameters.AddWithValue("@EmailNotificaciones", emailNotif);
+                cmd.Parameters.AddWithValue("@EnviarNotifsAlPropietario", enviarNotifProp);
+                cmd.Parameters.AddWithValue("@ReglamentoDocumentoId", (object)reglamentoDocId ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@ID_propietario", (object)idPropietario ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@ID_usr_secretario1", (object)idSec1 ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@ID_usr_secretario2", (object)idSec2 ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@ID_usr_secretario3", (object)idSec3 ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@Creador", creador);
+
                 var pId = cmd.Parameters.Add("@NuevoId", SqlDbType.Int);
                 pId.Direction = ParameterDirection.Output;
 
@@ -64,6 +81,7 @@ namespace RTSCon.Datos
                 return (int)pId.Value;
             }
         }
+
 
         public void Actualizar(int id, string nombre, int? reglaDocId, byte[] rowVersion, string editor)
         {

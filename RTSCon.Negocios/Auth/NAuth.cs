@@ -178,5 +178,11 @@ namespace RTSCon.Negocios
             var head = user.Length <= 2 ? user.Substring(0, 1) : user.Substring(0, 2);
             return head + new string('*', Math.Max(1, user.Length - head.Length)) + "@" + dom;
         }
+
+        public DataTable ListarPropietarios(string buscar, bool soloActivos, int page, int pageSize, out int totalRows)
+        {
+            return _dal.ListarPropietarios(buscar, soloActivos, page, pageSize, out totalRows);
+        }
+
     }
 }

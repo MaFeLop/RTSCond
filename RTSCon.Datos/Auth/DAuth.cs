@@ -98,5 +98,28 @@ namespace RTSCon.Datos
                 cn.Open(); cmd.ExecuteNonQuery();
             }
         }
+
+        public DataTable ListarPropietarios(string buscar, bool soloActivos, int page, int pageSize, out int totalRows)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand("dbo.sp_usuarioauth_listar_propietarios", cn))
+            using (var da = new SqlDataAdapter(cmd))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Buscar", (object)buscar ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@SoloActivos", soloActivos);
+                cmd.Parameters.AddWithValue("@Page", page);
+                cmd.Parameters.AddWithValue("@PageSize", pageSize);
+
+                var pTotal = cmd.Parameters.Add("@TotalRows", SqlDbType.Int);
+                pTotal.Direction = ParameterDirection.Output;
+
+                var dt = new DataTable();
+                da.Fill(dt);
+                totalRows = (pTotal.Value == DBNull.Value) ? 0 : Convert.ToInt32(pTotal.Value);
+                return dt;
+            }
+        }
+
     }
 }
