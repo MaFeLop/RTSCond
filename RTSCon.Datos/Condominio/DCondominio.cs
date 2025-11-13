@@ -9,7 +9,7 @@ namespace RTSCon.Datos
         private readonly string _cn;
         public DCondominio(string connectionString) { _cn = connectionString; }
 
-        public DataTable Listar(string buscar, bool soloActivos, int page, int pageSize, out int totalRows)
+        public DataTable Listar(string buscar, bool soloActivos, int page, int pageSize, int? ownerId, out int totalRows)
         {
             totalRows = 0;
             using (var cn = new SqlConnection(_cn))
@@ -21,16 +21,31 @@ namespace RTSCon.Datos
                 cmd.Parameters.AddWithValue("@soloActivos", soloActivos);
                 cmd.Parameters.AddWithValue("@page", page);
                 cmd.Parameters.AddWithValue("@pageSize", pageSize);
+                cmd.Parameters.AddWithValue("@OwnerId", (object)ownerId ?? DBNull.Value);
                 var pTotal = cmd.Parameters.Add("@totalRows", SqlDbType.Int);
                 pTotal.Direction = ParameterDirection.Output;
 
                 var dt = new DataTable();
-                cn.Open();
-                da.Fill(dt);
-                totalRows = (int)pTotal.Value;
+                cn.Open(); da.Fill(dt);
+                totalRows = (pTotal.Value == DBNull.Value) ? 0 : (int)pTotal.Value;
                 return dt;
             }
         }
+
+        public void Notificar(string to, string subject, string htmlBody, string mailProfile)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand("dbo.sp_notificar_accion", cn) { CommandType = CommandType.StoredProcedure })
+            {
+                cmd.Parameters.AddWithValue("@Para", to ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Asunto", subject ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Cuerpo", htmlBody ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@Perfil", mailProfile ?? (object)DBNull.Value);
+                cn.Open(); cmd.ExecuteNonQuery();
+            }
+        }
+
+
 
         public DataRow PorId(int id)
         {

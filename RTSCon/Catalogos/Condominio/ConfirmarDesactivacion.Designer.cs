@@ -33,6 +33,8 @@
             this.txtPassword = new Krypton.Toolkit.KryptonTextBox();
             this.btnConfirmar = new Krypton.Toolkit.KryptonButton();
             this.btnCancelar = new Krypton.Toolkit.KryptonButton();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblDesactivacion
@@ -62,7 +64,7 @@
             // 
             this.btnConfirmar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnConfirmar.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnConfirmar.Location = new System.Drawing.Point(254, 286);
+            this.btnConfirmar.Location = new System.Drawing.Point(254, 280);
             this.btnConfirmar.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -76,7 +78,7 @@
             // 
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnCancelar.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnCancelar.Location = new System.Drawing.Point(549, 286);
+            this.btnCancelar.Location = new System.Drawing.Point(549, 280);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -86,11 +88,33 @@
             this.btnCancelar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCancelar.Values.Text = "Cancelar";
             // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Image = ((System.Drawing.Image)(resources.GetObject("label7.Image")));
+            this.label7.Location = new System.Drawing.Point(498, 9);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(135, 102);
+            this.label7.TabIndex = 137;
+            // 
+            // label12
+            // 
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Image = ((System.Drawing.Image)(resources.GetObject("label12.Image")));
+            this.label12.Location = new System.Drawing.Point(378, 9);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(140, 102);
+            this.label12.TabIndex = 136;
+            // 
             // ConfirmarDesactivacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1061, 452);
+            this.ClientSize = new System.Drawing.Size(1069, 424);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label12);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.txtPassword);
@@ -111,5 +135,7 @@
         private Krypton.Toolkit.KryptonTextBox txtPassword;
         private Krypton.Toolkit.KryptonButton btnConfirmar;
         private Krypton.Toolkit.KryptonButton btnCancelar;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label12;
     }
 }

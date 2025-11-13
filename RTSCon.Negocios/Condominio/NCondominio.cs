@@ -14,7 +14,18 @@ namespace RTSCon.Negocios
 
         // --------- LISTAR (paginado) ----------
         public DataTable Listar(string buscar, bool soloActivos, int page, int pageSize, out int totalRows)
-            => _dal.Listar(buscar, soloActivos, page, pageSize, out totalRows);
+        {
+            int? ownerId = null;
+            var rol = UserContext.Rol?.Trim();
+            if (rol == "Propietario") ownerId = UserContext.UsuarioAuthId;   // 🔒
+
+            return _dal.Listar(buscar, soloActivos, page, pageSize, ownerId, out totalRows);
+        }
+
+        // --------- NOTIFICAR ACCIÓN SIMPLE (mediante correo) ----------
+        public void NotificarAccionSimple(string to, string asunto, string cuerpoHtml, string mailProfile)
+    => _dal.Notificar(to, asunto, cuerpoHtml, mailProfile);
+
 
         // --------- INSERTAR ----------
         public int Insertar(

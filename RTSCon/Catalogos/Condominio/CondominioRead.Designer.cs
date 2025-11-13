@@ -95,13 +95,14 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(13, -7);
+            this.label2.Location = new System.Drawing.Point(13, 14);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(297, 28);
+            this.label2.Size = new System.Drawing.Size(313, 28);
             this.label2.TabIndex = 93;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtBuscar
             // 
@@ -114,7 +115,7 @@
             // btnLimpiarFiltros
             // 
             this.btnLimpiarFiltros.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnLimpiarFiltros.Location = new System.Drawing.Point(890, 46);
+            this.btnLimpiarFiltros.Location = new System.Drawing.Point(891, 46);
             this.btnLimpiarFiltros.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiarFiltros.Name = "btnLimpiarFiltros";
             this.btnLimpiarFiltros.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
@@ -127,7 +128,8 @@
             // kryptonCheckBox1
             // 
             this.kryptonCheckBox1.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
-            this.kryptonCheckBox1.Location = new System.Drawing.Point(766, 46);
+            this.kryptonCheckBox1.Location = new System.Drawing.Point(765, 46);
+            this.kryptonCheckBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.kryptonCheckBox1.Name = "kryptonCheckBox1";
             this.kryptonCheckBox1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
             this.kryptonCheckBox1.Size = new System.Drawing.Size(117, 24);
@@ -140,10 +142,10 @@
             this.lblTotal.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTotal.Location = new System.Drawing.Point(1160, 410);
+            this.lblTotal.Location = new System.Drawing.Point(1134, 428);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(297, 28);
+            this.lblTotal.Size = new System.Drawing.Size(313, 28);
             this.lblTotal.TabIndex = 95;
             this.lblTotal.Text = "Total: ";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -152,7 +154,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1504, 500);
+            this.ClientSize = new System.Drawing.Size(1531, 562);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.kryptonCheckBox1);
             this.Controls.Add(this.label2);

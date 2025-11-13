@@ -48,7 +48,7 @@
             this.label2.Location = new System.Drawing.Point(13, 26);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(301, 28);
+            this.label2.Size = new System.Drawing.Size(309, 28);
             this.label2.TabIndex = 97;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -123,7 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1498, 521);
+            this.ClientSize = new System.Drawing.Size(1506, 586);
             this.Controls.Add(this.chkSoloActivos);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);

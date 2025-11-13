@@ -77,10 +77,10 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(47, 71);
+            this.label2.Location = new System.Drawing.Point(47, 68);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(299, 28);
+            this.label2.Size = new System.Drawing.Size(301, 28);
             this.label2.TabIndex = 95;
             this.label2.Text = "Nombre de Condominio:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -100,10 +100,10 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(51, 148);
+            this.label1.Location = new System.Drawing.Point(51, 145);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(299, 28);
+            this.label1.Size = new System.Drawing.Size(301, 28);
             this.label1.TabIndex = 97;
             this.label1.Text = "Direccion del Condominio:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -123,10 +123,10 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(51, 375);
+            this.label3.Location = new System.Drawing.Point(51, 372);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(299, 28);
+            this.label3.Size = new System.Drawing.Size(301, 28);
             this.label3.TabIndex = 99;
             this.label3.Text = "Identificacion del Propietario:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -147,10 +147,10 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(51, 226);
+            this.label4.Location = new System.Drawing.Point(51, 223);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(299, 28);
+            this.label4.Size = new System.Drawing.Size(301, 28);
             this.label4.TabIndex = 100;
             this.label4.Text = "Tipo de Condominio:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -176,10 +176,10 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(671, 217);
+            this.label5.Location = new System.Drawing.Point(671, 214);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(299, 28);
+            this.label5.Size = new System.Drawing.Size(301, 28);
             this.label5.TabIndex = 103;
             this.label5.Text = "Fecha de Constitución:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -210,10 +210,10 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label8.Location = new System.Drawing.Point(671, 294);
+            this.label8.Location = new System.Drawing.Point(671, 291);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(299, 28);
+            this.label8.Size = new System.Drawing.Size(301, 28);
             this.label8.TabIndex = 109;
             this.label8.Text = "Nombre Secretario/a 1:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -233,10 +233,10 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(671, 375);
+            this.label9.Location = new System.Drawing.Point(671, 372);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(299, 28);
+            this.label9.Size = new System.Drawing.Size(301, 28);
             this.label9.TabIndex = 111;
             this.label9.Text = "Nombre Secretario/a 2:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -256,10 +256,10 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label10.Location = new System.Drawing.Point(671, 444);
+            this.label10.Location = new System.Drawing.Point(671, 441);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(299, 28);
+            this.label10.Size = new System.Drawing.Size(301, 28);
             this.label10.TabIndex = 113;
             this.label10.Text = "Nombre Secretario/a 3:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -279,10 +279,10 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label11.Location = new System.Drawing.Point(671, 144);
+            this.label11.Location = new System.Drawing.Point(671, 141);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(315, 28);
+            this.label11.Size = new System.Drawing.Size(317, 28);
             this.label11.TabIndex = 115;
             this.label11.Text = "Cuota de Mantenimiento Base:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -302,10 +302,10 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label13.Location = new System.Drawing.Point(669, 71);
+            this.label13.Location = new System.Drawing.Point(669, 68);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(351, 28);
+            this.label13.Size = new System.Drawing.Size(353, 28);
             this.label13.TabIndex = 117;
             this.label13.Text = "Correo donde recibirá Notificaciones:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -323,7 +323,7 @@
             // 
             this.btnConfirmar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnConfirmar.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnConfirmar.Location = new System.Drawing.Point(419, 516);
+            this.btnConfirmar.Location = new System.Drawing.Point(419, 513);
             this.btnConfirmar.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -338,7 +338,7 @@
             // 
             this.btnVolver.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnVolver.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnVolver.Location = new System.Drawing.Point(765, 516);
+            this.btnVolver.Location = new System.Drawing.Point(765, 513);
             this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -363,10 +363,10 @@
             this.txtAdministrador.BackColor = System.Drawing.Color.Transparent;
             this.txtAdministrador.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAdministrador.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtAdministrador.Location = new System.Drawing.Point(51, 294);
+            this.txtAdministrador.Location = new System.Drawing.Point(51, 291);
             this.txtAdministrador.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtAdministrador.Name = "txtAdministrador";
-            this.txtAdministrador.Size = new System.Drawing.Size(299, 28);
+            this.txtAdministrador.Size = new System.Drawing.Size(301, 28);
             this.txtAdministrador.TabIndex = 122;
             this.txtAdministrador.Text = "Propietario Responsable:";
             this.txtAdministrador.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -394,7 +394,7 @@
             // 
             this.btnBuscarPropietario.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnBuscarPropietario.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnBuscarPropietario.Location = new System.Drawing.Point(415, 287);
+            this.btnBuscarPropietario.Location = new System.Drawing.Point(415, 284);
             this.btnBuscarPropietario.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscarPropietario.Name = "btnBuscarPropietario";
             this.btnBuscarPropietario.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -409,7 +409,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1511, 594);
+            this.ClientSize = new System.Drawing.Size(1515, 580);
             this.Controls.Add(this.btnBuscarPropietario);
             this.Controls.Add(this.chkNotificarPropietario);
             this.Controls.Add(this.txtAdministrador);
