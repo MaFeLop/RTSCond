@@ -1,110 +1,138 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RTSCon.Entidad;
 
-namespace RTSCon.Datos.Propiedad
+namespace RTSCon.Datos
 {
-    public sealed class DPropiedad
+    public class DPropiedad
     {
         private readonly string _cn;
+        public DPropiedad(string connectionString) { _cn = connectionString; }
 
-        public DPropiedad(string connectionString)
+        // LISTAR (paginado)
+        public DataTable Listar(string buscar, bool soloActivas, int page, int pageSize, out int totalRows)
         {
-            _cn = connectionString;
-        }
-
-        // Devuelve (id, rowVersion) usando tupla (válido en C# 7.0+)
-        public (int id, byte[] rowVersion) Crear(EPropiedad p)
-        {
+            totalRows = 0;
             using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_propiedad_crear", cn))
+            using (var cmd = new SqlCommand("dbo.sp_propiedad_listar", cn))
+            using (var da = new SqlDataAdapter(cmd))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Buscar", (object)buscar ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@SoloActivas", soloActivas);
+                cmd.Parameters.AddWithValue("@Page", page);
+                cmd.Parameters.AddWithValue("@PageSize", pageSize);
+                var pTotal = cmd.Parameters.Add("@TotalRows", SqlDbType.Int); pTotal.Direction = ParameterDirection.Output;
 
-                cmd.Parameters.AddWithValue("@PropietarioId", p.PropietarioId);
-                cmd.Parameters.AddWithValue("@UnidadId", p.UnidadId);
-                cmd.Parameters.AddWithValue("@FechaInicio", p.FechaInicio);
-                cmd.Parameters.AddWithValue("@FechaFin", (object)p.FechaFin ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@Porcentaje", p.Porcentaje);
-                cmd.Parameters.AddWithValue("@EsTitularPrincipal", p.EsTitularPrincipal);
-                cmd.Parameters.AddWithValue("@CreatedBy", p.UsuarioAuditoria ?? (object)DBNull.Value);
-
-                var pId = cmd.Parameters.Add("@NuevoId", SqlDbType.Int);
-                pId.Direction = ParameterDirection.Output;
-
-                var pRv = cmd.Parameters.Add("@NuevaRowVersion", SqlDbType.VarBinary, 8);
-                pRv.Direction = ParameterDirection.Output;
-
+                var dt = new DataTable();
                 cn.Open();
-                cmd.ExecuteNonQuery();
-
-                int id = (pId.Value == DBNull.Value) ? 0 : Convert.ToInt32(pId.Value);
-                byte[] rv = (pRv.Value == DBNull.Value) ? new byte[0] : (byte[])pRv.Value;
-
-                return (id, rv);
+                da.Fill(dt);
+                totalRows = (pTotal.Value == DBNull.Value) ? 0 : Convert.ToInt32(pTotal.Value);
+                return dt;
             }
         }
 
-        public byte[] Actualizar(EPropiedad p)
+        // POR ID
+        public DataRow PorId(int id)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var da = new SqlDataAdapter("dbo.sp_propiedad_por_id", cn))
+            {
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.AddWithValue("@Id", id);
+                var dt = new DataTable();
+                da.Fill(dt);
+                return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+            }
+        }
+
+        // INSERTAR
+        // Ajusta nombres de parámetros a tu tabla dbo.Propiedad
+        public int Insertar(
+            string nombre,
+            string tipo,
+            string ubicacion,
+            decimal? cuotaMantenimientoBase,
+            int? condominioId,
+            string creador)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand("dbo.sp_propiedad_insertar", cn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+                cmd.Parameters.AddWithValue("@Tipo", (object)tipo ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Ubicacion", (object)ubicacion ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@CuotaMantenimientoBase", (object)cuotaMantenimientoBase ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@CondominioId", (object)condominioId ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Creador", (object)creador ?? DBNull.Value);
+                var pId = cmd.Parameters.Add("@NuevoId", SqlDbType.Int); pId.Direction = ParameterDirection.Output;
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+                return Convert.ToInt32(pId.Value);
+            }
+        }
+
+        // ACTUALIZAR (concurrency por RowVersion)
+        public void Actualizar(
+            int id,
+            string nombre,
+            string tipo,
+            string ubicacion,
+            decimal? cuotaMantenimientoBase,
+            int? condominioId,
+            byte[] rowVersion,
+            string editor)
         {
             using (var cn = new SqlConnection(_cn))
             using (var cmd = new SqlCommand("dbo.sp_propiedad_actualizar", cn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@Id", p.Id);
-                cmd.Parameters.AddWithValue("@PropietarioId", p.PropietarioId);
-                cmd.Parameters.AddWithValue("@UnidadId", p.UnidadId);
-                cmd.Parameters.AddWithValue("@FechaInicio", p.FechaInicio);
-                cmd.Parameters.AddWithValue("@FechaFin", (object)p.FechaFin ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@Porcentaje", p.Porcentaje);
-                cmd.Parameters.AddWithValue("@EsTitularPrincipal", p.EsTitularPrincipal);
-                cmd.Parameters.AddWithValue("@IsActive", p.IsActive);
-                cmd.Parameters.AddWithValue("@UpdatedBy", p.UsuarioAuditoria ?? (object)DBNull.Value);
-
-                var pRow = cmd.Parameters.Add("@RowVersion", SqlDbType.VarBinary, 8);
-                pRow.Value = p.RowVersion ?? (object)DBNull.Value;
-
-                var pRvOut = cmd.Parameters.Add("@NuevaRowVersion", SqlDbType.VarBinary, 8);
-                pRvOut.Direction = ParameterDirection.Output;
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
+                cmd.Parameters.AddWithValue("@Tipo", (object)tipo ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Ubicacion", (object)ubicacion ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@CuotaMantenimientoBase", (object)cuotaMantenimientoBase ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@CondominioId", (object)condominioId ?? DBNull.Value);
+                cmd.Parameters.Add("@RowVersion", SqlDbType.Timestamp).Value = (object)rowVersion ?? DBNull.Value;
+                cmd.Parameters.AddWithValue("@Editor", (object)editor ?? DBNull.Value);
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
-
-                return (pRvOut.Value == DBNull.Value) ? new byte[0] : (byte[])pRvOut.Value;
             }
         }
-        public DataRow ResumenPorUnidad(int unidadId)
+
+        // DESACTIVAR (borrado lógico)
+        public void Desactivar(int id, byte[] rowVersion, string editor)
         {
             using (var cn = new SqlConnection(_cn))
-            using (var da = new SqlDataAdapter("dbo.sp_propiedad_resumen_unidad", cn))
+            using (var cmd = new SqlCommand("dbo.sp_propiedad_desactivar", cn))
             {
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.SelectCommand.Parameters.AddWithValue("@UnidadId", unidadId);
-                var dt = new DataTable(); da.Fill(dt);
-                return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.Add("@RowVersion", SqlDbType.Timestamp).Value = (object)rowVersion ?? DBNull.Value;
+                cmd.Parameters.AddWithValue("@Editor", (object)editor ?? DBNull.Value);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
 
-    }
-
-    // Asegúrate de que tu entidad no use nullable reference types (string?):
-    public sealed class EPropiedad
-    {
-        public int Id { get; set; }
-        public int PropietarioId { get; set; }
-        public int UnidadId { get; set; }
-        public DateTime FechaInicio { get; set; }
-        public DateTime? FechaFin { get; set; }           // OK (nullable value type)
-        public decimal Porcentaje { get; set; }
-        public bool EsTitularPrincipal { get; set; }
-        public bool IsActive { get; set; }
-        public string UsuarioAuditoria { get; set; }      // evita string?
-        public byte[] RowVersion { get; set; }            // evita byte[]?
+        // (Opcional) Notificación, espejo del patrón en DCondominio
+        public void NotificarAccion(int id, string accion, string usuarioEditor, string mailProfile)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand("dbo.sp_propiedad_notificar_accion", cn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Accion", accion);
+                cmd.Parameters.AddWithValue("@UsuarioEditor", (object)usuarioEditor ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@MailProfile", (object)mailProfile ?? DBNull.Value);
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

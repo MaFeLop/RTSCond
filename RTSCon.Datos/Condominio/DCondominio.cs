@@ -83,36 +83,74 @@ namespace RTSCon.Datos
         }
 
 
-        public void Actualizar(int id, string nombre, int? reglaDocId, byte[] rowVersion, string editor)
+        // ⬇️ NUEVO: traer 1 condominio por Id
+        public DataTable BuscarPorId(int id)
         {
             using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_condominio_actualizar", cn))
+            using (var cmd = new SqlCommand("sp_condominio_por_id", cn))
+            using (var da = new SqlDataAdapter(cmd))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id", id);
-                cmd.Parameters.AddWithValue("@Nombre", nombre);
-                cmd.Parameters.AddWithValue("@ReglamentoDocumentoId", (object)reglaDocId ?? DBNull.Value);
-                cmd.Parameters.Add("@RowVersion", SqlDbType.Timestamp, 8).Value = rowVersion;
-                cmd.Parameters.AddWithValue("@Editor", editor);
+                cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                var dt = new DataTable();
+                cn.Open();
+                da.Fill(dt);
+                return dt;
+            }
+        }
+
+        // ⬇️ NUEVO: actualizar con RowVersion (concurrencia optimista)
+        public void Actualizar(
+            int id,
+            string nombre, string direccion, string tipo, string administradorResponsable,
+            DateTime fechaConstitucion, decimal cuotaMantenimientoBase,
+            string emailNotificaciones, bool enviarNotifsAlPropietario,
+            int? reglamentoDocumentoId, int? idPropietario, int? idSecretario1, int? idSecretario2, int? idSecretario3,
+            byte[] rowVersion, string editor)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand("sp_condominio_actualizar", cn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                cmd.Parameters.Add("@Nombre", SqlDbType.NVarChar, 200).Value = (object)nombre ?? DBNull.Value;
+                cmd.Parameters.Add("@Direccion", SqlDbType.NVarChar, 300).Value = (object)direccion ?? DBNull.Value;
+                cmd.Parameters.Add("@Tipo", SqlDbType.NVarChar, 30).Value = (object)tipo ?? DBNull.Value;
+                cmd.Parameters.Add("@AdministradorResponsable", SqlDbType.NVarChar, 150).Value = (object)administradorResponsable ?? DBNull.Value;
+                cmd.Parameters.Add("@FechaConstitucion", SqlDbType.Date).Value = fechaConstitucion;
+                cmd.Parameters.Add("@CuotaMantenimientoBase", SqlDbType.Decimal).Value = cuotaMantenimientoBase;
+                cmd.Parameters.Add("@EmailNotificaciones", SqlDbType.NVarChar, 150).Value = (object)emailNotificaciones ?? DBNull.Value;
+                cmd.Parameters.Add("@EnviarNotifsAlPropietario", SqlDbType.Bit).Value = enviarNotifsAlPropietario;
+
+                cmd.Parameters.Add("@ReglamentoDocumentoId", SqlDbType.Int).Value = (object)reglamentoDocumentoId ?? DBNull.Value;
+                cmd.Parameters.Add("@ID_propietario", SqlDbType.Int).Value = (object)idPropietario ?? DBNull.Value;
+                cmd.Parameters.Add("@ID_usr_secretario1", SqlDbType.Int).Value = (object)idSecretario1 ?? DBNull.Value;
+                cmd.Parameters.Add("@ID_usr_secretario2", SqlDbType.Int).Value = (object)idSecretario2 ?? DBNull.Value;
+                cmd.Parameters.Add("@ID_usr_secretario3", SqlDbType.Int).Value = (object)idSecretario3 ?? DBNull.Value;
+
+                cmd.Parameters.Add("@RowVersion", SqlDbType.Timestamp).Value = (object)rowVersion ?? DBNull.Value;
+                cmd.Parameters.Add("@UpdatedBy", SqlDbType.NVarChar, 100).Value = (object)editor ?? DBNull.Value;
+
                 cn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
+        // ⬇️ Si cambiaste Desactivar a usar RowVersion+Editor:
         public void Desactivar(int id, byte[] rowVersion, string editor)
         {
             using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_condominio_desactivar", cn))
+            using (var cmd = new SqlCommand("sp_condominio_desactivar", cn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id", id);
-                cmd.Parameters.Add("@RowVersion", SqlDbType.Timestamp, 8).Value = rowVersion;
-                cmd.Parameters.AddWithValue("@Editor", editor);
+                cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                cmd.Parameters.Add("@RowVersion", SqlDbType.Timestamp).Value = (object)rowVersion ?? DBNull.Value;
+                cmd.Parameters.Add("@UpdatedBy", SqlDbType.NVarChar, 100).Value = (object)editor ?? DBNull.Value;
                 cn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
-
         public DataRow ObtenerPorId(int id)
         {
             using (var cn = new SqlConnection(_cn))
@@ -137,7 +175,23 @@ namespace RTSCon.Datos
                 var dt = new DataTable(); da.Fill(dt); return dt;
             }
         }
-            
+
+        // RTSCon.Datos\DCondominio.cs  (añade)
+        public void NotificarAccion(int id, string accion, string editor, string mailProfile)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand("dbo.sp_condominio_notificar_accion", cn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Accion", (object)accion ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Editor", (object)editor ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@MailProfile", (object)mailProfile ?? DBNull.Value);
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
 
     }
 

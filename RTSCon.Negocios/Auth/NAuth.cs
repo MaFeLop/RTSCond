@@ -184,5 +184,20 @@ namespace RTSCon.Negocios
             return _dal.ListarPropietarios(buscar, soloActivos, page, pageSize, out totalRows);
         }
 
+        // RTSCon.Negocios\NAuth.cs
+        public bool ValidarPassword(int usuarioAuthId, string password)
+        {
+            if (usuarioAuthId <= 0 || string.IsNullOrWhiteSpace(password)) return false;
+            var row = _dal.ObtenerPorId(usuarioAuthId);
+            if (row == null) return false;
+
+            var iter = Convert.ToInt32(row["Iteraciones"]);
+            var salt = (byte[])row["Salt"];
+            var hash = (byte[])row["PasswordHash"];
+            var prueba = DeriveWithSalt(password, salt, iter);
+            return SlowEquals(hash, prueba);
+        }
+
+
     }
 }

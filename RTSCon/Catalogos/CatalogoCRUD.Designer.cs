@@ -74,7 +74,7 @@
             // 
             this.btnCondominio.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnCondominio.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnCondominio.Location = new System.Drawing.Point(148, 328);
+            this.btnCondominio.Location = new System.Drawing.Point(148, 325);
             this.btnCondominio.Margin = new System.Windows.Forms.Padding(4);
             this.btnCondominio.Name = "btnCondominio";
             this.btnCondominio.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -94,7 +94,7 @@
             this.btnBloque.Margin = new System.Windows.Forms.Padding(4);
             this.btnBloque.Name = "btnBloque";
             this.btnBloque.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.btnBloque.Size = new System.Drawing.Size(217, 55);
+            this.btnBloque.Size = new System.Drawing.Size(219, 48);
             this.btnBloque.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBloque.TabIndex = 23;
             this.btnBloque.Values.DropDownArrowColor = System.Drawing.Color.Empty;
@@ -104,7 +104,7 @@
             // 
             this.kryptonButton2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.kryptonButton2.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.kryptonButton2.Location = new System.Drawing.Point(648, 328);
+            this.kryptonButton2.Location = new System.Drawing.Point(648, 325);
             this.kryptonButton2.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -118,7 +118,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1089, 482);
+            this.ClientSize = new System.Drawing.Size(1093, 468);
             this.Controls.Add(this.kryptonButton2);
             this.Controls.Add(this.btnBloque);
             this.Controls.Add(this.btnCondominio);

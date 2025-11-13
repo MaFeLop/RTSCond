@@ -426,6 +426,7 @@
             this.kryptonButton4.TabIndex = 57;
             this.kryptonButton4.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.kryptonButton4.Values.Text = "Mis Catalogos";
+            this.kryptonButton4.Click += new System.EventHandler(this.kryptonButton4_Click);
             // 
             // label17
             // 

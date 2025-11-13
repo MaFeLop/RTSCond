@@ -2,118 +2,194 @@
 using RTSCon.Datos;
 using RTSCon.Negocios;
 using System;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
 namespace RTSCon.Catalogos.Condominio
 {
-    public partial class chkSoloActivos : KryptonForm
+    public partial class CondominioRead : KryptonForm
     {
         private readonly NCondominio _neg;
         private int _page = 1;
         private const int _pageSize = 20;
 
-        public chkSoloActivos()
+        public CondominioRead()
         {
             InitializeComponent();
 
-            var cn = System.Configuration.ConfigurationManager
-                                 .ConnectionStrings["RTSCond"].ConnectionString;
+            var cn = ConfigurationManager.ConnectionStrings["RTSCond"].ConnectionString;
             _neg = new NCondominio(new DCondominio(cn));
 
-            // Columna CheckBox de selección única en dgvCondominios
-            if (!dgvCondominios.Columns.Contains("Sel"))
+            // Carga al abrir
+            this.Load += (_, __) => Cargar();
+
+            // Buscar: escribir o Enter dentro del textbox => recargar
+            if (txtBuscar != null)
             {
-                var sel = new DataGridViewCheckBoxColumn
+                txtBuscar.TextChanged += (_, __) => { _page = 1; Cargar(); };
+                txtBuscar.KeyDown += (s, e) =>
                 {
-                    Name = "Sel",
-                    HeaderText = "",
-                    Width = 30
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        e.SuppressKeyPress = true; // evita beep
+                        _page = 1;
+                        Cargar();
+                    }
                 };
-                dgvCondominios.Columns.Insert(0, sel);
             }
 
-            dgvCondominios.CellContentClick += DgvCondominios_CellContentClick;
+            // Limpiar filtros (si existe)
+            if (btnLimpiarFiltros != null) btnLimpiarFiltros.Click += (_, __) =>
+            {
+                txtBuscar.Text = string.Empty;
+                var chk = this.Controls.Find("chkSoloActivos", true).OfType<KryptonCheckBox>().FirstOrDefault();
+                if (chk != null) chk.Checked = false;
+                _page = 1;
+                Cargar();
+            };
 
-            Cargar();
+            // Reaccionar a chkSoloActivos si está en el form
+            var chkSolo = this.Controls.Find("chkSoloActivos", true).OfType<KryptonCheckBox>().FirstOrDefault();
+            if (chkSolo != null) chkSolo.CheckedChanged += (_, __) => { _page = 1; Cargar(); };
+
+            // CREAR
+            if (btnCrear != null) btnCrear.Click += (_, __) =>
+            {
+                using (var f = new CrearCondominio())
+                    if (f.ShowDialog(this) == DialogResult.OK) Cargar();
+            };
+
+            // UPDATE
+            if (btnUpdate != null) btnUpdate.Click += (_, __) =>
+            {
+                var id = IdSeleccionado();
+                if (id <= 0)
+                {
+                    KryptonMessageBox.Show(this, "Seleccione un condominio.", "Actualizar");
+                    return;
+                }
+
+                using (var f = new UpdateCondominio())
+                {
+                    // puedes usar propiedad o Tag; la clase ya expone CondominioId
+                    f.CondominioId = id;
+                    f.Tag = id;
+                    if (f.ShowDialog(this) == DialogResult.OK) Cargar();
+                }
+            };
+
+            // DESACTIVAR -> diálogo con password + notificación por correo
+            if (btnDesactivar != null) btnDesactivar.Click += (_, __) => DesactivarSeleccionado();
+
+            // Grid
+            if (dgvCondominios != null)
+            {
+                dgvCondominios.MultiSelect = false;
+                dgvCondominios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvCondominios.ReadOnly = true;
+                dgvCondominios.AutoGenerateColumns = true;
+
+                // Doble clic = actualizar
+                dgvCondominios.CellDoubleClick += (_, __) => btnUpdate?.PerformClick();
+
+                // Tecla Supr = desactivar con confirmación+password
+                dgvCondominios.KeyDown += (s, e) =>
+                {
+                    if (e.KeyCode == Keys.Delete)
+                    {
+                        e.SuppressKeyPress = true;
+                        DesactivarSeleccionado();
+                    }
+                };
+            }
         }
 
-        // Si tienes un KryptonCheckBox llamado chkSoloActivos lo usará; si no, por defecto TRUE
-        private bool SoloActivos
+        private int IdSeleccionado()
         {
-            get
-            {
-                var ctl = this.Controls.Find("chkSoloActivos", true).FirstOrDefault();
-                if (ctl is CheckBox cb) return cb.Checked;
-                if (ctl is KryptonCheckBox kcb) return kcb.Checked;
-                return true; // por defecto listar solo activos
-            }
+            if (dgvCondominios?.CurrentRow == null) return 0;
+            var row = dgvCondominios.CurrentRow.DataBoundItem as DataRowView;
+            if (row == null) return 0;
+            return row.Row.Table.Columns.Contains("Id") && row["Id"] != DBNull.Value
+                ? Convert.ToInt32(row["Id"])
+                : 0;
+        }
+
+        private byte[] ObtenerRowVersionSeleccionada()
+        {
+            if (dgvCondominios?.CurrentRow == null) return null;
+            var row = dgvCondominios.CurrentRow.DataBoundItem as DataRowView;
+            if (row == null) return null;
+
+            return (row.Row.Table.Columns.Contains("RowVersion") && row["RowVersion"] != DBNull.Value)
+                ? (byte[])row["RowVersion"]
+                : null;
         }
 
         private void Cargar()
         {
+            var chkSolo = this.Controls.Find("chkSoloActivos", true).OfType<KryptonCheckBox>().FirstOrDefault();
+            bool soloActivos = chkSolo?.Checked ?? false;
+
             int total;
-            var buscar = txtBuscar?.Text?.Trim() ?? "";
+            var buscar = txtBuscar?.Text?.Trim() ?? string.Empty;
+            var dt = _neg.Listar(buscar, soloActivos, _page, _pageSize, out total);
 
-            var dt = _neg.Listar(buscar, SoloActivos, _page, _pageSize, out total);
-
-            // Si aún no definiste columnas con DataPropertyName, usa autogeneradas:
-            dgvCondominios.AutoGenerateColumns = true; // cámbialo a false cuando mapees columnas
-            dgvCondominios.DataSource = dt;
-
-            SetTextIfExists("lblTotal", $"Total: {total}");
-            SetTextIfExists("lblPagina", $"Página: {_page}");
-        }
-
-        private void DgvCondominios_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && dgvCondominios.Columns[e.ColumnIndex].Name == "Sel")
+            if (dgvCondominios != null)
             {
-                foreach (DataGridViewRow r in dgvCondominios.Rows)
-                    if (r.Index != e.RowIndex) r.Cells["Sel"].Value = false;
-                dgvCondominios.EndEdit();
+                dgvCondominios.AutoGenerateColumns = true;
+                dgvCondominios.DataSource = dt;
             }
+
+            var lblTotalCtrl = this.Controls.Find("lblTotal", true).FirstOrDefault();
+            var lblPaginaCtrl = this.Controls.Find("lblPagina", true).FirstOrDefault();
+            if (lblTotalCtrl != null) ((Control)lblTotalCtrl).Text = $"Total: {total}";
+            if (lblPaginaCtrl != null) ((Control)lblPaginaCtrl).Text = $"Página: {_page}";
         }
 
-        // Helpers para no romper si los labels no existen
-        private void SetTextIfExists(string name, string text)
+        private void DesactivarSeleccionado()
         {
-            var ctl = this.Controls.Find(name, true).FirstOrDefault();
-            if (ctl != null) ctl.Text = text;
-        }
-
-        // --- (Opcional) obtener el registro seleccionado con la columna Sel ---
-        private bool TryGetSeleccion(out int id, out byte[] rowVersion)
-        {
-            id = 0; rowVersion = null;
-            if (!dgvCondominios.Columns.Contains("Sel")) return false;
-
-            foreach (DataGridViewRow r in dgvCondominios.Rows)
+            var id = IdSeleccionado();
+            if (id <= 0)
             {
-                if (r.Cells["Sel"].Value is bool b && b)
+                KryptonMessageBox.Show(this, "Seleccione un condominio.", "Desactivar");
+                return;
+            }
+
+            // Nombre visual para el prompt
+            string nombre = "(sin nombre)";
+            if (dgvCondominios?.CurrentRow?.DataBoundItem is DataRowView rv &&
+                rv.Row.Table.Columns.Contains("Nombre") && rv["Nombre"] != DBNull.Value)
+                nombre = Convert.ToString(rv["Nombre"]);
+
+            // Concurrencia
+            byte[] rowVersion = ObtenerRowVersionSeleccionada();
+            var mailProfile = ConfigurationManager.AppSettings["MailProfile"] ?? "RTSCondMail";
+
+            // Diálogo con password (reutilizable)
+            using (var dlg = new RTSCon.Catalogos.ConfirmarDesactivacion(
+                entidad: "condominio",
+                nombreEntidad: nombre,
+                onConfirm: editor =>
                 {
-                    // Asegúrate que existan estas columnas en el DataSource
-                    id = Convert.ToInt32(r.Cells["Id"].Value);
-                    rowVersion = r.Cells["RowVersion"].Value as byte[];
+                    // 1) Desactivar lógico con RowVersion
+                    _neg.Desactivar(id, rowVersion, editor);
+
+                    // 2) Notificar por correo
+                    _neg.NotificarAccion(id, "Desactivado", editor, mailProfile);
+
                     return true;
-                }
+                }))
+            {
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                    Cargar();
             }
-            return false;
         }
 
-        // Eventos que ya tenías generados (puedes llamar Cargar o usar TryGetSeleccion)
-        private void CondominioRead_Load(object sender, EventArgs e) { }
-        private void btnLimpiarFiltros_Click(object sender, EventArgs e)
+        private void btnCrear_Click(object sender, EventArgs e)
         {
-            txtBuscar.Text = "";
-            _page = 1;
-            Cargar();
+
         }
-        private void kryptonButton1_Click(object sender, EventArgs e) { /* Nuevo */ }
-        private void btnUpdate_Click(object sender, EventArgs e) { /* Editar con TryGetSeleccion */ }
-        private void btnDesactivar_Click(object sender, EventArgs e) { /* Desactivar con TryGetSeleccion */ }
-        private void dgvCondominios_CellContentClick(object sender, DataGridViewCellEventArgs e) { }
-        private void txtBuscar_TextChanged(object sender, EventArgs e) { /* opcional: live search */ }
     }
 }

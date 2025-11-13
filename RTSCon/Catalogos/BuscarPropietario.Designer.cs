@@ -32,10 +32,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtBuscar = new Krypton.Toolkit.KryptonTextBox();
             this.btnLimpiarFiltros = new Krypton.Toolkit.KryptonButton();
-            this.dgv = new Krypton.Toolkit.KryptonDataGridView();
+            this.dgvPropietario = new Krypton.Toolkit.KryptonDataGridView();
             this.btnCancelar = new Krypton.Toolkit.KryptonButton();
             this.btnConfirmar = new Krypton.Toolkit.KryptonButton();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).BeginInit();
+            this.chkSoloActivos = new Krypton.Toolkit.KryptonCheckBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPropietario)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -44,10 +45,10 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(10, 10);
+            this.label2.Location = new System.Drawing.Point(13, 26);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(293, 28);
+            this.label2.Size = new System.Drawing.Size(301, 28);
             this.label2.TabIndex = 97;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -73,16 +74,16 @@
             this.btnLimpiarFiltros.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarFiltros.Values.Image")));
             this.btnLimpiarFiltros.Values.Text = "Limpiar Filtros";
             // 
-            // dgv
+            // dgvPropietario
             // 
-            this.dgv.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgv.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv.Location = new System.Drawing.Point(13, 93);
-            this.dgv.Margin = new System.Windows.Forms.Padding(4);
-            this.dgv.Name = "dgv";
-            this.dgv.RowHeadersWidth = 51;
-            this.dgv.Size = new System.Drawing.Size(1431, 340);
-            this.dgv.TabIndex = 94;
+            this.dgvPropietario.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvPropietario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPropietario.Location = new System.Drawing.Point(13, 93);
+            this.dgvPropietario.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvPropietario.Name = "dgvPropietario";
+            this.dgvPropietario.RowHeadersWidth = 51;
+            this.dgvPropietario.Size = new System.Drawing.Size(1431, 340);
+            this.dgvPropietario.TabIndex = 94;
             // 
             // btnCancelar
             // 
@@ -95,7 +96,6 @@
             this.btnCancelar.TabIndex = 99;
             this.btnCancelar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCancelar.Values.Text = "Cancelar";
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnConfirmar
             // 
@@ -109,21 +109,32 @@
             this.btnConfirmar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnConfirmar.Values.Text = "Confirmar";
             // 
+            // chkSoloActivos
+            // 
+            this.chkSoloActivos.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
+            this.chkSoloActivos.Location = new System.Drawing.Point(911, 58);
+            this.chkSoloActivos.Name = "chkSoloActivos";
+            this.chkSoloActivos.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.chkSoloActivos.Size = new System.Drawing.Size(117, 24);
+            this.chkSoloActivos.TabIndex = 100;
+            this.chkSoloActivos.Values.Text = "Solo Activos";
+            // 
             // BuscarPropietario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1490, 549);
+            this.ClientSize = new System.Drawing.Size(1498, 521);
+            this.Controls.Add(this.chkSoloActivos);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.btnLimpiarFiltros);
-            this.Controls.Add(this.dgv);
+            this.Controls.Add(this.dgvPropietario);
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "BuscarPropietario";
             this.Text = "BuscarPropietario";
-            ((System.ComponentModel.ISupportInitialize)(this.dgv)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPropietario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -134,8 +145,9 @@
         private System.Windows.Forms.Label label2;
         private Krypton.Toolkit.KryptonTextBox txtBuscar;
         private Krypton.Toolkit.KryptonButton btnLimpiarFiltros;
-        private Krypton.Toolkit.KryptonDataGridView dgv;
+        private Krypton.Toolkit.KryptonDataGridView dgvPropietario;
         private Krypton.Toolkit.KryptonButton btnCancelar;
         private Krypton.Toolkit.KryptonButton btnConfirmar;
+        private Krypton.Toolkit.KryptonCheckBox chkSoloActivos;
     }
 }
