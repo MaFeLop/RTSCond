@@ -113,11 +113,11 @@
     <Compile Include="Catalogos\Condominio\CondominioRead.Designer.cs">
       <DependentUpon>CondominioRead.cs</DependentUpon>
     </Compile>
-    <Compile Include="Catalogos\Condominio\ConfirmarDesactivacion.cs">
+    <Compile Include="Catalogos\Condominio\CondominioConfirmarDesactivacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Catalogos\Condominio\ConfirmarDesactivacion.Designer.cs">
-      <DependentUpon>ConfirmarDesactivacion.cs</DependentUpon>
+    <Compile Include="Catalogos\Condominio\CondominioConfirmarDesactivacion.Designer.cs">
+      <DependentUpon>CondominioConfirmarDesactivacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Catalogos\Condominio\CrearCondominio.cs">
       <SubType>Form</SubType>
@@ -130,6 +130,30 @@
     </Compile>
     <Compile Include="Catalogos\Condominio\UpdateCondominio.Designer.cs">
       <DependentUpon>UpdateCondominio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Propiedad\CrearPropiedad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\Propiedad\CrearPropiedad.Designer.cs">
+      <DependentUpon>CrearPropiedad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Propiedad\PropiedadConfirmarDesactivacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\Propiedad\PropiedadConfirmarDesactivacion.Designer.cs">
+      <DependentUpon>PropiedadConfirmarDesactivacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Propiedad\PropiedadRead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\Propiedad\PropiedadRead.Designer.cs">
+      <DependentUpon>PropiedadRead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Propiedad\UpdatePropiedad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\Propiedad\UpdatePropiedad.Designer.cs">
+      <DependentUpon>UpdatePropiedad.cs</DependentUpon>
     </Compile>
     <Compile Include="CierreDeMes\CierreDeMes.cs">
       <SubType>Form</SubType>
@@ -186,14 +210,26 @@
     <EmbeddedResource Include="Catalogos\Condominio\CondominioRead.resx">
       <DependentUpon>CondominioRead.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Catalogos\Condominio\ConfirmarDesactivacion.resx">
-      <DependentUpon>ConfirmarDesactivacion.cs</DependentUpon>
+    <EmbeddedResource Include="Catalogos\Condominio\CondominioConfirmarDesactivacion.resx">
+      <DependentUpon>CondominioConfirmarDesactivacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\Condominio\CrearCondominio.resx">
       <DependentUpon>CrearCondominio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\Condominio\UpdateCondominio.resx">
       <DependentUpon>UpdateCondominio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Propiedad\CrearPropiedad.resx">
+      <DependentUpon>CrearPropiedad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Propiedad\PropiedadConfirmarDesactivacion.resx">
+      <DependentUpon>PropiedadConfirmarDesactivacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Propiedad\PropiedadRead.resx">
+      <DependentUpon>PropiedadRead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Propiedad\UpdatePropiedad.resx">
+      <DependentUpon>UpdatePropiedad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CierreDeMes\CierreDeMes.resx">
       <DependentUpon>CierreDeMes.cs</DependentUpon>

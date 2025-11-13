@@ -70,6 +70,7 @@
             this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel1.TabIndex = 0;
             this.kryptonLabel1.Values.Text = "Crear Condominio";
+            this.kryptonLabel1.Click += new System.EventHandler(this.kryptonLabel1_Click);
             // 
             // label2
             // 
@@ -77,13 +78,14 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(47, 68);
+            this.label2.Location = new System.Drawing.Point(43, 73);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(301, 28);
+            this.label2.Size = new System.Drawing.Size(303, 28);
             this.label2.TabIndex = 95;
             this.label2.Text = "Nombre de Condominio:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtBuscar
             // 
@@ -93,6 +95,7 @@
             this.txtBuscar.Size = new System.Drawing.Size(541, 30);
             this.txtBuscar.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscar.TabIndex = 94;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // label1
             // 
@@ -100,13 +103,14 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(51, 145);
+            this.label1.Location = new System.Drawing.Point(47, 150);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(301, 28);
+            this.label1.Size = new System.Drawing.Size(303, 28);
             this.label1.TabIndex = 97;
             this.label1.Text = "Direccion del Condominio:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // kryptonTextBox1
             // 
@@ -116,6 +120,7 @@
             this.kryptonTextBox1.Size = new System.Drawing.Size(541, 30);
             this.kryptonTextBox1.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonTextBox1.TabIndex = 96;
+            this.kryptonTextBox1.TextChanged += new System.EventHandler(this.kryptonTextBox1_TextChanged);
             // 
             // label3
             // 
@@ -123,13 +128,14 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(51, 372);
+            this.label3.Location = new System.Drawing.Point(47, 377);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(301, 28);
+            this.label3.Size = new System.Drawing.Size(303, 28);
             this.label3.TabIndex = 99;
             this.label3.Text = "Identificacion del Propietario:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtIdPropietario
             // 
@@ -140,6 +146,7 @@
             this.txtIdPropietario.Size = new System.Drawing.Size(541, 30);
             this.txtIdPropietario.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdPropietario.TabIndex = 98;
+            this.txtIdPropietario.TextChanged += new System.EventHandler(this.txtIdPropietario_TextChanged);
             // 
             // label4
             // 
@@ -147,13 +154,14 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(51, 223);
+            this.label4.Location = new System.Drawing.Point(47, 228);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(301, 28);
+            this.label4.Size = new System.Drawing.Size(303, 28);
             this.label4.TabIndex = 100;
             this.label4.Text = "Tipo de Condominio:";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // cmbTipoCond
             // 
@@ -169,6 +177,7 @@
             this.cmbTipoCond.Name = "cmbTipoCond";
             this.cmbTipoCond.Size = new System.Drawing.Size(160, 33);
             this.cmbTipoCond.TabIndex = 101;
+            this.cmbTipoCond.SelectedIndexChanged += new System.EventHandler(this.cmbTipoCond_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -176,10 +185,10 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(671, 214);
+            this.label5.Location = new System.Drawing.Point(667, 219);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(301, 28);
+            this.label5.Size = new System.Drawing.Size(303, 28);
             this.label5.TabIndex = 103;
             this.label5.Text = "Fecha de Constitución:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -193,6 +202,7 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(140, 102);
             this.label12.TabIndex = 106;
+            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // label7
             // 
@@ -203,6 +213,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(135, 102);
             this.label7.TabIndex = 107;
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label8
             // 
@@ -210,13 +221,14 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label8.Location = new System.Drawing.Point(671, 291);
+            this.label8.Location = new System.Drawing.Point(667, 296);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(301, 28);
+            this.label8.Size = new System.Drawing.Size(303, 28);
             this.label8.TabIndex = 109;
             this.label8.Text = "Nombre Secretario/a 1:";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // txtSecretario1
             // 
@@ -226,6 +238,7 @@
             this.txtSecretario1.Size = new System.Drawing.Size(541, 30);
             this.txtSecretario1.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSecretario1.TabIndex = 108;
+            this.txtSecretario1.TextChanged += new System.EventHandler(this.txtSecretario1_TextChanged);
             // 
             // label9
             // 
@@ -233,13 +246,14 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(671, 372);
+            this.label9.Location = new System.Drawing.Point(667, 377);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(301, 28);
+            this.label9.Size = new System.Drawing.Size(303, 28);
             this.label9.TabIndex = 111;
             this.label9.Text = "Nombre Secretario/a 2:";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label9.Click += new System.EventHandler(this.label9_Click);
             // 
             // txtSecretario2
             // 
@@ -249,6 +263,7 @@
             this.txtSecretario2.Size = new System.Drawing.Size(541, 30);
             this.txtSecretario2.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSecretario2.TabIndex = 110;
+            this.txtSecretario2.TextChanged += new System.EventHandler(this.txtSecretario2_TextChanged);
             // 
             // label10
             // 
@@ -256,13 +271,14 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label10.Location = new System.Drawing.Point(671, 441);
+            this.label10.Location = new System.Drawing.Point(667, 446);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(301, 28);
+            this.label10.Size = new System.Drawing.Size(303, 28);
             this.label10.TabIndex = 113;
             this.label10.Text = "Nombre Secretario/a 3:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // txtSecretario3
             // 
@@ -272,6 +288,7 @@
             this.txtSecretario3.Size = new System.Drawing.Size(541, 30);
             this.txtSecretario3.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSecretario3.TabIndex = 112;
+            this.txtSecretario3.TextChanged += new System.EventHandler(this.txtSecretario3_TextChanged);
             // 
             // label11
             // 
@@ -279,13 +296,14 @@
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label11.Location = new System.Drawing.Point(671, 141);
+            this.label11.Location = new System.Drawing.Point(667, 146);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(317, 28);
+            this.label11.Size = new System.Drawing.Size(319, 28);
             this.label11.TabIndex = 115;
             this.label11.Text = "Cuota de Mantenimiento Base:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label11.Click += new System.EventHandler(this.label11_Click);
             // 
             // txtMantenimiento
             // 
@@ -295,6 +313,7 @@
             this.txtMantenimiento.Size = new System.Drawing.Size(541, 30);
             this.txtMantenimiento.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMantenimiento.TabIndex = 114;
+            this.txtMantenimiento.TextChanged += new System.EventHandler(this.txtMantenimiento_TextChanged);
             // 
             // label13
             // 
@@ -302,13 +321,14 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label13.Location = new System.Drawing.Point(669, 68);
+            this.label13.Location = new System.Drawing.Point(665, 73);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(353, 28);
+            this.label13.Size = new System.Drawing.Size(355, 28);
             this.label13.TabIndex = 117;
             this.label13.Text = "Correo donde recibirá Notificaciones:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // txtCorreo
             // 
@@ -318,12 +338,13 @@
             this.txtCorreo.Size = new System.Drawing.Size(541, 30);
             this.txtCorreo.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCorreo.TabIndex = 116;
+            this.txtCorreo.TextChanged += new System.EventHandler(this.txtCorreo_TextChanged);
             // 
             // btnConfirmar
             // 
             this.btnConfirmar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnConfirmar.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnConfirmar.Location = new System.Drawing.Point(419, 513);
+            this.btnConfirmar.Location = new System.Drawing.Point(419, 561);
             this.btnConfirmar.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -338,7 +359,7 @@
             // 
             this.btnVolver.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnVolver.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnVolver.Location = new System.Drawing.Point(765, 513);
+            this.btnVolver.Location = new System.Drawing.Point(765, 561);
             this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -347,6 +368,7 @@
             this.btnVolver.TabIndex = 119;
             this.btnVolver.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnVolver.Values.Text = "Volver";
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // dtpFechaConstitucion
             // 
@@ -356,6 +378,7 @@
             this.dtpFechaConstitucion.Size = new System.Drawing.Size(541, 30);
             this.dtpFechaConstitucion.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpFechaConstitucion.TabIndex = 120;
+            this.dtpFechaConstitucion.ValueChanged += new System.EventHandler(this.dtpFechaConstitucion_ValueChanged);
             // 
             // txtAdministrador
             // 
@@ -363,13 +386,14 @@
             this.txtAdministrador.BackColor = System.Drawing.Color.Transparent;
             this.txtAdministrador.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAdministrador.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtAdministrador.Location = new System.Drawing.Point(51, 291);
+            this.txtAdministrador.Location = new System.Drawing.Point(47, 296);
             this.txtAdministrador.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtAdministrador.Name = "txtAdministrador";
-            this.txtAdministrador.Size = new System.Drawing.Size(301, 28);
+            this.txtAdministrador.Size = new System.Drawing.Size(303, 28);
             this.txtAdministrador.TabIndex = 122;
             this.txtAdministrador.Text = "Propietario Responsable:";
             this.txtAdministrador.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtAdministrador.Click += new System.EventHandler(this.txtAdministrador_Click);
             // 
             // kryptonTextBox2
             // 
@@ -380,21 +404,23 @@
             this.kryptonTextBox2.Size = new System.Drawing.Size(541, 30);
             this.kryptonTextBox2.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonTextBox2.TabIndex = 121;
+            this.kryptonTextBox2.TextChanged += new System.EventHandler(this.kryptonTextBox2_TextChanged);
             // 
             // chkNotificarPropietario
             // 
             this.chkNotificarPropietario.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
-            this.chkNotificarPropietario.Location = new System.Drawing.Point(991, 71);
+            this.chkNotificarPropietario.Location = new System.Drawing.Point(988, 77);
             this.chkNotificarPropietario.Name = "chkNotificarPropietario";
             this.chkNotificarPropietario.Size = new System.Drawing.Size(280, 24);
             this.chkNotificarPropietario.TabIndex = 123;
             this.chkNotificarPropietario.Values.Text = "Enviar Notificaciones a este Correo";
+            this.chkNotificarPropietario.CheckedChanged += new System.EventHandler(this.chkNotificarPropietario_CheckedChanged);
             // 
             // btnBuscarPropietario
             // 
             this.btnBuscarPropietario.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnBuscarPropietario.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnBuscarPropietario.Location = new System.Drawing.Point(415, 284);
+            this.btnBuscarPropietario.Location = new System.Drawing.Point(415, 332);
             this.btnBuscarPropietario.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscarPropietario.Name = "btnBuscarPropietario";
             this.btnBuscarPropietario.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -409,7 +435,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1515, 580);
+            this.ClientSize = new System.Drawing.Size(1519, 669);
             this.Controls.Add(this.btnBuscarPropietario);
             this.Controls.Add(this.chkNotificarPropietario);
             this.Controls.Add(this.txtAdministrador);
@@ -444,6 +470,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CrearCondominio";
             this.Text = "Crear Condominio";
+            this.Load += new System.EventHandler(this.CrearCondominio_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

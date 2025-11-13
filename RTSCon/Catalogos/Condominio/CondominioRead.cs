@@ -168,7 +168,7 @@ namespace RTSCon.Catalogos.Condominio
             var mailProfile = ConfigurationManager.AppSettings["MailProfile"] ?? "RTSCondMail";
 
             // Diálogo con password (reutilizable)
-            using (var dlg = new RTSCon.Catalogos.ConfirmarDesactivacion(
+            using (var dlg = new RTSCon.Catalogos.CondominioConfirmarDesactivacion(
                 entidad: "condominio",
                 nombreEntidad: nombre,
                 onConfirm: editor =>

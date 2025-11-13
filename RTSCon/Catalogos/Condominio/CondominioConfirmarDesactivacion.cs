@@ -7,14 +7,14 @@ using System.Windows.Forms;
 
 namespace RTSCon.Catalogos
 {
-    public partial class ConfirmarDesactivacion : KryptonForm
+    public partial class CondominioConfirmarDesactivacion : KryptonForm
     {
         private readonly NAuth _auth;
         private readonly Func<string, bool> _onConfirm;   // callback que ejecuta la desactivación
         private readonly string _entidad;
         private readonly string _nombre;
 
-        public ConfirmarDesactivacion(string entidad, string nombreEntidad, Func<string, bool> onConfirm)
+        public CondominioConfirmarDesactivacion(string entidad, string nombreEntidad, Func<string, bool> onConfirm)
         {
             InitializeComponent();
 

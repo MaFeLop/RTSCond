@@ -17,6 +17,13 @@ namespace RTSCon.Negocios
             UsuarioAuthId = id; Usuario = usuario; Rol = rol; InicioSesionUtc = DateTime.UtcNow;
         }
         public static void Clear() { UsuarioAuthId = 0; Usuario = null; Rol = null; }
+
+        public static bool EsSA =>
+            string.Equals(Rol, "SA", StringComparison.OrdinalIgnoreCase);
+
+        public static bool EsPropietarioActual =>
+            string.Equals(Rol, "Propietario", StringComparison.OrdinalIgnoreCase)
+            || string.Equals(Rol, "Admin", StringComparison.OrdinalIgnoreCase);
     }
 
     public class NAuth

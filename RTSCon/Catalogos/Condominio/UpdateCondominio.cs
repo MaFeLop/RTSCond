@@ -93,6 +93,10 @@ namespace RTSCon.Catalogos.Condominio
                 cboTipo.Items.AddRange(new object[] { "Residencial", "Comercial", "Mixto" });
                 cboTipo.SelectedIndex = 0;
             }
+            if (UserContext.EsPropietarioActual)
+            {
+                SetText(UserContext.Usuario, "txtPropietarioResponsable", "txtAdministrador", "txtAdministradorResponsable");
+            }
         }
 
         private bool ResolverId()
@@ -255,6 +259,11 @@ namespace RTSCon.Catalogos.Condominio
                         txtCorreo.Text = _correoPropSel;
                 }
             }
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
