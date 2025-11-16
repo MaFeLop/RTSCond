@@ -18,27 +18,31 @@ namespace RTSCon.Negocios
             return _dal.PorId(id);
         }
 
-        public int Insertar(int propietarioId, int unidadId, DateTime? fechaInicio, DateTime? fechaFin,
+        public int Insertar(string nombre, int propietarioId, int unidadId, DateTime? fechaInicio, DateTime? fechaFin,
                             decimal porcentaje, bool esTitularPrincipal, string creador)
         {
+            if (string.IsNullOrWhiteSpace(nombre)) throw new ArgumentException("Nombre requerido.", nameof(nombre));
+            if (nombre.Length > 50) throw new ArgumentException("Nombre demasiado largo (máx. 50).", nameof(nombre));
             if (propietarioId <= 0) throw new ArgumentOutOfRangeException(nameof(propietarioId));
             if (unidadId <= 0) throw new ArgumentOutOfRangeException(nameof(unidadId));
             if (porcentaje < 0 || porcentaje > 100) throw new ArgumentOutOfRangeException(nameof(porcentaje));
             if (string.IsNullOrWhiteSpace(creador)) creador = "rtscon@local";
 
-            return _dal.Insertar(propietarioId, unidadId, fechaInicio, fechaFin, porcentaje, esTitularPrincipal, creador);
+            return _dal.Insertar(nombre, propietarioId, unidadId, fechaInicio, fechaFin, porcentaje, esTitularPrincipal, creador);
         }
 
-        public void Actualizar(int id, int propietarioId, int unidadId, DateTime? fechaInicio, DateTime? fechaFin,
+        public void Actualizar(int id, string nombre, int propietarioId, int unidadId, DateTime? fechaInicio, DateTime? fechaFin,
                                decimal porcentaje, bool esTitularPrincipal, byte[] rowVersion, string editor)
         {
             if (id <= 0) throw new ArgumentOutOfRangeException(nameof(id));
+            if (string.IsNullOrWhiteSpace(nombre)) throw new ArgumentException("Nombre requerido.", nameof(nombre));
+            if (nombre.Length > 50) throw new ArgumentException("Nombre demasiado largo (máx. 50).", nameof(nombre));
             if (propietarioId <= 0) throw new ArgumentOutOfRangeException(nameof(propietarioId));
             if (unidadId <= 0) throw new ArgumentOutOfRangeException(nameof(unidadId));
             if (porcentaje < 0 || porcentaje > 100) throw new ArgumentOutOfRangeException(nameof(porcentaje));
             if (string.IsNullOrWhiteSpace(editor)) editor = "rtscon@local";
 
-            _dal.Actualizar(id, propietarioId, unidadId, fechaInicio, fechaFin, porcentaje, esTitularPrincipal, rowVersion, editor);
+            _dal.Actualizar(id, nombre, propietarioId, unidadId, fechaInicio, fechaFin, porcentaje, esTitularPrincipal, rowVersion, editor);
         }
 
         public void Desactivar(int id, byte[] rowVersion, string editor)

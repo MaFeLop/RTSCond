@@ -22,6 +22,7 @@ namespace RTSCon.Datos
                 cmd.Parameters.AddWithValue("@Page", page);
                 cmd.Parameters.AddWithValue("@PageSize", pageSize);
 
+                // filtro opcional por propietario (coincide con @OwnerId del SP)
                 var pOwner = cmd.Parameters.Add("@OwnerId", SqlDbType.Int);
                 pOwner.Value = (object)ownerId ?? DBNull.Value;
 
@@ -48,13 +49,14 @@ namespace RTSCon.Datos
             }
         }
 
-        public int Insertar(int propietarioId, int unidadId, DateTime? fechaInicio, DateTime? fechaFin,
+        public int Insertar(string nombre, int propietarioId, int unidadId, DateTime? fechaInicio, DateTime? fechaFin,
                             decimal porcentaje, bool esTitularPrincipal, string creador)
         {
             using (var cn = new SqlConnection(_cn))
             using (var cmd = new SqlCommand("dbo.sp_propiedad_insertar", cn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
                 cmd.Parameters.AddWithValue("@PropietarioId", propietarioId);
                 cmd.Parameters.AddWithValue("@UnidadId", unidadId);
                 cmd.Parameters.AddWithValue("@FechaInicio", (object)fechaInicio ?? DBNull.Value);
@@ -72,7 +74,7 @@ namespace RTSCon.Datos
             }
         }
 
-        public void Actualizar(int id, int propietarioId, int unidadId, DateTime? fechaInicio, DateTime? fechaFin,
+        public void Actualizar(int id, string nombre, int propietarioId, int unidadId, DateTime? fechaInicio, DateTime? fechaFin,
                                decimal porcentaje, bool esTitularPrincipal, byte[] rowVersion, string editor)
         {
             using (var cn = new SqlConnection(_cn))
@@ -80,6 +82,7 @@ namespace RTSCon.Datos
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Nombre", nombre);
                 cmd.Parameters.AddWithValue("@PropietarioId", propietarioId);
                 cmd.Parameters.AddWithValue("@UnidadId", unidadId);
                 cmd.Parameters.AddWithValue("@FechaInicio", (object)fechaInicio ?? DBNull.Value);
