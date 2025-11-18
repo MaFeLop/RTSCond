@@ -1,116 +1,170 @@
-﻿// DBloque.cs
+﻿using RTSCon.Entidad;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using RTSCon.Entidad;
+using RTSCon.Datos;
 
 namespace RTSCon.Datos
 {
-    public sealed class DBloque
+    public class DBloque
     {
-        private readonly string _cn;
-        public DBloque(string connectionString) { _cn = connectionString; }
-
-        private static SqlParameter P(string name, SqlDbType type, object value, int size, ParameterDirection dir)
+        public IEnumerable<EBloque> Listar(int condominioId)
         {
-            var p = new SqlParameter(name, type);
-            if (size > 0) p.Size = size;
-            p.Direction = dir;
-            p.Value = (value ?? DBNull.Value);
-            return p;
-        }
+            var lista = new List<EBloque>();
 
-        public DataTable Listar(int condominioId)
-        {
-            var dt = new DataTable();
-            using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_bloque_listar", cn))
+            using (var conn = SqlConnectionFactory.CreateConnection()) // TODO: ajusta helper
+            using (var cmd = new SqlCommand("sp_bloque_listar", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(P("@CondominioId", SqlDbType.Int, condominioId, 0, ParameterDirection.Input));
-                cn.Open();
-                using (var da = new SqlDataAdapter(cmd)) da.Fill(dt);
+                cmd.Parameters.AddWithValue("@CondominioId", condominioId);
+
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        lista.Add(Mapear(dr));
+                    }
+                }
             }
-            return dt;
+
+            return lista;
         }
 
-        public int Crear(EBloque b, string usuario, out int nuevoId)
+        public IEnumerable<EBloque> Buscar(int? condominioId, string buscar, bool soloActivos, int top = 20)
         {
-            nuevoId = 0;
-            using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_bloque_crear", cn))
+            var lista = new List<EBloque>();
+
+            using (var conn = SqlConnectionFactory.CreateConnection())
+            using (var cmd = new SqlCommand("sp_bloque_buscar", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(P("@CondominioId", SqlDbType.Int, b.CondominioId, 0, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Identificador", SqlDbType.NVarChar, b.Identificador, 50, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@NumeroPisos", SqlDbType.Int, b.NumeroPisos, 0, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@UnidadesPorPiso", SqlDbType.Int, b.UnidadesPorPiso, 0, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Usuario", SqlDbType.NVarChar, usuario, 100, ParameterDirection.Input));
-                var outId = P("@NuevoId", SqlDbType.Int, null, 0, ParameterDirection.Output);
-                cmd.Parameters.Add(outId);
-                cn.Open();
+
+                cmd.Parameters.AddWithValue("@CondominioId", (object)condominioId ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@Buscar", (object)buscar ?? DBNull.Value);
+                cmd.Parameters.AddWithValue("@SoloActivos", soloActivos);
+                cmd.Parameters.AddWithValue("@Top", top);
+
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    while (dr.Read())
+                    {
+                        lista.Add(Mapear(dr));
+                    }
+                }
+            }
+
+            return lista;
+        }
+
+        public EBloque ObtenerPorId(int id)
+        {
+            using (var conn = SqlConnectionFactory.CreateConnection())
+            using (var cmd = new SqlCommand("sp_bloque_obtener", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", id);
+
+                conn.Open();
+                using (var dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                        return Mapear(dr);
+                }
+            }
+
+            return null;
+        }
+
+        public int Crear(EBloque bloque, string usuario)
+        {
+            if (bloque == null) throw new ArgumentNullException(nameof(bloque));
+
+            using (var conn = SqlConnectionFactory.CreateConnection())
+            using (var cmd = new SqlCommand("sp_bloque_crear", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@CondominioId", bloque.CondominioId);
+                cmd.Parameters.AddWithValue("@Identificador", bloque.Identificador);
+                cmd.Parameters.AddWithValue("@NumeroPisos", bloque.NumeroPisos);
+                cmd.Parameters.AddWithValue("@UnidadesPorPiso", bloque.UnidadesPorPiso);
+                cmd.Parameters.AddWithValue("@Usuario", usuario ?? (object)DBNull.Value);
+
+                var pId = new SqlParameter("@NuevoId", SqlDbType.Int)
+                {
+                    Direction = ParameterDirection.Output
+                };
+                cmd.Parameters.Add(pId);
+
+                conn.Open();
                 cmd.ExecuteNonQuery();
-                nuevoId = (outId.Value == DBNull.Value) ? 0 : Convert.ToInt32(outId.Value);
-            }
-            return nuevoId;
-        }
 
-        public void Actualizar(EBloque b, string usuario)
-        {
-            using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_bloque_actualizar", cn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(P("@Id", SqlDbType.Int, b.Id, 0, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Identificador", SqlDbType.NVarChar, b.Identificador, 50, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@NumeroPisos", SqlDbType.Int, b.NumeroPisos, 0, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@UnidadesPorPiso", SqlDbType.Int, b.UnidadesPorPiso, 0, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Usuario", SqlDbType.NVarChar, usuario, 100, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@RowVersion", SqlDbType.Timestamp, b.RowVersion, 8, ParameterDirection.Input));
-                cn.Open();
-                cmd.ExecuteNonQuery(); // Levanta error del SP si hay conflicto de concurrencia
+                return (int)pId.Value;
             }
         }
 
-        public void Eliminar(int id, byte[] rowVersion, string usuario)
+        public void Actualizar(EBloque bloque, string usuario)
         {
-            using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_bloque_eliminar", cn))
+            if (bloque == null) throw new ArgumentNullException(nameof(bloque));
+
+            using (var conn = SqlConnectionFactory.CreateConnection())
+            using (var cmd = new SqlCommand("sp_bloque_actualizar", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(P("@Id", SqlDbType.Int, id, 0, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Usuario", SqlDbType.NVarChar, usuario, 100, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@RowVersion", SqlDbType.Timestamp, rowVersion, 8, ParameterDirection.Input));
-                cn.Open();
+
+                cmd.Parameters.AddWithValue("@Id", bloque.Id);
+                cmd.Parameters.AddWithValue("@Identificador", bloque.Identificador);
+                cmd.Parameters.AddWithValue("@NumeroPisos", bloque.NumeroPisos);
+                cmd.Parameters.AddWithValue("@UnidadesPorPiso", bloque.UnidadesPorPiso);
+                cmd.Parameters.AddWithValue("@Usuario", usuario ?? (object)DBNull.Value);
+
+                var pRowVersion = new SqlParameter("@RowVersion", SqlDbType.Timestamp)
+                {
+                    Value = (object)bloque.RowVersion ?? DBNull.Value
+                };
+                cmd.Parameters.Add(pRowVersion);
+
+                conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        public DataRow ObtenerPorId(int id)
+        public void Desactivar(int id, byte[] rowVersion, string usuario)
         {
-            using (var cn = new SqlConnection(_cn))
-            using (var da = new SqlDataAdapter("dbo.sp_bloque_obtener", cn))
+            using (var conn = SqlConnectionFactory.CreateConnection())
+            using (var cmd = new SqlCommand("sp_bloque_eliminar", conn))
             {
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.SelectCommand.Parameters.AddWithValue("@Id", id);
-                var dt = new DataTable(); da.Fill(dt);
-                return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Usuario", usuario ?? (object)DBNull.Value);
+
+                var pRowVersion = new SqlParameter("@RowVersion", SqlDbType.Timestamp)
+                {
+                    Value = (object)rowVersion ?? DBNull.Value
+                };
+                cmd.Parameters.Add(pRowVersion);
+
+                conn.Open();
+                cmd.ExecuteNonQuery();
             }
         }
 
-        public DataTable Buscar(int? condominioId, string buscar, bool soloActivos, int top = 20)
+        private EBloque Mapear(SqlDataReader dr)
         {
-            using (var cn = new SqlConnection(_cn))
-            using (var da = new SqlDataAdapter("dbo.sp_bloque_buscar", cn))
+            return new EBloque
             {
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.SelectCommand.Parameters.AddWithValue("@CondominioId", (object)condominioId ?? DBNull.Value);
-                da.SelectCommand.Parameters.AddWithValue("@Buscar", (object)buscar ?? DBNull.Value);
-                da.SelectCommand.Parameters.AddWithValue("@SoloActivos", soloActivos);
-                da.SelectCommand.Parameters.AddWithValue("@Top", top);
-                var dt = new DataTable(); da.Fill(dt); return dt;
-            }
+                Id = dr.GetInt32(dr.GetOrdinal("Id")),
+                CondominioId = dr.GetInt32(dr.GetOrdinal("CondominioId")),
+                Identificador = dr["Identificador"] as string,
+                NumeroPisos = dr.GetInt32(dr.GetOrdinal("NumeroPisos")),
+                UnidadesPorPiso = dr.GetInt32(dr.GetOrdinal("UnidadesPorPiso")),
+                IsActive = dr.GetBoolean(dr.GetOrdinal("IsActive")),
+                RowVersion = (byte[])dr["RowVersion"]
+            };
         }
-
     }
 }

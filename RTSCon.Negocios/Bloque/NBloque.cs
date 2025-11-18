@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RTSCon.Negocios.Bloque
+namespace RTSCon.Negocios
 {
     public sealed class NBloque
     {
