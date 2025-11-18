@@ -1,130 +1,192 @@
-﻿// DUnidad.cs
+﻿// RTSCon.Datos\DUnidad.cs
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using RTSCon.Entidad;
 
 namespace RTSCon.Datos
 {
-    public sealed class DUnidad
+    public class DUnidad
     {
         private readonly string _cn;
-        public DUnidad(string connectionString) { _cn = connectionString; }
 
-        private static SqlParameter P(string name, SqlDbType type, object value, int size, ParameterDirection dir)
+        public DUnidad(string connectionString)
         {
-            var p = new SqlParameter(name, type);
-            if (size > 0) p.Size = size;
-            p.Direction = dir;
-            p.Value = (value ?? DBNull.Value);
-            return p;
+            _cn = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
 
-        public DataTable Listar(int bloqueId)
-        {
-            var dt = new DataTable();
-            using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_unidad_listar", cn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(P("@BloqueId", SqlDbType.Int, bloqueId, 0, ParameterDirection.Input));
-                cn.Open();
-                using (var da = new SqlDataAdapter(cmd)) da.Fill(dt);
-            }
-            return dt;
-        }
-
-        public int Crear(EUnidad u, string usuario, out int nuevoId)
-        {
-            nuevoId = 0;
-            using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_unidad_crear", cn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(P("@BloqueId", SqlDbType.Int, u.BloqueId, 0, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Numero", SqlDbType.NVarChar, u.Numero, 20, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Piso", SqlDbType.Int, u.Piso, 0, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Tipologia", SqlDbType.NVarChar, u.Tipologia, 50, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Metros2", SqlDbType.Decimal, u.Metros2, 0, ParameterDirection.Input)).Precision = 10; cmd.Parameters["@Metros2"].Scale = 2;
-                cmd.Parameters.Add(P("@Estacionamiento", SqlDbType.NVarChar, u.Estacionamiento, 20, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Amueblada", SqlDbType.Bit, u.Amueblada, 0, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@CantidadMuebles", SqlDbType.Int, u.CantidadMuebles, 0, ParameterDirection.Input));
-                var pCuota = P("@CuotaMantenimientoEspecifica", SqlDbType.Decimal, u.CuotaMantenimientoEspecifica, 0, ParameterDirection.Input);
-                pCuota.Precision = 10; pCuota.Scale = 2; cmd.Parameters.Add(pCuota);
-                cmd.Parameters.Add(P("@Observaciones", SqlDbType.NVarChar, u.Observaciones, 500, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Usuario", SqlDbType.NVarChar, usuario, 100, ParameterDirection.Input));
-                var outId = P("@NuevoId", SqlDbType.Int, null, 0, ParameterDirection.Output);
-                cmd.Parameters.Add(outId);
-                cn.Open();
-                cmd.ExecuteNonQuery();
-                nuevoId = (outId.Value == DBNull.Value) ? 0 : Convert.ToInt32(outId.Value);
-            }
-            return nuevoId;
-        }
-
-        public void Actualizar(EUnidad u, string usuario)
+        // Listar unidades por bloque
+        public DataTable ListarPorBloque(int bloqueId)
         {
             using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_unidad_actualizar", cn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(P("@Id", SqlDbType.Int, u.Id, 0, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Numero", SqlDbType.NVarChar, u.Numero, 20, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Piso", SqlDbType.Int, u.Piso, 0, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Tipologia", SqlDbType.NVarChar, u.Tipologia, 50, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Metros2", SqlDbType.Decimal, u.Metros2, 0, ParameterDirection.Input)).Precision = 10; cmd.Parameters["@Metros2"].Scale = 2;
-                cmd.Parameters.Add(P("@Estacionamiento", SqlDbType.NVarChar, u.Estacionamiento, 20, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Amueblada", SqlDbType.Bit, u.Amueblada, 0, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@CantidadMuebles", SqlDbType.Int, u.CantidadMuebles, 0, ParameterDirection.Input));
-                var pCuota = P("@CuotaMantenimientoEspecifica", SqlDbType.Decimal, u.CuotaMantenimientoEspecifica, 0, ParameterDirection.Input);
-                pCuota.Precision = 10; pCuota.Scale = 2; cmd.Parameters.Add(pCuota);
-                cmd.Parameters.Add(P("@Observaciones", SqlDbType.NVarChar, u.Observaciones, 500, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Usuario", SqlDbType.NVarChar, usuario, 100, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@RowVersion", SqlDbType.Timestamp, u.RowVersion, 8, ParameterDirection.Input));
-                cn.Open();
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        public void Eliminar(int id, byte[] rowVersion, string usuario)
-        {
-            using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_unidad_eliminar", cn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add(P("@Id", SqlDbType.Int, id, 0, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@Usuario", SqlDbType.NVarChar, usuario, 100, ParameterDirection.Input));
-                cmd.Parameters.Add(P("@RowVersion", SqlDbType.Timestamp, rowVersion, 8, ParameterDirection.Input));
-                cn.Open();
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        public DataRow ObtenerPorId(int id)
-        {
-            using (var cn = new SqlConnection(_cn))
-            using (var da = new SqlDataAdapter("dbo.sp_unidad_obtener", cn))
+            using (var da = new SqlDataAdapter("dbo.sp_unidad_listar", cn))
             {
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.SelectCommand.Parameters.AddWithValue("@Id", id);
-                var dt = new DataTable(); da.Fill(dt);
-                return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+                da.SelectCommand.Parameters.Add("@BloqueId", SqlDbType.Int).Value = bloqueId;
+
+                var dt = new DataTable();
+                cn.Open();
+                da.Fill(dt);
+                return dt;
             }
         }
 
+        // Buscar unidades (opcionalmente por bloque)
         public DataTable Buscar(int? bloqueId, string buscar, bool soloActivos, int top = 20)
         {
             using (var cn = new SqlConnection(_cn))
             using (var da = new SqlDataAdapter("dbo.sp_unidad_buscar", cn))
             {
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.SelectCommand.Parameters.AddWithValue("@BloqueId", (object)bloqueId ?? DBNull.Value);
-                da.SelectCommand.Parameters.AddWithValue("@Buscar", (object)buscar ?? DBNull.Value);
-                da.SelectCommand.Parameters.AddWithValue("@SoloActivos", soloActivos);
-                da.SelectCommand.Parameters.AddWithValue("@Top", top);
-                var dt = new DataTable(); da.Fill(dt); return dt;
+
+                da.SelectCommand.Parameters.Add("@BloqueId", SqlDbType.Int).Value =
+                    (object)bloqueId ?? DBNull.Value;
+                da.SelectCommand.Parameters.Add("@Buscar", SqlDbType.NVarChar, 80).Value =
+                    (object)buscar ?? DBNull.Value;
+                da.SelectCommand.Parameters.Add("@SoloActivos", SqlDbType.Bit).Value = soloActivos;
+                da.SelectCommand.Parameters.Add("@Top", SqlDbType.Int).Value = top;
+
+                var dt = new DataTable();
+                cn.Open();
+                da.Fill(dt);
+                return dt;
             }
         }
 
+        // Insertar unidad
+        public int Insertar(
+            int bloqueId,
+            string numero,
+            int piso,
+            string tipologia,
+            decimal? metros2,
+            string estacionamiento,
+            bool? amueblada,
+            int? cantidadMuebles,
+            decimal? cuotaMantenimientoEspecifica,
+            string observaciones,
+            string creador)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand("dbo.sp_unidad_crear", cn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@BloqueId", SqlDbType.Int).Value = bloqueId;
+                cmd.Parameters.Add("@Numero", SqlDbType.NVarChar, 20).Value = (object)numero ?? DBNull.Value;
+                cmd.Parameters.Add("@Piso", SqlDbType.Int).Value = piso;
+                cmd.Parameters.Add("@Tipologia", SqlDbType.NVarChar, 50).Value = (object)tipologia ?? DBNull.Value;
+                cmd.Parameters.Add("@Metros2", SqlDbType.Decimal).Value = (object)metros2 ?? DBNull.Value;
+                cmd.Parameters.Add("@Estacionamiento", SqlDbType.NVarChar, 20).Value = (object)estacionamiento ?? DBNull.Value;
+                cmd.Parameters.Add("@Amueblada", SqlDbType.Bit).Value = (object)amueblada ?? DBNull.Value;
+                cmd.Parameters.Add("@CantidadMuebles", SqlDbType.Int).Value = (object)cantidadMuebles ?? DBNull.Value;
+                cmd.Parameters.Add("@CuotaMantenimientoEspecifica", SqlDbType.Decimal).Value =
+                    (object)cuotaMantenimientoEspecifica ?? DBNull.Value;
+                cmd.Parameters.Add("@Observaciones", SqlDbType.NVarChar, 500).Value =
+                    (object)observaciones ?? DBNull.Value;
+                cmd.Parameters.Add("@Usuario", SqlDbType.NVarChar, 100).Value =
+                    (object)creador ?? DBNull.Value;
+
+                var pId = cmd.Parameters.Add("@NuevoId", SqlDbType.Int);
+                pId.Direction = ParameterDirection.Output;
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+                return (int)pId.Value;
+            }
+        }
+
+        // Actualizar unidad con RowVersion
+        public void Actualizar(
+            int id,
+            string numero,
+            int piso,
+            string tipologia,
+            decimal? metros2,
+            string estacionamiento,
+            bool? amueblada,
+            int? cantidadMuebles,
+            decimal? cuotaMantenimientoEspecifica,
+            string observaciones,
+            byte[] rowVersion,
+            string editor)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand("dbo.sp_unidad_actualizar", cn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                cmd.Parameters.Add("@Numero", SqlDbType.NVarChar, 20).Value = (object)numero ?? DBNull.Value;
+                cmd.Parameters.Add("@Piso", SqlDbType.Int).Value = piso;
+                cmd.Parameters.Add("@Tipologia", SqlDbType.NVarChar, 50).Value = (object)tipologia ?? DBNull.Value;
+                cmd.Parameters.Add("@Metros2", SqlDbType.Decimal).Value = (object)metros2 ?? DBNull.Value;
+                cmd.Parameters.Add("@Estacionamiento", SqlDbType.NVarChar, 20).Value = (object)estacionamiento ?? DBNull.Value;
+                cmd.Parameters.Add("@Amueblada", SqlDbType.Bit).Value = (object)amueblada ?? DBNull.Value;
+                cmd.Parameters.Add("@CantidadMuebles", SqlDbType.Int).Value = (object)cantidadMuebles ?? DBNull.Value;
+                cmd.Parameters.Add("@CuotaMantenimientoEspecifica", SqlDbType.Decimal).Value =
+                    (object)cuotaMantenimientoEspecifica ?? DBNull.Value;
+                cmd.Parameters.Add("@Observaciones", SqlDbType.NVarChar, 500).Value =
+                    (object)observaciones ?? DBNull.Value;
+
+                cmd.Parameters.Add("@Usuario", SqlDbType.NVarChar, 100).Value =
+                    (object)editor ?? DBNull.Value;
+                cmd.Parameters.Add("@RowVersion", SqlDbType.Timestamp).Value =
+                    (object)rowVersion ?? DBNull.Value;
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        // Desactivar (soft) unidad
+        public void Desactivar(int id, byte[] rowVersion, string editor)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand("dbo.sp_unidad_eliminar", cn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+                cmd.Parameters.Add("@Usuario", SqlDbType.NVarChar, 100).Value =
+                    (object)editor ?? DBNull.Value;
+                cmd.Parameters.Add("@RowVersion", SqlDbType.Timestamp).Value =
+                    (object)rowVersion ?? DBNull.Value;
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        // PorId (DataRow)
+        public DataRow PorId(int id)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var da = new SqlDataAdapter("dbo.sp_unidad_obtener", cn))
+            {
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+
+                var dt = new DataTable();
+                cn.Open();
+                da.Fill(dt);
+                return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+            }
+        }
+
+        // BuscarPorId (DataTable) – mismo patrón que en Condominio/Bloque
+        public DataTable BuscarPorId(int id)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var da = new SqlDataAdapter("dbo.sp_unidad_obtener", cn))
+            {
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.Add("@Id", SqlDbType.Int).Value = id;
+
+                var dt = new DataTable();
+                cn.Open();
+                da.Fill(dt);
+                return dt;
+            }
+        }
     }
 }

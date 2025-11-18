@@ -168,5 +168,10 @@ namespace RTSCon.Catalogos
         {
             Close();
         }
+
+        private void BloqueRead_Load_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }
