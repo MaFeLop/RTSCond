@@ -164,7 +164,7 @@
             this.Controls.Add(this.dgvBloques);
             this.Name = "BloqueRead";
             this.Text = "BloqueRead";
-            this.Load += new System.EventHandler(this.BloqueRead_Load_1);
+//            this.Load += new System.EventHandler(this.BloqueRead_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBloques)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

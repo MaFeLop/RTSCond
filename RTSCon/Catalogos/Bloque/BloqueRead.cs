@@ -1,23 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Data;
 using System.Windows.Forms;
-using RTSCon.Entidad;
+using RTSCon.Datos;
 using RTSCon.Negocios;
+// using RTSCon.Seguridad;  // donde tengas UserContext / NAuth
 
 namespace RTSCon.Catalogos
 {
     public partial class BloqueRead : Form
     {
         private readonly int _condominioId;
-        private readonly NBloque _servicioBloque; // TODO: ajusta a tu clase real
+        private readonly NBloque _servicioBloque;
 
         public BloqueRead(int condominioId)
         {
             InitializeComponent();
 
             _condominioId = condominioId;
-            _servicioBloque = new NBloque(); // TODO: o inyecta como lo haces en Condominio
+
+            // ⬇️ Usa EXACTAMENTE la misma forma de obtener la cadena que en DCondominio
+            var dBloque = new DBloque(Conexion.CadenaConexion); // <-- cambia por tu helper real
+            _servicioBloque = new NBloque(dBloque);
 
             dgvBloques.AutoGenerateColumns = false; // igual que en CondominioRead
         }
@@ -35,11 +38,10 @@ namespace RTSCon.Catalogos
                 string texto = txtBuscar.Text.Trim();
                 bool soloActivos = chkSoloActivos.Checked;
 
-                // TODO: usa la firma real de NBloque
-                // Ejemplo si tienes algo como Buscar(condominioId, texto, soloActivos):
-                var lista = _servicioBloque.Buscar(_condominioId, texto, soloActivos);
+                // NBloque.Buscar devuelve DataTable, no lista
+                DataTable dt = _servicioBloque.Buscar(_condominioId, texto, soloActivos, 50);
 
-                dgvBloques.DataSource = lista.ToList();
+                dgvBloques.DataSource = dt;
             }
             catch (Exception ex)
             {
@@ -71,13 +73,13 @@ namespace RTSCon.Catalogos
             CargarBloques();
         }
 
-        private EBloque ObtenerBloqueSeleccionado()
+        // ⬇️ Ahora trabajamos con DataRow, no con EBloque
+        private DataRow FilaSeleccionada()
         {
-            if (dgvBloques.CurrentRow == null)
-                return null;
+            if (dgvBloques.CurrentRow == null) return null;
 
-            // Igual que en CondominioRead: usamos DataBoundItem
-            return dgvBloques.CurrentRow.DataBoundItem as EBloque;
+            var rowView = dgvBloques.CurrentRow.DataBoundItem as DataRowView;
+            return rowView?.Row;
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -93,15 +95,17 @@ namespace RTSCon.Catalogos
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            var bloque = ObtenerBloqueSeleccionado();
-            if (bloque == null)
+            var row = FilaSeleccionada();
+            if (row == null)
             {
                 MessageBox.Show("Selecciona un bloque primero.", "Aviso",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            using (var frm = new UpdateBloque(bloque.Id))
+            int id = (int)row["Id"];
+
+            using (var frm = new UpdateBloque(id))
             {
                 if (frm.ShowDialog(this) == DialogResult.OK)
                 {
@@ -118,37 +122,37 @@ namespace RTSCon.Catalogos
 
         private void btnDesactivar_Click(object sender, EventArgs e)
         {
-            var bloque = ObtenerBloqueSeleccionado();
-            if (bloque == null)
+            var row = FilaSeleccionada();
+            if (row == null)
             {
                 MessageBox.Show("Selecciona un bloque primero.", "Aviso",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            // 🔐 Aquí reutilizas la MISMA pantalla de ConfirmarDesactivacion
-            // que ya usas para Condominio/Propiedad.
-            // Copia el MISMO código que tengas en CondominioRead, y solo cambia
-            // la lógica interna para llamar a NBloque.Desactivar.
+            int id = (int)row["Id"];
+            byte[] rowVersion = (byte[])row["RowVersion"];
+            string identificador = row["Identificador"].ToString();
 
-            string mensaje = $"¿Deseas desactivar el bloque '{bloque.Identificador}'?";
+            string mensaje = $"¿Deseas desactivar el bloque '{identificador}'?";
 
-            using (var frm = new ConfirmarDesactivacion(mensaje))
+            // ⚠️ Usa el nombre REAL de tu form de confirmación.
+            // En el explorador se ve "BloqueConfirmarDesactivacion.cs"
+            using (var frm = new BloqueConfirmarDesactivacion(mensaje))
             {
                 if (frm.ShowDialog(this) == DialogResult.OK)
                 {
                     try
                     {
-                        string usuario = SesionActual.Usuario; // TODO: usa tu contexto real
-                        string password = frm.Password;        // TODO: propiedad que ya tienes
+                        string usuario = UserContext.Usuario;  // igual que en CondominioRead
+                        string password = frm.Password;        // misma propiedad que ya usas
 
-                        // Igual que con Condominio:
-                        // 1. Validar password (NAuth / DAuth)
-                        // 2. Llamar a NBloque.Desactivar(id, rowVersion, usuario)
+                        // 1) Validar password (igualito a Condominio)
+                        // NAuth auth = new NAuth(...);
+                        // auth.ValidarPassword(usuario, password);
 
-                        // Ejemplo:
-                        // NAuth.ValidarPassword(usuario, password);
-                        // _servicioBloque.Desactivar(bloque.Id, bloque.RowVersion, usuario);
+                        // 2) Desactivar bloque
+                        _servicioBloque.Desactivar(id, rowVersion, usuario);
 
                         CargarBloques();
                     }
@@ -167,11 +171,6 @@ namespace RTSCon.Catalogos
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void BloqueRead_Load_1(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -125,7 +125,7 @@ namespace RTSCon.Datos
             }
         }
 
-        // PorId (DataRow) – igual estilo que DCondominio.PorId
+        // PorId (DataRow)
         public DataRow PorId(int id)
         {
             using (var cn = new SqlConnection(_cn))
@@ -141,7 +141,6 @@ namespace RTSCon.Datos
             }
         }
 
-        // BuscarPorId (DataTable) – igual patrón que BuscarPorId en DCondominio
         public DataTable BuscarPorId(int id)
         {
             using (var cn = new SqlConnection(_cn))

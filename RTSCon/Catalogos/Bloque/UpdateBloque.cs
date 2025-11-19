@@ -7,14 +7,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Krypton.Toolkit;
 
-namespace RTSCon.Catalogos.Bloque
+namespace RTSCon.Catalogos
 {
-    public partial class UpdateBloque : Form
+    public partial class UpdateBloque : KryptonForm
     {
-        public UpdateBloque()
+        private readonly int _id;
+
+        public UpdateBloque(int id)
         {
             InitializeComponent();
+            _id = id;
         }
     }
 }

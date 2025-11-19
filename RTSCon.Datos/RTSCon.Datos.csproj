@@ -94,6 +94,7 @@
     <Compile Include="Bloque\DBloque.cs" />
     <Compile Include="Condominio\DCondominio.cs" />
     <Compile Include="Condominio\DCondominioDocs.cs" />
+    <Compile Include="Conexion.cs" />
     <Compile Include="Db\Db.cs" />
     <Compile Include="Db\DbExecutor.cs" />
     <Compile Include="Db\DbUtil.cs" />
