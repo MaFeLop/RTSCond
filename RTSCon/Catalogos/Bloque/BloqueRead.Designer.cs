@@ -87,6 +87,7 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(743, 27);
             this.txtBuscar.TabIndex = 101;
+            this.txtBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyDown_1);
             // 
             // btnLimpiarFiltros
             // 
@@ -162,9 +163,9 @@
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.dgvBloques);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BloqueRead";
-            this.Text = "BloqueRead";
-//            this.Load += new System.EventHandler(this.BloqueRead_Load_1);
+            this.Text = "Bloque";
             ((System.ComponentModel.ISupportInitialize)(this.dgvBloques)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

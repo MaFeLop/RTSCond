@@ -119,8 +119,9 @@
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblDesactivacion);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BloqueConfirmarDesactivacion";
-            this.Text = "BloqueConfirmarDesactivacion";
+            this.Text = "Confirmar Desactivación";
             this.ResumeLayout(false);
             this.PerformLayout();
 

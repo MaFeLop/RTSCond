@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RTSCon.Catalogos
@@ -15,14 +8,21 @@ namespace RTSCon.Catalogos
         public BloqueConfirmarDesactivacion(string mensaje)
         {
             InitializeComponent();
-            lblDesactivacion.Text = mensaje;   // usa el label que tengas en el diseño
+            lblDesactivacion.Text = mensaje;
         }
 
-        // ⬇️ Esto resuelve el error de Password también
-        public string Password => txtPassword.Text;  // usa el nombre real de tu TextBox de contraseña
+        // Exponemos la contraseña para que BloqueRead la lea
+        public string Password => txtPassword.Text;
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                MessageBox.Show("Debes introducir tu contraseña.", "Aviso",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             DialogResult = DialogResult.OK;
             Close();
         }
@@ -33,5 +33,4 @@ namespace RTSCon.Catalogos
             Close();
         }
     }
-
 }

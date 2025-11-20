@@ -45,10 +45,10 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(13, 26);
+            this.label2.Location = new System.Drawing.Point(13, 19);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(309, 28);
+            this.label2.Size = new System.Drawing.Size(313, 28);
             this.label2.TabIndex = 97;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -123,7 +123,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1506, 586);
+            this.ClientSize = new System.Drawing.Size(1510, 572);
             this.Controls.Add(this.chkSoloActivos);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
@@ -131,9 +131,10 @@
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.btnLimpiarFiltros);
             this.Controls.Add(this.dgvPropietario);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
             this.Name = "BuscarPropietario";
-            this.Text = "BuscarPropietario";
+            this.Text = "Buscar Propietario";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropietario)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

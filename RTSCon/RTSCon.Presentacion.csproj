@@ -119,6 +119,12 @@
     <Compile Include="Catalogos\Bloque\UpdateBloque.Designer.cs">
       <DependentUpon>UpdateBloque.cs</DependentUpon>
     </Compile>
+    <Compile Include="Catalogos\BuscarCondominio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\BuscarCondominio.Designer.cs">
+      <DependentUpon>BuscarCondominio.cs</DependentUpon>
+    </Compile>
     <Compile Include="Catalogos\BuscarPropietario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\Bloque\UpdateBloque.resx">
       <DependentUpon>UpdateBloque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\BuscarCondominio.resx">
+      <DependentUpon>BuscarCondominio.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\BuscarPropietario.resx">
       <DependentUpon>BuscarPropietario.cs</DependentUpon>
