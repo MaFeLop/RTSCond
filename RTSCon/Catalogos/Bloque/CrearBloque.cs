@@ -35,7 +35,7 @@ namespace RTSCon.Catalogos
 
             var row = _nCondominio.PorId(_condominioId);
             if (row != null)
-                lblCondominio.Text = row["Nombre"].ToString();
+                lblBloque.Text = row["Nombre"].ToString();
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -94,7 +94,7 @@ namespace RTSCon.Catalogos
                 if (frm.ShowDialog(this) == DialogResult.OK)
                 {
                     _condominioId = frm.CondominioIdSeleccionado;
-                    lblCondominio.Text = frm.CondominioNombreSeleccionado;
+                    lblBloque.Text = frm.CondominioNombreSeleccionado;
                 }
             }
         }

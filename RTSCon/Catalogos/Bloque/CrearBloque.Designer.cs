@@ -40,7 +40,7 @@
             this.txtIdCondominio = new Krypton.Toolkit.KryptonTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtIdentificador = new Krypton.Toolkit.KryptonTextBox();
-            this.lblCondominio = new System.Windows.Forms.Label();
+            this.lblBloque = new System.Windows.Forms.Label();
             this.nudNumPisos = new Krypton.Toolkit.KryptonNumericUpDown();
             this.nudUnidadesPiso = new Krypton.Toolkit.KryptonNumericUpDown();
             this.SuspendLayout();
@@ -182,19 +182,19 @@
             this.txtIdentificador.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdentificador.TabIndex = 125;
             // 
-            // lblCondominio
+            // lblBloque
             // 
-            this.lblCondominio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCondominio.BackColor = System.Drawing.Color.Transparent;
-            this.lblCondominio.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCondominio.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblCondominio.Location = new System.Drawing.Point(13, 305);
-            this.lblCondominio.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCondominio.Name = "lblCondominio";
-            this.lblCondominio.Size = new System.Drawing.Size(268, 28);
-            this.lblCondominio.TabIndex = 154;
-            this.lblCondominio.Text = "Nombre:";
-            this.lblCondominio.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblBloque.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBloque.BackColor = System.Drawing.Color.Transparent;
+            this.lblBloque.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBloque.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblBloque.Location = new System.Drawing.Point(13, 305);
+            this.lblBloque.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBloque.Name = "lblBloque";
+            this.lblBloque.Size = new System.Drawing.Size(268, 28);
+            this.lblBloque.TabIndex = 154;
+            this.lblBloque.Text = "Nombre:";
+            this.lblBloque.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // nudNumPisos
             // 
@@ -259,7 +259,7 @@
             this.ClientSize = new System.Drawing.Size(1529, 603);
             this.Controls.Add(this.nudUnidadesPiso);
             this.Controls.Add(this.nudNumPisos);
-            this.Controls.Add(this.lblCondominio);
+            this.Controls.Add(this.lblBloque);
             this.Controls.Add(this.btnBuscarCondominio);
             this.Controls.Add(this.label);
             this.Controls.Add(this.btnVolver);
@@ -292,7 +292,7 @@
         private Krypton.Toolkit.KryptonTextBox txtIdCondominio;
         private System.Windows.Forms.Label label2;
         private Krypton.Toolkit.KryptonTextBox txtIdentificador;
-        private System.Windows.Forms.Label lblCondominio;
+        private System.Windows.Forms.Label lblBloque;
         private Krypton.Toolkit.KryptonNumericUpDown nudNumPisos;
         private Krypton.Toolkit.KryptonNumericUpDown nudUnidadesPiso;
     }

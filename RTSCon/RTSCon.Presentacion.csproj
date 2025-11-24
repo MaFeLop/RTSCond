@@ -185,6 +185,30 @@
     <Compile Include="Catalogos\Propiedad\UpdatePropiedad.Designer.cs">
       <DependentUpon>UpdatePropiedad.cs</DependentUpon>
     </Compile>
+    <Compile Include="Catalogos\Unidad\CrearUnidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\Unidad\CrearUnidad.Designer.cs">
+      <DependentUpon>CrearUnidad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Unidad\UnidadConfirmarDesactivacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\Unidad\UnidadConfirmarDesactivacion.Designer.cs">
+      <DependentUpon>UnidadConfirmarDesactivacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Unidad\UnidadRead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\Unidad\UnidadRead.Designer.cs">
+      <DependentUpon>UnidadRead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogos\Unidad\UpdateUnidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\Unidad\UpdateUnidad.Designer.cs">
+      <DependentUpon>UpdateUnidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="CierreDeMes\CierreDeMes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +300,18 @@
     <EmbeddedResource Include="Catalogos\Propiedad\UpdatePropiedad.resx">
       <DependentUpon>UpdatePropiedad.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Unidad\CrearUnidad.resx">
+      <DependentUpon>CrearUnidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Unidad\UnidadConfirmarDesactivacion.resx">
+      <DependentUpon>UnidadConfirmarDesactivacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Unidad\UnidadRead.resx">
+      <DependentUpon>UnidadRead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\Unidad\UpdateUnidad.resx">
+      <DependentUpon>UpdateUnidad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CierreDeMes\CierreDeMes.resx">
       <DependentUpon>CierreDeMes.cs</DependentUpon>
     </EmbeddedResource>
@@ -322,10 +358,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Auditoria\" />
-    <Folder Include="Cobranza\" />
-    <Folder Include="Facturacion\" />
-    <Folder Include="Pagos\" />
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
