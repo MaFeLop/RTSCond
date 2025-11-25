@@ -118,6 +118,18 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnVolver.Values.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAAYVJREFUeF7t
+        0zFu1UAQgGFXFJDj0rPUuUlaKipMRQMFXCBHSEVBFTRCEdHOg+cm6/H6+6Rp/Lzyjn69ZQEAAAAAAAAA
+        AAAGa+uX/hF7aevPpa2PS1u/9T8x2t8YTyPKbnIMUXbz7xhP86M/Ukq+7595//ld/2p912M8Lu3uVX+s
+        lHTfowaZIUZIdz5ikFlihHTvowWZKUZIdz9SkNlihHT/owSZMUZIOxwhyKwxQtqjepCZY4S0S+Ugs8cI
+        aZ+qQc4QI6SdKgY5S4yQ9qoW5EwxQtqtUpCzxQhpvypBzhgjpB0rBDlrjJD23DvImWOEtOueQc4eI6R9
+        9wqyKcaJZ2gQMa7PsCBibJshQdqH1+nD5vIMCRJE2TbDggRRrs/QIGFblIf+GC9JlIJEKUiUgtpXUcoR
+        pSBRChKlIFEKevvxzYUI/YgylCgFiVKQKAWJUpAoBYlSkCgFbYty3x/jJf0/in/ILm4vRhFjV7ffn0cR
+        o4T26WZp66/+MQAAAAAAAAAAADCB3zHCRPTFkGmdAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="kryptonPictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGYAAABmCAYAAAA53+RiAAAABGdBTUEAALGPC/xhBQAAPwJJREFUeF5d

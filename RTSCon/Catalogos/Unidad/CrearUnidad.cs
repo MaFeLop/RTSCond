@@ -159,7 +159,16 @@ namespace RTSCon.Catalogos
 
         private void chkTitular_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (chkAmueblada.Checked)
+            {
+                lblMuebles.Visible = true;
+                txtCantidadMuebles.Visible = true;
+            }
+            else 
+            {
+                lblMuebles.Visible = false;
+                txtCantidadMuebles.Visible = false;
+            }
         }
     }
 }

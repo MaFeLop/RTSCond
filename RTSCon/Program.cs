@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RTSCon.Catalogos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace RTSCon
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Dashboard());
+            Application.Run(new CatalogoCRUD());
         }
     }
 }

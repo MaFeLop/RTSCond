@@ -1,4 +1,4 @@
-﻿namespace RTSCon.Catalogos.Unidad
+﻿namespace RTSCon.Catalogos
 {
     partial class UnidadConfirmarDesactivacion
     {
@@ -28,19 +28,112 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UnidadConfirmarDesactivacion));
+            this.label7 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.btnCancelar = new Krypton.Toolkit.KryptonButton();
+            this.btnConfirmar = new Krypton.Toolkit.KryptonButton();
+            this.txtPassword = new Krypton.Toolkit.KryptonTextBox();
+            this.lblMensaje = new Krypton.Toolkit.KryptonLabel();
             this.SuspendLayout();
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Image = ((System.Drawing.Image)(resources.GetObject("label7.Image")));
+            this.label7.Location = new System.Drawing.Point(509, 48);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(135, 102);
+            this.label7.TabIndex = 155;
+            // 
+            // label12
+            // 
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Image = ((System.Drawing.Image)(resources.GetObject("label12.Image")));
+            this.label12.Location = new System.Drawing.Point(389, 48);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(140, 102);
+            this.label12.TabIndex = 154;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnCancelar.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnCancelar.Location = new System.Drawing.Point(560, 313);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnCancelar.Size = new System.Drawing.Size(205, 55);
+            this.btnCancelar.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.TabIndex = 153;
+            this.btnCancelar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnCancelar.Values.Text = "Cancelar";
+            // 
+            // btnConfirmar
+            // 
+            this.btnConfirmar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnConfirmar.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnConfirmar.Location = new System.Drawing.Point(265, 313);
+            this.btnConfirmar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnConfirmar.Name = "btnConfirmar";
+            this.btnConfirmar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnConfirmar.Size = new System.Drawing.Size(205, 55);
+            this.btnConfirmar.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirmar.TabIndex = 152;
+            this.btnConfirmar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnConfirmar.Values.Text = "Confirmar";
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(37, 239);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '●';
+            this.txtPassword.Size = new System.Drawing.Size(996, 30);
+            this.txtPassword.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.TabIndex = 151;
+            this.txtPassword.UseSystemPasswordChar = true;
+            // 
+            // lblMensaje
+            // 
+            this.lblMensaje.AutoSize = false;
+            this.lblMensaje.Location = new System.Drawing.Point(37, 158);
+            this.lblMensaje.Margin = new System.Windows.Forms.Padding(4);
+            this.lblMensaje.Name = "lblMensaje";
+            this.lblMensaje.Size = new System.Drawing.Size(996, 63);
+            this.lblMensaje.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMensaje.TabIndex = 150;
+            this.lblMensaje.Values.Text = "Esta seguro que quiere borrar (nombre del condominio)? Coloque su contraseña abaj" +
+    "o para confirmar:";
             // 
             // UnidadConfirmarDesactivacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1071, 417);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnConfirmar);
+            this.Controls.Add(this.txtPassword);
+            this.Controls.Add(this.lblMensaje);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UnidadConfirmarDesactivacion";
-            this.Text = "UnidadConfirmarDesactivacion";
+            this.Text = "Confirmar Desactivacion";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label12;
+        private Krypton.Toolkit.KryptonButton btnCancelar;
+        private Krypton.Toolkit.KryptonButton btnConfirmar;
+        private Krypton.Toolkit.KryptonTextBox txtPassword;
+        private Krypton.Toolkit.KryptonLabel lblMensaje;
     }
 }

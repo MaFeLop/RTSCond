@@ -594,6 +594,7 @@
             this.btnDashboard.TabIndex = 46;
             this.btnDashboard.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnDashboard.Values.Text = "Dashboard";
+            this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // label6
             // 
@@ -880,7 +881,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1641, 803);
+            this.ClientSize = new System.Drawing.Size(1645, 789);
             this.Controls.Add(this.DashboardPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);

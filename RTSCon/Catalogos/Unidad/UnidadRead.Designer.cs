@@ -162,8 +162,9 @@
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.dgvUnidades);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UnidadRead";
-            this.Text = "UnidadRead";
+            this.Text = "Unidades";
             ((System.ComponentModel.ISupportInitialize)(this.dgvUnidades)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

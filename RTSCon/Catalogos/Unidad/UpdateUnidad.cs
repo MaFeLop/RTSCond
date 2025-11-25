@@ -49,7 +49,7 @@ namespace RTSCon.Catalogos
             _bloqueId = (int)row["BloqueId"];
             _rowVersion = (byte[])row["RowVersion"];
 
-            lblId.Text = _id.ToString();
+            lblBloque.Text = _id.ToString();
 
             txtNumero.Text = row["Numero"].ToString();
             txtPiso.Text = row["Piso"].ToString();
@@ -161,6 +161,11 @@ namespace RTSCon.Catalogos
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void lblBloque_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

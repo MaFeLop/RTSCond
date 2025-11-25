@@ -48,8 +48,10 @@
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             this.lblBloque = new System.Windows.Forms.Label();
             this.chkAmueblada = new Krypton.Toolkit.KryptonCheckBox();
+            this.lblMuebles = new System.Windows.Forms.Label();
+            this.txtCantidadMuebles = new Krypton.Toolkit.KryptonTextBox();
+            this.txtCuotaMantenimientoEspecifica = new Krypton.Toolkit.KryptonMaskedTextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtMuebles = new Krypton.Toolkit.KryptonTextBox();
             this.SuspendLayout();
             // 
             // txtTipologia
@@ -279,28 +281,52 @@
             this.chkAmueblada.Values.Text = "Esta unidad esta amueblada?";
             this.chkAmueblada.CheckedChanged += new System.EventHandler(this.chkTitular_CheckedChanged);
             // 
+            // lblMuebles
+            // 
+            this.lblMuebles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMuebles.BackColor = System.Drawing.Color.Transparent;
+            this.lblMuebles.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMuebles.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblMuebles.Location = new System.Drawing.Point(656, 130);
+            this.lblMuebles.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblMuebles.Name = "lblMuebles";
+            this.lblMuebles.Size = new System.Drawing.Size(303, 28);
+            this.lblMuebles.TabIndex = 183;
+            this.lblMuebles.Text = "Cantidad de Muebles:";
+            this.lblMuebles.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblMuebles.Visible = false;
+            // 
+            // txtCantidadMuebles
+            // 
+            this.txtCantidadMuebles.Location = new System.Drawing.Point(660, 162);
+            this.txtCantidadMuebles.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCantidadMuebles.Name = "txtCantidadMuebles";
+            this.txtCantidadMuebles.Size = new System.Drawing.Size(541, 30);
+            this.txtCantidadMuebles.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCantidadMuebles.TabIndex = 182;
+            this.txtCantidadMuebles.Visible = false;
+            // 
+            // txtCuotaMantenimientoEspecifica
+            // 
+            this.txtCuotaMantenimientoEspecifica.Location = new System.Drawing.Point(660, 237);
+            this.txtCuotaMantenimientoEspecifica.Name = "txtCuotaMantenimientoEspecifica";
+            this.txtCuotaMantenimientoEspecifica.Size = new System.Drawing.Size(541, 30);
+            this.txtCuotaMantenimientoEspecifica.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCuotaMantenimientoEspecifica.TabIndex = 184;
+            // 
             // label5
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(656, 130);
+            this.label5.Location = new System.Drawing.Point(656, 207);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(303, 28);
-            this.label5.TabIndex = 183;
-            this.label5.Text = "Cantidad de Muebles:";
+            this.label5.TabIndex = 185;
+            this.label5.Text = "Cuota de Mantenimiento:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtMuebles
-            // 
-            this.txtMuebles.Location = new System.Drawing.Point(660, 162);
-            this.txtMuebles.Margin = new System.Windows.Forms.Padding(4);
-            this.txtMuebles.Name = "txtMuebles";
-            this.txtMuebles.Size = new System.Drawing.Size(541, 30);
-            this.txtMuebles.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMuebles.TabIndex = 182;
             // 
             // CrearUnidad
             // 
@@ -308,7 +334,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1517, 676);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtMuebles);
+            this.Controls.Add(this.txtCuotaMantenimientoEspecifica);
+            this.Controls.Add(this.lblMuebles);
+            this.Controls.Add(this.txtCantidadMuebles);
             this.Controls.Add(this.chkAmueblada);
             this.Controls.Add(this.lblBloque);
             this.Controls.Add(this.txtTipologia);
@@ -328,6 +356,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNumero);
             this.Controls.Add(this.kryptonLabel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CrearUnidad";
             this.Text = "Crear Unidad";
             this.Load += new System.EventHandler(this.CrearUnidad_Load_1);
@@ -356,7 +385,9 @@
         private Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private System.Windows.Forms.Label lblBloque;
         private Krypton.Toolkit.KryptonCheckBox chkAmueblada;
+        private System.Windows.Forms.Label lblMuebles;
+        private Krypton.Toolkit.KryptonTextBox txtCantidadMuebles;
+        private Krypton.Toolkit.KryptonMaskedTextBox txtCuotaMantenimientoEspecifica;
         private System.Windows.Forms.Label label5;
-        private Krypton.Toolkit.KryptonTextBox txtMuebles;
     }
 }

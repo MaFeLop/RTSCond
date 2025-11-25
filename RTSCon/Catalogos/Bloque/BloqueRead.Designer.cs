@@ -165,7 +165,7 @@
             this.Controls.Add(this.dgvBloques);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BloqueRead";
-            this.Text = "Bloque";
+            this.Text = "Bloques";
             ((System.ComponentModel.ISupportInitialize)(this.dgvBloques)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
