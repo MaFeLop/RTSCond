@@ -1,4 +1,5 @@
-﻿using System;
+﻿// RTSCon.Catalogos\BloqueRead.cs
+using System;
 using System.Data;
 using System.Windows.Forms;
 using RTSCon.Datos;
@@ -8,9 +9,15 @@ namespace RTSCon.Catalogos
 {
     public partial class BloqueRead : Form
     {
-        private readonly int _condominioId;
+        private int _condominioId;
         private readonly NBloque _nBloque;
 
+        // ✅ Ctor SIN parámetros (para CatalogoCRUD)
+        public BloqueRead() : this(0)
+        {
+        }
+
+        // ✅ Ctor con Id (por si vienes desde otra pantalla con condominio preseleccionado)
         public BloqueRead(int condominioId)
         {
             InitializeComponent();
@@ -36,7 +43,10 @@ namespace RTSCon.Catalogos
                 string texto = txtBuscar.Text.Trim();
                 bool soloActivos = chkSoloActivos.Checked;
 
-                DataTable dt = _nBloque.Buscar(_condominioId, texto, soloActivos, 50);
+                // 0 = sin filtro
+                int? condominioFiltro = _condominioId > 0 ? (int?)_condominioId : null;
+
+                DataTable dt = _nBloque.Buscar(condominioFiltro, texto, soloActivos, 50);
                 dgvBloques.DataSource = dt;
             }
             catch (Exception ex)
@@ -45,20 +55,6 @@ namespace RTSCon.Catalogos
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void btnBuscar_Click(object sender, EventArgs e) => CargarBloques();
-
-        private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                CargarBloques();
-            }
-        }
-
-        private void chkSoloActivos_CheckedChanged(object sender, EventArgs e) => CargarBloques();
 
         private DataRow FilaSeleccionada()
         {
@@ -69,6 +65,18 @@ namespace RTSCon.Catalogos
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
+            // Si no hay condominio fijado, puedes pedirlo aquí con BuscarCondominio.
+            if (_condominioId <= 0)
+            {
+                using (var frmBuscar = new BuscarCondominio())
+                {
+                    if (frmBuscar.ShowDialog(this) != DialogResult.OK)
+                        return;
+
+                    _condominioId = frmBuscar.CondominioIdSeleccionado;
+                }
+            }
+
             using (var frm = new CrearBloque(_condominioId))
             {
                 if (frm.ShowDialog(this) == DialogResult.OK)
@@ -87,7 +95,6 @@ namespace RTSCon.Catalogos
             }
 
             int id = (int)row["Id"];
-
             using (var frm = new UpdateBloque(id))
             {
                 if (frm.ShowDialog(this) == DialogResult.OK)
@@ -123,16 +130,16 @@ namespace RTSCon.Catalogos
                 {
                     try
                     {
-                        
-                        int usuarioId = UserContext.UsuarioAuthId;   // ID numérico
-                        string usuario = UserContext.Usuario;        // nombre / correo
+                        // ⬇⬇ AQUÍ EL CAMBIO IMPORTANTE
+                        int usuarioId = UserContext.UsuarioAuthId;   // ID (int)
+                        string usuarioLogin = UserContext.Usuario;   // correo / username
                         string password = frm.Password;
 
                         var dAuth = new DAuth(Conexion.CadenaConexion);
                         var nAuth = new NAuth(dAuth);
-                        nAuth.ValidarPassword(usuarioId, password);  // aquí va el int
+                        nAuth.ValidarPassword(usuarioId, password);
 
-                        _nBloque.Desactivar(id, rowVersion, usuario);
+                        _nBloque.Desactivar(id, rowVersion, usuarioLogin);
 
                         CargarBloques();
                     }
@@ -148,9 +155,12 @@ namespace RTSCon.Catalogos
             }
         }
 
-        private void btnCerrar_Click(object sender, EventArgs e) => Close();
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
 
-        private void txtBuscar_KeyDown_1(object sender, KeyEventArgs e)
+        private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
@@ -158,6 +168,11 @@ namespace RTSCon.Catalogos
                 e.SuppressKeyPress = true;
                 CargarBloques();
             }
+        }
+
+        private void chkSoloActivos_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarBloques();
         }
     }
 }

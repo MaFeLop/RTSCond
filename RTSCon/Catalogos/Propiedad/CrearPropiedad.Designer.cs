@@ -1,4 +1,4 @@
-﻿namespace RTSCon.Catalogos.Propiedad
+﻿namespace RTSCon.Catalogos
 {
     partial class CrearPropiedad
     {

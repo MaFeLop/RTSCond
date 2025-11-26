@@ -1,4 +1,4 @@
-﻿namespace RTSCon.Catalogos.Propiedad
+﻿namespace RTSCon.Catalogos
 {
     partial class UpdatePropiedad
     {
@@ -99,6 +99,7 @@
             this.btnBuscarPropietario.TabIndex = 176;
             this.btnBuscarPropietario.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnBuscarPropietario.Values.Text = "Buscar Propietario";
+            this.btnBuscarPropietario.Click += new System.EventHandler(this.btnBuscarPropietario_Click);
             // 
             // chkTitular
             // 
@@ -169,6 +170,7 @@
             this.btnConfirmar.TabIndex = 170;
             this.btnConfirmar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnConfirmar.Values.Text = "Confirmar";
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // label13
             // 
@@ -353,7 +355,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UpdatePropiedad";
             this.Text = "Update Propiedad";
-            this.Load += new System.EventHandler(this.UpdatePropiedad_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

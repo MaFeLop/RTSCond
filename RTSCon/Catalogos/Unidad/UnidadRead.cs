@@ -1,4 +1,5 @@
-﻿using System;
+﻿// RTSCon.Catalogos\UnidadRead.cs
+using System;
 using System.Data;
 using System.Windows.Forms;
 using RTSCon.Datos;
@@ -8,9 +9,13 @@ namespace RTSCon.Catalogos
 {
     public partial class UnidadRead : Form
     {
-        private readonly int _bloqueId;
+        private int _bloqueId;
         private readonly NUnidad _nUnidad;
         private readonly NBloque _nBloque;
+
+        public UnidadRead() : this(0)
+        {
+        }
 
         public UnidadRead(int bloqueId)
         {
@@ -38,16 +43,15 @@ namespace RTSCon.Catalogos
         {
             try
             {
+                if (_bloqueId <= 0) return;
+
                 var rowBloque = _nBloque.PorId(_bloqueId);
                 if (rowBloque != null)
-                {
-                    // label opcional para contexto, p.ej. "Bloque A (Condominio X)"
                     Text = $"Unidades del bloque {rowBloque["Identificador"]}";
-                }
             }
             catch
             {
-                // si falla, no rompemos el listado
+                // silencioso
             }
         }
 
@@ -58,32 +62,17 @@ namespace RTSCon.Catalogos
                 string texto = txtBuscar.Text.Trim();
                 bool soloActivos = chkSoloActivos.Checked;
 
-                DataTable dt = _nUnidad.Buscar(_bloqueId, texto, soloActivos, 50);
+                int? bloqueFiltro = _bloqueId > 0 ? (int?)_bloqueId : null;
+
+                DataTable dt = _nUnidad.Buscar(bloqueFiltro, texto, soloActivos, 50);
                 dgvUnidades.DataSource = dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(
-                    "Error al cargar unidades: " + ex.Message,
-                    "Error",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
+                MessageBox.Show("Error al cargar unidades: " + ex.Message,
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void btnBuscar_Click(object sender, EventArgs e) => CargarUnidades();
-
-        private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true;
-                e.SuppressKeyPress = true;
-                CargarUnidades();
-            }
-        }
-
-        private void chkSoloActivos_CheckedChanged(object sender, EventArgs e) => CargarUnidades();
 
         private DataRow FilaSeleccionada()
         {
@@ -94,6 +83,18 @@ namespace RTSCon.Catalogos
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
+            // Si no hay bloque aún, lo pedimos con BuscarBloque
+            if (_bloqueId <= 0)
+            {
+                using (var frmBuscar = new BuscarBloque())
+                {
+                    if (frmBuscar.ShowDialog(this) != DialogResult.OK)
+                        return;
+                    _bloqueId = frmBuscar.BloqueIdSeleccionado;
+                    CargarBloque();
+                }
+            }
+
             using (var frm = new CrearUnidad(_bloqueId))
             {
                 if (frm.ShowDialog(this) == DialogResult.OK)
@@ -112,18 +113,11 @@ namespace RTSCon.Catalogos
             }
 
             int id = (int)row["Id"];
-
             using (var frm = new UpdateUnidad(id))
             {
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     CargarUnidades();
             }
-        }
-
-        private void dgvUnidades_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0)
-                btnEditar_Click(sender, EventArgs.Empty);
         }
 
         private void btnDesactivar_Click(object sender, EventArgs e)
@@ -148,15 +142,15 @@ namespace RTSCon.Catalogos
                 {
                     try
                     {
-                        int usuarioId = UserContext.UsuarioAuthId;
-                        string usuario = UserContext.Usuario;
+                        int usuarioId = UserContext.UsuarioAuthId;   // int
+                        string usuarioLogin = UserContext.Usuario;   // string
                         string password = frm.Password;
 
                         var dAuth = new DAuth(Conexion.CadenaConexion);
                         var nAuth = new NAuth(dAuth);
                         nAuth.ValidarPassword(usuarioId, password);
 
-                        _nUnidad.Desactivar(id, rowVersion, usuario);
+                        _nUnidad.Desactivar(id, rowVersion, usuarioLogin);
 
                         CargarUnidades();
                     }
@@ -172,6 +166,25 @@ namespace RTSCon.Catalogos
             }
         }
 
-        private void btnCerrar_Click(object sender, EventArgs e) => Close();
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+                CargarUnidades();
+            }
+        }
+
+        private void chkSoloActivos_CheckedChanged(object sender, EventArgs e)
+        {
+            CargarUnidades();
+        }
     }
 }

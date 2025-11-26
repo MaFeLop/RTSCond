@@ -8,7 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace RTSCon.Catalogos.Propiedad
+namespace RTSCon.Catalogos
 {
     public partial class PropiedadRead : KryptonForm
     {
@@ -158,9 +158,13 @@ namespace RTSCon.Catalogos.Propiedad
         private void DesactivarSeleccionada()
         {
             var id = IdSeleccionado();
-            if (id <= 0) { KryptonMessageBox.Show(this, "Seleccione una propiedad.", "Desactivar"); return; }
+            if (id <= 0)
+            {
+                KryptonMessageBox.Show(this, "Seleccione una propiedad.", "Desactivar");
+                return;
+            }
 
-            // Arma un “nombre” amigable para mostrar (PropietarioId-UnidadId)
+            // Arma un nombre amigable para mostrar (PropietarioId-UnidadId)
             string display = "Propiedad";
             var grid = Dgv();
             if (grid?.CurrentRow?.DataBoundItem is DataRowView rv)
@@ -174,17 +178,38 @@ namespace RTSCon.Catalogos.Propiedad
 
             byte[] rowVersion = RowVersionSeleccionada();
 
-            using (var dlg = new RTSCon.Catalogos.CondominioConfirmarDesactivacion(
-                entidad: "propiedad",
-                nombreEntidad: display,
-                onConfirm: editor =>
-                {
-                    _neg.Desactivar(id, rowVersion, editor);
-                    return true;
-                }))
+            string mensaje = $"¿Deseas desactivar la propiedad {display}?";
+
+            using (var frm = new PropiedadConfirmarDesactivacion(mensaje))
             {
-                if (dlg.ShowDialog(this) == DialogResult.OK)
-                    Cargar();
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                {
+                    try
+                    {
+                        string editor = UserContext.Usuario;      // nombre/correo del usuario que edita
+                        string password = frm.Password;
+
+                        var dAuth = new DAuth(Conexion.CadenaConexion);
+                        var nAuth = new NAuth(dAuth);
+
+                        // 🔑 Igual que en CondominioRead: ValidarPassword usa el Id (int), no el nombre
+                        int usuarioId = UserContext.UsuarioAuthId;   // o como se llame en tu UserContext
+                        nAuth.ValidarPassword(usuarioId, password);
+
+                        // Desactivar usando el “editor” como string
+                        _neg.Desactivar(id, rowVersion, editor);     // o _nBloque / _nUnidad según el caso
+                       
+                        Cargar();
+                    }
+                    catch (Exception ex)
+                    {
+                        KryptonMessageBox.Show(this,
+                            "No se pudo desactivar la propiedad: " + ex.Message,
+                            "Desactivar Propiedad",
+                            KryptonMessageBoxButtons.OK,
+                            KryptonMessageBoxIcon.Error);
+                    }
+                }
             }
         }
     }

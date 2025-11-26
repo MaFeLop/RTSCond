@@ -52,6 +52,9 @@
             this.txtPiso = new Krypton.Toolkit.KryptonTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNumero = new Krypton.Toolkit.KryptonTextBox();
+            this.btnBuscarBloque = new Krypton.Toolkit.KryptonButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txtUnidadEnlazada = new Krypton.Toolkit.KryptonTextBox();
             this.SuspendLayout();
             // 
             // btnVolver
@@ -325,11 +328,52 @@
             this.txtNumero.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNumero.TabIndex = 204;
             // 
+            // btnBuscarBloque
+            // 
+            this.btnBuscarBloque.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnBuscarBloque.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnBuscarBloque.Location = new System.Drawing.Point(996, 18);
+            this.btnBuscarBloque.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscarBloque.Name = "btnBuscarBloque";
+            this.btnBuscarBloque.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnBuscarBloque.Size = new System.Drawing.Size(177, 37);
+            this.btnBuscarBloque.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarBloque.TabIndex = 224;
+            this.btnBuscarBloque.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnBuscarBloque.Values.Text = "Buscar Bloque";
+            this.btnBuscarBloque.Click += new System.EventHandler(this.btnBuscarBloque_Click);
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(628, 27);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(355, 28);
+            this.label6.TabIndex = 223;
+            this.label6.Text = "Bloque donde se encuentra esta unidad:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtUnidadEnlazada
+            // 
+            this.txtUnidadEnlazada.Location = new System.Drawing.Point(632, 59);
+            this.txtUnidadEnlazada.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUnidadEnlazada.Name = "txtUnidadEnlazada";
+            this.txtUnidadEnlazada.Size = new System.Drawing.Size(541, 30);
+            this.txtUnidadEnlazada.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUnidadEnlazada.TabIndex = 222;
+            // 
             // UpdateUnidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1517, 676);
+            this.Controls.Add(this.btnBuscarBloque);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtUnidadEnlazada);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtCuotaMantenimientoEspecifica);
             this.Controls.Add(this.lblMuebles);
@@ -385,5 +429,8 @@
         private Krypton.Toolkit.KryptonTextBox txtPiso;
         private System.Windows.Forms.Label label2;
         private Krypton.Toolkit.KryptonTextBox txtNumero;
+        private Krypton.Toolkit.KryptonButton btnBuscarBloque;
+        private System.Windows.Forms.Label label6;
+        private Krypton.Toolkit.KryptonTextBox txtUnidadEnlazada;
     }
 }

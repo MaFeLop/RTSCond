@@ -49,19 +49,7 @@ namespace RTSCon.Catalogos
             _bloqueId = (int)row["BloqueId"];
             _rowVersion = (byte[])row["RowVersion"];
 
-            lblBloque.Text = _id.ToString();
-
-            txtNumero.Text = row["Numero"].ToString();
-            txtPiso.Text = row["Piso"].ToString();
-            txtTipologia.Text = row["Tipologia"].ToString();
-            txtMetros2.Text = row["Metros2"] == DBNull.Value ? "" : row["Metros2"].ToString();
-            txtEstacionamiento.Text = row["Estacionamiento"].ToString();
-            chkAmueblada.Checked = row["Amueblada"] != DBNull.Value && (bool)row["Amueblada"];
-            txtCantidadMuebles.Text = row["CantidadMuebles"] == DBNull.Value ? "" : row["CantidadMuebles"].ToString();
-            txtCuotaMantenimientoEspecifica.Text = row["CuotaMantenimientoEspecifica"] == DBNull.Value ? "" : row["CuotaMantenimientoEspecifica"].ToString();
-            txtObservaciones.Text = row["Observaciones"].ToString();
-
-            CargarBloque();
+            CargarBloque();   // aquí se pone correctamente el Identificador
         }
 
         private void CargarBloque()
@@ -166,6 +154,18 @@ namespace RTSCon.Catalogos
         private void lblBloque_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnBuscarBloque_Click(object sender, EventArgs e)
+        {
+            using (var frm = new BuscarBloque())
+            {
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                {
+                    _bloqueId = frm.BloqueIdSeleccionado;
+                    lblBloque.Text = frm.BloqueIdentificadorSeleccionado;
+                }
+            }
         }
     }
 }

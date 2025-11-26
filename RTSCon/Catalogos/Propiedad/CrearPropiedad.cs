@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace RTSCon.Catalogos.Propiedad
+namespace RTSCon.Catalogos
 {
     public partial class CrearPropiedad : Form
     {

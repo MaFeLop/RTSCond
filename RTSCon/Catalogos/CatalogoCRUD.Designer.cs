@@ -1,4 +1,4 @@
-﻿namespace RTSCon.Catalogos
+﻿namespace RTSCon
 {
     partial class CatalogoCRUD
     {
@@ -34,7 +34,7 @@
             this.kryptonPictureBox1 = new Krypton.Toolkit.KryptonPictureBox();
             this.btnPropiedad = new Krypton.Toolkit.KryptonButton();
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
-            this.btnBloque = new Krypton.Toolkit.KryptonButton();
+            this.btnBloques = new Krypton.Toolkit.KryptonButton();
             this.kryptonLabel2 = new Krypton.Toolkit.KryptonLabel();
             this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
             this.btnCondominio = new Krypton.Toolkit.KryptonButton();
@@ -51,7 +51,7 @@
             this.kryptonPanel1.Controls.Add(this.kryptonPictureBox1);
             this.kryptonPanel1.Controls.Add(this.btnPropiedad);
             this.kryptonPanel1.Controls.Add(this.kryptonLabel1);
-            this.kryptonPanel1.Controls.Add(this.btnBloque);
+            this.kryptonPanel1.Controls.Add(this.btnBloques);
             this.kryptonPanel1.Controls.Add(this.kryptonLabel2);
             this.kryptonPanel1.Controls.Add(this.kryptonButton2);
             this.kryptonPanel1.Controls.Add(this.btnCondominio);
@@ -59,14 +59,14 @@
             this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
             this.kryptonPanel1.Name = "kryptonPanel1";
             this.kryptonPanel1.PanelBackStyle = Krypton.Toolkit.PaletteBackStyle.SeparatorLowProfile;
-            this.kryptonPanel1.Size = new System.Drawing.Size(1145, 397);
+            this.kryptonPanel1.Size = new System.Drawing.Size(1149, 383);
             this.kryptonPanel1.TabIndex = 0;
             // 
             // btnVolver
             // 
             this.btnVolver.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnVolver.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnVolver.Location = new System.Drawing.Point(20, 1);
+            this.btnVolver.Location = new System.Drawing.Point(22, 15);
             this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -81,7 +81,7 @@
             // 
             this.kryptonPictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.kryptonPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("kryptonPictureBox1.Image")));
-            this.kryptonPictureBox1.Location = new System.Drawing.Point(500, 15);
+            this.kryptonPictureBox1.Location = new System.Drawing.Point(502, 15);
             this.kryptonPictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonPictureBox1.Name = "kryptonPictureBox1";
             this.kryptonPictureBox1.Size = new System.Drawing.Size(123, 113);
@@ -92,7 +92,7 @@
             // 
             this.btnPropiedad.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPropiedad.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnPropiedad.Location = new System.Drawing.Point(612, 259);
+            this.btnPropiedad.Location = new System.Drawing.Point(616, 245);
             this.btnPropiedad.Margin = new System.Windows.Forms.Padding(4);
             this.btnPropiedad.Name = "btnPropiedad";
             this.btnPropiedad.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -101,6 +101,7 @@
             this.btnPropiedad.TabIndex = 34;
             this.btnPropiedad.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnPropiedad.Values.Text = "Propiedad";
+            this.btnPropiedad.Click += new System.EventHandler(this.btnPropiedad_Click);
             // 
             // kryptonLabel1
             // 
@@ -113,19 +114,20 @@
             this.kryptonLabel1.TabIndex = 29;
             this.kryptonLabel1.Values.Text = "RTSCond";
             // 
-            // btnBloque
+            // btnBloques
             // 
-            this.btnBloque.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBloque.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnBloque.Location = new System.Drawing.Point(327, 322);
-            this.btnBloque.Margin = new System.Windows.Forms.Padding(4);
-            this.btnBloque.Name = "btnBloque";
-            this.btnBloque.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.btnBloque.Size = new System.Drawing.Size(205, 55);
-            this.btnBloque.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBloque.TabIndex = 33;
-            this.btnBloque.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnBloque.Values.Text = "Bloque";
+            this.btnBloques.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnBloques.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnBloques.Location = new System.Drawing.Point(331, 308);
+            this.btnBloques.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBloques.Name = "btnBloques";
+            this.btnBloques.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnBloques.Size = new System.Drawing.Size(205, 55);
+            this.btnBloques.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBloques.TabIndex = 33;
+            this.btnBloques.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnBloques.Values.Text = "Bloque";
+            this.btnBloques.Click += new System.EventHandler(this.btnBloques_Click);
             // 
             // kryptonLabel2
             // 
@@ -142,7 +144,7 @@
             // 
             this.kryptonButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.kryptonButton2.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.kryptonButton2.Location = new System.Drawing.Point(612, 322);
+            this.kryptonButton2.Location = new System.Drawing.Point(616, 308);
             this.kryptonButton2.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -150,13 +152,14 @@
             this.kryptonButton2.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonButton2.TabIndex = 32;
             this.kryptonButton2.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.kryptonButton2.Values.Text = "Hogar";
+            this.kryptonButton2.Values.Text = "Unidades";
+            this.kryptonButton2.Click += new System.EventHandler(this.btnUnidades_Click);
             // 
             // btnCondominio
             // 
             this.btnCondominio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCondominio.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnCondominio.Location = new System.Drawing.Point(326, 259);
+            this.btnCondominio.Location = new System.Drawing.Point(330, 245);
             this.btnCondominio.Margin = new System.Windows.Forms.Padding(4);
             this.btnCondominio.Name = "btnCondominio";
             this.btnCondominio.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -165,15 +168,15 @@
             this.btnCondominio.TabIndex = 31;
             this.btnCondominio.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCondominio.Values.Text = "Condominio";
+            this.btnCondominio.Click += new System.EventHandler(this.btnCondominios_Click);
             // 
             // CatalogoCRUD
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1145, 397);
+            this.ClientSize = new System.Drawing.Size(1149, 383);
             this.Controls.Add(this.kryptonPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(0, 0);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CatalogoCRUD";
             this.Text = "RTSCond: Pagina Principal de Catálogos";
@@ -192,7 +195,7 @@
         private Krypton.Toolkit.KryptonPictureBox kryptonPictureBox1;
         private Krypton.Toolkit.KryptonButton btnPropiedad;
         private Krypton.Toolkit.KryptonLabel kryptonLabel1;
-        private Krypton.Toolkit.KryptonButton btnBloque;
+        private Krypton.Toolkit.KryptonButton btnBloques;
         private Krypton.Toolkit.KryptonLabel kryptonLabel2;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
         private Krypton.Toolkit.KryptonButton btnCondominio;

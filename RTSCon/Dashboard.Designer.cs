@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.DashboardPanel = new Krypton.Toolkit.KryptonPanel();
             this.kryptonBorderEdge11 = new Krypton.Toolkit.KryptonBorderEdge();
@@ -91,7 +90,8 @@
             this.DashboardName = new Krypton.Toolkit.KryptonLabel();
             this.BorderTopBar = new Krypton.Toolkit.KryptonBorderEdge();
             this.BorderDashboard = new Krypton.Toolkit.KryptonBorderEdge();
-            this.kryptonManager1 = new Krypton.Toolkit.KryptonManager(this.components);
+            this.btnLogout = new Krypton.Toolkit.KryptonButton();
+            this.label21 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DashboardPanel)).BeginInit();
             this.DashboardPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelSideBar)).BeginInit();
@@ -392,6 +392,8 @@
             // 
             // panelSideBar
             // 
+            this.panelSideBar.Controls.Add(this.label21);
+            this.panelSideBar.Controls.Add(this.btnLogout);
             this.panelSideBar.Controls.Add(this.label20);
             this.panelSideBar.Controls.Add(this.kryptonButton4);
             this.panelSideBar.Controls.Add(this.label19);
@@ -877,11 +879,33 @@
             this.BorderDashboard.Size = new System.Drawing.Size(189, 774);
             this.BorderDashboard.Text = "kryptonBorderEdge1";
             // 
+            // btnLogout
+            // 
+            this.btnLogout.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnLogout.Location = new System.Drawing.Point(48, 668);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
+            this.btnLogout.Size = new System.Drawing.Size(120, 28);
+            this.btnLogout.TabIndex = 59;
+            this.btnLogout.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnLogout.Values.Text = "Salir de Sesion";
+            // 
+            // label21
+            // 
+            this.label21.BackColor = System.Drawing.Color.Transparent;
+            this.label21.Image = ((System.Drawing.Image)(resources.GetObject("label21.Image")));
+            this.label21.Location = new System.Drawing.Point(4, 668);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(39, 28);
+            this.label21.TabIndex = 60;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1645, 789);
+            this.ClientSize = new System.Drawing.Size(1649, 775);
             this.Controls.Add(this.DashboardPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
@@ -904,7 +928,6 @@
         private Krypton.Toolkit.KryptonPanel DashboardPanel;
         private Krypton.Toolkit.KryptonBorderEdge BorderTopBar;
         private Krypton.Toolkit.KryptonBorderEdge BorderDashboard;
-        private Krypton.Toolkit.KryptonManager kryptonManager1;
         private Krypton.Toolkit.KryptonLabel DashboardName;
         private Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private Krypton.Toolkit.KryptonBorderEdge CondominiosBorde;
@@ -963,6 +986,8 @@
         private Krypton.Toolkit.KryptonButton kryptonButton3;
         private System.Windows.Forms.Label label18;
         private Krypton.Toolkit.KryptonButton kryptonButton2;
+        private System.Windows.Forms.Label label21;
+        private Krypton.Toolkit.KryptonButton btnLogout;
     }
 }
 

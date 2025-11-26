@@ -17,7 +17,7 @@ namespace RTSCon
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CatalogoCRUD());
+            Application.Run(new Login());
         }
     }
 }

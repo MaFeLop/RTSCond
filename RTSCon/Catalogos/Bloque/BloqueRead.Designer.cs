@@ -87,7 +87,7 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(743, 27);
             this.txtBuscar.TabIndex = 101;
-            this.txtBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyDown_1);
+            //this.txtBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyDown_1);
             // 
             // btnLimpiarFiltros
             // 

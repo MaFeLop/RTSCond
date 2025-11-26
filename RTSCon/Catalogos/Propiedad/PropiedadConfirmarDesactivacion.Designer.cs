@@ -1,4 +1,4 @@
-﻿namespace RTSCon.Catalogos.Propiedad
+﻿namespace RTSCon.Catalogos
 {
     partial class PropiedadConfirmarDesactivacion
     {
@@ -61,7 +61,7 @@
             // 
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnCancelar.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnCancelar.Location = new System.Drawing.Point(560, 313);
+            this.btnCancelar.Location = new System.Drawing.Point(560, 306);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -70,12 +70,13 @@
             this.btnCancelar.TabIndex = 141;
             this.btnCancelar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCancelar.Values.Text = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnConfirmar
             // 
             this.btnConfirmar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnConfirmar.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnConfirmar.Location = new System.Drawing.Point(265, 313);
+            this.btnConfirmar.Location = new System.Drawing.Point(265, 306);
             this.btnConfirmar.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -84,6 +85,7 @@
             this.btnConfirmar.TabIndex = 140;
             this.btnConfirmar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnConfirmar.Values.Text = "Confirmar";
+            this.btnConfirmar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // txtPassword
             // 
@@ -112,7 +114,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1071, 417);
+            this.ClientSize = new System.Drawing.Size(1075, 403);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.btnCancelar);
@@ -120,6 +122,7 @@
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblDesactivacion);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "PropiedadConfirmarDesactivacion";
             this.Text = "Confirmar Desactivación";
             this.Load += new System.EventHandler(this.PropiedadConfirmarDesactivacion_Load);

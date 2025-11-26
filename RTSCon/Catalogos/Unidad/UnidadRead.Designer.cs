@@ -65,6 +65,7 @@
             this.chkSoloActivos.Size = new System.Drawing.Size(117, 24);
             this.chkSoloActivos.TabIndex = 112;
             this.chkSoloActivos.Values.Text = "Solo Activos";
+            this.chkSoloActivos.CheckedChanged += new System.EventHandler(this.chkSoloActivos_CheckedChanged);
             // 
             // label2
             // 
@@ -112,6 +113,7 @@
             this.btnDesactivar.TabIndex = 108;
             this.btnDesactivar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnDesactivar.Values.Text = "Desactivar";
+            this.btnDesactivar.Click += new System.EventHandler(this.btnDesactivar_Click);
             // 
             // btnUpdate
             // 
@@ -124,6 +126,7 @@
             this.btnUpdate.TabIndex = 107;
             this.btnUpdate.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnUpdate.Values.Text = "Update";
+            this.btnUpdate.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnCrear
             // 
@@ -136,6 +139,7 @@
             this.btnCrear.TabIndex = 106;
             this.btnCrear.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCrear.Values.Text = "Crear";
+            this.btnCrear.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // dgvUnidades
             // 

@@ -170,5 +170,17 @@ namespace RTSCon.Catalogos
                 txtCantidadMuebles.Visible = false;
             }
         }
+
+        private void btnBuscarBloque_Click(object sender, EventArgs e)
+        {
+            using (var frm = new BuscarBloque())
+            {
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                {
+                    _bloqueId = frm.BloqueIdSeleccionado;
+                    lblBloque.Text = frm.BloqueIdentificadorSeleccionado;
+                }
+            }
+        }
     }
 }
