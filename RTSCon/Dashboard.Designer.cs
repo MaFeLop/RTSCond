@@ -50,6 +50,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.kryptonBorderEdge5 = new Krypton.Toolkit.KryptonBorderEdge();
             this.panelSideBar = new Krypton.Toolkit.KryptonPanel();
+            this.label21 = new System.Windows.Forms.Label();
+            this.btnLogout = new Krypton.Toolkit.KryptonButton();
             this.label20 = new System.Windows.Forms.Label();
             this.kryptonButton4 = new Krypton.Toolkit.KryptonButton();
             this.label19 = new System.Windows.Forms.Label();
@@ -90,8 +92,6 @@
             this.DashboardName = new Krypton.Toolkit.KryptonLabel();
             this.BorderTopBar = new Krypton.Toolkit.KryptonBorderEdge();
             this.BorderDashboard = new Krypton.Toolkit.KryptonBorderEdge();
-            this.btnLogout = new Krypton.Toolkit.KryptonButton();
-            this.label21 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DashboardPanel)).BeginInit();
             this.DashboardPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelSideBar)).BeginInit();
@@ -161,6 +161,7 @@
             this.kryptonBorderEdge11.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.kryptonBorderEdge11.Size = new System.Drawing.Size(847, 412);
             this.kryptonBorderEdge11.Text = "kryptonBorderEdge11";
+            this.kryptonBorderEdge11.Visible = false;
             // 
             // StatusInicioMes
             // 
@@ -175,6 +176,7 @@
             this.StatusInicioMes.TabIndex = 68;
             this.StatusInicioMes.Text = "N/A";
             this.StatusInicioMes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.StatusInicioMes.Visible = false;
             // 
             // lblInicioMes
             // 
@@ -189,6 +191,7 @@
             this.lblInicioMes.TabIndex = 67;
             this.lblInicioMes.Text = "Inicio del Mes:";
             this.lblInicioMes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblInicioMes.Visible = false;
             // 
             // kryptonBorderEdge10
             // 
@@ -199,6 +202,7 @@
             this.kryptonBorderEdge10.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverDarkMode;
             this.kryptonBorderEdge10.Size = new System.Drawing.Size(443, 60);
             this.kryptonBorderEdge10.Text = "kryptonBorderEdge10";
+            this.kryptonBorderEdge10.Visible = false;
             // 
             // StatusValidacion
             // 
@@ -213,6 +217,7 @@
             this.StatusValidacion.TabIndex = 64;
             this.StatusValidacion.Text = "N/A";
             this.StatusValidacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.StatusValidacion.Visible = false;
             // 
             // lblValidacion
             // 
@@ -227,6 +232,7 @@
             this.lblValidacion.TabIndex = 63;
             this.lblValidacion.Text = "Validacion:";
             this.lblValidacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblValidacion.Visible = false;
             // 
             // kryptonBorderEdge9
             // 
@@ -237,6 +243,7 @@
             this.kryptonBorderEdge9.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverDarkMode;
             this.kryptonBorderEdge9.Size = new System.Drawing.Size(443, 60);
             this.kryptonBorderEdge9.Text = "kryptonBorderEdge9";
+            this.kryptonBorderEdge9.Visible = false;
             // 
             // StatusPagos
             // 
@@ -251,6 +258,7 @@
             this.StatusPagos.TabIndex = 60;
             this.StatusPagos.Text = "N/A";
             this.StatusPagos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.StatusPagos.Visible = false;
             // 
             // lblPagos
             // 
@@ -265,6 +273,7 @@
             this.lblPagos.TabIndex = 59;
             this.lblPagos.Text = "Pagos:";
             this.lblPagos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPagos.Visible = false;
             // 
             // kryptonBorderEdge8
             // 
@@ -275,6 +284,7 @@
             this.kryptonBorderEdge8.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverDarkMode;
             this.kryptonBorderEdge8.Size = new System.Drawing.Size(443, 60);
             this.kryptonBorderEdge8.Text = "kryptonBorderEdge8";
+            this.kryptonBorderEdge8.Visible = false;
             // 
             // StatusDunning
             // 
@@ -289,6 +299,7 @@
             this.StatusDunning.TabIndex = 56;
             this.StatusDunning.Text = "N/A";
             this.StatusDunning.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.StatusDunning.Visible = false;
             // 
             // lblDunning
             // 
@@ -303,6 +314,7 @@
             this.lblDunning.TabIndex = 55;
             this.lblDunning.Text = "Dunning:";
             this.lblDunning.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblDunning.Visible = false;
             // 
             // kryptonBorderEdge7
             // 
@@ -313,6 +325,7 @@
             this.kryptonBorderEdge7.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverDarkMode;
             this.kryptonBorderEdge7.Size = new System.Drawing.Size(443, 60);
             this.kryptonBorderEdge7.Text = "kryptonBorderEdge7";
+            this.kryptonBorderEdge7.Visible = false;
             // 
             // StatusFactura
             // 
@@ -327,6 +340,7 @@
             this.StatusFactura.TabIndex = 53;
             this.StatusFactura.Text = "N/A";
             this.StatusFactura.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.StatusFactura.Visible = false;
             // 
             // lblFacturacion
             // 
@@ -341,6 +355,7 @@
             this.lblFacturacion.TabIndex = 52;
             this.lblFacturacion.Text = "Facturacion: ";
             this.lblFacturacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblFacturacion.Visible = false;
             // 
             // kryptonBorderEdge6
             // 
@@ -351,6 +366,7 @@
             this.kryptonBorderEdge6.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverDarkMode;
             this.kryptonBorderEdge6.Size = new System.Drawing.Size(443, 60);
             this.kryptonBorderEdge6.Text = "kryptonBorderEdge6";
+            this.kryptonBorderEdge6.Visible = false;
             // 
             // label14
             // 
@@ -365,6 +381,7 @@
             this.label14.TabIndex = 49;
             this.label14.Text = "Periodo:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label14.Visible = false;
             // 
             // label13
             // 
@@ -379,6 +396,7 @@
             this.label13.TabIndex = 48;
             this.label13.Text = "Ultimos Eventos:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label13.Visible = false;
             // 
             // kryptonBorderEdge5
             // 
@@ -389,6 +407,7 @@
             this.kryptonBorderEdge5.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.kryptonBorderEdge5.Size = new System.Drawing.Size(469, 418);
             this.kryptonBorderEdge5.Text = "kryptonBorderEdge5";
+            this.kryptonBorderEdge5.Visible = false;
             // 
             // panelSideBar
             // 
@@ -416,6 +435,29 @@
             this.panelSideBar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
             this.panelSideBar.Size = new System.Drawing.Size(172, 718);
             this.panelSideBar.TabIndex = 45;
+            // 
+            // label21
+            // 
+            this.label21.BackColor = System.Drawing.Color.Transparent;
+            this.label21.Image = ((System.Drawing.Image)(resources.GetObject("label21.Image")));
+            this.label21.Location = new System.Drawing.Point(4, 668);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(39, 28);
+            this.label21.TabIndex = 60;
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnLogout.Location = new System.Drawing.Point(48, 668);
+            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
+            this.btnLogout.Size = new System.Drawing.Size(120, 28);
+            this.btnLogout.TabIndex = 59;
+            this.btnLogout.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnLogout.Values.Text = "Salir de Sesion";
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // label20
             // 
@@ -448,6 +490,7 @@
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(39, 28);
             this.label19.TabIndex = 56;
+            this.label19.Visible = false;
             // 
             // kryptonButton3
             // 
@@ -460,6 +503,7 @@
             this.kryptonButton3.TabIndex = 55;
             this.kryptonButton3.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.kryptonButton3.Values.Text = "Auditoria";
+            this.kryptonButton3.Visible = false;
             // 
             // label18
             // 
@@ -470,6 +514,7 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(39, 28);
             this.label18.TabIndex = 54;
+            this.label18.Visible = false;
             // 
             // kryptonButton2
             // 
@@ -482,6 +527,7 @@
             this.kryptonButton2.TabIndex = 53;
             this.kryptonButton2.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.kryptonButton2.Values.Text = "Pagos";
+            this.kryptonButton2.Visible = false;
             // 
             // label17
             // 
@@ -492,6 +538,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(39, 28);
             this.label17.TabIndex = 52;
+            this.label17.Visible = false;
             // 
             // kryptonButton1
             // 
@@ -504,6 +551,7 @@
             this.kryptonButton1.TabIndex = 51;
             this.kryptonButton1.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.kryptonButton1.Values.Text = "Cobranza";
+            this.kryptonButton1.Visible = false;
             // 
             // label16
             // 
@@ -514,6 +562,7 @@
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(39, 28);
             this.label16.TabIndex = 50;
+            this.label16.Visible = false;
             // 
             // btnFacturacion
             // 
@@ -526,6 +575,7 @@
             this.btnFacturacion.TabIndex = 49;
             this.btnFacturacion.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnFacturacion.Values.Text = "Facturacion";
+            this.btnFacturacion.Visible = false;
             // 
             // label15
             // 
@@ -536,6 +586,7 @@
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(39, 28);
             this.label15.TabIndex = 48;
+            this.label15.Visible = false;
             // 
             // btnCierreDeMes
             // 
@@ -548,6 +599,7 @@
             this.btnCierreDeMes.TabIndex = 47;
             this.btnCierreDeMes.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCierreDeMes.Values.Text = "Cierre de Mes";
+            this.btnCierreDeMes.Visible = false;
             // 
             // label12
             // 
@@ -607,6 +659,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 28);
             this.label6.TabIndex = 34;
+            this.label6.Visible = false;
             // 
             // lblDeudaVencida
             // 
@@ -619,6 +672,7 @@
             this.lblDeudaVencida.Size = new System.Drawing.Size(76, 28);
             this.lblDeudaVencida.TabIndex = 33;
             this.lblDeudaVencida.Text = "N/A";
+            this.lblDeudaVencida.Visible = false;
             // 
             // label11
             // 
@@ -633,6 +687,7 @@
             this.label11.TabIndex = 32;
             this.label11.Text = "Deuda Vencida:";
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label11.Visible = false;
             // 
             // kryptonBorderEdge4
             // 
@@ -643,6 +698,7 @@
             this.kryptonBorderEdge4.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.kryptonBorderEdge4.Size = new System.Drawing.Size(217, 155);
             this.kryptonBorderEdge4.Text = "kryptonBorderEdge4";
+            this.kryptonBorderEdge4.Visible = false;
             // 
             // label8
             // 
@@ -653,6 +709,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(39, 28);
             this.label8.TabIndex = 29;
+            this.label8.Visible = false;
             // 
             // lblPagosRecibidos
             // 
@@ -665,6 +722,7 @@
             this.lblPagosRecibidos.Size = new System.Drawing.Size(76, 28);
             this.lblPagosRecibidos.TabIndex = 28;
             this.lblPagosRecibidos.Text = "N/A";
+            this.lblPagosRecibidos.Visible = false;
             // 
             // label10
             // 
@@ -679,6 +737,7 @@
             this.label10.TabIndex = 27;
             this.label10.Text = "Pagos Recibidos:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label10.Visible = false;
             this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // kryptonBorderEdge3
@@ -690,6 +749,7 @@
             this.kryptonBorderEdge3.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.kryptonBorderEdge3.Size = new System.Drawing.Size(217, 155);
             this.kryptonBorderEdge3.Text = "kryptonBorderEdge3";
+            this.kryptonBorderEdge3.Visible = false;
             // 
             // label3
             // 
@@ -700,6 +760,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(39, 28);
             this.label3.TabIndex = 24;
+            this.label3.Visible = false;
             // 
             // lblFacturado
             // 
@@ -712,6 +773,7 @@
             this.lblFacturado.Size = new System.Drawing.Size(76, 28);
             this.lblFacturado.TabIndex = 23;
             this.lblFacturado.Text = "N/A";
+            this.lblFacturado.Visible = false;
             // 
             // label7
             // 
@@ -726,6 +788,7 @@
             this.label7.TabIndex = 22;
             this.label7.Text = "Total Facturado:";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label7.Visible = false;
             // 
             // kryptonBorderEdge2
             // 
@@ -736,6 +799,7 @@
             this.kryptonBorderEdge2.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.kryptonBorderEdge2.Size = new System.Drawing.Size(217, 155);
             this.kryptonBorderEdge2.Text = "kryptonBorderEdge2";
+            this.kryptonBorderEdge2.Visible = false;
             // 
             // label4
             // 
@@ -746,6 +810,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(39, 28);
             this.label4.TabIndex = 16;
+            this.label4.Visible = false;
             // 
             // lblFacturasEmdedidas
             // 
@@ -758,6 +823,7 @@
             this.lblFacturasEmdedidas.Size = new System.Drawing.Size(76, 28);
             this.lblFacturasEmdedidas.TabIndex = 14;
             this.lblFacturasEmdedidas.Text = "N/A";
+            this.lblFacturasEmdedidas.Visible = false;
             // 
             // label5
             // 
@@ -772,6 +838,7 @@
             this.label5.TabIndex = 12;
             this.label5.Text = "Facturas Embedidas:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label5.Visible = false;
             // 
             // kryptonBorderEdge1
             // 
@@ -782,6 +849,7 @@
             this.kryptonBorderEdge1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.kryptonBorderEdge1.Size = new System.Drawing.Size(217, 155);
             this.kryptonBorderEdge1.Text = "kryptonBorderEdge1";
+            this.kryptonBorderEdge1.Visible = false;
             // 
             // lblCondnum
             // 
@@ -794,6 +862,7 @@
             this.lblCondnum.Size = new System.Drawing.Size(76, 28);
             this.lblCondnum.TabIndex = 10;
             this.lblCondnum.Text = "N/A";
+            this.lblCondnum.Visible = false;
             // 
             // label2
             // 
@@ -804,6 +873,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 28);
             this.label2.TabIndex = 9;
+            this.label2.Visible = false;
             // 
             // label1
             // 
@@ -818,6 +888,7 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Condominios Activos:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Visible = false;
             // 
             // CondominiosBorde
             // 
@@ -828,6 +899,7 @@
             this.CondominiosBorde.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.CondominiosBorde.Size = new System.Drawing.Size(217, 155);
             this.CondominiosBorde.Text = "kryptonBorderEdge1";
+            this.CondominiosBorde.Visible = false;
             // 
             // kryptonLabel1
             // 
@@ -842,6 +914,7 @@
             this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel1.TabIndex = 4;
             this.kryptonLabel1.Values.Text = "Vista previa del periodo: ";
+            this.kryptonLabel1.Visible = false;
             this.kryptonLabel1.Click += new System.EventHandler(this.kryptonLabel1_Click);
             // 
             // DashboardName
@@ -879,33 +952,11 @@
             this.BorderDashboard.Size = new System.Drawing.Size(189, 774);
             this.BorderDashboard.Text = "kryptonBorderEdge1";
             // 
-            // btnLogout
-            // 
-            this.btnLogout.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnLogout.Location = new System.Drawing.Point(48, 668);
-            this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
-            this.btnLogout.Size = new System.Drawing.Size(120, 28);
-            this.btnLogout.TabIndex = 59;
-            this.btnLogout.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnLogout.Values.Text = "Salir de Sesion";
-            // 
-            // label21
-            // 
-            this.label21.BackColor = System.Drawing.Color.Transparent;
-            this.label21.Image = ((System.Drawing.Image)(resources.GetObject("label21.Image")));
-            this.label21.Location = new System.Drawing.Point(4, 668);
-            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(39, 28);
-            this.label21.TabIndex = 60;
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1649, 775);
+            this.ClientSize = new System.Drawing.Size(1653, 761);
             this.Controls.Add(this.DashboardPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);

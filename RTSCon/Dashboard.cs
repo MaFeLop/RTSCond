@@ -82,5 +82,18 @@ namespace RTSCon
         {
             
         }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            // 1) Limpiar el contexto de usuario
+            UserContext.Clear();
+
+            // 2) Abrir de nuevo el formulario de Login
+            var login = new Login();
+            login.Show();
+
+            // 3) Cerrar este dashboard
+            this.Close();
+        }
     }
 }

@@ -127,7 +127,7 @@
             this.btnLogin.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLogin.TabIndex = 10;
             this.btnLogin.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnLogin.Values.Text = "Verificar Sesión";
+            this.btnLogin.Values.Text = "Iniciar Sesión";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // lnkForget
@@ -145,7 +145,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1085, 579);
+            this.ClientSize = new System.Drawing.Size(1089, 565);
             this.Controls.Add(this.lnkForget);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtContrasena);
