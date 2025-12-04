@@ -11,6 +11,8 @@ namespace RTSCon.Catalogos
     {
         private int _condominioId;
         private readonly NBloque _nBloque;
+        private SessionTimeoutBehavior _sessionTimeout;
+
 
         // ✅ Ctor SIN parámetros (para CatalogoCRUD)
         public BloqueRead() : this(0)
@@ -28,6 +30,8 @@ namespace RTSCon.Catalogos
             _nBloque = new NBloque(dBloque);
 
             dgvBloques.AutoGenerateColumns = false;
+
+            _sessionTimeout = new SessionTimeoutBehavior(this);
         }
 
         private void BloqueRead_Load(object sender, EventArgs e)

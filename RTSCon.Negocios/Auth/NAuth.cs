@@ -11,6 +11,7 @@ namespace RTSCon.Negocios
         public static string Usuario { get; private set; }
         public static string Rol { get; private set; }
         public static DateTime InicioSesionUtc { get; private set; }
+        public static DateTime UltimaActividadUtc { get; private set; }   // 👈 NUEVO
 
         public static void Set(int id, string usuario, string rol)
         {
@@ -18,6 +19,7 @@ namespace RTSCon.Negocios
             Usuario = usuario;
             Rol = rol;
             InicioSesionUtc = DateTime.UtcNow;
+            UltimaActividadUtc = InicioSesionUtc;                         // 👈
         }
 
         public static void Clear()
@@ -25,6 +27,15 @@ namespace RTSCon.Negocios
             UsuarioAuthId = 0;
             Usuario = null;
             Rol = null;
+            InicioSesionUtc = DateTime.MinValue;
+            UltimaActividadUtc = DateTime.MinValue;
+        }
+
+        // registrar actividad (ratón/teclado)
+        public static void Touch()
+        {
+            if (UsuarioAuthId != 0)
+                UltimaActividadUtc = DateTime.UtcNow;
         }
 
         public static bool EsSA =>
@@ -34,6 +45,7 @@ namespace RTSCon.Negocios
             string.Equals(Rol, "Propietario", StringComparison.OrdinalIgnoreCase)
             || string.Equals(Rol, "Admin", StringComparison.OrdinalIgnoreCase);
     }
+
 
     public class NAuth
     {

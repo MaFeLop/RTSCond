@@ -10,22 +10,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using RTSCon;
 
 namespace RTSCon
 {
     public partial class Dashboard : KryptonForm
     {
+        private SessionTimeoutBehavior _sessionTimeout;
+
+        private readonly Timer _sessionTimer = new Timer();
         public Dashboard()
         {
             InitializeComponent();
             this.Shown += Dashboard_Shown;
             this.FormClosed += (s, e) => SessionManager.Stop();
+
+            _sessionTimeout = new SessionTimeoutBehavior(this);
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
             var km = new KryptonManager();
             km.GlobalPaletteMode = PaletteMode.Office2010BlueLightMode; // o el que prefieras
+                                                                        // Intervalo de chequeo: cada 30 segundos
+            _sessionTimer.Interval = 30_000;
+            _sessionTimer.Tick += SessionTimer_Tick;
+            _sessionTimer.Start();
+
+            // Cualquier actividad resetea el contador
+            this.MouseMove += ActivityDetected;
+            this.KeyDown += ActivityDetected;
         }
 
         private void Dashboard_Shown(object sender, EventArgs e)
@@ -85,15 +99,48 @@ namespace RTSCon
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            // 1) Limpiar el contexto de usuario
-            UserContext.Clear();
-
-            // 2) Abrir de nuevo el formulario de Login
-            var login = new Login();
-            login.Show();
-
-            // 3) Cerrar este dashboard
-            this.Close();
+            SessionHelper.LogoutFrom(this);
         }
+
+        private void ActivityDetected(object sender, EventArgs e)
+        {
+            RTSCon.Negocios.UserContext.Touch();
+        }
+
+        private void SessionTimer_Tick(object sender, EventArgs e)
+        {
+            // Límite de inactividad (en minutos) – configurable
+            int timeoutMinutes = int.TryParse(
+                System.Configuration.ConfigurationManager.AppSettings["SessionTimeoutMinutes"],
+                out var m) ? m : 15;   // default 15 min
+
+            if (RTSCon.Negocios.UserContext.UsuarioAuthId == 0)
+                return; // nadie logueado
+
+            var inactivo = DateTime.UtcNow - RTSCon.Negocios.UserContext.UltimaActividadUtc;
+            if (inactivo > TimeSpan.FromMinutes(timeoutMinutes))
+            {
+                _sessionTimer.Stop();
+                this.MouseMove -= ActivityDetected;
+                this.KeyDown -= ActivityDetected;
+
+                Krypton.Toolkit.KryptonMessageBox.Show(
+                    this,
+                    "Su sesión ha expirado por inactividad.",
+                    "Sesión expirada",
+                    Krypton.Toolkit.KryptonMessageBoxButtons.OK,
+                    Krypton.Toolkit.KryptonMessageBoxIcon.Information);
+
+                SessionHelper.LogoutFrom(this);
+            }
+        }
+
+        private void kryptonButton4_Click(object sender, EventArgs e)
+        {
+            var frm = new CatalogoCRUD();
+            frm.Show();
+            this.Hide();   // escondemos el Dashboard mientras estás en catálogos
+        }
+
     }
 }

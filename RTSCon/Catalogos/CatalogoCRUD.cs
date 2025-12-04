@@ -66,5 +66,10 @@ namespace RTSCon
             var frm = new PropiedadRead();
             AbrirChild(frm);
         }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
