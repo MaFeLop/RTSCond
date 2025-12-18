@@ -9,25 +9,36 @@ namespace RTSCon.Datos
         private readonly string _cn;
         public DCondominio(string connectionString) { _cn = connectionString; }
 
-        public DataTable Listar(string buscar, bool soloActivos, int page, int pageSize, int? ownerId, out int totalRows)
+        public DataTable Listar(string buscar, bool soloActivos, int page, int pageSize, int? idPropietario, out int totalRows)
         {
             totalRows = 0;
+
             using (var cn = new SqlConnection(_cn))
             using (var cmd = new SqlCommand("dbo.sp_condominio_listar", cn))
             using (var da = new SqlDataAdapter(cmd))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.AddWithValue("@buscar", (object)buscar ?? DBNull.Value);
                 cmd.Parameters.AddWithValue("@soloActivos", soloActivos);
                 cmd.Parameters.AddWithValue("@page", page);
                 cmd.Parameters.AddWithValue("@pageSize", pageSize);
-                cmd.Parameters.AddWithValue("@OwnerId", (object)ownerId ?? DBNull.Value);
+
+                // 👇 en tu BD es ID_propietario, no OwnerId
+                cmd.Parameters.AddWithValue("@ID_propietario", (object)idPropietario ?? DBNull.Value);
+
                 var pTotal = cmd.Parameters.Add("@totalRows", SqlDbType.Int);
                 pTotal.Direction = ParameterDirection.Output;
+                pTotal.Value = 0; // evita null
 
                 var dt = new DataTable();
-                cn.Open(); da.Fill(dt);
-                totalRows = (pTotal.Value == DBNull.Value) ? 0 : (int)pTotal.Value;
+                cn.Open();
+                da.Fill(dt);
+
+                totalRows = (pTotal.Value == null || pTotal.Value == DBNull.Value)
+                            ? 0
+                            : Convert.ToInt32(pTotal.Value);
+
                 return dt;
             }
         }
