@@ -38,6 +38,9 @@ namespace RTSCon.Negocios
                 UltimaActividadUtc = DateTime.UtcNow;
         }
 
+        // ✅ ESTA ES LA PROPIEDAD QUE FALTABA
+        public static bool IsLoggedIn => UsuarioAuthId != 0;
+
         public static bool EsSA =>
             string.Equals(Rol, "SA", StringComparison.OrdinalIgnoreCase);
 

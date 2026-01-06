@@ -965,7 +965,7 @@
             this.Name = "Dashboard";
             this.Text = "RTSCond: Sistema de Gestión de Condominios";
             this.TransparencyKey = System.Drawing.Color.RoyalBlue;
-            this.Load += new System.EventHandler(this.MainForm_Load);
+            // this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DashboardPanel)).EndInit();
             this.DashboardPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelSideBar)).EndInit();

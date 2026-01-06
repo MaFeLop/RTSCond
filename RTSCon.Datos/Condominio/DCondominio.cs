@@ -24,7 +24,6 @@ namespace RTSCon.Datos
                 cmd.Parameters.AddWithValue("@page", page);
                 cmd.Parameters.AddWithValue("@pageSize", pageSize);
 
-                // 👇 en tu BD es ID_propietario, no OwnerId
                 cmd.Parameters.AddWithValue("@ID_propietario", (object)idPropietario ?? DBNull.Value);
 
                 var pTotal = cmd.Parameters.Add("@totalRows", SqlDbType.Int);
