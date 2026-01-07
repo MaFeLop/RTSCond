@@ -9,7 +9,7 @@ namespace RTSCon.Datos
         private readonly string _cn;
         public DCondominio(string connectionString) { _cn = connectionString; }
 
-        public DataTable Listar(string buscar, bool soloActivos, int page, int pageSize, int? idPropietario, out int totalRows)
+        public DataTable Listar(string buscar, bool soloActivos, int page, int pageSize, int? propietarioId, out int totalRows)
         {
             totalRows = 0;
 
@@ -19,28 +19,28 @@ namespace RTSCon.Datos
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@buscar", (object)buscar ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@soloActivos", soloActivos);
-                cmd.Parameters.AddWithValue("@page", page);
-                cmd.Parameters.AddWithValue("@pageSize", pageSize);
+                cmd.Parameters.Add("@buscar", SqlDbType.NVarChar, 200).Value =
+                    string.IsNullOrWhiteSpace(buscar) ? (object)DBNull.Value : buscar.Trim();
 
-                cmd.Parameters.AddWithValue("@ID_propietario", (object)idPropietario ?? DBNull.Value);
+                cmd.Parameters.Add("@soloActivos", SqlDbType.Bit).Value = soloActivos;
+                cmd.Parameters.Add("@page", SqlDbType.Int).Value = page;
+                cmd.Parameters.Add("@pageSize", SqlDbType.Int).Value = pageSize;
+
+                cmd.Parameters.Add("@PropietarioId", SqlDbType.Int).Value =
+                    propietarioId.HasValue ? (object)propietarioId.Value : DBNull.Value;
 
                 var pTotal = cmd.Parameters.Add("@totalRows", SqlDbType.Int);
                 pTotal.Direction = ParameterDirection.Output;
-                pTotal.Value = 0; // evita null
 
                 var dt = new DataTable();
                 cn.Open();
                 da.Fill(dt);
 
-                totalRows = (pTotal.Value == null || pTotal.Value == DBNull.Value)
-                            ? 0
-                            : Convert.ToInt32(pTotal.Value);
-
+                totalRows = (pTotal.Value == null || pTotal.Value == DBNull.Value) ? 0 : Convert.ToInt32(pTotal.Value);
                 return dt;
             }
         }
+
 
         public void Notificar(string to, string subject, string htmlBody, string mailProfile)
         {

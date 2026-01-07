@@ -69,7 +69,9 @@ namespace RTSCon
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-
+            var frm = new Dashboard();
+            AbrirChild(frm);
+            this.Close();
         }
     }
 }

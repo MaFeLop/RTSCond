@@ -140,6 +140,22 @@ namespace RTSCon.Catalogos.Condominio
             {
                 dgvCondominios.AutoGenerateColumns = true;
                 dgvCondominios.DataSource = dt;
+
+                // Evita re-generación rara si tú defines columnas manualmente:
+                dgvCondominios.AutoGenerateColumns = true;
+
+                // Si el DGV auto-crea columnas, oculta las técnicas:
+                if (dgvCondominios.Columns.Contains("rn")) dgvCondominios.Columns["rn"].Visible = false;
+
+                // RowVersionHex es texto (no rompe), pero si no quieres verlo:
+                if (dgvCondominios.Columns.Contains("RowVersionHex")) dgvCondominios.Columns["RowVersionHex"].Visible = false;
+
+                // (Opcional) Buen formato
+                dgvCondominios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvCondominios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvCondominios.MultiSelect = false;
+                dgvCondominios.ReadOnly = true;
+
             }
 
             var lblTotalCtrl = this.Controls.Find("lblTotal", true).FirstOrDefault();
