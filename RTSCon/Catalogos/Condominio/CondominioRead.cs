@@ -4,6 +4,7 @@ using RTSCon.Negocios;
 using System;
 using System.Configuration;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -140,6 +141,65 @@ namespace RTSCon.Catalogos.Condominio
             {
                 dgvCondominios.AutoGenerateColumns = true;
                 dgvCondominios.DataSource = dt;
+                ConfigurarGrid();
+
+
+
+                // ==================== ESTÉTICA Y UX ====================
+                dgvCondominios.AutoGenerateColumns = true;
+                dgvCondominios.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvCondominios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvCondominios.MultiSelect = false;
+                dgvCondominios.ReadOnly = true;
+                dgvCondominios.AllowUserToAddRows = false;
+                dgvCondominios.AllowUserToResizeRows = false;
+                dgvCondominios.RowHeadersVisible = false;
+                dgvCondominios.EnableHeadersVisualStyles = false;
+
+                // ==================== OCULTAR BASURA TÉCNICA ====================
+                string[] ocultar =
+                {
+    "CreatedAt", "CreatedBy",
+    "UpdatedAt", "UpdatedBy",
+    "ID_propietario",
+    "ID_usr_secretario1",
+    "ID_usr_secretario2",
+    "ID_usr_secretario3",
+    "RowVersion", "RowVersionHex",
+    "EmailNotificaciones"
+};
+
+                foreach (var col in ocultar)
+                {
+                    if (dgvCondominios.Columns.Contains(col))
+                        dgvCondominios.Columns[col].Visible = false;
+                }
+
+                // ==================== RENOMBRAR COLUMNAS (UX) ====================
+                if (dgvCondominios.Columns.Contains("Id"))
+                    dgvCondominios.Columns["Id"].HeaderText = "Código";
+
+                if (dgvCondominios.Columns.Contains("Nombre"))
+                    dgvCondominios.Columns["Nombre"].HeaderText = "Condominio";
+
+                if (dgvCondominios.Columns.Contains("Direccion"))
+                    dgvCondominios.Columns["Direccion"].HeaderText = "Dirección";
+
+                if (dgvCondominios.Columns.Contains("Tipo"))
+                    dgvCondominios.Columns["Tipo"].HeaderText = "Tipo";
+
+                if (dgvCondominios.Columns.Contains("AdministradorResponsable"))
+                    dgvCondominios.Columns["AdministradorResponsable"].HeaderText = "Administrador";
+
+                if (dgvCondominios.Columns.Contains("IsActive"))
+                    dgvCondominios.Columns["IsActive"].HeaderText = "Activo";
+
+                // ==================== AJUSTES DE ANCHO ====================
+                dgvCondominios.Columns["Id"].FillWeight = 10;
+                dgvCondominios.Columns["Nombre"].FillWeight = 30;
+                dgvCondominios.Columns["Direccion"].FillWeight = 30;
+                dgvCondominios.Columns["Tipo"].FillWeight = 15;
+                dgvCondominios.Columns["AdministradorResponsable"].FillWeight = 25;
 
                 // Evita re-generación rara si tú defines columnas manualmente:
                 dgvCondominios.AutoGenerateColumns = true;
@@ -209,6 +269,104 @@ namespace RTSCon.Catalogos.Condominio
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ConfigurarGrid()
+        {
+            var dgv = dgvCondominios; // <-- cambia al nombre real
+
+            dgv.AutoGenerateColumns = true;
+            dgv.AllowUserToAddRows = false;
+            dgv.AllowUserToDeleteRows = false;
+            dgv.AllowUserToResizeRows = false;
+            dgv.MultiSelect = false;
+            dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgv.ReadOnly = true;
+
+            // Visual
+            dgv.RowHeadersVisible = false;
+            dgv.EnableHeadersVisualStyles = false;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgv.ColumnHeadersHeight = 34;
+
+            dgv.DefaultCellStyle.Font = new Font("Segoe UI", 9F);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            dgv.DefaultCellStyle.SelectionBackColor = SystemColors.Highlight;
+            dgv.DefaultCellStyle.SelectionForeColor = Color.White;
+            dgv.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(245, 248, 252);
+
+            // Evita que se vea “aplastado”
+            dgv.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None;
+            dgv.RowTemplate.Height = 28;
+
+            // Importante para que no se vea feo:
+            dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            // Si hay columnas “técnicas” que no deben verse:
+            OcultarSiExiste("RowVersion");
+            OcultarSiExiste("CreatedAt");
+            OcultarSiExiste("CreatedBy");
+            OcultarSiExiste("UpdatedAt");
+            OcultarSiExiste("UpdatedBy");
+            OcultarSiExiste("rn"); // si la estás trayendo del SP
+
+            // Renombrar headers para que no se corten tan feo:
+            Renombrar("Id", "Cód.");
+            Renombrar("Nombre", "Condominio");
+            Renombrar("Direccion", "Dirección");
+            Renombrar("AdministradorResponsable", "Administrador");
+            Renombrar("FechaConstitucion", "Fecha Constitución");
+            Renombrar("CuotaMantenimientoBase", "Cuota Base");
+            Renombrar("ReglamentoDocumentoId", "Reglamento");
+            Renombrar("IsActive", "Activo");
+            Renombrar("EnviarNotifsAlPropietario", "Enviar Notifs");
+
+            // Formatos numéricos y fecha:
+            FormatoFecha("FechaConstitucion");
+            FormatoMoney("CuotaMantenimientoBase");
+
+            // Ajuste fino: algunas columnas conviene que NO sean Fill (evita columnas gigantes)
+            FijarAncho("Id", 60);
+            FijarAncho("IsActive", 70);
+            FijarAncho("EnviarNotifsAlPropietario", 110);
+            FijarAncho("ReglamentoDocumentoId", 110);
+
+            void OcultarSiExiste(string col)
+            {
+                if (dgv.Columns.Contains(col))
+                    dgv.Columns[col].Visible = false;
+            }
+            void Renombrar(string col, string header)
+            {
+                if (dgv.Columns.Contains(col))
+                    dgv.Columns[col].HeaderText = header;
+            }
+            void FormatoFecha(string col)
+            {
+                if (dgv.Columns.Contains(col))
+                    dgv.Columns[col].DefaultCellStyle.Format = "dd/MM/yyyy";
+            }
+            void FormatoMoney(string col)
+            {
+                if (dgv.Columns.Contains(col))
+                {
+                    dgv.Columns[col].DefaultCellStyle.Format = "N2";
+                    dgv.Columns[col].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                }
+            }
+            void FijarAncho(string col, int width)
+            {
+                if (dgv.Columns.Contains(col))
+                {
+                    dgv.Columns[col].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    dgv.Columns[col].Width = width;
+                }
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }

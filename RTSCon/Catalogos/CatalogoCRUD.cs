@@ -30,16 +30,22 @@ namespace RTSCon
 
             // Cuando el child se cierre (botón Volver),
             // volvemos a mostrar el hub.
-            child.FormClosed += (s, e) =>
+            try
             {
-                _childActual = null;
-                this.Show();
-                this.Activate();
-            };
+                child.FormClosed += (s, e) =>
+                {
+                    _childActual = null;
+                    this.Show();
+                    this.Activate();
+                };
 
-            child.Show();
+                child.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Se evitó el cierre inesperado debido al caso para este parche temporal, debes arreglar esto");
+            }
         }
-
         // Ejemplo: botón de Condominios
         private void btnCondominios_Click(object sender, EventArgs e)
         {

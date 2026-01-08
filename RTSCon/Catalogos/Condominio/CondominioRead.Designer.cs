@@ -38,23 +38,27 @@
             this.btnLimpiarFiltros = new Krypton.Toolkit.KryptonButton();
             this.chkSoloActivos = new Krypton.Toolkit.KryptonCheckBox();
             this.lblTotal = new System.Windows.Forms.Label();
+            this.pnlTop = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCondominios)).BeginInit();
+            this.pnlTop.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvCondominios
             // 
             this.dgvCondominios.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvCondominios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCondominios.Location = new System.Drawing.Point(16, 81);
+            this.dgvCondominios.Location = new System.Drawing.Point(0, 81);
             this.dgvCondominios.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCondominios.Name = "dgvCondominios";
             this.dgvCondominios.RowHeadersWidth = 51;
-            this.dgvCondominios.Size = new System.Drawing.Size(1431, 340);
+            this.dgvCondominios.Size = new System.Drawing.Size(1567, 371);
             this.dgvCondominios.TabIndex = 0;
             // 
             // btnCrear
             // 
-            this.btnCrear.Location = new System.Drawing.Point(241, 478);
+            this.btnCrear.Location = new System.Drawing.Point(214, 10);
             this.btnCrear.Margin = new System.Windows.Forms.Padding(4);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -67,7 +71,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(604, 478);
+            this.btnUpdate.Location = new System.Drawing.Point(588, 9);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -79,7 +83,7 @@
             // 
             // btnDesactivar
             // 
-            this.btnDesactivar.Location = new System.Drawing.Point(967, 478);
+            this.btnDesactivar.Location = new System.Drawing.Point(951, 9);
             this.btnDesactivar.Margin = new System.Windows.Forms.Padding(4);
             this.btnDesactivar.Name = "btnDesactivar";
             this.btnDesactivar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -95,10 +99,10 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(13, -11);
+            this.label2.Location = new System.Drawing.Point(1, 12);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(327, 28);
+            this.label2.Size = new System.Drawing.Size(359, 28);
             this.label2.TabIndex = 93;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -106,7 +110,7 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(16, 46);
+            this.txtBuscar.Location = new System.Drawing.Point(4, 41);
             this.txtBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(743, 27);
@@ -115,7 +119,7 @@
             // btnLimpiarFiltros
             // 
             this.btnLimpiarFiltros.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnLimpiarFiltros.Location = new System.Drawing.Point(891, 46);
+            this.btnLimpiarFiltros.Location = new System.Drawing.Point(951, 36);
             this.btnLimpiarFiltros.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiarFiltros.Name = "btnLimpiarFiltros";
             this.btnLimpiarFiltros.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
@@ -128,7 +132,7 @@
             // chkSoloActivos
             // 
             this.chkSoloActivos.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
-            this.chkSoloActivos.Location = new System.Drawing.Point(765, 46);
+            this.chkSoloActivos.Location = new System.Drawing.Point(811, 36);
             this.chkSoloActivos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkSoloActivos.Name = "chkSoloActivos";
             this.chkSoloActivos.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -142,27 +146,44 @@
             this.lblTotal.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTotal.Location = new System.Drawing.Point(1134, 419);
+            this.lblTotal.Location = new System.Drawing.Point(1201, 16);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(325, 28);
+            this.lblTotal.Size = new System.Drawing.Size(362, 28);
             this.lblTotal.TabIndex = 95;
             this.lblTotal.Text = "Total: ";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // pnlTop
+            // 
+            this.pnlTop.Controls.Add(this.btnLimpiarFiltros);
+            this.pnlTop.Controls.Add(this.chkSoloActivos);
+            this.pnlTop.Controls.Add(this.label2);
+            this.pnlTop.Controls.Add(this.txtBuscar);
+            this.pnlTop.Location = new System.Drawing.Point(0, 0);
+            this.pnlTop.Name = "pnlTop";
+            this.pnlTop.Size = new System.Drawing.Size(1567, 74);
+            this.pnlTop.TabIndex = 96;
+            this.pnlTop.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnDesactivar);
+            this.panel1.Controls.Add(this.btnUpdate);
+            this.panel1.Controls.Add(this.lblTotal);
+            this.panel1.Controls.Add(this.btnCrear);
+            this.panel1.Location = new System.Drawing.Point(0, 451);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1567, 100);
+            this.panel1.TabIndex = 97;
             // 
             // CondominioRead
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1559, 491);
-            this.Controls.Add(this.lblTotal);
-            this.Controls.Add(this.chkSoloActivos);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtBuscar);
-            this.Controls.Add(this.btnLimpiarFiltros);
-            this.Controls.Add(this.btnDesactivar);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnCrear);
+            this.ClientSize = new System.Drawing.Size(1567, 551);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlTop);
             this.Controls.Add(this.dgvCondominios);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
@@ -170,8 +191,10 @@
             this.Name = "CondominioRead";
             this.Text = "Condominios";
             ((System.ComponentModel.ISupportInitialize)(this.dgvCondominios)).EndInit();
+            this.pnlTop.ResumeLayout(false);
+            this.pnlTop.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -186,5 +209,7 @@
         private Krypton.Toolkit.KryptonButton btnLimpiarFiltros;
         private Krypton.Toolkit.KryptonCheckBox chkSoloActivos;
         private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.Panel pnlTop;
+        private System.Windows.Forms.Panel panel1;
     }
 }

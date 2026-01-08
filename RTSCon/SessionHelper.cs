@@ -6,30 +6,35 @@ namespace RTSCon
 {
     public static class SessionHelper
     {
-        public static void LogoutGlobal()
-        {
-            UserContext.Clear();
+        public static bool IsLoggingOut { get; private set; }
 
-            // Abre Login primero
+        public static void LogoutFrom(Form current)
+        {
+            if (current == null) return;
+
+            IsLoggingOut = true;
+            RTSCon.Negocios.UserContext.Clear();
+
             var login = new Login();
             login.Show();
 
-            // Cierra todo lo demás
+            current.Close();
+        }
+
+        public static void LogoutGlobal()
+        {
+            IsLoggingOut = true;
+            RTSCon.Negocios.UserContext.Clear();
+
+            var login = new Login();
+            login.Show();
+
             var abiertos = Application.OpenForms.Cast<Form>().ToList();
             foreach (var f in abiertos)
             {
                 if (!(f is Login))
                     f.Close();
             }
-        }
-
-        public static void LogoutFrom(Form current)
-        {
-            if (current == null) return;
-            UserContext.Clear();
-            var login = new Login();
-            login.Show();
-            current.Close();
         }
     }
 }
