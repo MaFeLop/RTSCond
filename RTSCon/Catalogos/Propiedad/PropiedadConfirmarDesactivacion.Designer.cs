@@ -61,7 +61,7 @@
             // 
             this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnCancelar.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnCancelar.Location = new System.Drawing.Point(560, 306);
+            this.btnCancelar.Location = new System.Drawing.Point(560, 299);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -76,7 +76,7 @@
             // 
             this.btnConfirmar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnConfirmar.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnConfirmar.Location = new System.Drawing.Point(265, 306);
+            this.btnConfirmar.Location = new System.Drawing.Point(265, 299);
             this.btnConfirmar.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -114,7 +114,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1075, 403);
+            this.ClientSize = new System.Drawing.Size(1079, 389);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.btnCancelar);

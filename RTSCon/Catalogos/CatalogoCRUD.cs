@@ -16,67 +16,64 @@ namespace RTSCon
 
         private void AbrirChild(Form child)
         {
-            // Cerrar el hijo actual si existe
-            if (_childActual != null && !_childActual.IsDisposed)
-            {
-                _childActual.Close();
-                _childActual = null;
-            }
-
-            // Ocultar el hub para que visualmente “desaparezca”
-            this.Hide();
+            if (child == null) return;
 
             _childActual = child;
 
-            // Cuando el child se cierre (botón Volver),
-            // volvemos a mostrar el hub.
-            try
-            {
-                child.FormClosed += (s, e) =>
-                {
-                    _childActual = null;
-                    this.Show();
-                    this.Activate();
-                };
+            // Ocultar el hub mientras el child está abierto
+            this.Hide();
 
-                child.Show();
-            }
-            catch (Exception ex)
+            child.FormClosed += (s, e) =>
             {
-                MessageBox.Show("Se evitó el cierre inesperado debido al caso para este parche temporal, debes arreglar esto");
-            }
+                _childActual = null;
+
+                // Si estamos cerrando sesión, NO re-mostrar el hub
+                if (SessionHelper.IsLoggingOut) return;
+
+                // Si el hub ya se cerró/dispuso, no intentes Show/Activate
+                if (this.IsDisposed) return;
+                if (!this.IsHandleCreated) return;
+
+                try
+                {
+                    this.BeginInvoke((Action)(() =>
+                    {
+                        if (this.IsDisposed) return;
+                        this.Show();
+                        this.Activate();
+                    }));
+                }
+                catch { }
+            };
+
+            child.Show();
         }
-        // Ejemplo: botón de Condominios
+
         private void btnCondominios_Click(object sender, EventArgs e)
         {
-            var frm = new CondominioRead();  // usa tu ctor real
-            AbrirChild(frm);
+            AbrirChild(new CondominioRead());
         }
 
-        // Ejemplo: botón de Bloques
         private void btnBloques_Click(object sender, EventArgs e)
         {
-            var frm = new BloqueRead();   // ahora existe ctor sin parámetros
-            AbrirChild(frm);
+            AbrirChild(new BloqueRead());
         }
 
-        // Ejemplo: botón de Unidades
         private void btnUnidades_Click(object sender, EventArgs e)
         {
-            var frm = new UnidadRead(/* si tu ctor recibe BloqueId, lo pedimos dentro de UnidadRead usando buscarBloque */);
-            AbrirChild(frm);
+            AbrirChild(new UnidadRead());
         }
 
         private void btnPropiedad_Click(object sender, EventArgs e)
         {
-            var frm = new PropiedadRead();
-            AbrirChild(frm);
+            AbrirChild(new PropiedadRead());
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            var frm = new Dashboard();
-            AbrirChild(frm);
+            // Volver al Dashboard sin duplicar instancias es mejor,
+            // pero por ahora, simple:
+            AbrirChild(new Dashboard());
             this.Close();
         }
     }

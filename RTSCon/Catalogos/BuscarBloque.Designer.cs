@@ -61,6 +61,7 @@
             this.btnCancelar.TabIndex = 113;
             this.btnCancelar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCancelar.Values.Text = "Cancelar";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnConfirmar
             // 
@@ -80,10 +81,10 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(13, 18);
+            this.label2.Location = new System.Drawing.Point(13, 11);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(329, 28);
+            this.label2.Size = new System.Drawing.Size(333, 28);
             this.label2.TabIndex = 111;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -126,10 +127,10 @@
             this.lblSinResultados.BackColor = System.Drawing.Color.Transparent;
             this.lblSinResultados.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSinResultados.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblSinResultados.Location = new System.Drawing.Point(459, 253);
+            this.lblSinResultados.Location = new System.Drawing.Point(459, 246);
             this.lblSinResultados.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSinResultados.Name = "lblSinResultados";
-            this.lblSinResultados.Size = new System.Drawing.Size(329, 28);
+            this.lblSinResultados.Size = new System.Drawing.Size(333, 28);
             this.lblSinResultados.TabIndex = 115;
             this.lblSinResultados.Text = "No se han encontrado registros";
             this.lblSinResultados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -138,7 +139,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1522, 545);
+            this.ClientSize = new System.Drawing.Size(1526, 531);
             this.Controls.Add(this.lblSinResultados);
             this.Controls.Add(this.chkSoloActivos);
             this.Controls.Add(this.btnCancelar);

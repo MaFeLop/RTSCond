@@ -38,6 +38,7 @@
             this.btnUpdate = new Krypton.Toolkit.KryptonButton();
             this.btnCrear = new Krypton.Toolkit.KryptonButton();
             this.dgvUnidades = new Krypton.Toolkit.KryptonDataGridView();
+            this.btnVolver = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUnidades)).BeginInit();
             this.SuspendLayout();
             // 
@@ -152,11 +153,25 @@
             this.dgvUnidades.Size = new System.Drawing.Size(1431, 340);
             this.dgvUnidades.TabIndex = 105;
             // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(963, 462);
+            this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnVolver.Size = new System.Drawing.Size(237, 63);
+            this.btnVolver.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.TabIndex = 114;
+            this.btnVolver.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnVolver.Values.Text = "Volver";
+            this.btnVolver.Visible = false;
+            // 
             // UnidadRead
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1547, 548);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.chkSoloActivos);
             this.Controls.Add(this.label2);
@@ -186,5 +201,6 @@
         private Krypton.Toolkit.KryptonButton btnUpdate;
         private Krypton.Toolkit.KryptonButton btnCrear;
         private Krypton.Toolkit.KryptonDataGridView dgvUnidades;
+        private Krypton.Toolkit.KryptonButton btnVolver;
     }
 }

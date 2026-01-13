@@ -47,10 +47,10 @@
             this.lblTotal.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTotal.Location = new System.Drawing.Point(1131, 421);
+            this.lblTotal.Location = new System.Drawing.Point(1131, 414);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(337, 28);
+            this.lblTotal.Size = new System.Drawing.Size(341, 28);
             this.lblTotal.TabIndex = 104;
             this.lblTotal.Text = "Total: ";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -72,10 +72,10 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(13, -6);
+            this.label2.Location = new System.Drawing.Point(13, -13);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(337, 28);
+            this.label2.Size = new System.Drawing.Size(341, 28);
             this.label2.TabIndex = 102;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -152,7 +152,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1557, 538);
+            this.ClientSize = new System.Drawing.Size(1561, 524);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.chkSoloActivos);
             this.Controls.Add(this.label2);

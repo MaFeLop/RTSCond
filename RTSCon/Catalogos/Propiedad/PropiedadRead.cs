@@ -4,7 +4,6 @@ using RTSCon.Negocios;
 using System;
 using System.Configuration;
 using System.Data;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -16,16 +15,28 @@ namespace RTSCon.Catalogos
         private int _page = 1;
         private const int _pageSize = 20;
 
+        // ====== NUEVO: modo selección por checkbox ======
+        private enum ModoAccion { Ninguno, Editar, Desactivar }
+        private ModoAccion _modo = ModoAccion.Ninguno;
+        private const string COL_SEL = "__sel";
+
         public PropiedadRead()
         {
             InitializeComponent();
+
             var cn = ConfigurationManager.ConnectionStrings["RTSCond"].ConnectionString;
             _neg = new NPropiedad(new DPropiedad(cn));
 
-            // Carga al abrir
-            this.Load += (_, __) => Cargar();
+            // Load
+            this.Load += (_, __) =>
+            {
+                EnsureSelectionColumn();
+                HookGridSelectionEvents();
+                SalirModoSeleccion();
+                Cargar();
+            };
 
-            // Buscar: Enter dentro del textbox => recargar
+            // Buscar: Enter y/o cambio de texto (si existe)
             var txtBuscar = FindCtrl<TextBox>("txtBuscar", "txtBuscarPropiedad", "txtFiltro");
             if (txtBuscar != null)
             {
@@ -41,51 +52,179 @@ namespace RTSCon.Catalogos
                 };
             }
 
-            // Limpiar filtros
-            var btnLimpiar = FindCtrl<KryptonButton>("btnLimpiarFiltros", "btnLimpiar", "btnClear");
-            if (btnLimpiar != null) btnLimpiar.Click += (_, __) =>
-            {
-                if (txtBuscar != null) txtBuscar.Text = string.Empty;
-                var chk = FindCtrl<KryptonCheckBox>("chkSoloActivos", "chkActivos");
-                if (chk != null) chk.Checked = false;
-                _page = 1;
-                Cargar();
-            };
-
-            // Reaccionar a chkSoloActivos
+            // Solo activos
             var chkSolo = FindCtrl<KryptonCheckBox>("chkSoloActivos", "chkActivos");
             if (chkSolo != null) chkSolo.CheckedChanged += (_, __) => { _page = 1; Cargar(); };
 
-            // CREAR
-            var btnCrear = FindCtrl<KryptonButton>("btnCrear", "btnNuevo", "btnAdd");
-            if (btnCrear != null) btnCrear.Click += (_, __) =>
+            // ====== Botones estandarizados ======
+            var btnCrear = FindCtrl<KryptonButton>("btnCrear");
+            var btnUpdate = FindCtrl<KryptonButton>("btnUpdate");
+            var btnDesactivar = FindCtrl<KryptonButton>("btnDesactivar");
+            var btnVolver = FindCtrl<KryptonButton>("btnVolver");
+
+            if (btnCrear != null)
             {
-                using (var f = new CrearPropiedad())
-                    if (f.ShowDialog(this) == DialogResult.OK) Cargar();
-            };
+                btnCrear.Click += (_, __) =>
+                {
+                    if (_modo != ModoAccion.Ninguno) return; // no crear si estás en modo selección
 
-            // UPDATE
-            var btnUpdate = FindCtrl<KryptonButton>("btnUpdate", "btnEditar", "btnModificar");
-            if (btnUpdate != null) btnUpdate.Click += (_, __) =>
+                    using (var f = new CrearPropiedad())
+                        if (f.ShowDialog(this) == DialogResult.OK) Cargar();
+                };
+            }
+
+            if (btnUpdate != null)
             {
-                var id = IdSeleccionado();
-                if (id <= 0) { KryptonMessageBox.Show(this, "Seleccione una propiedad.", "Actualizar"); return; }
-                using (var f = new UpdatePropiedad()) { f.Tag = id; if (f.ShowDialog(this) == DialogResult.OK) Cargar(); }
-            };
+                btnUpdate.Click += (_, __) =>
+                {
+                    // 1er clic => entrar modo selección
+                    if (_modo == ModoAccion.Ninguno)
+                    {
+                        EntrarModoSeleccion(ModoAccion.Editar, btnUpdate, btnDesactivar, btnCrear, btnVolver);
+                        return;
+                    }
 
-            // DESACTIVAR (borrado lógico con contraseña en ConfirmarDesactivacion)
-            var btnDesactivar = FindCtrl<KryptonButton>("btnDesactivar", "btnBorrar", "btnEliminar");
-            if (btnDesactivar != null) btnDesactivar.Click += (_, __) => DesactivarSeleccionada();
+                    // Si está en otro modo, ignorar
+                    if (_modo != ModoAccion.Editar) return;
 
-            // Grid
+                    // 2do clic => confirmar
+                    var row = GetRowMarcado();
+                    if (row == null)
+                    {
+                        KryptonMessageBox.Show(this, "Marque una propiedad (checkbox) para actualizar.", "Actualizar",
+                            KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information);
+                        return;
+                    }
+
+                    int id = row.Row.Table.Columns.Contains("Id") && row["Id"] != DBNull.Value ? Convert.ToInt32(row["Id"]) : 0;
+                    if (id <= 0)
+                    {
+                        KryptonMessageBox.Show(this, "No se pudo obtener el Id.", "Actualizar",
+                            KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    SalirModoSeleccion(btnUpdate, btnDesactivar, btnCrear, btnVolver);
+
+                    using (var f = new UpdatePropiedad())
+                    {
+                        f.Tag = id;
+                        if (f.ShowDialog(this) == DialogResult.OK) Cargar();
+                    }
+                };
+            }
+
+            if (btnDesactivar != null)
+            {
+                btnDesactivar.Click += (_, __) =>
+                {
+                    // 1er clic => entrar modo selección
+                    if (_modo == ModoAccion.Ninguno)
+                    {
+                        EntrarModoSeleccion(ModoAccion.Desactivar, btnUpdate, btnDesactivar, btnCrear, btnVolver);
+                        return;
+                    }
+
+                    // Si está en otro modo, ignorar
+                    if (_modo != ModoAccion.Desactivar) return;
+
+                    // 2do clic => confirmar
+                    var row = GetRowMarcado();
+                    if (row == null)
+                    {
+                        KryptonMessageBox.Show(this, "Marque una propiedad (checkbox) para desactivar.", "Desactivar",
+                            KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information);
+                        return;
+                    }
+
+                    int id = row.Row.Table.Columns.Contains("Id") && row["Id"] != DBNull.Value ? Convert.ToInt32(row["Id"]) : 0;
+                    if (id <= 0)
+                    {
+                        KryptonMessageBox.Show(this, "No se pudo obtener el Id.", "Desactivar",
+                            KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    byte[] rowVersion = null;
+                    if (row.Row.Table.Columns.Contains("RowVersion") && row["RowVersion"] != DBNull.Value)
+                        rowVersion = (byte[])row["RowVersion"];
+
+                    // Display amigable
+                    string display = "Propiedad";
+                    var hasPid = row.Row.Table.Columns.Contains("PropietarioId");
+                    var hasUid = row.Row.Table.Columns.Contains("UnidadId");
+                    var pid = hasPid && row["PropietarioId"] != DBNull.Value ? Convert.ToString(row["PropietarioId"]) : "?";
+                    var uid = hasUid && row["UnidadId"] != DBNull.Value ? Convert.ToString(row["UnidadId"]) : "?";
+                    display = $"Propietario {pid} - Unidad {uid}";
+
+                    SalirModoSeleccion(btnUpdate, btnDesactivar, btnCrear, btnVolver);
+
+                    string mensaje = $"¿Deseas desactivar la propiedad {display}?";
+                    using (var frm = new PropiedadConfirmarDesactivacion(mensaje))
+                    {
+                        if (frm.ShowDialog(this) == DialogResult.OK)
+                        {
+                            try
+                            {
+                                string editor = UserContext.Usuario;
+                                string password = frm.Password;
+
+                                var dAuth = new DAuth(Conexion.CadenaConexion);
+                                var nAuth = new NAuth(dAuth);
+
+                                int usuarioId = UserContext.UsuarioAuthId;
+
+                                // ValidarPassword devuelve bool en tu implementación actual
+                                var ok = nAuth.ValidarPassword(usuarioId, password);
+                                if (!ok) throw new InvalidOperationException("Contraseña inválida.");
+
+                                _neg.Desactivar(id, rowVersion, editor);
+
+                                Cargar();
+                            }
+                            catch (Exception ex)
+                            {
+                                KryptonMessageBox.Show(this,
+                                    "No se pudo desactivar la propiedad: " + ex.Message,
+                                    "Desactivar Propiedad",
+                                    KryptonMessageBoxButtons.OK,
+                                    KryptonMessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                };
+            }
+
+            if (btnVolver != null)
+            {
+                btnVolver.Click += (_, __) =>
+                {
+                    // Si estás en modo selección, esto es “Cancelar”
+                    if (_modo != ModoAccion.Ninguno)
+                    {
+                        SalirModoSeleccion(btnUpdate, btnDesactivar, btnCrear, btnVolver);
+                        return;
+                    }
+
+                    Close();
+                };
+            }
+
+            // Grid config
             var grid = Dgv();
             if (grid != null)
             {
                 grid.MultiSelect = false;
                 grid.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                grid.ReadOnly = true;
+                grid.ReadOnly = true; // OJO: el checkbox sigue funcionando porque la columna __sel se deja editable
                 grid.AutoGenerateColumns = true;
-                grid.CellDoubleClick += (_, __) => btnUpdate?.PerformClick();
+
+                grid.CellDoubleClick += (_, __) =>
+                {
+                    // Doble clic abre update directo si NO estás en modo selección
+                    if (_modo == ModoAccion.Ninguno)
+                        btnUpdate?.PerformClick();
+                };
             }
         }
 
@@ -99,28 +238,158 @@ namespace RTSCon.Catalogos
             }
             return null;
         }
+
         private DataGridView Dgv()
             => FindCtrl<DataGridView>("dgvPropiedad", "dgvPropiedades", "gridPropiedad", "grid");
 
-        private int IdSeleccionado()
+        // ====== NUEVO: checkbox selection ======
+        private void EnsureSelectionColumn()
         {
             var grid = Dgv();
-            if (grid?.CurrentRow == null) return 0;
-            var row = grid.CurrentRow.DataBoundItem as DataRowView;
-            if (row == null) return 0;
-            return row.Row.Table.Columns.Contains("Id") && row["Id"] != DBNull.Value ? Convert.ToInt32(row["Id"]) : 0;
+            if (grid == null) return;
+
+            if (grid.Columns.Contains(COL_SEL)) return;
+
+            var col = new DataGridViewCheckBoxColumn
+            {
+                Name = COL_SEL,
+                HeaderText = "",
+                Width = 28,
+                ReadOnly = false,
+                Visible = false
+            };
+
+            grid.Columns.Insert(0, col);
         }
-        private byte[] RowVersionSeleccionada()
+
+        private void HookGridSelectionEvents()
         {
             var grid = Dgv();
-            if (grid?.CurrentRow == null) return null;
-            var row = grid.CurrentRow.DataBoundItem as DataRowView;
-            if (row == null) return null;
-            return (row.Row.Table.Columns.Contains("RowVersion") && row["RowVersion"] != DBNull.Value)
-                ? (byte[])row["RowVersion"]
-                : null;
+            if (grid == null) return;
+
+            grid.CurrentCellDirtyStateChanged += (s, e) =>
+            {
+                if (grid.IsCurrentCellDirty)
+                    grid.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            };
+
+            grid.CellContentClick += (s, e) =>
+            {
+                if (_modo == ModoAccion.Ninguno) return;
+                if (e.RowIndex < 0) return;
+                if (grid.Columns[e.ColumnIndex].Name != COL_SEL) return;
+
+                bool marcado = Convert.ToBoolean(grid.Rows[e.RowIndex].Cells[COL_SEL].Value ?? false);
+                if (marcado)
+                {
+                    for (int i = 0; i < grid.Rows.Count; i++)
+                    {
+                        if (i == e.RowIndex) continue;
+                        if (grid.Rows[i].IsNewRow) continue;
+                        grid.Rows[i].Cells[COL_SEL].Value = false;
+                    }
+                }
+            };
         }
-        // -----------------------------
+
+        private void SetSelectionColumnVisible(bool visible)
+        {
+            var grid = Dgv();
+            if (grid == null) return;
+            if (!grid.Columns.Contains(COL_SEL)) return;
+
+            grid.Columns[COL_SEL].Visible = visible;
+
+            // Importante: hacer editable solo esa columna
+            grid.ReadOnly = false;
+            foreach (DataGridViewColumn c in grid.Columns)
+                c.ReadOnly = true;
+
+            grid.Columns[COL_SEL].ReadOnly = false;
+        }
+
+        private DataRowView GetRowMarcado()
+        {
+            var grid = Dgv();
+            if (grid == null) return null;
+
+            foreach (DataGridViewRow r in grid.Rows)
+            {
+                if (r.IsNewRow) continue;
+
+                bool marcado = Convert.ToBoolean(r.Cells[COL_SEL].Value ?? false);
+                if (!marcado) continue;
+
+                return r.DataBoundItem as DataRowView;
+            }
+
+            return null;
+        }
+
+        private void EntrarModoSeleccion(ModoAccion modo,
+            KryptonButton btnUpdate, KryptonButton btnDesactivar, KryptonButton btnCrear, KryptonButton btnVolver)
+        {
+            _modo = modo;
+            SetSelectionColumnVisible(true);
+
+            // limpiar checks
+            var grid = Dgv();
+            if (grid != null)
+            {
+                foreach (DataGridViewRow r in grid.Rows)
+                {
+                    if (r.IsNewRow) continue;
+                    r.Cells[COL_SEL].Value = false;
+                }
+            }
+
+            if (modo == ModoAccion.Editar)
+            {
+                if (btnUpdate != null) btnUpdate.Text = "Confirmar";
+                if (btnDesactivar != null) btnDesactivar.Enabled = false;
+                if (btnCrear != null) btnCrear.Enabled = false;
+            }
+            else if (modo == ModoAccion.Desactivar)
+            {
+                if (btnDesactivar != null) btnDesactivar.Text = "Confirmar";
+                if (btnUpdate != null) btnUpdate.Enabled = false;
+                if (btnCrear != null) btnCrear.Enabled = false;
+            }
+
+            if (btnVolver != null) btnVolver.Text = "Cancelar";
+        }
+
+        private void SalirModoSeleccion()
+        {
+            var btnCrear = FindCtrl<KryptonButton>("btnCrear");
+            var btnUpdate = FindCtrl<KryptonButton>("btnUpdate");
+            var btnDesactivar = FindCtrl<KryptonButton>("btnDesactivar");
+            var btnVolver = FindCtrl<KryptonButton>("btnVolver");
+
+            SalirModoSeleccion(btnUpdate, btnDesactivar, btnCrear, btnVolver);
+        }
+
+
+        private void SalirModoSeleccion(
+            KryptonButton btnUpdate, KryptonButton btnDesactivar, KryptonButton btnCrear, KryptonButton btnVolver)
+        {
+            _modo = ModoAccion.Ninguno;
+
+            // ocultar checks
+            var grid = Dgv();
+            if (grid != null && grid.Columns.Contains(COL_SEL))
+            {
+                grid.Columns[COL_SEL].Visible = false;
+                grid.ReadOnly = true;
+                foreach (DataGridViewColumn c in grid.Columns)
+                    c.ReadOnly = true;
+            }
+
+            if (btnUpdate != null) { btnUpdate.Text = "Update"; btnUpdate.Enabled = true; }
+            if (btnDesactivar != null) { btnDesactivar.Text = "Desactivar"; btnDesactivar.Enabled = true; }
+            if (btnCrear != null) btnCrear.Enabled = true;
+            if (btnVolver != null) btnVolver.Text = "Volver";
+        }
 
         private void Cargar()
         {
@@ -130,7 +399,6 @@ namespace RTSCon.Catalogos
             var txtBuscar = FindCtrl<TextBox>("txtBuscar", "txtBuscarPropiedad", "txtFiltro");
             var buscar = txtBuscar?.Text?.Trim() ?? string.Empty;
 
-            // Si el rol es "Admin" (tu Admin = Propietario), filtramos por su Id (OwnerId)
             int? ownerId = null;
             if (!string.IsNullOrEmpty(UserContext.Rol) &&
                 (UserContext.Rol.Equals("Admin", StringComparison.OrdinalIgnoreCase) ||
@@ -153,64 +421,9 @@ namespace RTSCon.Catalogos
             var lblPagina = FindCtrl<Label>("lblPagina");
             if (lblTotal != null) lblTotal.Text = $"Total: {total}";
             if (lblPagina != null) lblPagina.Text = $"Página: {_page}";
-        }
 
-        private void DesactivarSeleccionada()
-        {
-            var id = IdSeleccionado();
-            if (id <= 0)
-            {
-                KryptonMessageBox.Show(this, "Seleccione una propiedad.", "Desactivar");
-                return;
-            }
-
-            // Arma un nombre amigable para mostrar (PropietarioId-UnidadId)
-            string display = "Propiedad";
-            var grid = Dgv();
-            if (grid?.CurrentRow?.DataBoundItem is DataRowView rv)
-            {
-                var hasPid = rv.Row.Table.Columns.Contains("PropietarioId");
-                var hasUid = rv.Row.Table.Columns.Contains("UnidadId");
-                var pid = hasPid && rv["PropietarioId"] != DBNull.Value ? Convert.ToString(rv["PropietarioId"]) : "?";
-                var uid = hasUid && rv["UnidadId"] != DBNull.Value ? Convert.ToString(rv["UnidadId"]) : "?";
-                display = $"Propietario {pid} - Unidad {uid}";
-            }
-
-            byte[] rowVersion = RowVersionSeleccionada();
-
-            string mensaje = $"¿Deseas desactivar la propiedad {display}?";
-
-            using (var frm = new PropiedadConfirmarDesactivacion(mensaje))
-            {
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                {
-                    try
-                    {
-                        string editor = UserContext.Usuario;      // nombre/correo del usuario que edita
-                        string password = frm.Password;
-
-                        var dAuth = new DAuth(Conexion.CadenaConexion);
-                        var nAuth = new NAuth(dAuth);
-
-                        // 🔑 Igual que en CondominioRead: ValidarPassword usa el Id (int), no el nombre
-                        int usuarioId = UserContext.UsuarioAuthId;   // o como se llame en tu UserContext
-                        nAuth.ValidarPassword(usuarioId, password);
-
-                        // Desactivar usando el “editor” como string
-                        _neg.Desactivar(id, rowVersion, editor);     // o _nBloque / _nUnidad según el caso
-                       
-                        Cargar();
-                    }
-                    catch (Exception ex)
-                    {
-                        KryptonMessageBox.Show(this,
-                            "No se pudo desactivar la propiedad: " + ex.Message,
-                            "Desactivar Propiedad",
-                            KryptonMessageBoxButtons.OK,
-                            KryptonMessageBoxIcon.Error);
-                    }
-                }
-            }
+            // Mantener la columna según el modo
+            SetSelectionColumnVisible(_modo != ModoAccion.Ninguno);
         }
     }
 }

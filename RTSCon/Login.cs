@@ -1,4 +1,7 @@
-﻿using System;
+﻿// ==============================
+// RTSCon\Login.cs
+// ==============================
+using System;
 using System.Configuration;
 using System.Windows.Forms;
 using Krypton.Toolkit;
@@ -21,23 +24,16 @@ namespace RTSCon
             _auth = new RTSCon.Negocios.NAuth(new RTSCon.Datos.DAuth(cs));
         }
 
-        private void kryptonLabel2_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void kryptonLabel3_Click(object sender, EventArgs e)
-        {
-        }
+        private void kryptonLabel2_Click(object sender, EventArgs e) { }
+        private void kryptonLabel3_Click(object sender, EventArgs e) { }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
-                // Este textbox debe contener el "usuario" tal como está en UsuarioAuth (Usuario o Correo, según tu SP).
                 var usuario = txtCorreo.Text.Trim();
                 var password = txtContrasena.Text;
 
-                // Se mantienen estos parámetros solo para compatibilidad de firma con Login_Password
                 var mailProfile = ConfigurationManager.AppSettings["MailProfile"] ?? "RTSCondMail";
                 var minutosCodigo = int.TryParse(ConfigurationManager.AppSettings["CodigoMinutos"], out var m) ? m : 5;
                 var debug = string.Equals(ConfigurationManager.AppSettings["CodigoDebug"], "true",
@@ -46,24 +42,26 @@ namespace RTSCon
                 // 1) Validar usuario + contraseña (sin 2FA)
                 _usuarioAuthId = _auth.Login_Password(usuario, password, mailProfile, minutosCodigo, debug);
 
-                // 2) Marcar la sesión directamente
+                // 2) Marcar la sesión + UserContext
                 _auth.Login_CodigoYSesion(_usuarioAuthId);
 
-                // 3) Abrir dashboard según rol
+                // 3) Reset flag de cierre (MUY IMPORTANTE)
+                SessionHelper.EndLogout();
+
+                // 4) Abrir dashboard según rol
                 Hide();
 
                 Form next;
-                var rol = RTSCon.Negocios.UserContext.Rol; // SA | Admin | Inquilino
+                var rol = RTSCon.Negocios.UserContext.Rol;
 
                 if (string.Equals(rol, "SA", StringComparison.OrdinalIgnoreCase) ||
                     string.Equals(rol, "Admin", StringComparison.OrdinalIgnoreCase))
                 {
-                    next = new Dashboard();              // dashboard administrador
+                    next = new Dashboard();
                 }
                 else
                 {
-                    next = new Dashboard();              // más adelante: DashboardInquilino
-                    // next = new DashboardInquilino(RTSCon.Negocios.UserContext.UsuarioAuthId);
+                    next = new Dashboard(); // futuro: DashboardInquilino
                 }
 
                 next.Show();
