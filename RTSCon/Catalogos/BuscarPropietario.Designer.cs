@@ -1,4 +1,4 @@
-﻿namespace RTSCon.Catalogos.Condominio
+﻿namespace RTSCon.Catalogos
 {
     partial class BuscarPropietario
     {
@@ -36,6 +36,7 @@
             this.btnCancelar = new Krypton.Toolkit.KryptonButton();
             this.btnConfirmar = new Krypton.Toolkit.KryptonButton();
             this.chkSoloActivos = new Krypton.Toolkit.KryptonCheckBox();
+            this.lblNoHay = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropietario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,10 +46,10 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(13, 19);
+            this.label2.Location = new System.Drawing.Point(13, -6);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(313, 28);
+            this.label2.Size = new System.Drawing.Size(327, 28);
             this.label2.TabIndex = 97;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -119,11 +120,22 @@
             this.chkSoloActivos.TabIndex = 100;
             this.chkSoloActivos.Values.Text = "Solo Activos";
             // 
+            // lblNoHay
+            // 
+            this.lblNoHay.AutoSize = true;
+            this.lblNoHay.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoHay.Location = new System.Drawing.Point(349, 231);
+            this.lblNoHay.Name = "lblNoHay";
+            this.lblNoHay.Size = new System.Drawing.Size(492, 32);
+            this.lblNoHay.TabIndex = 101;
+            this.lblNoHay.Text = "No se pudieron encontrar registros!";
+            // 
             // BuscarPropietario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1510, 572);
+            this.ClientSize = new System.Drawing.Size(1524, 523);
+            this.Controls.Add(this.lblNoHay);
             this.Controls.Add(this.chkSoloActivos);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
@@ -150,5 +162,6 @@
         private Krypton.Toolkit.KryptonButton btnCancelar;
         private Krypton.Toolkit.KryptonButton btnConfirmar;
         private Krypton.Toolkit.KryptonCheckBox chkSoloActivos;
+        private System.Windows.Forms.Label lblNoHay;
     }
 }

@@ -210,7 +210,7 @@ namespace RTSCon.Catalogos
 
         private void btnBuscarPropietario_Click(object sender, EventArgs e)
         {
-            using (var dlg = new RTSCon.Catalogos.Condominio.BuscarPropietario())
+            using (var dlg = new RTSCon.Catalogos.BuscarPropietario())
             {
                 if (dlg.ShowDialog(this) != DialogResult.OK) return;
 

@@ -92,6 +92,8 @@
             this.DashboardName = new Krypton.Toolkit.KryptonLabel();
             this.BorderTopBar = new Krypton.Toolkit.KryptonBorderEdge();
             this.BorderDashboard = new Krypton.Toolkit.KryptonBorderEdge();
+            this.btnCrearPropietario = new Krypton.Toolkit.KryptonButton();
+            this.label22 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DashboardPanel)).BeginInit();
             this.DashboardPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelSideBar)).BeginInit();
@@ -411,6 +413,8 @@
             // 
             // panelSideBar
             // 
+            this.panelSideBar.Controls.Add(this.label22);
+            this.panelSideBar.Controls.Add(this.btnCrearPropietario);
             this.panelSideBar.Controls.Add(this.label21);
             this.panelSideBar.Controls.Add(this.btnLogout);
             this.panelSideBar.Controls.Add(this.label20);
@@ -953,11 +957,35 @@
             this.BorderDashboard.Size = new System.Drawing.Size(189, 774);
             this.BorderDashboard.Text = "kryptonBorderEdge1";
             // 
+            // btnCrearPropietario
+            // 
+            this.btnCrearPropietario.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnCrearPropietario.Location = new System.Drawing.Point(38, 465);
+            this.btnCrearPropietario.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCrearPropietario.Name = "btnCrearPropietario";
+            this.btnCrearPropietario.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
+            this.btnCrearPropietario.Size = new System.Drawing.Size(130, 28);
+            this.btnCrearPropietario.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCrearPropietario.TabIndex = 61;
+            this.btnCrearPropietario.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnCrearPropietario.Values.Text = "Agregar Usuario";
+            this.btnCrearPropietario.Click += new System.EventHandler(this.btnCrearPropietario_Click);
+            // 
+            // label22
+            // 
+            this.label22.BackColor = System.Drawing.Color.Transparent;
+            this.label22.Image = ((System.Drawing.Image)(resources.GetObject("label22.Image")));
+            this.label22.Location = new System.Drawing.Point(4, 465);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(39, 28);
+            this.label22.TabIndex = 62;
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1657, 747);
+            this.ClientSize = new System.Drawing.Size(1661, 733);
             this.Controls.Add(this.DashboardPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
@@ -965,7 +993,6 @@
             this.Name = "Dashboard";
             this.Text = "RTSCond: Sistema de Gestión de Condominios";
             this.TransparencyKey = System.Drawing.Color.RoyalBlue;
-            // this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DashboardPanel)).EndInit();
             this.DashboardPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.panelSideBar)).EndInit();
@@ -1040,6 +1067,8 @@
         private Krypton.Toolkit.KryptonButton kryptonButton2;
         private System.Windows.Forms.Label label21;
         private Krypton.Toolkit.KryptonButton btnLogout;
+        private System.Windows.Forms.Label label22;
+        private Krypton.Toolkit.KryptonButton btnCrearPropietario;
     }
 }
 

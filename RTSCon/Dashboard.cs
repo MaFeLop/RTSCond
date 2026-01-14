@@ -43,5 +43,32 @@ namespace RTSCon
         private void kryptonLabel2_Click_1(object sender, EventArgs e) { }
         private void label10_Click(object sender, EventArgs e) { }
         private void btnDashboard_Click(object sender, EventArgs e) { }
+
+        private void btnCrearPropietario_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Si deseas que el Dashboard se oculte mientras creas propietario:
+                this.Hide();
+
+                using (var frm = new CrearUsuario())
+                {
+                    frm.ShowDialog(this);
+                }
+
+                // Re-mostrar Dashboard
+                this.Show();
+                this.Activate();
+            }
+            catch (Exception ex)
+            {
+                KryptonMessageBox.Show(
+                    this,
+                    "No se pudo abrir Crear Propietario: " + ex.Message,
+                    "Dashboard",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Error);
+            }
+        }
     }
 }
