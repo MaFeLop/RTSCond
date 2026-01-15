@@ -3,7 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\crearusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|c:\\users\\feliz\\onedrive\\documents\\github\\rtscond\\rtscon\\crearusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\crearusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -43,7 +43,7 @@
       "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\crearusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|c:\\users\\feliz\\onedrive\\documents\\github\\rtscond\\rtscon\\catalogos\\propiedad\\propiedadread.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\catalogos\\propiedad\\propiedadread.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\catalogos\\propiedad\\propiedadread.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -451,8 +451,7 @@
               "RelativeToolTip": "RTSCon\\Catalogos\\Propiedad\\UpdatePropiedad.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-13T18:03:08.184Z",
-              "IsPinned": true,
-              "EditorCaption": " [Dise\u00F1o]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -476,8 +475,7 @@
               "RelativeToolTip": "RTSCon\\Dashboard.Designer.cs",
               "ViewState": "AgIAALkDAAAAAAAAAADgv8cDAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-06T14:00:45.411Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-06T14:00:45.411Z"
             },
             {
               "$type": "Document",
@@ -536,8 +534,7 @@
               "RelativeToolTip": "RTSCon\\Catalogos\\Propiedad\\UpdatePropiedad.Designer.cs",
               "ViewState": "AgIAAFoBAAAAAAAAAAAIwGUBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-26T17:27:20.385Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-26T17:27:20.385Z"
             },
             {
               "$type": "Document",
@@ -850,8 +847,7 @@
               "RelativeToolTip": "RTSCon\\Catalogos\\Propiedad\\UpdatePropiedad.cs",
               "ViewState": "AgIAACwBAAAAAAAAAAAmwDEBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T18:04:01.783Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T18:04:01.783Z"
             },
             {
               "$type": "Document",
@@ -863,8 +859,7 @@
               "RelativeToolTip": "RTSCon\\Catalogos\\Propiedad\\PropiedadRead.cs",
               "ViewState": "AgIAAJUBAAAAAAAAAAAqwKYBAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T17:30:15.175Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T17:30:15.175Z"
             },
             {
               "$type": "Document",
@@ -876,8 +871,7 @@
               "RelativeToolTip": "RTSCon\\Catalogos\\Propiedad\\CrearPropiedad.cs",
               "ViewState": "AgIAAGQAAAAAAAAAAIA3wHAAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T15:31:19.34Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T15:31:19.34Z"
             },
             {
               "$type": "Document",
@@ -888,8 +882,7 @@
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Propiedad\\CrearPropiedad.cs [Dise\u00F1o]",
               "RelativeToolTip": "RTSCon\\Catalogos\\Propiedad\\CrearPropiedad.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T15:24:21.969Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-11-13T15:24:21.969Z"
             },
             {
               "$type": "Document",
@@ -936,8 +929,7 @@
               "RelativeToolTip": "RTSCon\\Catalogos\\Condominio\\UpdateCondominio.Designer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T20:15:42.502Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-12T20:15:42.502Z"
             },
             {
               "$type": "Document",
@@ -949,8 +941,7 @@
               "RelativeToolTip": "RTSCon\\Catalogos\\Condominio\\UpdateCondominio.cs",
               "ViewState": "AgIAAOoAAAAAAAAAAAAawPUAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T20:15:26.787Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-12T20:15:26.787Z"
             },
             {
               "$type": "Document",
@@ -962,8 +953,7 @@
               "RelativeToolTip": "RTSCon\\Catalogos\\Condominio\\CrearCondominio.Designer.cs",
               "ViewState": "AgIAAIoBAAAAAAAAAAAMwJUBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T18:42:52.887Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-12T18:42:52.887Z"
             },
             {
               "$type": "Document",
@@ -975,8 +965,7 @@
               "RelativeToolTip": "RTSCon\\Catalogos\\BuscarPropietario.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAANEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T17:13:01.374Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-12T17:13:01.374Z"
             },
             {
               "$type": "Document",
@@ -987,8 +976,7 @@
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\BuscarPropietario.cs [Dise\u00F1o]",
               "RelativeToolTip": "RTSCon\\Catalogos\\BuscarPropietario.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T17:08:39.485Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-11-12T17:08:39.485Z"
             },
             {
               "$type": "Document",
@@ -1047,8 +1035,7 @@
               "RelativeToolTip": "RTSCon\\Dashboard.cs",
               "ViewState": "AgIAACwAAAAAAAAAAAA6wDUAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T21:38:09.419Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-11T21:38:09.419Z"
             },
             {
               "$type": "Document",
@@ -1120,8 +1107,7 @@
               "RelativeToolTip": "RTSCon\\App.config",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-11-11T13:17:49.895Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-11T13:17:49.895Z"
             },
             {
               "$type": "Document",
@@ -1514,8 +1500,7 @@
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\UpdateCondominio.cs [Dise\u00F1o]",
               "RelativeToolTip": "RTSCon\\Catalogos\\Condominio\\UpdateCondominio.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T15:58:29.8Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-28T15:58:29.8Z"
             },
             {
               "$type": "Document",
@@ -1526,8 +1511,7 @@
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs [Dise\u00F1o]",
               "RelativeToolTip": "RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T15:56:34.807Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-28T15:56:34.807Z"
             },
             {
               "$type": "Document",
@@ -1550,8 +1534,7 @@
               "RelativeToolTip": "RTSCon\\Catalogos\\Condominio\\CrearCondominio.cs",
               "ViewState": "AgIAACMBAAAAAAAAAAAYwDgBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T16:56:33.661Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-28T16:56:33.661Z"
             },
             {
               "$type": "Document",
@@ -1595,7 +1578,7 @@
               "RelativeDocumentMoniker": "RTSCon\\CrearUsuario.cs",
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\CrearUsuario.cs",
               "RelativeToolTip": "RTSCon\\CrearUsuario.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAqwGcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAAwGUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-28T14:53:29.314Z",
               "EditorCaption": ""
@@ -1609,8 +1592,7 @@
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Dashboard.cs [Dise\u00F1o]",
               "RelativeToolTip": "RTSCon\\Dashboard.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-27T22:17:16.905Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-27T22:17:16.905Z"
             },
             {
               "$type": "Document",
@@ -1645,8 +1627,7 @@
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\CrearUsuario.cs [Dise\u00F1o]",
               "RelativeToolTip": "RTSCon\\CrearUsuario.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T13:49:11.824Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-28T13:49:11.824Z"
             },
             {
               "$type": "Document",

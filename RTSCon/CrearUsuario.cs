@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Krypton.Toolkit;
+﻿using Krypton.Toolkit;
 using RTSCon.Negocios;
 using RTSCon.Datos;
+using System;
+using System.Windows.Forms;
 
 namespace RTSCon
 {
@@ -21,34 +14,54 @@ namespace RTSCon
         {
             InitializeComponent();
 
+            // TODO: cambia esto por tu cadena real (ideal: ConfigurationManager.ConnectionStrings["RTSCond"].ConnectionString)
             _auth = new NAuth(new DAuth("<CADENA_SQL>"));
-            // En el constructor de CrearUsuario(), después de InitializeComponent()
+
+            // Documento: solo lista, sin escritura
             cmbDocumento.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbDocumento.SelectedIndexChanged += cmbTipoDocumento_SelectedIndexChanged;
 
-            // Llama esto al final del constructor o en Shown:
-            cmbTipoDocumento_SelectedIndexChanged(this, EventArgs.Empty);
+            // (Opcional) si aún no cargaste Items en diseñador, asegúralos aquí:
+            if (cmbDocumento.Items.Count == 0)
+            {
+                cmbDocumento.Items.Add("Cedula");
+                cmbDocumento.Items.Add("RNC");
+                cmbDocumento.Items.Add("Pasaporte");
+            }
 
-private void cmbTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
+            // Hook eventos
+            cmbDocumento.SelectedIndexChanged -= cmbDocumento_SelectedIndexChanged;
+            cmbDocumento.SelectedIndexChanged += cmbDocumento_SelectedIndexChanged;
+
+            // Estado inicial cuando ya el form esté listo (evita glitches visuales)
+            this.Shown += (_, __) =>
+            {
+                if (cmbDocumento.SelectedIndex < 0) cmbDocumento.SelectedIndex = 0;
+                AplicarTipoDocumento();
+            };
+
+            // Roles: NO debe depender del documento (esto lo dejamos fijo por ahora)
+            if (cmbRol.Items.Count == 0)
+            {
+                cmbRol.Items.Add("Admin");
+                cmbRol.Items.Add("Inquilino");
+            }
+            if (cmbRol.SelectedIndex < 0) cmbRol.SelectedIndex = 0;
+
+            // Asegurar que todos empiezan ocultos (Shown los enciende bien)
+            ApagarDocumentoInputs();
+        }
+
+        private void cmbDocumento_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // EJEMPLO: controles (ajusta a tus nombres)
-            // - maskedCedula  ###-#######-#
-            // - maskedRnc     ###-#####-#
-            // - txtPasaporte  TextBox normal
-            // - lblDocumento  label de documento
+            AplicarTipoDocumento();
+        }
 
+        private void AplicarTipoDocumento()
+        {
             var tipo = Convert.ToString(cmbDocumento.SelectedItem) ?? "";
 
-            // Apaga todos
-            txtCedula.Visible = false;
-            txtRNC.Visible = false;
-            txtPasaporte.Visible = false;
+            ApagarDocumentoInputs();
 
-            txtCedula.Enabled = false;
-            txtRNC.Enabled = false;
-            txtPasaporte.Enabled = false;
-
-            // Enciende el correspondiente
             if (tipo.Equals("Cedula", StringComparison.OrdinalIgnoreCase) ||
                 tipo.Equals("Cédula", StringComparison.OrdinalIgnoreCase))
             {
@@ -70,34 +83,19 @@ private void cmbTipoDocumento_SelectedIndexChanged(object sender, EventArgs e)
                 txtPasaporte.Enabled = true;
                 txtPasaporte.BringToFront();
                 txtPasaporte.Focus();
-
-                // Rellenar roles: SA crea Admin o Inquilino
-                cmbRol.Items.Clear();
-                cmbRol.Items.Add("Admin");
-                cmbRol.Items.Add("Inquilino");
-                cmbRol.SelectedIndex = 0;
             }
         }
-        
 
-        private void kryptonLabel4_Click(object sender, EventArgs e)
+        private void ApagarDocumentoInputs()
         {
+            // IMPORTANTE: todos tienen prefijo txt (mask o textbox)
+            txtCedula.Visible = false;
+            txtRNC.Visible = false;
+            txtPasaporte.Visible = false;
 
-        }
-
-        private void kryptonLabel5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void kryptonMaskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
+            txtCedula.Enabled = false;
+            txtRNC.Enabled = false;
+            txtPasaporte.Enabled = false;
         }
     }
 }
