@@ -34,7 +34,7 @@
             this.kryptonLabel2 = new Krypton.Toolkit.KryptonLabel();
             this.txtCorreo = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel3 = new Krypton.Toolkit.KryptonLabel();
-            this.lblNombre = new Krypton.Toolkit.KryptonTextBox();
+            this.txtNombreCompleto = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel4 = new Krypton.Toolkit.KryptonLabel();
             this.txtContraseña = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel5 = new Krypton.Toolkit.KryptonLabel();
@@ -97,13 +97,13 @@
             this.kryptonLabel3.TabIndex = 13;
             this.kryptonLabel3.Values.Text = "Correo:";
             // 
-            // lblNombre
+            // txtNombreCompleto
             // 
-            this.lblNombre.Location = new System.Drawing.Point(12, 217);
-            this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(467, 31);
-            this.lblNombre.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.TabIndex = 16;
+            this.txtNombreCompleto.Location = new System.Drawing.Point(12, 217);
+            this.txtNombreCompleto.Name = "txtNombreCompleto";
+            this.txtNombreCompleto.Size = new System.Drawing.Size(467, 31);
+            this.txtNombreCompleto.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombreCompleto.TabIndex = 16;
             // 
             // kryptonLabel4
             // 
@@ -114,7 +114,6 @@
             this.kryptonLabel4.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel4.TabIndex = 15;
             this.kryptonLabel4.Values.Text = "Nombre Completo:";
-            this.kryptonLabel4.Click += new System.EventHandler(this.kryptonLabel4_Click);
             // 
             // txtContraseña
             // 
@@ -135,7 +134,6 @@
             this.kryptonLabel5.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel5.TabIndex = 17;
             this.kryptonLabel5.Values.Text = "Contraseña:";
-            this.kryptonLabel5.Click += new System.EventHandler(this.kryptonLabel5_Click);
             // 
             // kryptonLabel6
             // 
@@ -181,7 +179,6 @@
             this.btnCancelar.TabIndex = 22;
             this.btnCancelar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCancelar.Values.Text = "Cancelar";
-            this.btnCancelar.Click += new System.EventHandler(this.kryptonButton1_Click);
             // 
             // lblDocumento
             // 
@@ -216,7 +213,6 @@
             this.txtCedula.TabIndex = 26;
             this.txtCedula.Text = "   -       -";
             this.txtCedula.Visible = false;
-            this.txtCedula.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.kryptonMaskedTextBox1_MaskInputRejected);
             // 
             // txtPasaporte
             // 
@@ -255,7 +251,7 @@
             this.Controls.Add(this.kryptonLabel6);
             this.Controls.Add(this.txtContraseña);
             this.Controls.Add(this.kryptonLabel5);
-            this.Controls.Add(this.lblNombre);
+            this.Controls.Add(this.txtNombreCompleto);
             this.Controls.Add(this.kryptonLabel4);
             this.Controls.Add(this.txtCorreo);
             this.Controls.Add(this.kryptonLabel3);
@@ -263,7 +259,6 @@
             this.Controls.Add(this.kryptonLabel1);
             this.Controls.Add(this.kryptonPictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "CrearUsuario";
             this.Text = "RTSCond: Crear Usuario";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPictureBox1)).EndInit();
@@ -279,7 +274,7 @@
         private Krypton.Toolkit.KryptonLabel kryptonLabel2;
         private Krypton.Toolkit.KryptonTextBox txtCorreo;
         private Krypton.Toolkit.KryptonLabel kryptonLabel3;
-        private Krypton.Toolkit.KryptonTextBox lblNombre;
+        private Krypton.Toolkit.KryptonTextBox txtNombreCompleto;
         private Krypton.Toolkit.KryptonLabel kryptonLabel4;
         private Krypton.Toolkit.KryptonTextBox txtContraseña;
         private Krypton.Toolkit.KryptonLabel kryptonLabel5;
