@@ -461,7 +461,7 @@
             this.btnLogout.TabIndex = 59;
             this.btnLogout.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnLogout.Values.Text = "Salir de Sesion";
-     //       this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            //       this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // label20
             // 
@@ -484,7 +484,7 @@
             this.kryptonButton4.TabIndex = 57;
             this.kryptonButton4.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.kryptonButton4.Values.Text = "Catalogos";
-        //    this.kryptonButton4.Click += new System.EventHandler(this.kryptonButton4_Click);
+            //    this.kryptonButton4.Click += new System.EventHandler(this.kryptonButton4_Click);
             // 
             // label19
             // 
@@ -653,7 +653,7 @@
             this.btnDashboard.TabIndex = 46;
             this.btnDashboard.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnDashboard.Values.Text = "Dashboard";
-      //      this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
+            //      this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // label6
             // 
@@ -743,7 +743,7 @@
             this.label10.Text = "Pagos Recibidos:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label10.Visible = false;
-       //     this.label10.Click += new System.EventHandler(this.label10_Click);
+            //     this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // kryptonBorderEdge3
             // 
@@ -920,7 +920,7 @@
             this.kryptonLabel1.TabIndex = 4;
             this.kryptonLabel1.Values.Text = "Vista previa del periodo: ";
             this.kryptonLabel1.Visible = false;
-       //     this.kryptonLabel1.Click += new System.EventHandler(this.kryptonLabel1_Click);
+            //     this.kryptonLabel1.Click += new System.EventHandler(this.kryptonLabel1_Click);
             // 
             // DashboardName
             // 
@@ -969,7 +969,7 @@
             this.btnCrearPropietario.TabIndex = 61;
             this.btnCrearPropietario.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCrearPropietario.Values.Text = "Agregar Usuario";
- //           this.btnCrearPropietario.Click += new System.EventHandler(this.btnCrearPropietario_Click);
+            //           this.btnCrearPropietario.Click += new System.EventHandler(this.btnCrearPropietario_Click);
             // 
             // label22
             // 
