@@ -72,7 +72,6 @@
             this.kryptonLabel2.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel2.TabIndex = 2;
             this.kryptonLabel2.Values.Text = "Iniciar Sesion";
-//            this.kryptonLabel2.Click += new System.EventHandler(this.kryptonLabel2_Click);
             // 
             // kryptonLabel3
             // 
@@ -84,7 +83,6 @@
             this.kryptonLabel3.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel3.TabIndex = 3;
             this.kryptonLabel3.Values.Text = "Usuario:";
-    //        this.kryptonLabel3.Click += new System.EventHandler(this.kryptonLabel3_Click);
             // 
             // kryptonLabel4
             // 
@@ -128,7 +126,7 @@
             this.btnLogin.TabIndex = 10;
             this.btnLogin.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnLogin.Values.Text = "Iniciar Sesión";
-     //       this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // lnkForget
             // 
@@ -139,7 +137,7 @@
             this.lnkForget.Size = new System.Drawing.Size(181, 24);
             this.lnkForget.TabIndex = 11;
             this.lnkForget.Values.Text = "Olvidaste tu Contraseña?";
-    //        this.lnkForget.LinkClicked += new System.EventHandler(this.lnkForget_LinkClicked);
+            this.lnkForget.LinkClicked += new System.EventHandler(this.lnkForget_LinkClicked);
             // 
             // Login
             // 
@@ -156,7 +154,6 @@
             this.Controls.Add(this.kryptonLabel1);
             this.Controls.Add(this.kryptonPictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(0, 0);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Login";
             this.Text = "RTSCond";

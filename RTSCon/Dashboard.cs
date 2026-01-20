@@ -8,80 +8,85 @@ namespace RTSCon
 {
     public partial class Dashboard : KryptonForm
     {
-        private readonly Login _login;
-
-        public Dashboard() : this(null) { }
-
-        public Dashboard(Login login)
+        public Dashboard()
         {
             InitializeComponent();
-            _login = login;
 
             this.Shown += Dashboard_Shown;
-            this.FormClosed += (_, __) =>
-            {
-                try { SessionManager.Stop(); } catch { }
-            };
+            this.FormClosed += Dashboard_FormClosed;
         }
 
         private void Dashboard_Shown(object sender, EventArgs e)
         {
-            int idle = int.TryParse(ConfigurationManager.AppSettings["SessionIdleMinutes"], out var i) ? i : 30;
-            int prompt = int.TryParse(ConfigurationManager.AppSettings["SessionPromptMinutes"], out var p) ? p : 25;
+            int idle = int.TryParse(
+                ConfigurationManager.AppSettings["SessionIdleMinutes"],
+                out var i) ? i : 30;
+
+            int prompt = int.TryParse(
+                ConfigurationManager.AppSettings["SessionPromptMinutes"],
+                out var p) ? p : 25;
 
             SessionManager.Start(this, idle, prompt);
         }
 
+        private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try { SessionManager.Stop(); } catch { }
+            // NO cerrar la app aquí.
+            // Login se mostrará automáticamente porque nunca se cerró.
+        }
+
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            // ✅ Logout debe volver al Login, NO cerrar la app.
             try
             {
-                try { SessionManager.Stop(); } catch { }
+                SessionHelper.LogoutFrom(this);
+            }
+            catch
+            {
+                this.Close();
+            }
+        }
 
-                // Limpieza de sesión (si tu helper existe)
-                try { SessionHelper.LogoutFrom(this); } catch { }
 
-                if (_login != null)
+        // ====== CATÁLOGOS / CRUD ======
+        private void kryptonButton4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var frm = new CatalogoCRUD();
+                frm.FormClosed += (_, __) =>
                 {
-                    _login.VolverDesdeLogout();
-                }
+                    try
+                    {
+                        this.Show();
+                        this.Activate();
+                    }
+                    catch { }
+                };
 
-                this.Close(); // cierra Dashboard y deja Login vivo
+                frm.Show();
+                this.Hide();
             }
             catch (Exception ex)
             {
                 KryptonMessageBox.Show(
                     this,
-                    "No se pudo cerrar sesión: " + ex.Message,
+                    "No se pudo abrir Catálogos: " + ex.Message,
                     "Dashboard",
                     KryptonMessageBoxButtons.OK,
                     KryptonMessageBoxIcon.Error);
             }
         }
 
-        // Tu botón de Catálogos (como lo tenías)
-        private void kryptonButton4_Click(object sender, EventArgs e)
-        {
-            var frm = new CatalogoCRUD();
-            frm.FormClosed += (_, __) =>
-            {
-                try { this.Show(); this.Activate(); } catch { }
-            };
-            frm.Show();
-            this.Hide();
-        }
-
-        // Crear Usuario / Propietario
+        // ====== CREAR USUARIO / PROPIETARIO ======
         private void btnCrearPropietario_Click(object sender, EventArgs e)
         {
             try
             {
-                using (var frm = new CrearUsuario())
-                {
-                    frm.StartPosition = FormStartPosition.CenterParent;
-                    frm.ShowDialog(this);
-                }
+                var frm = new CrearUsuario();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
@@ -93,5 +98,6 @@ namespace RTSCon
                     KryptonMessageBoxIcon.Error);
             }
         }
+
     }
 }

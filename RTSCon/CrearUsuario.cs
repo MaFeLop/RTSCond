@@ -17,66 +17,147 @@ namespace RTSCon
 
             var cn = ConfigurationManager.ConnectionStrings["RTSCond"].ConnectionString;
             _auth = new NAuth(new DAuth(cn));
+
+            cmbDocumento.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDocumento.SelectedIndexChanged += cmbDocumento_SelectedIndexChanged;
+
+            CargarRolesSegunSesion();
         }
 
+        // ================= MODELO ROL =================
+        private class RolItem
+        {
+            public string Texto { get; set; }
+            public string Valor { get; set; }
+        }
+
+        // ================= ROLES POR JERARQUÍA =================
+        private void CargarRolesSegunSesion()
+        {
+            cmbRol.DisplayMember = "Texto";
+            cmbRol.ValueMember = "Valor";
+            cmbRol.Items.Clear();
+
+            string rolActual = SessionHelper.Rol;
+
+            switch (rolActual)
+            {
+                case "SA":
+                    cmbRol.Items.Add(new RolItem { Texto = "Super Administrador", Valor = "SA" });
+                    cmbRol.Items.Add(new RolItem { Texto = "Propietario", Valor = "Propietario" });
+                    cmbRol.Items.Add(new RolItem { Texto = "Secretario", Valor = "Secretario" });
+                    cmbRol.Items.Add(new RolItem { Texto = "Inquilino", Valor = "Inquilino" });
+                    break;
+
+                case "Propietario":
+                    cmbRol.Items.Add(new RolItem { Texto = "Secretario", Valor = "Secretario" });
+                    cmbRol.Items.Add(new RolItem { Texto = "Inquilino", Valor = "Inquilino" });
+                    break;
+
+                case "Secretario":
+                    cmbRol.Items.Add(new RolItem { Texto = "Inquilino", Valor = "Inquilino" });
+                    break;
+
+                default:
+                    KryptonMessageBox.Show(
+                        this,
+                        "No tiene permisos para crear usuarios.",
+                        "Acceso denegado",
+                        KryptonMessageBoxButtons.OK,
+                        KryptonMessageBoxIcon.Warning);
+
+                    Close();
+                    return;
+            }
+
+            cmbRol.SelectedIndex = 0;
+        }
+
+        // ================= DOCUMENTO =================
+        private void cmbDocumento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtCedula.Visible = txtCedula.Enabled = false;
+            txtRNC.Visible = txtRNC.Enabled = false;
+            txtPasaporte.Visible = txtPasaporte.Enabled = false;
+
+            var tipo = Convert.ToString(cmbDocumento.SelectedItem) ?? "";
+
+            if (tipo.StartsWith("Ced", StringComparison.OrdinalIgnoreCase))
+            {
+                txtCedula.Visible = txtCedula.Enabled = true;
+                txtCedula.Focus();
+            }
+            else if (tipo.Equals("RNC", StringComparison.OrdinalIgnoreCase))
+            {
+                txtRNC.Visible = txtRNC.Enabled = true;
+                txtRNC.Focus();
+            }
+            else
+            {
+                txtPasaporte.Visible = txtPasaporte.Enabled = true;
+                txtPasaporte.Focus();
+            }
+        }
+
+        // ================= CREAR =================
         private void btnCrear_Click(object sender, EventArgs e)
         {
             try
             {
-                string nombre = (txtNombreCompleto.Text ?? "").Trim();
-                string clave = (txtContraseña.Text ?? "").Trim();
-                string correo = (txtCorreo.Text ?? "").Trim();
-                string rol = cmbRol.SelectedItem?.ToString() ?? "";
-                string tipoDoc = cmbDocumento.SelectedItem?.ToString() ?? "";
-                string documento =
-                    tipoDoc == "Cedula" ? txtCedula.Text.Trim() :
-                    tipoDoc == "Pasaporte" ? txtPasaporte.Text.Trim() :
-                    "";
+                string nombreCompleto = txtNombreCompleto.Text.Trim();
+                string correo = txtCorreo.Text.Trim();
+                string clave = txtContraseña.Text.Trim();
 
-                // ===== Validaciones =====
-                if (string.IsNullOrWhiteSpace(nombre))
-                    throw new InvalidOperationException("Ingrese el nombre completo.");
-
-                if (string.IsNullOrWhiteSpace(clave))
-                    throw new InvalidOperationException("Ingrese la contraseña.");
+                if (string.IsNullOrWhiteSpace(nombreCompleto))
+                    throw new Exception("Ingrese el nombre completo.");
 
                 if (string.IsNullOrWhiteSpace(correo) || !correo.Contains("@"))
-                    throw new InvalidOperationException("Ingrese un correo válido.");
+                    throw new Exception("Ingrese un correo válido.");
 
-                if (string.IsNullOrWhiteSpace(rol))
-                    throw new InvalidOperationException("Seleccione el rol.");
+                if (string.IsNullOrWhiteSpace(clave))
+                    throw new Exception("Ingrese la contraseña.");
+
+                var rolItem = cmbRol.SelectedItem as RolItem;
+                if (rolItem == null)
+                    throw new Exception("Seleccione un rol válido.");
+
+                // ⚠️ USUARIO REAL DEL SISTEMA
+                // ✔ El usuario DEBE SER el correo (único y estable)
+                string usuarioSistema = correo.ToLowerInvariant();
+
+                // Documento
+                string documento = "";
+                string tipoDoc = Convert.ToString(cmbDocumento.SelectedItem) ?? "";
+
+                if (tipoDoc.StartsWith("Ced"))
+                    documento = txtCedula.Text.Trim();
+                else if (tipoDoc == "RNC")
+                    documento = txtRNC.Text.Trim();
+                else
+                    documento = txtPasaporte.Text.Trim();
 
                 if (string.IsNullOrWhiteSpace(documento))
-                    throw new InvalidOperationException("Ingrese el documento.");
+                    throw new Exception("Ingrese el documento.");
 
-                // ===== Crear usuario (BD) =====
-                int nuevoUsuarioId;
-                string mensajeResultado;
+                string creador = SessionHelper.Usuario ?? "SA";
 
-                bool creado = _auth.CrearUsuario(
-    nombre,
-    clave,
-    correo,
-    rol,
-    tipoDoc,
-    documento,
-    out nuevoUsuarioId,
-    out mensajeResultado
-);
-
-
-                if (!creado)
-                    throw new InvalidOperationException(mensajeResultado);
+                _auth.CrearUsuario(
+                    usuario: usuarioSistema,
+                    correo: correo,
+                    rol: rolItem.Valor,
+                    password: clave,
+                    creador: creador
+                );
 
                 KryptonMessageBox.Show(
                     this,
                     "Usuario creado correctamente.",
                     "Crear Usuario",
                     KryptonMessageBoxButtons.OK,
-                    KryptonMessageBoxIcon.Information
-                );
+                    KryptonMessageBoxIcon.Information);
 
-                this.Close(); // vuelve al Dashboard
+                DialogResult = DialogResult.OK;
+                Close();
             }
             catch (Exception ex)
             {
@@ -85,14 +166,13 @@ namespace RTSCon
                     ex.Message,
                     "Crear Usuario",
                     KryptonMessageBoxButtons.OK,
-                    KryptonMessageBoxIcon.Error
-                );
+                    KryptonMessageBoxIcon.Error);
             }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

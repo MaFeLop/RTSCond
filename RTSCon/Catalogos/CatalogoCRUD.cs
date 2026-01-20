@@ -73,7 +73,6 @@ namespace RTSCon
         {
             // Volver al Dashboard sin duplicar instancias es mejor,
             // pero por ahora, simple:
-            AbrirChild(new Dashboard());
             this.Close();
         }
     }

@@ -50,6 +50,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.kryptonBorderEdge5 = new Krypton.Toolkit.KryptonBorderEdge();
             this.panelSideBar = new Krypton.Toolkit.KryptonPanel();
+            this.label22 = new System.Windows.Forms.Label();
+            this.btnCrearPropietario = new Krypton.Toolkit.KryptonButton();
             this.label21 = new System.Windows.Forms.Label();
             this.btnLogout = new Krypton.Toolkit.KryptonButton();
             this.label20 = new System.Windows.Forms.Label();
@@ -92,8 +94,6 @@
             this.DashboardName = new Krypton.Toolkit.KryptonLabel();
             this.BorderTopBar = new Krypton.Toolkit.KryptonBorderEdge();
             this.BorderDashboard = new Krypton.Toolkit.KryptonBorderEdge();
-            this.btnCrearPropietario = new Krypton.Toolkit.KryptonButton();
-            this.label22 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.DashboardPanel)).BeginInit();
             this.DashboardPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelSideBar)).BeginInit();
@@ -440,6 +440,30 @@
             this.panelSideBar.Size = new System.Drawing.Size(172, 718);
             this.panelSideBar.TabIndex = 45;
             // 
+            // label22
+            // 
+            this.label22.BackColor = System.Drawing.Color.Transparent;
+            this.label22.Image = ((System.Drawing.Image)(resources.GetObject("label22.Image")));
+            this.label22.Location = new System.Drawing.Point(4, 465);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(39, 28);
+            this.label22.TabIndex = 62;
+            // 
+            // btnCrearPropietario
+            // 
+            this.btnCrearPropietario.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnCrearPropietario.Location = new System.Drawing.Point(38, 465);
+            this.btnCrearPropietario.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCrearPropietario.Name = "btnCrearPropietario";
+            this.btnCrearPropietario.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
+            this.btnCrearPropietario.Size = new System.Drawing.Size(130, 28);
+            this.btnCrearPropietario.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCrearPropietario.TabIndex = 61;
+            this.btnCrearPropietario.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnCrearPropietario.Values.Text = "Agregar Usuario";
+            this.btnCrearPropietario.Click += new System.EventHandler(this.btnCrearPropietario_Click);
+            // 
             // label21
             // 
             this.label21.BackColor = System.Drawing.Color.Transparent;
@@ -461,7 +485,7 @@
             this.btnLogout.TabIndex = 59;
             this.btnLogout.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnLogout.Values.Text = "Salir de Sesion";
-            //       this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // label20
             // 
@@ -484,7 +508,7 @@
             this.kryptonButton4.TabIndex = 57;
             this.kryptonButton4.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.kryptonButton4.Values.Text = "Catalogos";
-            //    this.kryptonButton4.Click += new System.EventHandler(this.kryptonButton4_Click);
+            this.kryptonButton4.Click += new System.EventHandler(this.kryptonButton4_Click);
             // 
             // label19
             // 
@@ -653,7 +677,6 @@
             this.btnDashboard.TabIndex = 46;
             this.btnDashboard.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnDashboard.Values.Text = "Dashboard";
-            //      this.btnDashboard.Click += new System.EventHandler(this.btnDashboard_Click);
             // 
             // label6
             // 
@@ -743,7 +766,6 @@
             this.label10.Text = "Pagos Recibidos:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.label10.Visible = false;
-            //     this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // kryptonBorderEdge3
             // 
@@ -920,7 +942,6 @@
             this.kryptonLabel1.TabIndex = 4;
             this.kryptonLabel1.Values.Text = "Vista previa del periodo: ";
             this.kryptonLabel1.Visible = false;
-            //     this.kryptonLabel1.Click += new System.EventHandler(this.kryptonLabel1_Click);
             // 
             // DashboardName
             // 
@@ -957,30 +978,6 @@
             this.BorderDashboard.Size = new System.Drawing.Size(189, 774);
             this.BorderDashboard.Text = "kryptonBorderEdge1";
             // 
-            // btnCrearPropietario
-            // 
-            this.btnCrearPropietario.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnCrearPropietario.Location = new System.Drawing.Point(38, 465);
-            this.btnCrearPropietario.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCrearPropietario.Name = "btnCrearPropietario";
-            this.btnCrearPropietario.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
-            this.btnCrearPropietario.Size = new System.Drawing.Size(130, 28);
-            this.btnCrearPropietario.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCrearPropietario.TabIndex = 61;
-            this.btnCrearPropietario.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnCrearPropietario.Values.Text = "Agregar Usuario";
-            //           this.btnCrearPropietario.Click += new System.EventHandler(this.btnCrearPropietario_Click);
-            // 
-            // label22
-            // 
-            this.label22.BackColor = System.Drawing.Color.Transparent;
-            this.label22.Image = ((System.Drawing.Image)(resources.GetObject("label22.Image")));
-            this.label22.Location = new System.Drawing.Point(4, 465);
-            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(39, 28);
-            this.label22.TabIndex = 62;
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -988,7 +985,6 @@
             this.ClientSize = new System.Drawing.Size(1661, 733);
             this.Controls.Add(this.DashboardPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(0, 0);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Dashboard";
             this.Text = "RTSCond: Sistema de Gestión de Condominios";
