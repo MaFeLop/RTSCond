@@ -31,6 +31,17 @@ namespace RTSCon
         }
 
         // =========================
+        // Limpieza total
+        // =========================
+        public static void Clear()
+        {
+            Usuario = null;
+            Rol = null;
+            UsuarioId = null;
+            IsLoggingOut = false;
+        }
+
+        // =========================
         // Logout controlado
         // =========================
         public static void BeginLogout() => IsLoggingOut = true;
@@ -43,7 +54,6 @@ namespace RTSCon
             BeginLogout();
 
             try { UserContext.Clear(); } catch { }
-
             try { current.Close(); } catch { }
         }
 
@@ -52,6 +62,7 @@ namespace RTSCon
             BeginLogout();
 
             try { UserContext.Clear(); } catch { }
+            Clear();
 
             // Abrir Login primero
             try
@@ -76,18 +87,10 @@ namespace RTSCon
             // Cerrar todo lo demás
             try
             {
-                var abiertos = Application.OpenForms.Cast<Form>().ToList();
-                foreach (var f in abiertos)
+                foreach (var f in Application.OpenForms.Cast<Form>().ToList())
                 {
-                    if (f == null) continue;
                     if (f is Login) continue;
-
-                    try
-                    {
-                        if (!f.IsDisposed)
-                            f.Close();
-                    }
-                    catch { }
+                    try { f.Close(); } catch { }
                 }
             }
             catch { }
@@ -100,7 +103,7 @@ namespace RTSCon
             !string.IsNullOrWhiteSpace(Usuario);
 
         // =========================
-        // Helpers de rol (jerarquía)
+        // Helpers de rol
         // =========================
         public static bool IsSA =>
             string.Equals(Rol, "SA", StringComparison.OrdinalIgnoreCase);
@@ -117,16 +120,9 @@ namespace RTSCon
         // =========================
         // Permisos por jerarquía
         // =========================
-        public static bool CanCreateSA =>
-            IsSA;
-
-        public static bool CanCreatePropietario =>
-            IsSA;
-
-        public static bool CanCreateSecretario =>
-            IsSA || IsPropietario;
-
-        public static bool CanCreateInquilino =>
-            IsSA || IsPropietario || IsSecretario;
+        public static bool CanCreateSA => IsSA;
+        public static bool CanCreatePropietario => IsSA;
+        public static bool CanCreateSecretario => IsSA || IsPropietario;
+        public static bool CanCreateInquilino => IsSA || IsPropietario || IsSecretario;
     }
 }
