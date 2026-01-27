@@ -90,7 +90,11 @@ namespace RTSCon.Negocios
         {
             if (string.IsNullOrWhiteSpace(usuario)) throw new ArgumentException("Usuario requerido.");
             if (string.IsNullOrWhiteSpace(password)) throw new ArgumentException("Contraseña requerida.");
-            if (rol != "SA" && rol != "Admin" && rol != "Inquilino") throw new ArgumentException("Rol inválido.");
+            if(rol != "SA" && rol != "Propietario" && rol != "Secretario" && rol != "Inquilino")
+            {
+                throw new ArgumentException("Rol inválido.");
+            }
+
 
             byte[] hash, salt;
             Derive(password, iter, out hash, out salt);
