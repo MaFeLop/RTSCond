@@ -117,6 +117,7 @@
     <Compile Include="Servicios\PeriodoService.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Unidad\NUnidad.cs" />
+    <Compile Include="UserContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SqlServerTypes\readme.htm" />
