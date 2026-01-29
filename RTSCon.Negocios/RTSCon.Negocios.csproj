@@ -101,6 +101,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthSession.cs" />
     <Compile Include="Auth\NAuth.cs" />
     <Compile Include="Bloque\NBloque.cs" />
     <Compile Include="Condominio\NCondominio.cs" />
@@ -117,7 +118,6 @@
     <Compile Include="Servicios\PeriodoService.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="Unidad\NUnidad.cs" />
-    <Compile Include="UserContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="SqlServerTypes\readme.htm" />

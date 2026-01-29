@@ -2,7 +2,6 @@
 using System.Data;
 using BCrypt.Net;
 using RTSCon.Datos;
-using RTSCon.Negocios.Auth;
 
 namespace RTSCon.Negocios
 {

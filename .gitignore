@@ -22,3 +22,5 @@ packages/
 # Rider/Resharper si aplicara
 .idea/
 _ReSharper.Caches/
+.vs/RTSCon/v17/.suo
+RTSCon/obj/Debug/RTSCon.Presentacion.csproj.AssemblyReference.cache

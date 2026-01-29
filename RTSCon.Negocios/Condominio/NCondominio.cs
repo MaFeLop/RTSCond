@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Data;
 using RTSCon.Datos;
-using RTSCon.Negocios.Auth;
 
 namespace RTSCon.Negocios
 {
