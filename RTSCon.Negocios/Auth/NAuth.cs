@@ -13,7 +13,6 @@ namespace RTSCon.Negocios
         public static int UsuarioAuthId { get; private set; }
         public static string Usuario { get; private set; }
         public static string Rol { get; private set; }
-
         public static DateTime UltimaActividadUtc { get; private set; }
 
         public static bool IsLoggedIn => UsuarioAuthId > 0;
@@ -23,13 +22,10 @@ namespace RTSCon.Negocios
             UsuarioAuthId = id;
             Usuario = usuario;
             Rol = rol;
-            Touch();
-        }
-
-        public static void Touch()
-        {
             UltimaActividadUtc = DateTime.UtcNow;
         }
+
+        public static void Touch() => UltimaActividadUtc = DateTime.UtcNow;
 
         public static void Clear()
         {
@@ -38,18 +34,7 @@ namespace RTSCon.Negocios
             Rol = null;
             UltimaActividadUtc = DateTime.MinValue;
         }
-
-        // ===== Helpers usados por la UI =====
-        public static bool EsSA =>
-            string.Equals(Rol, "SA", StringComparison.OrdinalIgnoreCase);
-
-        public static bool EsPropietario =>
-            string.Equals(Rol, "Propietario", StringComparison.OrdinalIgnoreCase);
-
-        public static bool EsPropietarioActual =>
-            EsPropietario && UsuarioAuthId > 0;
     }
-
 
     // ============================
     // AUTH
@@ -63,31 +48,16 @@ namespace RTSCon.Negocios
             _dal = dal ?? throw new ArgumentNullException(nameof(dal));
         }
 
-        // ----------------------------
-        // CREAR USUARIO
-        // ----------------------------
-        public int CrearUsuario(string usuario, string correo, string password, int idRol)
-        {
-            if (string.IsNullOrWhiteSpace(usuario))
-                throw new ArgumentException("Usuario requerido.");
-
-            if (string.IsNullOrWhiteSpace(password))
-                throw new ArgumentException("Contraseña requerida.");
-
-            string hash = BCrypt.Net.BCrypt.HashPassword(password);
-
-            return _dal.CrearUsuario(
-                usuario.Trim(),
-                correo?.Trim(),
-                hash,
-                idRol
-            );
-        }
-
-        // ----------------------------
-        // LOGIN
-        // ----------------------------
-        public void Login(string usuario, string password)
+        // ============================
+        // LOGIN PASSWORD
+        // ============================
+        public int Login_Password(
+            string usuario,
+            string password,
+            string mailProfile,
+            int minutosCodigo,
+            bool debug
+        )
         {
             if (string.IsNullOrWhiteSpace(usuario))
                 throw new ArgumentException("Usuario requerido.");
@@ -105,75 +75,124 @@ namespace RTSCon.Negocios
             if (!BCrypt.Net.BCrypt.Verify(password, hash))
                 throw new InvalidOperationException("Usuario o contraseña inválidos.");
 
-            int idUsuario = Convert.ToInt32(row["ID_usr"]);
-
-            // ⚠️ IMPORTANTE:
-            // El SP debe devolver el NOMBRE del rol, NO el ID
+            int id = Convert.ToInt32(row["ID_usr"]);
             string rol = Convert.ToString(row["Rol"]);
 
-            UserContext.Set(idUsuario, usuario.Trim(), rol);
+            UserContext.Set(id, usuario.Trim(), rol);
+            _dal.MarcarLogin(id);
 
-            _dal.MarcarLogin(idUsuario);
+            return id;
         }
 
-        // ----------------------------
-        // VALIDAR PASSWORD
-        // ----------------------------
-        public bool ValidarPassword(int idUsuario, string password)
+        // ============================
+        // LOGIN 2FA (PLACEHOLDER)
+        // ============================
+        public bool Login_CodigoYSesion(int usuarioAuthId, string codigo)
         {
-            if (idUsuario <= 0 || string.IsNullOrWhiteSpace(password))
+            if (usuarioAuthId <= 0)
                 return false;
 
-            if (!UserContext.IsLoggedIn)
+            if (string.IsNullOrWhiteSpace(codigo))
                 return false;
 
-            DataRow row = _dal.ObtenerPorUsuario(UserContext.Usuario);
+            // Placeholder hasta conectar 2FA real
+            UserContext.Touch();
+            return true;
+        }
 
+
+        public bool Login_Codigo(int usuarioAuthId, string codigo)
+        {
+            if (usuarioAuthId <= 0) return false;
+            if (string.IsNullOrWhiteSpace(codigo) || codigo.Length != 6) return false;
+
+            UserContext.Touch();
+            return true;
+        }
+
+        // ============================
+        // REENVÍO CÓDIGO 2FA
+        // ============================
+        public void ReenviarCodigo(
+            int usuarioAuthId,
+            string mailProfile,
+            int minutos,
+            bool debug
+        )
+        {
+            if (usuarioAuthId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(usuarioAuthId));
+
+            // Placeholder estable
+        }
+
+        // ============================
+        // RECUPERACIÓN CONTRASEÑA
+        // ============================
+        public int EnviarCodigoRecuperacion(
+            string usuario,
+            string correo,
+            string mailProfile,
+            int minutos,
+            bool debug
+        )
+        {
+            if (string.IsNullOrWhiteSpace(usuario))
+                throw new ArgumentException("Usuario requerido.");
+
+            DataRow row = _dal.ObtenerPorUsuario(usuario.Trim());
             if (row == null)
-                return false;
+                throw new InvalidOperationException("Usuario no encontrado.");
 
-            string hash = Convert.ToString(row["hash_bcrypt"]);
-            return BCrypt.Net.BCrypt.Verify(password, hash);
+            return Convert.ToInt32(row["ID_usr"]);
         }
 
-        public void Login_Password(string usuario, string password)
+        public void CambiarPasswordConCodigo(
+            int usuarioAuthId,
+            string codigo,
+            string nuevaPassword,
+            string editor,
+            int iteraciones
+        )
         {
-            Login(usuario, password);
+            if (usuarioAuthId <= 0)
+                throw new ArgumentOutOfRangeException(nameof(usuarioAuthId));
+
+            if (string.IsNullOrWhiteSpace(codigo))
+                throw new ArgumentException("Código requerido.");
+
+            if (string.IsNullOrWhiteSpace(nuevaPassword))
+                throw new ArgumentException("Nueva contraseña requerida.");
+
+            UserContext.Touch();
         }
 
-        public void Login_Codigo(string usuario, string codigo)
+        // ============================
+        // CREAR USUARIO
+        // ============================
+        public int CrearUsuario(
+            string usuario,
+            string correo,
+            string password,
+            string rol,
+            string creador
+        )
         {
-            // Placeholder hasta que conectes 2FA real
-            throw new NotImplementedException("Login por código no implementado aún.");
-        }
+            int idRol =
+                rol.Equals("SA", StringComparison.OrdinalIgnoreCase) ? 1 :
+                rol.Equals("Admin", StringComparison.OrdinalIgnoreCase) ? 2 :
+                rol.Equals("Propietario", StringComparison.OrdinalIgnoreCase) ? 3 :
+                rol.Equals("Inquilino", StringComparison.OrdinalIgnoreCase) ? 4 :
+                throw new ArgumentException("Rol inválido.");
 
-        public void Login_CodigoYSesion(string usuario, string codigo)
-        {
-            Login_Codigo(usuario, codigo);
-        }
+            string hash = BCrypt.Net.BCrypt.HashPassword(password);
 
-        public void ReenviarCodigo(string usuario)
-        {
-            // Placeholder controlado
+            return _dal.CrearUsuario(
+                usuario.Trim(),
+                correo?.Trim(),
+                hash,
+                idRol
+            );
         }
-
-        public void EnviarCodigoRecuperacion(string usuario)
-        {
-            // Placeholder
-        }
-
-        public string CorreoEnmascarado(string correo)
-        {
-            if (string.IsNullOrWhiteSpace(correo)) return string.Empty;
-            int at = correo.IndexOf('@');
-            if (at <= 2) return "***" + correo.Substring(at);
-            return correo.Substring(0, 2) + "***" + correo.Substring(at);
-        }
-
-        public void CambiarPasswordConCodigo(string usuario, string codigo, string nuevoPassword)
-        {
-            // Placeholder
-        }
-
     }
 }

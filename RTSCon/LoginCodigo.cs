@@ -23,10 +23,8 @@ namespace RTSCon
             // Texto con correo enmascarado
             try
             {
-                var masked = _auth.CorreoEnmascarado(_usuarioAuthId);
-                lblInfo.Text = string.IsNullOrWhiteSpace(masked)
-                    ? "Hemos enviado un código a su correo vinculado."
-                    : $"Hemos enviado un código a {masked}";
+                lblInfo.Text = "Hemos enviado un código a su correo vinculado.";
+
             }
             catch { lblInfo.Text = "Hemos enviado un código a su correo vinculado."; }
 
@@ -126,7 +124,7 @@ namespace RTSCon
                 if (!txtCodigo.MaskFull || string.IsNullOrWhiteSpace(codigo))
                     throw new InvalidOperationException("Ingrese los 6 dígitos del código.");
 
-                if (_auth.Login_Codigo(_usuarioAuthId, codigo))
+                if (_auth.Login_CodigoYSesion(_usuarioAuthId, codigo))
                 {
                     DialogResult = DialogResult.OK;
                     Close();
@@ -198,7 +196,7 @@ namespace RTSCon
                 // NAuth.Login_Codigo devuelve bool. El SP ahora puede devolver -1/-2 con RAISERROR,
                 // que en DAL/NAuth se propagarán como Exception (si no las atrapas).
                 // Si tu NAuth atrapa y devuelve false, mostramos un mensaje genérico ampliado:
-                if (_auth.Login_Codigo(_usuarioAuthId, codigo))
+                if (_auth.Login_CodigoYSesion(_usuarioAuthId, codigo))
                 {
                     DialogResult = DialogResult.OK;
                     Close();

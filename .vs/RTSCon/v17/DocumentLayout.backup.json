@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\logincodigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|c:\\users\\feliz\\onedrive\\documents\\github\\rtscond\\rtscon\\logincodigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\logincodigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon.negocios\\auth\\nauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|solutionrelative:rtscon.negocios\\auth\\nauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\crearusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -17,10 +21,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|solutionrelative:rtscon\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|c:\\users\\feliz\\onedrive\\documents\\github\\rtscond\\rtscon.negocios\\auth\\nauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2161BD39-F1B6-480F-A40E-E3FAB48177D2}|RTSCon.Negocios\\RTSCon.Negocios.csproj|solutionrelative:rtscon.negocios\\auth\\nauth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{19937947-C9BB-4C50-8924-A027FDED3709}|RTSCon\\RTSCon.Presentacion.csproj|C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\rtscon\\basesessionform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -462,8 +462,7 @@
               "RelativeToolTip": "RTSCon\\CrearUsuario.Designer.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAAiwDgBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T14:43:03.198Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-20T14:43:03.198Z"
             },
             {
               "$type": "Document",
@@ -487,8 +486,7 @@
               "RelativeToolTip": "RTSCon\\Login.Designer.cs",
               "ViewState": "AgIAAH0AAAAAAAAAAAAwwIsAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-15T18:35:02.219Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-15T18:35:02.219Z"
             },
             {
               "$type": "Document",
@@ -546,8 +544,7 @@
               "RelativeToolTip": "RTSCon\\SessionTimeoutBehavior.cs",
               "ViewState": "AgIAABoAAAAAAAAAAAASwCYAAAAYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T15:27:35.443Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-04T15:27:35.443Z"
             },
             {
               "$type": "Document",
@@ -558,8 +555,7 @@
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\BaseSessionForm.cs [Dise\u00F1o]",
               "RelativeToolTip": "RTSCon\\BaseSessionForm.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T15:07:53.796Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-12-04T15:07:53.796Z"
             },
             {
               "$type": "Document",
@@ -571,8 +567,7 @@
               "RelativeToolTip": "RTSCon\\BaseSessionForm.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAD8AAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T14:49:25.169Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-12-04T14:49:25.169Z"
             },
             {
               "$type": "Document",
@@ -1109,8 +1104,7 @@
               "RelativeToolTip": "RTSCon\\SessionManager.cs",
               "ViewState": "AgIAABgAAAAAAAAAAAASwCQAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T21:35:15.222Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-11T21:35:15.222Z"
             },
             {
               "$type": "Document",
@@ -1134,12 +1128,11 @@
               "RelativeToolTip": "RTSCon\\LoginCodigo.Designer.cs",
               "ViewState": "AgIAAEMAAAAAAAAAAAArwF0AAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T18:26:35.934Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-11T18:26:35.934Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ContrasenaOlvidada.cs",
               "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\ContrasenaOlvidada.cs",
               "RelativeDocumentMoniker": "RTSCon\\ContrasenaOlvidada.cs",
@@ -1147,8 +1140,7 @@
               "RelativeToolTip": "RTSCon\\ContrasenaOlvidada.cs",
               "ViewState": "AgIAAD0AAAAAAAAAAAAewEoAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T13:46:31.186Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-11T13:46:31.186Z"
             },
             {
               "$type": "Document",
@@ -1182,7 +1174,7 @@
               "RelativeDocumentMoniker": "RTSCon\\LoginCodigo.cs",
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\LoginCodigo.cs",
               "RelativeToolTip": "RTSCon\\LoginCodigo.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAIwGgAAABYAAAAAAAAAA==",
+              "ViewState": "AgIAAHQAAAAAAAAAAAAkwH4AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-11T12:31:26.93Z",
               "EditorCaption": ""
@@ -1196,12 +1188,11 @@
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\LoginCodigo.cs [Dise\u00F1o]",
               "RelativeToolTip": "RTSCon\\LoginCodigo.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T12:31:16.198Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-11-11T12:31:16.198Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Login.cs",
               "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Login.cs",
               "RelativeDocumentMoniker": "RTSCon\\Login.cs",
@@ -1209,18 +1200,17 @@
               "RelativeToolTip": "RTSCon\\Login.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAewCYAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-11T12:03:32.754Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-11T12:03:32.754Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "NAuth.cs",
               "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Auth\\NAuth.cs",
               "RelativeDocumentMoniker": "RTSCon.Negocios\\Auth\\NAuth.cs",
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon.Negocios\\Auth\\NAuth.cs",
               "RelativeToolTip": "RTSCon.Negocios\\Auth\\NAuth.cs",
-              "ViewState": "AgIAAJYAAAAAAAAAAAAuwLAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAALgAAAAAAAAAAAD4v8kAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-11T00:27:24.537Z",
               "EditorCaption": ""
@@ -1367,8 +1357,7 @@
               "RelativeToolTip": "RTSCon.Negocios\\Condominio\\NCondominio.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAIAzwBIAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-05T17:11:09.713Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-05T17:11:09.713Z"
             },
             {
               "$type": "Document",
@@ -1642,7 +1631,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "CrearUsuario.cs",
               "DocumentMoniker": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\CrearUsuario.cs",
               "RelativeDocumentMoniker": "RTSCon\\CrearUsuario.cs",
@@ -1650,8 +1639,7 @@
               "RelativeToolTip": "RTSCon\\CrearUsuario.cs",
               "ViewState": "AgIAAIUAAAAAAAAAAAAewJIAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T14:53:29.314Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-28T14:53:29.314Z"
             },
             {
               "$type": "Document",
@@ -1686,8 +1674,7 @@
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\CrearUsuario.cs [Dise\u00F1o]",
               "RelativeToolTip": "RTSCon\\CrearUsuario.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T13:49:11.824Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-28T13:49:11.824Z"
             },
             {
               "$type": "Document",
@@ -1698,8 +1685,7 @@
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\Login.cs [Dise\u00F1o]",
               "RelativeToolTip": "RTSCon\\Login.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T13:08:52.023Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-28T13:08:52.023Z"
             },
             {
               "$type": "Document",
@@ -1710,8 +1696,7 @@
               "ToolTip": "C:\\Users\\feliz\\OneDrive\\Documents\\GitHub\\RTSCond\\RTSCon\\ContrasenaOlvidada.cs [Dise\u00F1o]",
               "RelativeToolTip": "RTSCon\\ContrasenaOlvidada.cs [Dise\u00F1o]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-28T13:21:30.701Z",
-              "EditorCaption": " [Dise\u00F1o]"
+              "WhenOpened": "2025-10-28T13:21:30.701Z"
             }
           ]
         }

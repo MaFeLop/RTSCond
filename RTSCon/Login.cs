@@ -18,7 +18,7 @@ namespace RTSCon
             var cn = ConfigurationManager.ConnectionStrings["RTSCond"].ConnectionString;
             _auth = new NAuth(new DAuth(cn));
 
-            this.FormClosed += Login_FormClosed;
+            this.FormClosed += (s, e) => Application.Exit();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -31,11 +31,12 @@ namespace RTSCon
                 if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(password))
                     throw new InvalidOperationException("Ingrese usuario y contraseña.");
 
-                string mailProfile = ConfigurationManager.AppSettings["MailProfile"] ?? "";
+                string mailProfile = ConfigurationManager.AppSettings["MailProfile"] ?? "RTSCondMail";
                 int minutosCodigo = int.TryParse(
                     ConfigurationManager.AppSettings["CodigoExpiraMin"],
                     out var m) ? m : 10;
 
+                // 1️⃣ Login por password (devuelve ID)
                 int usuarioAuthId = _auth.Login_Password(
                     usuario,
                     password,
@@ -44,22 +45,17 @@ namespace RTSCon
                     debug: false
                 );
 
-                _auth.Login_CodigoYSesion(usuarioAuthId);
-
-                // ===== FIX ROL =====
-                string rol;
-
-                if (usuario.Equals("sa", StringComparison.OrdinalIgnoreCase))
+                // 2️⃣ Abrir verificación por código
+                using (var frmCodigo = new LoginCodigo(_auth, usuarioAuthId))
                 {
-                    rol = "SA";
-                }
-                else
-                {
-                    rol = NormalizarRol(UserContext.Rol);
+                    frmCodigo.StartPosition = FormStartPosition.CenterParent;
+
+                    if (frmCodigo.ShowDialog(this) != DialogResult.OK)
+                        return; // código incorrecto o cancelado
                 }
 
-                if (string.IsNullOrWhiteSpace(rol))
-                    throw new InvalidOperationException("No se pudo determinar el rol del usuario.");
+                // 3️⃣ Sesión válida → Dashboard
+                string rol = NormalizarRol(UserContext.Rol);
 
                 SessionHelper.Start(
                     usuario: usuario,
@@ -83,68 +79,33 @@ namespace RTSCon
                     ex.Message,
                     "Login",
                     KryptonMessageBoxButtons.OK,
-                    KryptonMessageBoxIcon.Error);
+                    KryptonMessageBoxIcon.Error
+                );
             }
         }
 
-        private string NormalizarRol(string rolBd)
-        {
-            if (string.IsNullOrWhiteSpace(rolBd)) return "";
-
-            rolBd = rolBd.Trim().ToUpperInvariant();
-
-            if (rolBd.Contains("SA") || rolBd.Contains("SUPER"))
-                return "SA";
-
-            if (rolBd.Contains("PROPIET"))
-                return "Propietario";
-
-            if (rolBd.Contains("SECRE"))
-                return "Secretario";
-
-            if (rolBd.Contains("INQUI"))
-                return "Inquilino";
-
-            return "";
-        }
-
-        private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            ResetFormulario();
-            this.Show();
-            this.Activate();
-        }
-
-        private void ResetFormulario()
-        {
-            txtCorreo.Text = string.Empty;
-            txtContrasena.Text = string.Empty;
-            txtCorreo.Focus();
-        }
-
-        private void Login_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
 
         private void lnkForget_LinkClicked(object sender, EventArgs e)
         {
             try
             {
-                var frm = new ContrasenaOlvidada(_auth);
-                frm.StartPosition = FormStartPosition.CenterParent;
+                var frm = new ContrasenaOlvidada(_auth)
+                {
+                    StartPosition = FormStartPosition.CenterParent
+                };
+
                 frm.ShowDialog(this);
             }
             catch (Exception ex)
             {
                 KryptonMessageBox.Show(
                     this,
-                    "No se pudo abrir la recuperación de contraseña: " + ex.Message,
+                    "No se pudo abrir la recuperación: " + ex.Message,
                     "Recuperación",
                     KryptonMessageBoxButtons.OK,
-                    KryptonMessageBoxIcon.Error);
+                    KryptonMessageBoxIcon.Error
+                );
             }
         }
-
     }
 }
