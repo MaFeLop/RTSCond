@@ -206,8 +206,8 @@
             this.txtCodigo.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodigo.TabIndex = 21;
             this.txtCodigo.Visible = false;
-            this.txtCodigo.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtCodigo_MaskInputRejected);
-            this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
+           // this.txtCodigo.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtCodigo_MaskInputRejected);
+            //this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
             // 
             // btnVerificar
             // 

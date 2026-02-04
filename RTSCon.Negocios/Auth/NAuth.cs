@@ -34,6 +34,18 @@ namespace RTSCon.Negocios
             Rol = null;
             UltimaActividadUtc = DateTime.MinValue;
         }
+
+        public static bool EsPropietarioActual
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(Rol))
+                    return false;
+
+                return Rol.Equals("PROPIETARIO", StringComparison.OrdinalIgnoreCase);
+            }
+        }
+
     }
 
     // ============================
@@ -194,5 +206,19 @@ namespace RTSCon.Negocios
                 idRol
             );
         }
+
+        public bool ValidarPassword(int idUsuario, string password)
+        {
+            if (idUsuario <= 0 || string.IsNullOrWhiteSpace(password))
+                return false;
+
+            DataRow row = _dal.ObtenerPorId(idUsuario);
+            if (row == null) return false;
+
+            string hash = Convert.ToString(row["hash_bcrypt"]);
+            return BCrypt.Net.BCrypt.Verify(password, hash);
+        }
+
+
     }
 }

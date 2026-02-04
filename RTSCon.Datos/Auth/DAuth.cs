@@ -31,7 +31,7 @@ namespace RTSCon.Datos
         public DataRow ObtenerPorUsuario(string usuario)
         {
             using (SqlConnection cn = new SqlConnection(_cn))
-            using (SqlDataAdapter da = new SqlDataAdapter("dbo.sp_usuario_por_usuario", cn))
+            using (SqlDataAdapter da = new SqlDataAdapter("dbo.sp_usuarioauth_por_usuario", cn))
             {
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
                 da.SelectCommand.Parameters.AddWithValue("@usuario", usuario);
@@ -42,6 +42,22 @@ namespace RTSCon.Datos
                 return dt.Rows.Count > 0 ? dt.Rows[0] : null;
             }
         }
+
+        public DataRow ObtenerPorId(int idUsuario)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand("sp_usuarioauth_por_id", cn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@IdUsuario", idUsuario);
+
+                var dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+
+                return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+            }
+        }
+
 
         public void MarcarLogin(int idUsuario)
         {

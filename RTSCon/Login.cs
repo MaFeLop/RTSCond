@@ -21,6 +21,21 @@ namespace RTSCon
             this.FormClosed += (s, e) => Application.Exit();
         }
 
+        private string NormalizarRol(string rol)
+        {
+            if (string.IsNullOrWhiteSpace(rol))
+                return string.Empty;
+
+            return rol.Trim().ToUpperInvariant();
+        }
+
+        private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Al cerrar el dashboard, cerrar también el login
+            this.Close();
+        }
+
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
@@ -106,6 +121,13 @@ namespace RTSCon
                     KryptonMessageBoxIcon.Error
                 );
             }
+        }
+
+        private void kryptonButton1_Click(object sender, EventArgs e)
+        {
+            string hash = BCrypt.Net.BCrypt.HashPassword("sa1234");
+            MessageBox.Show(hash);
+
         }
     }
 }
