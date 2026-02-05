@@ -31,17 +31,21 @@ namespace RTSCon.Datos
         public DataRow ObtenerPorUsuario(string usuario)
         {
             using (SqlConnection cn = new SqlConnection(_cn))
-            using (SqlDataAdapter da = new SqlDataAdapter("dbo.sp_usuarioauth_por_usuario", cn))
+            using (SqlCommand cmd = new SqlCommand("dbo.sp_usuarioauth_por_usuario", cn))
             {
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.SelectCommand.Parameters.AddWithValue("@usuario", usuario);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Usuario", usuario); // OJO: @Usuario (como tu SP)
 
                 DataTable dt = new DataTable();
-                da.Fill(dt);
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    da.Fill(dt);
+                }
 
                 return dt.Rows.Count > 0 ? dt.Rows[0] : null;
             }
         }
+
 
         public DataRow ObtenerPorId(int idUsuario)
         {

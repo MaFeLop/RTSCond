@@ -82,7 +82,7 @@ namespace RTSCon.Negocios
             if (row == null)
                 throw new InvalidOperationException("Usuario o contraseña inválidos.");
 
-            string hash = Convert.ToString(row["hash_bcrypt"]);
+            string hash = Convert.ToString(row["pass_hash"]);
 
             if (!BCrypt.Net.BCrypt.Verify(password, hash))
                 throw new InvalidOperationException("Usuario o contraseña inválidos.");
