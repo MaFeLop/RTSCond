@@ -215,7 +215,7 @@ namespace RTSCon.Negocios
             DataRow row = _dal.ObtenerPorId(idUsuario);
             if (row == null) return false;
 
-            string hash = Convert.ToString(row["hash_bcrypt"]);
+            string hash = Convert.ToString(row["pass_hash"]);
             return BCrypt.Net.BCrypt.Verify(password, hash);
         }
 
