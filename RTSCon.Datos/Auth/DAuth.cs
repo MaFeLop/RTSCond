@@ -12,7 +12,24 @@ namespace RTSCon.Datos
             _cn = connectionString;
         }
 
-        public int CrearUsuario(string usuario, string correo, string hashBcrypt, int idRol)
+        public DataRow Login(string usuario, string password)
+        {
+            using (SqlConnection cn = new SqlConnection(_cn))
+            using (SqlDataAdapter da = new SqlDataAdapter("dbo.sp_usuario_login", cn))
+            {
+                da.SelectCommand.CommandType = CommandType.StoredProcedure;
+                da.SelectCommand.Parameters.AddWithValue("@Usuario", usuario);
+                da.SelectCommand.Parameters.AddWithValue("@Password", password);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+            }
+        }
+
+
+        public int CrearUsuario(string usuario, string correo, string passwordPlain, int idRol)
         {
             using (SqlConnection cn = new SqlConnection(_cn))
             using (SqlCommand cmd = new SqlCommand("dbo.sp_usuario_crear", cn))
@@ -20,13 +37,14 @@ namespace RTSCon.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@usuario", usuario);
                 cmd.Parameters.AddWithValue("@correo", (object)correo ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@hash_bcrypt", hashBcrypt);
+                cmd.Parameters.AddWithValue("@pass_plain", passwordPlain);
                 cmd.Parameters.AddWithValue("@id_rol", idRol);
 
                 cn.Open();
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
+
 
         public DataRow ObtenerPorUsuario(string usuario)
         {
