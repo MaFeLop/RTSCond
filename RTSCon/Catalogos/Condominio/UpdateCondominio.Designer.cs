@@ -254,7 +254,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(135, 102);
             this.label7.TabIndex = 135;
-            this.label7.Click += new System.EventHandler(this.label7_Click);
+//            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label12
             // 
@@ -403,7 +403,7 @@
             this.btnBuscarPropietario.TabIndex = 152;
             this.btnBuscarPropietario.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnBuscarPropietario.Values.Text = "Buscar Propietario";
-            this.btnBuscarPropietario.Click += new System.EventHandler(this.btnBuscarPropietario_Click);
+      //      this.btnBuscarPropietario.Click += new System.EventHandler(this.btnBuscarPropietario_Click);
             // 
             // UpdateCondominio
             // 

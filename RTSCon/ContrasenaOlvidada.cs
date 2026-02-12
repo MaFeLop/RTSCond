@@ -1,7 +1,6 @@
 ﻿using Krypton.Toolkit;
 using RTSCon.Negocios;
 using System;
-using System.Configuration;
 using System.Windows.Forms;
 
 namespace RTSCon
@@ -67,28 +66,7 @@ namespace RTSCon
                 if (string.IsNullOrWhiteSpace(correo))
                     throw new InvalidOperationException("Ingrese el correo.");
 
-                string mailProfile =
-                    ConfigurationManager.AppSettings["MailProfile"] ?? "RTSCondMail";
-
-                int minutosCodigo =
-                    int.TryParse(ConfigurationManager.AppSettings["CodigoMinutos"], out var m)
-                        ? m
-                        : 5;
-
-                bool debug =
-                    string.Equals(
-                        ConfigurationManager.AppSettings["CodigoDebug"],
-                        "true",
-                        StringComparison.OrdinalIgnoreCase
-                    );
-
-                _usuarioAuthId = _auth.EnviarCodigoRecuperacion(
-                    usuario,
-                    correo,
-                    mailProfile,
-                    minutosCodigo,
-                    debug
-                );
+                _usuarioAuthId = _auth.EnviarCodigoRecuperacion(usuario, correo);
 
                 KryptonMessageBox.Show(
                     this,
@@ -124,7 +102,7 @@ namespace RTSCon
 
                 string codigo = txtCodigo.Text.Trim();
 
-                if (!_auth.Login_Codigo(_usuarioAuthId, codigo))
+                if (!_auth.ValidarCodigoRecuperacion(_usuarioAuthId, codigo))
                     throw new InvalidOperationException("Código inválido o expirado.");
 
                 KryptonMessageBox.Show(
@@ -172,15 +150,10 @@ namespace RTSCon
                 if (!string.Equals(nueva, confirmar))
                     throw new InvalidOperationException("La confirmación no coincide.");
 
-                string editor =
-                    ConfigurationManager.AppSettings["DefaultEjecutor"] ?? "rtscon@local";
-
                 _auth.CambiarPasswordConCodigo(
                     _usuarioAuthId,
                     codigo,
-                    nueva,
-                    editor,
-                    150000
+                    nueva
                 );
 
                 KryptonMessageBox.Show(

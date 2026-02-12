@@ -43,61 +43,25 @@ namespace RTSCon
                 string usuario = txtCorreo.Text.Trim();
                 string password = txtContrasena.Text.Trim();
 
-                if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(password))
-                    throw new InvalidOperationException("Ingrese usuario y contraseña.");
-
-                string mailProfile = ConfigurationManager.AppSettings["MailProfile"] ?? "RTSCondMail";
-                int minutosCodigo = int.TryParse(
-                    ConfigurationManager.AppSettings["CodigoExpiraMin"],
-                    out var m) ? m : 10;
-
-                // 1️⃣ Login por password (devuelve ID)
-                int usuarioAuthId = _auth.Login_Password(
-                    usuario,
-                    password,
-                    mailProfile,
-                    minutosCodigo,
-                    debug: false
-                );
-
-                // 2️⃣ Abrir verificación por código
-                using (var frmCodigo = new LoginCodigo(_auth, usuarioAuthId))
-                {
-                    frmCodigo.StartPosition = FormStartPosition.CenterParent;
-
-                    if (frmCodigo.ShowDialog(this) != DialogResult.OK)
-                        return; // código incorrecto o cancelado
-                }
-
-                // 3️⃣ Sesión válida → Dashboard
-                string rol = NormalizarRol(UserContext.Rol);
+                int usuarioAuthId = _auth.Login(usuario, password);
 
                 SessionHelper.Start(
                     usuario: usuario,
-                    rol: rol,
+                    rol: UserContext.Rol,
                     usuarioId: usuarioAuthId
                 );
 
-                var dash = new Dashboard
-                {
-                    StartPosition = FormStartPosition.CenterScreen
-                };
-
-                dash.FormClosed += Dashboard_FormClosed;
+                var dash = new Dashboard();
                 dash.Show();
                 this.Hide();
             }
             catch (Exception ex)
             {
-                KryptonMessageBox.Show(
-                    this,
-                    ex.Message,
-                    "Login",
-                    KryptonMessageBoxButtons.OK,
-                    KryptonMessageBoxIcon.Error
-                );
+                KryptonMessageBox.Show(this, ex.Message);
             }
         }
+
+
 
 
         private void lnkForget_LinkClicked(object sender, EventArgs e)
