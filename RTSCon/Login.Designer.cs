@@ -38,7 +38,6 @@
             this.txtContrasena = new Krypton.Toolkit.KryptonTextBox();
             this.btnLogin = new Krypton.Toolkit.KryptonButton();
             this.lnkForget = new Krypton.Toolkit.KryptonLinkLabel();
-            this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -140,25 +139,11 @@
             this.lnkForget.Values.Text = "Olvidaste tu Contraseña?";
             this.lnkForget.LinkClicked += new System.EventHandler(this.lnkForget_LinkClicked);
             // 
-            // kryptonButton1
-            // 
-            this.kryptonButton1.Location = new System.Drawing.Point(758, 470);
-            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.kryptonButton1.Size = new System.Drawing.Size(300, 44);
-            this.kryptonButton1.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonButton1.TabIndex = 13;
-            this.kryptonButton1.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.kryptonButton1.Values.Text = "Generar Hash (Prueba)";
-            this.kryptonButton1.Click += new System.EventHandler(this.kryptonButton1_Click);
-            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1089, 565);
-            this.Controls.Add(this.kryptonButton1);
             this.Controls.Add(this.lnkForget);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtContrasena);
@@ -189,6 +174,5 @@
         private Krypton.Toolkit.KryptonTextBox txtContrasena;
         private Krypton.Toolkit.KryptonButton btnLogin;
         private Krypton.Toolkit.KryptonLinkLabel lnkForget;
-        private Krypton.Toolkit.KryptonButton kryptonButton1;
     }
 }

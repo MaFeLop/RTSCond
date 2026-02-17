@@ -13,62 +13,80 @@ namespace RTSCon.Datos
             _cn = connectionString;
         }
 
+        // ================= LOGIN =================
         public DataRow Login(string usuario, string password)
         {
             using (var cn = new SqlConnection(_cn))
-            using (var da = new SqlDataAdapter("dbo.sp_usuario_login", cn))
+            using (var cmd = new SqlCommand("dbo.sp_usuario_login", cn))
             {
-                da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.SelectCommand.Parameters.AddWithValue("@Usuario", usuario);
-                da.SelectCommand.Parameters.AddWithValue("@Password", password);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@Usuario", SqlDbType.NVarChar, 100).Value = usuario;
+                cmd.Parameters.Add("@Password", SqlDbType.NVarChar, 400).Value = password;
 
                 var dt = new DataTable();
-                da.Fill(dt);
+
+                using (var da = new SqlDataAdapter(cmd))
+                {
+                    da.Fill(dt);
+                }
 
                 return dt.Rows.Count > 0 ? dt.Rows[0] : null;
             }
         }
 
+        // ================= VALIDAR PASSWORD =================
         public bool ValidarPassword(int usuarioId, string password)
         {
             using (var cn = new SqlConnection(_cn))
             using (var cmd = new SqlCommand("dbo.sp_usuario_validar_password", cn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@IdUsuario", usuarioId);
-                cmd.Parameters.AddWithValue("@Password", password);
+
+                cmd.Parameters.Add("@id_usr", SqlDbType.Int).Value = usuarioId;
+                cmd.Parameters.Add("@Password", SqlDbType.NVarChar, 400).Value = password;
 
                 cn.Open();
-                return Convert.ToInt32(cmd.ExecuteScalar()) == 1;
+
+                object result = cmd.ExecuteScalar();
+
+                return result != null && Convert.ToInt32(result) == 1;
             }
         }
 
+        // ================= CREAR USUARIO =================
         public int CrearUsuario(string usuario, string correo, string password, string rol)
         {
             using (var cn = new SqlConnection(_cn))
             using (var cmd = new SqlCommand("dbo.sp_usuario_crear", cn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Usuario", usuario);
-                cmd.Parameters.AddWithValue("@Correo", (object)correo ?? DBNull.Value);
-                cmd.Parameters.AddWithValue("@Password", password);
-                cmd.Parameters.AddWithValue("@Rol", rol);
+
+                cmd.Parameters.Add("@Usuario", SqlDbType.NVarChar, 100).Value = usuario;
+                cmd.Parameters.Add("@Correo", SqlDbType.NVarChar, 256).Value =
+                    (object)correo ?? DBNull.Value;
+                cmd.Parameters.Add("@Password", SqlDbType.NVarChar, 400).Value = password;
+                cmd.Parameters.Add("@Rol", SqlDbType.NVarChar, 50).Value = rol;
 
                 cn.Open();
+
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
 
+        // ================= RECUPERACIÓN =================
         public int EnviarCodigoRecuperacion(string usuario, string correo)
         {
             using (var cn = new SqlConnection(_cn))
             using (var cmd = new SqlCommand("dbo.sp_recuperacion_enviar", cn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Usuario", usuario);
-                cmd.Parameters.AddWithValue("@Correo", correo);
+
+                cmd.Parameters.Add("@Usuario", SqlDbType.NVarChar, 100).Value = usuario;
+                cmd.Parameters.Add("@Correo", SqlDbType.NVarChar, 256).Value = correo;
 
                 cn.Open();
+
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
@@ -79,11 +97,15 @@ namespace RTSCon.Datos
             using (var cmd = new SqlCommand("dbo.sp_recuperacion_validar", cn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@IdUsuario", usuarioId);
-                cmd.Parameters.AddWithValue("@Codigo", codigo);
+
+                cmd.Parameters.Add("@id_usr", SqlDbType.Int).Value = usuarioId;
+                cmd.Parameters.Add("@Codigo", SqlDbType.NVarChar, 20).Value = codigo;
 
                 cn.Open();
-                return Convert.ToInt32(cmd.ExecuteScalar()) == 1;
+
+                object result = cmd.ExecuteScalar();
+
+                return result != null && Convert.ToInt32(result) == 1;
             }
         }
 
@@ -93,22 +115,26 @@ namespace RTSCon.Datos
             using (var cmd = new SqlCommand("dbo.sp_recuperacion_cambiar_password", cn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@IdUsuario", usuarioId);
-                cmd.Parameters.AddWithValue("@Codigo", codigo);
-                cmd.Parameters.AddWithValue("@NuevaPassword", nuevaPassword);
+
+                cmd.Parameters.Add("@id_usr", SqlDbType.Int).Value = usuarioId;
+                cmd.Parameters.Add("@Codigo", SqlDbType.NVarChar, 20).Value = codigo;
+                cmd.Parameters.Add("@NuevaPassword", SqlDbType.NVarChar, 200).Value = nuevaPassword;
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
+        // ================= MARCAR LOGIN =================
         public void MarcarLogin(int usuarioId)
         {
             using (var cn = new SqlConnection(_cn))
             using (var cmd = new SqlCommand("dbo.sp_usuario_marcar_login", cn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@IdUsuario", usuarioId);
+
+                // 👇 EXACTAMENTE como lo pide el SP
+                cmd.Parameters.Add("@id_usr", SqlDbType.Int).Value = usuarioId;
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
