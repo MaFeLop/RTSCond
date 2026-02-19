@@ -91,13 +91,15 @@ namespace RTSCon.Negocios
             if (string.IsNullOrWhiteSpace(password))
                 throw new ArgumentException("Contraseña requerida.");
 
-            return _dal.CrearUsuario(
-                usuario.Trim(),
-                correo?.Trim(),
-                password,
-                rol
-            );
+            int idRol = _dal.ObtenerIdRol(rol);
+
+            if (idRol == 0)
+                throw new InvalidOperationException("Rol inválido.");
+
+            return _dal.CrearUsuario(usuario.Trim(), correo?.Trim(), password, idRol);
         }
+
+
 
         // ================= RECUPERACIÓN =================
         public int EnviarCodigoRecuperacion(string usuario, string correo)
@@ -129,5 +131,30 @@ namespace RTSCon.Negocios
 
             _dal.CambiarPasswordConCodigo(usuarioId, codigo, nuevaPassword);
         }
+
+        private string NormalizarRol(string rol)
+        {
+            rol = (rol ?? "").Trim();
+
+            if (rol.Equals("SA", StringComparison.OrdinalIgnoreCase))
+                return "SA";
+
+            // Ajusta estos nombres para que coincidan con tbl_Rol.nombre
+            if (rol.Equals("Propietario", StringComparison.OrdinalIgnoreCase))
+                return "Propietario";
+
+            if (rol.Equals("Secretario", StringComparison.OrdinalIgnoreCase))
+                return "Secretario";
+
+            if (rol.Equals("Inquilino", StringComparison.OrdinalIgnoreCase))
+                return "Inquilino";
+
+            // si te llega "Super Administrador" desde UI (por error)
+            if (rol.IndexOf("Super", StringComparison.OrdinalIgnoreCase) >= 0)
+                return "SA";
+
+            throw new InvalidOperationException("Rol inválido.");
+        }
+
     }
 }

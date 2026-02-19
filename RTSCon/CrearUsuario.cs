@@ -22,6 +22,19 @@ namespace RTSCon
             cmbDocumento.SelectedIndexChanged += cmbDocumento_SelectedIndexChanged;
 
             CargarRolesSegunSesion();
+
+            ConfigMasked(txtCedula);
+            ConfigMasked(txtRNC);
+            ConfigMasked(txtPasaporte);
+
+            txtCedula.Leave += Masked_ClearIfIncomplete_OnLeave;
+            txtRNC.Leave += Masked_ClearIfIncomplete_OnLeave;
+            txtPasaporte.Leave += Masked_ClearIfIncomplete_OnLeave;
+
+            txtCedula.VisibleChanged += Masked_ClearOnHide;
+            txtRNC.VisibleChanged += Masked_ClearOnHide;
+            txtPasaporte.VisibleChanged += Masked_ClearOnHide;
+
         }
 
         // ================= MODELO ROL =================
@@ -174,5 +187,84 @@ namespace RTSCon
         {
             Close();
         }
+
+        private void MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+            var txt = sender as MaskedTextBox;
+            if (txt == null) return;
+
+            if (!txt.MaskFull)
+                txt.Clear();
+        }
+
+        private void Masked_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            var txt = sender as MaskedTextBox;
+            if (txt == null) return;
+
+            if (!txt.MaskFull)
+                txt.Clear();
+        }
+
+        private void Masked_ForceClear(object sender, EventArgs e)
+        {
+            if (sender is MaskedTextBox txt)
+            {
+                txt.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+                txt.TextMaskFormat = MaskFormat.IncludeLiterals;
+
+                if (!txt.MaskCompleted)
+                {
+                    txt.Clear();
+                }
+
+            }
+        }
+
+        private void Masked_ForceClear_Visible(object sender, EventArgs e)
+        {
+            if (sender is MaskedTextBox txt)
+            {
+                if (!txt.Visible)
+                {
+                    txt.Clear();
+                }
+            }
+        }
+
+        private void ConfigMasked(KryptonMaskedTextBox txt)
+        {
+            // UX: cuando esté vacío, que NO se vean "_" ni prompts
+            txt.PromptChar = ' ';
+            txt.HidePromptOnLeave = true;
+
+            // Limpieza consistente
+            txt.ResetOnPrompt = true;
+            txt.ResetOnSpace = true;
+            txt.SkipLiterals = true;
+
+            // Si copian/pegan o si haces Trim, te da solo caracteres reales
+            txt.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+
+            // Opcional: evita sonidos
+            txt.BeepOnError = false;
+        }
+
+        private void Masked_ClearIfIncomplete_OnLeave(object sender, EventArgs e)
+        {
+            if (sender is MaskedTextBox txt)
+            {
+                if (!txt.MaskCompleted)
+                    txt.Clear();
+            }
+        }
+
+        private void Masked_ClearOnHide(object sender, EventArgs e)
+        {
+            if (sender is MaskedTextBox txt && !txt.Visible)
+                txt.Clear();
+        }
+
+
     }
 }

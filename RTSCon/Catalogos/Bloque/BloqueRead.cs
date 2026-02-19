@@ -11,8 +11,6 @@ namespace RTSCon.Catalogos
     {
         private int _condominioId;
         private readonly NBloque _nBloque;
-        private SessionTimeoutBehavior _sessionTimeout;
-
 
         // ✅ Ctor SIN parámetros (para CatalogoCRUD)
         public BloqueRead() : this(0)
@@ -30,8 +28,6 @@ namespace RTSCon.Catalogos
             _nBloque = new NBloque(dBloque);
 
             dgvBloques.AutoGenerateColumns = false;
-
-            _sessionTimeout = new SessionTimeoutBehavior(this);
         }
 
         private void BloqueRead_Load(object sender, EventArgs e)
@@ -47,29 +43,34 @@ namespace RTSCon.Catalogos
                 string texto = txtBuscar.Text.Trim();
                 bool soloActivos = chkSoloActivos.Checked;
 
-                // 0 = sin filtro
-                int? condominioFiltro = _condominioId > 0 ? (int?)_condominioId : null;
+                int? condominioFiltro = _condominioId > 0
+                    ? (int?)_condominioId
+                    : null;
 
                 DataTable dt = _nBloque.Buscar(condominioFiltro, texto, soloActivos, 50);
                 dgvBloques.DataSource = dt;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cargar bloques: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "Error al cargar bloques: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
         private DataRow FilaSeleccionada()
         {
-            if (dgvBloques.CurrentRow == null) return null;
+            if (dgvBloques.CurrentRow == null)
+                return null;
+
             var view = dgvBloques.CurrentRow.DataBoundItem as DataRowView;
             return view?.Row;
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            // Si no hay condominio fijado, puedes pedirlo aquí con BuscarCondominio.
             if (_condominioId <= 0)
             {
                 using (var frmBuscar = new BuscarCondominio())
@@ -91,14 +92,19 @@ namespace RTSCon.Catalogos
         private void btnEditar_Click(object sender, EventArgs e)
         {
             var row = FilaSeleccionada();
+
             if (row == null)
             {
-                MessageBox.Show("Selecciona un bloque primero.", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Selecciona un bloque primero.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 return;
             }
 
             int id = (int)row["Id"];
+
             using (var frm = new UpdateBloque(id))
             {
                 if (frm.ShowDialog(this) == DialogResult.OK)
@@ -115,10 +121,14 @@ namespace RTSCon.Catalogos
         private void btnDesactivar_Click(object sender, EventArgs e)
         {
             var row = FilaSeleccionada();
+
             if (row == null)
             {
-                MessageBox.Show("Selecciona un bloque primero.", "Aviso",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Selecciona un bloque primero.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
                 return;
             }
 
@@ -134,14 +144,18 @@ namespace RTSCon.Catalogos
                 {
                     try
                     {
-                        // ⬇⬇ AQUÍ EL CAMBIO IMPORTANTE
-                        int usuarioId = UserContext.UsuarioAuthId;   // ID (int)
-                        string usuarioLogin = UserContext.Usuario;   // correo / username
+                        int usuarioId = UserContext.UsuarioAuthId;
+                        string usuarioLogin = UserContext.Usuario;
                         string password = frm.Password;
 
                         var dAuth = new DAuth(Conexion.CadenaConexion);
                         var nAuth = new NAuth(dAuth);
-                        nAuth.ValidarPassword(usuarioId, password);
+
+                        // Validación explícita
+                        bool valido = nAuth.ValidarPassword(usuarioId, password);
+
+                        if (!valido)
+                            throw new InvalidOperationException("Contraseña incorrecta.");
 
                         _nBloque.Desactivar(id, rowVersion, usuarioLogin);
 

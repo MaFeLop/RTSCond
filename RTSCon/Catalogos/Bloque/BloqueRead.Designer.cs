@@ -87,7 +87,6 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(743, 27);
             this.txtBuscar.TabIndex = 101;
-            //this.txtBuscar.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyDown_1);
             // 
             // btnLimpiarFiltros
             // 
@@ -113,6 +112,7 @@
             this.btnDesactivar.TabIndex = 99;
             this.btnDesactivar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnDesactivar.Values.Text = "Desactivar";
+            this.btnDesactivar.Click += new System.EventHandler(this.btnDesactivar_Click);
             // 
             // btnUpdate
             // 
@@ -125,6 +125,7 @@
             this.btnUpdate.TabIndex = 98;
             this.btnUpdate.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnUpdate.Values.Text = "Update";
+            this.btnUpdate.Click += new System.EventHandler(this.btnEditar_Click);
             // 
             // btnCrear
             // 
@@ -137,6 +138,7 @@
             this.btnCrear.TabIndex = 97;
             this.btnCrear.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCrear.Values.Text = "Crear";
+            this.btnCrear.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // dgvBloques
             // 

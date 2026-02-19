@@ -55,24 +55,26 @@ namespace RTSCon.Datos
         }
 
         // ================= CREAR USUARIO =================
-        public int CrearUsuario(string usuario, string correo, string password, string rol)
+        public int CrearUsuario(string usuario, string correo, string password, int idRol)
         {
             using (var cn = new SqlConnection(_cn))
             using (var cmd = new SqlCommand("dbo.sp_usuario_crear", cn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@Usuario", SqlDbType.NVarChar, 100).Value = usuario;
-                cmd.Parameters.Add("@Correo", SqlDbType.NVarChar, 256).Value =
-                    (object)correo ?? DBNull.Value;
-                cmd.Parameters.Add("@Password", SqlDbType.NVarChar, 400).Value = password;
-                cmd.Parameters.Add("@Rol", SqlDbType.NVarChar, 50).Value = rol;
+                cmd.Parameters.Add("@usuario", SqlDbType.NVarChar, 200).Value = usuario;
+                cmd.Parameters.Add("@correo", SqlDbType.NVarChar, 512).Value = (object)correo ?? DBNull.Value;
+                cmd.Parameters.Add("@pass_plain", SqlDbType.NVarChar, 400).Value = password;
+                cmd.Parameters.Add("@id_rol", SqlDbType.Int).Value = idRol;
 
                 cn.Open();
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
             }
         }
+
+
+
 
         // ================= RECUPERACIÓN =================
         public int EnviarCodigoRecuperacion(string usuario, string correo)
@@ -133,12 +135,52 @@ namespace RTSCon.Datos
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                // 👇 EXACTAMENTE como lo pide el SP
                 cmd.Parameters.Add("@id_usr", SqlDbType.Int).Value = usuarioId;
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
+
+        public int ObtenerIdRol(string nombreRol)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand(@"
+        SELECT ID_rol
+        FROM dbo.tbl_Rol
+        WHERE nombre = @nombre
+    ", cn))
+            {
+                cmd.Parameters.Add("@nombre", SqlDbType.NVarChar, 100).Value = nombreRol;
+
+                cn.Open();
+                var result = cmd.ExecuteScalar();
+
+                if (result == null)
+                    return 0;
+
+                return Convert.ToInt32(result);
+            }
+        }
+
+
+        public int ObtenerIdRolPorNombre(string nombreRol)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand(@"
+        SELECT TOP 1 ID_rol
+        FROM dbo.tbl_Rol
+        WHERE UPPER(LTRIM(RTRIM(nombre))) = UPPER(LTRIM(RTRIM(@nombre)));
+    ", cn))
+            {
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.Add("@nombre", SqlDbType.NVarChar, 200).Value = nombreRol ?? "";
+
+                cn.Open();
+                var obj = cmd.ExecuteScalar();
+                return (obj == null || obj == DBNull.Value) ? 0 : Convert.ToInt32(obj);
+            }
+        }
+
     }
 }

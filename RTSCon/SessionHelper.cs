@@ -61,10 +61,12 @@ namespace RTSCon
         {
             BeginLogout();
 
+            // 🔥 Detener SessionManager
+            SessionManager.Stop();
+
             try { UserContext.Clear(); } catch { }
             Clear();
 
-            // Abrir Login primero
             try
             {
                 var login = Application.OpenForms
@@ -84,7 +86,6 @@ namespace RTSCon
             }
             catch { }
 
-            // Cerrar todo lo demás
             try
             {
                 foreach (var f in Application.OpenForms.Cast<Form>().ToList())
@@ -95,6 +96,7 @@ namespace RTSCon
             }
             catch { }
         }
+
 
         // =========================
         // Helpers de sesión

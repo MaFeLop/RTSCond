@@ -40,26 +40,25 @@ namespace RTSCon
         {
             try
             {
-                string usuario = txtCorreo.Text.Trim();
-                string password = txtContrasena.Text.Trim();
+                int id = _auth.Login(txtCorreo.Text, txtContrasena.Text);
 
-                int usuarioAuthId = _auth.Login(usuario, password);
+                SessionHelper.Start(txtCorreo.Text, UserContext.Rol, id);
 
-                SessionHelper.Start(
-                    usuario: usuario,
-                    rol: UserContext.Rol,
-                    usuarioId: usuarioAuthId
-                );
-
-                var dash = new Dashboard();
-                dash.Show();
                 this.Hide();
+
+                using (var dashboard = new Dashboard())
+                {
+                    dashboard.ShowDialog();
+                }
+
+                this.Show();
             }
             catch (Exception ex)
             {
-                KryptonMessageBox.Show(this, ex.Message);
+                MessageBox.Show(ex.Message);
             }
         }
+
 
 
 
