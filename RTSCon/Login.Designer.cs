@@ -82,7 +82,7 @@
             this.kryptonLabel3.Size = new System.Drawing.Size(140, 31);
             this.kryptonLabel3.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel3.TabIndex = 3;
-            this.kryptonLabel3.Values.Text = "Usuario:";
+            this.kryptonLabel3.Values.Text = "Correo:";
             // 
             // kryptonLabel4
             // 

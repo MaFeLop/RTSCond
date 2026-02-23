@@ -182,5 +182,21 @@ namespace RTSCon.Datos
             }
         }
 
+        public void CambiarPasswordPlain(int usuarioId, string nuevaPassword, string editor)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand("sp_usuario_cambiar_password_plain", cn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@UsuarioAuthId", usuarioId);
+                cmd.Parameters.AddWithValue("@NuevaPassword", nuevaPassword);
+                cmd.Parameters.AddWithValue("@UsuarioEditor", editor);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
     }
 }

@@ -134,48 +134,23 @@ namespace RTSCon
         {
             try
             {
-                if (_usuarioAuthId <= 0)
-                    throw new InvalidOperationException("Primero envíe el código.");
+                if (txtContrasena.Text != txtContrasenaNueva.Text)
+                    throw new Exception("Las contraseñas no coinciden.");
 
-                string codigo = txtCodigo.Text.Trim();
-                string nueva = txtContrasena.Text;
-                string confirmar = txtContrasenaNueva.Text;
+                int usuarioId = UserContext.UsuarioAuthId;
 
-                if (!txtCodigo.MaskFull)
-                    throw new InvalidOperationException("Ingrese los 6 dígitos del código.");
-
-                if (string.IsNullOrWhiteSpace(nueva))
-                    throw new InvalidOperationException("Ingrese la nueva contraseña.");
-
-                if (!string.Equals(nueva, confirmar))
-                    throw new InvalidOperationException("La confirmación no coincide.");
-
-                _auth.CambiarPasswordConCodigo(
-                    _usuarioAuthId,
-                    codigo,
-                    nueva
+                _auth.CambiarPasswordPlain(
+                    usuarioId,
+                    txtContrasenaNueva.Text.Trim(),
+                    SessionHelper.Usuario
                 );
 
-                KryptonMessageBox.Show(
-                    this,
-                    "La contraseña fue actualizada correctamente.",
-                    "Recuperación",
-                    KryptonMessageBoxButtons.OK,
-                    KryptonMessageBoxIcon.Information
-                );
-
-                DialogResult = DialogResult.OK;
+                KryptonMessageBox.Show("Contraseña actualizada.");
                 Close();
             }
             catch (Exception ex)
             {
-                KryptonMessageBox.Show(
-                    this,
-                    ex.Message,
-                    "Recuperación",
-                    KryptonMessageBoxButtons.OK,
-                    KryptonMessageBoxIcon.Error
-                );
+                KryptonMessageBox.Show(ex.Message);
             }
         }
 

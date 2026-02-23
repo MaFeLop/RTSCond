@@ -132,28 +132,12 @@ namespace RTSCon.Negocios
             _dal.CambiarPasswordConCodigo(usuarioId, codigo, nuevaPassword);
         }
 
-        private string NormalizarRol(string rol)
+        public void CambiarPasswordPlain(int usuarioId, string nuevaPassword, string editor)
         {
-            rol = (rol ?? "").Trim();
+            if (string.IsNullOrWhiteSpace(nuevaPassword))
+                throw new ArgumentException("La contraseña no puede estar vacía.");
 
-            if (rol.Equals("SA", StringComparison.OrdinalIgnoreCase))
-                return "SA";
-
-            // Ajusta estos nombres para que coincidan con tbl_Rol.nombre
-            if (rol.Equals("Propietario", StringComparison.OrdinalIgnoreCase))
-                return "Propietario";
-
-            if (rol.Equals("Secretario", StringComparison.OrdinalIgnoreCase))
-                return "Secretario";
-
-            if (rol.Equals("Inquilino", StringComparison.OrdinalIgnoreCase))
-                return "Inquilino";
-
-            // si te llega "Super Administrador" desde UI (por error)
-            if (rol.IndexOf("Super", StringComparison.OrdinalIgnoreCase) >= 0)
-                return "SA";
-
-            throw new InvalidOperationException("Rol inválido.");
+            _dal.CambiarPasswordPlain(usuarioId, nuevaPassword, editor);
         }
 
     }
