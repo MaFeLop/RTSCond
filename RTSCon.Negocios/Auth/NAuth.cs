@@ -61,7 +61,6 @@ namespace RTSCon.Negocios
             if (row == null)
                 throw new InvalidOperationException("Usuario o contraseña inválidos.");
 
-            // Coincide con: U.ID_usr AS Id
             int id = Convert.ToInt32(row["Id"]);
             string rol = Convert.ToString(row["Rol"]);
 
@@ -71,7 +70,6 @@ namespace RTSCon.Negocios
 
             return id;
         }
-
 
         // ================= VALIDAR PASSWORD =================
         public bool ValidarPassword(int usuarioId, string password)
@@ -99,10 +97,8 @@ namespace RTSCon.Negocios
             return _dal.CrearUsuario(usuario.Trim(), correo?.Trim(), password, idRol);
         }
 
-
-
-        // ================= RECUPERACIÓN =================
-        public int EnviarCodigoRecuperacion(string usuario, string correo)
+        // ================= RECUPERACIÓN / CÓDIGO =================
+        public int ObtenerUsuarioAuthIdPorUsuarioYCorreo(string usuario, string correo)
         {
             if (string.IsNullOrWhiteSpace(usuario))
                 throw new ArgumentException("Usuario requerido.");
@@ -110,35 +106,38 @@ namespace RTSCon.Negocios
             if (string.IsNullOrWhiteSpace(correo))
                 throw new ArgumentException("Correo requerido.");
 
-            return _dal.EnviarCodigoRecuperacion(usuario.Trim(), correo.Trim());
+            return _dal.ObtenerUsuarioAuthIdPorUsuarioYCorreo(usuario.Trim(), correo.Trim());
         }
 
-        public bool ValidarCodigoRecuperacion(int usuarioId, string codigo)
+        public void EnviarCodigoLogin(int usuarioAuthId, string mailProfile, int minutosExpira, bool debug)
         {
-            if (usuarioId <= 0 || string.IsNullOrWhiteSpace(codigo))
-                return false;
+            if (usuarioAuthId <= 0)
+                throw new ArgumentException("Usuario inválido.");
 
-            return _dal.ValidarCodigoRecuperacion(usuarioId, codigo);
+            _dal.EnviarCodigoLogin(usuarioAuthId, mailProfile, minutosExpira, debug);
         }
 
-        public void CambiarPasswordConCodigo(int usuarioId, string codigo, string nuevaPassword)
+        public bool VerificarCodigoLogin(int usuarioAuthId, string codigo, int maxIntentos)
+        {
+            if (usuarioAuthId <= 0)
+                throw new ArgumentException("Usuario inválido.");
+
+            if (string.IsNullOrWhiteSpace(codigo))
+                throw new ArgumentException("Código requerido.");
+
+            return _dal.VerificarCodigoLogin(usuarioAuthId, codigo.Trim(), maxIntentos);
+        }
+
+        // ================= CAMBIAR PASSWORD PLAIN =================
+        public void CambiarPasswordPlain(int usuarioId, string nuevaPassword, string editor)
         {
             if (usuarioId <= 0)
                 throw new ArgumentException("Usuario inválido.");
 
             if (string.IsNullOrWhiteSpace(nuevaPassword))
-                throw new ArgumentException("Nueva contraseña requerida.");
-
-            _dal.CambiarPasswordConCodigo(usuarioId, codigo, nuevaPassword);
-        }
-
-        public void CambiarPasswordPlain(int usuarioId, string nuevaPassword, string editor)
-        {
-            if (string.IsNullOrWhiteSpace(nuevaPassword))
                 throw new ArgumentException("La contraseña no puede estar vacía.");
 
             _dal.CambiarPasswordPlain(usuarioId, nuevaPassword, editor);
         }
-
     }
 }

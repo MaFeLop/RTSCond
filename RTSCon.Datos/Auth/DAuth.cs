@@ -63,67 +63,14 @@ namespace RTSCon.Datos
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("@usuario", SqlDbType.NVarChar, 200).Value = usuario;
-                cmd.Parameters.Add("@correo", SqlDbType.NVarChar, 512).Value = (object)correo ?? DBNull.Value;
+                cmd.Parameters.Add("@correo", SqlDbType.NVarChar, 512).Value =
+                    (object)correo ?? DBNull.Value;
                 cmd.Parameters.Add("@pass_plain", SqlDbType.NVarChar, 400).Value = password;
                 cmd.Parameters.Add("@id_rol", SqlDbType.Int).Value = idRol;
 
                 cn.Open();
 
                 return Convert.ToInt32(cmd.ExecuteScalar());
-            }
-        }
-
-
-
-
-        // ================= RECUPERACIÓN =================
-        public int EnviarCodigoRecuperacion(string usuario, string correo)
-        {
-            using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_recuperacion_enviar", cn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add("@Usuario", SqlDbType.NVarChar, 100).Value = usuario;
-                cmd.Parameters.Add("@Correo", SqlDbType.NVarChar, 256).Value = correo;
-
-                cn.Open();
-
-                return Convert.ToInt32(cmd.ExecuteScalar());
-            }
-        }
-
-        public bool ValidarCodigoRecuperacion(int usuarioId, string codigo)
-        {
-            using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_recuperacion_validar", cn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add("@id_usr", SqlDbType.Int).Value = usuarioId;
-                cmd.Parameters.Add("@Codigo", SqlDbType.NVarChar, 20).Value = codigo;
-
-                cn.Open();
-
-                object result = cmd.ExecuteScalar();
-
-                return result != null && Convert.ToInt32(result) == 1;
-            }
-        }
-
-        public void CambiarPasswordConCodigo(int usuarioId, string codigo, string nuevaPassword)
-        {
-            using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("dbo.sp_recuperacion_cambiar_password", cn))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.Add("@id_usr", SqlDbType.Int).Value = usuarioId;
-                cmd.Parameters.Add("@Codigo", SqlDbType.NVarChar, 20).Value = codigo;
-                cmd.Parameters.Add("@NuevaPassword", SqlDbType.NVarChar, 200).Value = nuevaPassword;
-
-                cn.Open();
-                cmd.ExecuteNonQuery();
             }
         }
 
@@ -142,61 +89,107 @@ namespace RTSCon.Datos
             }
         }
 
+        // ================= ROLES =================
         public int ObtenerIdRol(string nombreRol)
         {
             using (var cn = new SqlConnection(_cn))
             using (var cmd = new SqlCommand(@"
-        SELECT ID_rol
-        FROM dbo.tbl_Rol
-        WHERE nombre = @nombre
-    ", cn))
+                SELECT TOP 1 ID_rol
+                FROM dbo.tbl_Rol
+                WHERE UPPER(LTRIM(RTRIM(nombre))) = UPPER(LTRIM(RTRIM(@nombre)));
+            ", cn))
             {
-                cmd.Parameters.Add("@nombre", SqlDbType.NVarChar, 100).Value = nombreRol;
+                cmd.CommandType = CommandType.Text;
+                cmd.Parameters.Add("@nombre", SqlDbType.NVarChar, 100).Value = nombreRol ?? "";
 
                 cn.Open();
-                var result = cmd.ExecuteScalar();
 
-                if (result == null)
+                object result = cmd.ExecuteScalar();
+                return (result == null || result == DBNull.Value)
+                    ? 0
+                    : Convert.ToInt32(result);
+            }
+        }
+
+        // ================= RECUPERACIÓN / CÓDIGO =================
+        public int ObtenerUsuarioAuthIdPorUsuarioYCorreo(string usuario, string correo)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand(@"
+                SELECT ID_usr
+                FROM dbo.tbl_Usuario
+                WHERE usuario = @usuario
+                  AND correo = @correo
+                  AND estado = 'Activo';
+            ", cn))
+            {
+                cmd.CommandType = CommandType.Text;
+
+                cmd.Parameters.Add("@usuario", SqlDbType.VarChar, 60).Value = usuario;
+                cmd.Parameters.Add("@correo", SqlDbType.VarChar, 256).Value = correo;
+
+                cn.Open();
+
+                object result = cmd.ExecuteScalar();
+                if (result == null || result == DBNull.Value)
                     return 0;
 
                 return Convert.ToInt32(result);
             }
         }
 
-
-        public int ObtenerIdRolPorNombre(string nombreRol)
+        public void EnviarCodigoLogin(int usuarioAuthId, string mailProfile, int minutosExpira, bool debug)
         {
             using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand(@"
-        SELECT TOP 1 ID_rol
-        FROM dbo.tbl_Rol
-        WHERE UPPER(LTRIM(RTRIM(nombre))) = UPPER(LTRIM(RTRIM(@nombre)));
-    ", cn))
-            {
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.Add("@nombre", SqlDbType.NVarChar, 200).Value = nombreRol ?? "";
-
-                cn.Open();
-                var obj = cmd.ExecuteScalar();
-                return (obj == null || obj == DBNull.Value) ? 0 : Convert.ToInt32(obj);
-            }
-        }
-
-        public void CambiarPasswordPlain(int usuarioId, string nuevaPassword, string editor)
-        {
-            using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand("sp_usuario_cambiar_password_plain", cn))
+            using (var cmd = new SqlCommand("dbo.sp_logincode_enviar", cn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@UsuarioAuthId", usuarioId);
-                cmd.Parameters.AddWithValue("@NuevaPassword", nuevaPassword);
-                cmd.Parameters.AddWithValue("@UsuarioEditor", editor);
+                cmd.Parameters.Add("@UsuarioAuthId", SqlDbType.Int).Value = usuarioAuthId;
+                cmd.Parameters.Add("@MailProfile", SqlDbType.NVarChar, 128).Value = mailProfile;
+                cmd.Parameters.Add("@MinutosExpira", SqlDbType.Int).Value = minutosExpira;
+                cmd.Parameters.Add("@Debug", SqlDbType.Bit).Value = debug;
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
+        public bool VerificarCodigoLogin(int usuarioAuthId, string codigo, int maxIntentos)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand("dbo.sp_logincode_verificar", cn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@UsuarioAuthId", SqlDbType.Int).Value = usuarioAuthId;
+                cmd.Parameters.Add("@Codigo", SqlDbType.NVarChar, 6).Value = codigo;
+                cmd.Parameters.Add("@MaxIntentos", SqlDbType.Int).Value = maxIntentos;
+
+                cn.Open();
+
+                object result = cmd.ExecuteScalar();
+                return result != null
+                    && result != DBNull.Value
+                    && Convert.ToInt32(result) == 1;
+            }
+        }
+
+        // ================= CAMBIAR PASSWORD PLAIN =================
+        public void CambiarPasswordPlain(int usuarioId, string nuevaPassword, string editor)
+        {
+            using (var cn = new SqlConnection(_cn))
+            using (var cmd = new SqlCommand("dbo.sp_usuario_cambiar_password_plain", cn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@UsuarioAuthId", SqlDbType.Int).Value = usuarioId;
+                cmd.Parameters.Add("@NuevaPassword", SqlDbType.NVarChar, 400).Value = nuevaPassword;
+                cmd.Parameters.Add("@UsuarioEditor", SqlDbType.NVarChar, 100).Value = editor;
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 }

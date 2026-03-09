@@ -47,14 +47,16 @@
             this.txtCedula = new Krypton.Toolkit.KryptonMaskedTextBox();
             this.txtPasaporte = new Krypton.Toolkit.KryptonMaskedTextBox();
             this.txtRNC = new Krypton.Toolkit.KryptonMaskedTextBox();
+            this.txtUsername = new Krypton.Toolkit.KryptonTextBox();
+            this.kryptonLabel7 = new Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // kryptonLabel1
             // 
             this.kryptonLabel1.AutoSize = false;
-            this.kryptonLabel1.Location = new System.Drawing.Point(399, 175);
-            this.kryptonLabel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonLabel1.Location = new System.Drawing.Point(398, 137);
+            this.kryptonLabel1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(231, 47);
             this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -64,8 +66,8 @@
             // kryptonPictureBox1
             // 
             this.kryptonPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("kryptonPictureBox1.Image")));
-            this.kryptonPictureBox1.Location = new System.Drawing.Point(449, 36);
-            this.kryptonPictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonPictureBox1.Location = new System.Drawing.Point(448, -2);
+            this.kryptonPictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonPictureBox1.Name = "kryptonPictureBox1";
             this.kryptonPictureBox1.Size = new System.Drawing.Size(127, 132);
             this.kryptonPictureBox1.TabIndex = 4;
@@ -74,8 +76,8 @@
             // kryptonLabel2
             // 
             this.kryptonLabel2.AutoSize = false;
-            this.kryptonLabel2.Location = new System.Drawing.Point(432, 229);
-            this.kryptonLabel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonLabel2.Location = new System.Drawing.Point(431, 191);
+            this.kryptonLabel2.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel2.Name = "kryptonLabel2";
             this.kryptonLabel2.Size = new System.Drawing.Size(144, 31);
             this.kryptonLabel2.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -84,8 +86,8 @@
             // 
             // txtCorreo
             // 
-            this.txtCorreo.Location = new System.Drawing.Point(16, 442);
-            this.txtCorreo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCorreo.Location = new System.Drawing.Point(16, 486);
+            this.txtCorreo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(623, 37);
             this.txtCorreo.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -94,8 +96,8 @@
             // kryptonLabel3
             // 
             this.kryptonLabel3.AutoSize = false;
-            this.kryptonLabel3.Location = new System.Drawing.Point(9, 404);
-            this.kryptonLabel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonLabel3.Location = new System.Drawing.Point(9, 448);
+            this.kryptonLabel3.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel3.Name = "kryptonLabel3";
             this.kryptonLabel3.Size = new System.Drawing.Size(140, 31);
             this.kryptonLabel3.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -104,28 +106,28 @@
             // 
             // txtNombreCompleto
             // 
-            this.txtNombreCompleto.Location = new System.Drawing.Point(16, 267);
-            this.txtNombreCompleto.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombreCompleto.Location = new System.Drawing.Point(8, 235);
+            this.txtNombreCompleto.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombreCompleto.Name = "txtNombreCompleto";
-            this.txtNombreCompleto.Size = new System.Drawing.Size(623, 37);
+            this.txtNombreCompleto.Size = new System.Drawing.Size(631, 37);
             this.txtNombreCompleto.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombreCompleto.TabIndex = 16;
             // 
             // kryptonLabel4
             // 
             this.kryptonLabel4.AutoSize = false;
-            this.kryptonLabel4.Location = new System.Drawing.Point(8, 229);
-            this.kryptonLabel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonLabel4.Location = new System.Drawing.Point(0, 197);
+            this.kryptonLabel4.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel4.Name = "kryptonLabel4";
-            this.kryptonLabel4.Size = new System.Drawing.Size(200, 31);
+            this.kryptonLabel4.Size = new System.Drawing.Size(192, 31);
             this.kryptonLabel4.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel4.TabIndex = 15;
             this.kryptonLabel4.Values.Text = "Nombre Completo:";
             // 
             // txtContraseña
             // 
-            this.txtContraseña.Location = new System.Drawing.Point(16, 357);
-            this.txtContraseña.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtContraseña.Location = new System.Drawing.Point(16, 401);
+            this.txtContraseña.Margin = new System.Windows.Forms.Padding(4);
             this.txtContraseña.Name = "txtContraseña";
             this.txtContraseña.PasswordChar = '●';
             this.txtContraseña.Size = new System.Drawing.Size(623, 37);
@@ -136,8 +138,8 @@
             // kryptonLabel5
             // 
             this.kryptonLabel5.AutoSize = false;
-            this.kryptonLabel5.Location = new System.Drawing.Point(8, 319);
-            this.kryptonLabel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonLabel5.Location = new System.Drawing.Point(8, 363);
+            this.kryptonLabel5.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel5.Name = "kryptonLabel5";
             this.kryptonLabel5.Size = new System.Drawing.Size(140, 31);
             this.kryptonLabel5.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -147,8 +149,8 @@
             // kryptonLabel6
             // 
             this.kryptonLabel6.AutoSize = false;
-            this.kryptonLabel6.Location = new System.Drawing.Point(8, 489);
-            this.kryptonLabel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.kryptonLabel6.Location = new System.Drawing.Point(8, 533);
+            this.kryptonLabel6.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel6.Name = "kryptonLabel6";
             this.kryptonLabel6.Size = new System.Drawing.Size(176, 31);
             this.kryptonLabel6.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -163,16 +165,16 @@
             "Propietario",
             "Secretario",
             "Residente"});
-            this.cmbRol.Location = new System.Drawing.Point(16, 527);
-            this.cmbRol.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbRol.Location = new System.Drawing.Point(16, 571);
+            this.cmbRol.Margin = new System.Windows.Forms.Padding(4);
             this.cmbRol.Name = "cmbRol";
             this.cmbRol.Size = new System.Drawing.Size(160, 33);
             this.cmbRol.TabIndex = 20;
             // 
             // btnCrear
             // 
-            this.btnCrear.Location = new System.Drawing.Point(300, 677);
-            this.btnCrear.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCrear.Location = new System.Drawing.Point(301, 711);
+            this.btnCrear.Margin = new System.Windows.Forms.Padding(4);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
             this.btnCrear.Size = new System.Drawing.Size(179, 55);
@@ -184,8 +186,8 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(535, 677);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Location = new System.Drawing.Point(536, 711);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
             this.btnCancelar.Size = new System.Drawing.Size(179, 55);
@@ -198,8 +200,8 @@
             // lblDocumento
             // 
             this.lblDocumento.AutoSize = false;
-            this.lblDocumento.Location = new System.Drawing.Point(9, 575);
-            this.lblDocumento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lblDocumento.Location = new System.Drawing.Point(9, 619);
+            this.lblDocumento.Margin = new System.Windows.Forms.Padding(4);
             this.lblDocumento.Name = "lblDocumento";
             this.lblDocumento.Size = new System.Drawing.Size(140, 31);
             this.lblDocumento.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -214,8 +216,8 @@
             "Cedula",
             "Pasaporte",
             "RNC"});
-            this.cmbDocumento.Location = new System.Drawing.Point(432, 613);
-            this.cmbDocumento.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbDocumento.Location = new System.Drawing.Point(432, 657);
+            this.cmbDocumento.Margin = new System.Windows.Forms.Padding(4);
             this.cmbDocumento.Name = "cmbDocumento";
             this.cmbDocumento.Size = new System.Drawing.Size(160, 33);
             this.cmbDocumento.TabIndex = 25;
@@ -223,8 +225,8 @@
             // 
             // txtCedula
             // 
-            this.txtCedula.Location = new System.Drawing.Point(9, 613);
-            this.txtCedula.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCedula.Location = new System.Drawing.Point(8, 659);
+            this.txtCedula.Margin = new System.Windows.Forms.Padding(4);
             this.txtCedula.Mask = "000-0000000-0";
             this.txtCedula.Name = "txtCedula";
             this.txtCedula.Size = new System.Drawing.Size(397, 38);
@@ -235,8 +237,8 @@
             // 
             // txtPasaporte
             // 
-            this.txtPasaporte.Location = new System.Drawing.Point(9, 613);
-            this.txtPasaporte.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPasaporte.Location = new System.Drawing.Point(9, 659);
+            this.txtPasaporte.Margin = new System.Windows.Forms.Padding(4);
             this.txtPasaporte.Mask = "LL000000";
             this.txtPasaporte.Name = "txtPasaporte";
             this.txtPasaporte.Size = new System.Drawing.Size(397, 38);
@@ -246,8 +248,8 @@
             // 
             // txtRNC
             // 
-            this.txtRNC.Location = new System.Drawing.Point(9, 613);
-            this.txtRNC.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtRNC.Location = new System.Drawing.Point(9, 657);
+            this.txtRNC.Margin = new System.Windows.Forms.Padding(4);
             this.txtRNC.Mask = "0-00-0000-0";
             this.txtRNC.Name = "txtRNC";
             this.txtRNC.Size = new System.Drawing.Size(397, 38);
@@ -256,11 +258,33 @@
             this.txtRNC.Text = " -  -    -";
             this.txtRNC.Visible = false;
             // 
+            // txtUsername
+            // 
+            this.txtUsername.Location = new System.Drawing.Point(16, 318);
+            this.txtUsername.Margin = new System.Windows.Forms.Padding(4);
+            this.txtUsername.Name = "txtUsername";
+            this.txtUsername.Size = new System.Drawing.Size(623, 37);
+            this.txtUsername.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsername.TabIndex = 31;
+            // 
+            // kryptonLabel7
+            // 
+            this.kryptonLabel7.AutoSize = false;
+            this.kryptonLabel7.Location = new System.Drawing.Point(8, 280);
+            this.kryptonLabel7.Margin = new System.Windows.Forms.Padding(4);
+            this.kryptonLabel7.Name = "kryptonLabel7";
+            this.kryptonLabel7.Size = new System.Drawing.Size(200, 31);
+            this.kryptonLabel7.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel7.TabIndex = 30;
+            this.kryptonLabel7.Values.Text = "Nombre de Usuario:";
+            // 
             // CrearUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1077, 779);
+            this.Controls.Add(this.txtUsername);
+            this.Controls.Add(this.kryptonLabel7);
             this.Controls.Add(this.txtRNC);
             this.Controls.Add(this.txtPasaporte);
             this.Controls.Add(this.txtCedula);
@@ -280,7 +304,7 @@
             this.Controls.Add(this.kryptonLabel1);
             this.Controls.Add(this.kryptonPictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CrearUsuario";
             this.Text = "RTSCond: Crear Usuario";
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPictureBox1)).EndInit();
@@ -309,5 +333,7 @@
         private Krypton.Toolkit.KryptonMaskedTextBox txtCedula;
         private Krypton.Toolkit.KryptonMaskedTextBox txtPasaporte;
         private Krypton.Toolkit.KryptonMaskedTextBox txtRNC;
+        private Krypton.Toolkit.KryptonTextBox txtUsername;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel7;
     }
 }

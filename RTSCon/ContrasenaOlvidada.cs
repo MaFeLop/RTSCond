@@ -1,6 +1,7 @@
 ﻿using Krypton.Toolkit;
 using RTSCon.Negocios;
 using System;
+using System.Configuration;
 using System.Windows.Forms;
 
 namespace RTSCon
@@ -9,6 +10,7 @@ namespace RTSCon
     {
         private readonly NAuth _auth;
         private int _usuarioAuthId;
+        private bool _codigoValidado;
 
         public ContrasenaOlvidada()
         {
@@ -19,20 +21,25 @@ namespace RTSCon
         {
             _auth = auth ?? throw new ArgumentNullException(nameof(auth));
 
-            // === Configuración MaskedTextBox ===
             txtCodigo.Mask = "000000";
             txtCodigo.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             txtCodigo.PromptChar = ' ';
 
+            _usuarioAuthId = 0;
+            _codigoValidado = false;
+
+            txtCodigo.Visible = false;
+            kryptonLabel5.Visible = false;
+
             btnVerificar.Enabled = false;
             btnConfirmar.Enabled = false;
 
+            txtContrasena.Enabled = false;
+            txtContrasenaNueva.Enabled = false;
+
             txtCodigo.TextChanged += (s, e) =>
             {
-                bool completo = txtCodigo.MaskFull;
-                btnVerificar.Enabled = completo;
-                btnConfirmar.Enabled = completo;
-                this.AcceptButton = completo ? btnConfirmar : null;
+                btnVerificar.Enabled = txtCodigo.MaskFull;
             };
 
             txtCodigo.Validating += (s, e) =>
@@ -41,8 +48,6 @@ namespace RTSCon
                 {
                     txtCodigo.Clear();
                     btnVerificar.Enabled = false;
-                    btnConfirmar.Enabled = false;
-                    this.AcceptButton = null;
                 }
             };
 
@@ -66,7 +71,27 @@ namespace RTSCon
                 if (string.IsNullOrWhiteSpace(correo))
                     throw new InvalidOperationException("Ingrese el correo.");
 
-                _usuarioAuthId = _auth.EnviarCodigoRecuperacion(usuario, correo);
+                _usuarioAuthId = _auth.ObtenerUsuarioAuthIdPorUsuarioYCorreo(usuario, correo);
+
+                if (_usuarioAuthId <= 0)
+                    throw new InvalidOperationException("No existe un usuario activo con ese usuario y correo.");
+
+                string mailProfile = ConfigurationManager.AppSettings["MailProfile"];
+                int minutosExpira = int.TryParse(ConfigurationManager.AppSettings["CodigoMinutos"], out var m) ? m : 5;
+                bool debug = bool.TryParse(ConfigurationManager.AppSettings["CodigoDebug"], out var d) && d;
+
+                _auth.EnviarCodigoLogin(_usuarioAuthId, mailProfile, minutosExpira, debug);
+
+                _codigoValidado = false;
+
+                txtCodigo.Visible = true;
+                kryptonLabel5.Visible = true;
+                txtCodigo.Clear();
+                txtCodigo.Focus();
+
+                txtContrasena.Enabled = false;
+                txtContrasenaNueva.Enabled = false;
+                btnConfirmar.Enabled = false;
 
                 KryptonMessageBox.Show(
                     this,
@@ -75,8 +100,6 @@ namespace RTSCon
                     KryptonMessageBoxButtons.OK,
                     KryptonMessageBoxIcon.Information
                 );
-
-                txtCodigo.Focus();
             }
             catch (Exception ex)
             {
@@ -102,8 +125,21 @@ namespace RTSCon
 
                 string codigo = txtCodigo.Text.Trim();
 
-                if (!_auth.ValidarCodigoRecuperacion(_usuarioAuthId, codigo))
+                if (codigo.Length != 6)
+                    throw new InvalidOperationException("El código debe tener 6 dígitos.");
+
+                int maxIntentos = int.TryParse(ConfigurationManager.AppSettings["MaxIntentos2FA"], out var i) ? i : 5;
+
+                if (!_auth.VerificarCodigoLogin(_usuarioAuthId, codigo, maxIntentos))
                     throw new InvalidOperationException("Código inválido o expirado.");
+
+                _codigoValidado = true;
+
+                txtContrasena.Enabled = true;
+                txtContrasenaNueva.Enabled = true;
+                btnConfirmar.Enabled = true;
+
+                txtContrasena.Focus();
 
                 KryptonMessageBox.Show(
                     this,
@@ -112,8 +148,6 @@ namespace RTSCon
                     KryptonMessageBoxButtons.OK,
                     KryptonMessageBoxIcon.Information
                 );
-
-                txtContrasena.Focus();
             }
             catch (Exception ex)
             {
@@ -134,26 +168,50 @@ namespace RTSCon
         {
             try
             {
-                if (txtContrasena.Text != txtContrasenaNueva.Text)
-                    throw new Exception("Las contraseñas no coinciden.");
+                if (_usuarioAuthId <= 0)
+                    throw new InvalidOperationException("Usuario inválido.");
 
-                int usuarioId = UserContext.UsuarioAuthId;
+                if (!_codigoValidado)
+                    throw new InvalidOperationException("Primero valide el código.");
 
-                _auth.CambiarPasswordPlain(
-                    usuarioId,
-                    txtContrasenaNueva.Text.Trim(),
-                    SessionHelper.Usuario
+                string nueva = txtContrasena.Text.Trim();
+                string confirmar = txtContrasenaNueva.Text.Trim();
+
+                if (string.IsNullOrWhiteSpace(nueva))
+                    throw new InvalidOperationException("Ingrese la nueva contraseña.");
+
+                if (nueva != confirmar)
+                    throw new InvalidOperationException("Las contraseñas no coinciden.");
+
+                string editor = txtUsuario.Text.Trim();
+
+                _auth.CambiarPasswordPlain(_usuarioAuthId, nueva, editor);
+
+                KryptonMessageBox.Show(
+                    this,
+                    "Contraseña actualizada correctamente.",
+                    "Recuperación",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Information
                 );
 
-                KryptonMessageBox.Show("Contraseña actualizada.");
                 Close();
             }
             catch (Exception ex)
             {
-                KryptonMessageBox.Show(ex.Message);
+                KryptonMessageBox.Show(
+                    this,
+                    ex.Message,
+                    "Recuperación",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Error
+                );
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e) => Close();
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

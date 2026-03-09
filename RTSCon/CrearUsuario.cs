@@ -35,6 +35,9 @@ namespace RTSCon
             txtRNC.VisibleChanged += Masked_ClearOnHide;
             txtPasaporte.VisibleChanged += Masked_ClearOnHide;
 
+            // Username NO debe comportarse como contraseña
+            txtUsername.PasswordChar = '\0';
+            txtUsername.UseSystemPasswordChar = false;
         }
 
         // ================= MODELO ROL =================
@@ -83,7 +86,8 @@ namespace RTSCon
                     return;
             }
 
-            cmbRol.SelectedIndex = 0;
+            if (cmbRol.Items.Count > 0)
+                cmbRol.SelectedIndex = 0;
         }
 
         // ================= DOCUMENTO =================
@@ -105,7 +109,7 @@ namespace RTSCon
                 txtRNC.Visible = txtRNC.Enabled = true;
                 txtRNC.Focus();
             }
-            else
+            else if (tipo.Equals("Pasaporte", StringComparison.OrdinalIgnoreCase))
             {
                 txtPasaporte.Visible = txtPasaporte.Enabled = true;
                 txtPasaporte.Focus();
@@ -118,14 +122,24 @@ namespace RTSCon
             try
             {
                 string nombreCompleto = txtNombreCompleto.Text.Trim();
+                string usuarioSistema = txtUsername.Text.Trim();
                 string correo = txtCorreo.Text.Trim();
                 string clave = txtContraseña.Text.Trim();
 
                 if (string.IsNullOrWhiteSpace(nombreCompleto))
                     throw new Exception("Ingrese el nombre completo.");
 
+                if (string.IsNullOrWhiteSpace(usuarioSistema))
+                    throw new Exception("Ingrese el nombre de usuario.");
+
+                if (usuarioSistema.Contains("@"))
+                    throw new Exception("El nombre de usuario no debe ser un correo.");
+
                 if (string.IsNullOrWhiteSpace(correo) || !correo.Contains("@"))
                     throw new Exception("Ingrese un correo válido.");
+
+                if (string.Equals(usuarioSistema, correo, StringComparison.OrdinalIgnoreCase))
+                    throw new Exception("El nombre de usuario no puede ser igual al correo.");
 
                 if (string.IsNullOrWhiteSpace(clave))
                     throw new Exception("Ingrese la contraseña.");
@@ -134,19 +148,15 @@ namespace RTSCon
                 if (rolItem == null)
                     throw new Exception("Seleccione un rol válido.");
 
-                // ⚠️ USUARIO REAL DEL SISTEMA
-                // ✔ El usuario DEBE SER el correo (único y estable)
-                string usuarioSistema = correo.ToLowerInvariant();
-
                 // Documento
                 string documento = "";
                 string tipoDoc = Convert.ToString(cmbDocumento.SelectedItem) ?? "";
 
-                if (tipoDoc.StartsWith("Ced"))
+                if (tipoDoc.StartsWith("Ced", StringComparison.OrdinalIgnoreCase))
                     documento = txtCedula.Text.Trim();
-                else if (tipoDoc == "RNC")
+                else if (tipoDoc.Equals("RNC", StringComparison.OrdinalIgnoreCase))
                     documento = txtRNC.Text.Trim();
-                else
+                else if (tipoDoc.Equals("Pasaporte", StringComparison.OrdinalIgnoreCase))
                     documento = txtPasaporte.Text.Trim();
 
                 if (string.IsNullOrWhiteSpace(documento))
@@ -188,65 +198,14 @@ namespace RTSCon
             Close();
         }
 
-        private void MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-            var txt = sender as MaskedTextBox;
-            if (txt == null) return;
-
-            if (!txt.MaskFull)
-                txt.Clear();
-        }
-
-        private void Masked_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            var txt = sender as MaskedTextBox;
-            if (txt == null) return;
-
-            if (!txt.MaskFull)
-                txt.Clear();
-        }
-
-        private void Masked_ForceClear(object sender, EventArgs e)
-        {
-            if (sender is MaskedTextBox txt)
-            {
-                txt.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-                txt.TextMaskFormat = MaskFormat.IncludeLiterals;
-
-                if (!txt.MaskCompleted)
-                {
-                    txt.Clear();
-                }
-
-            }
-        }
-
-        private void Masked_ForceClear_Visible(object sender, EventArgs e)
-        {
-            if (sender is MaskedTextBox txt)
-            {
-                if (!txt.Visible)
-                {
-                    txt.Clear();
-                }
-            }
-        }
-
         private void ConfigMasked(KryptonMaskedTextBox txt)
         {
-            // UX: cuando esté vacío, que NO se vean "_" ni prompts
             txt.PromptChar = ' ';
             txt.HidePromptOnLeave = true;
-
-            // Limpieza consistente
             txt.ResetOnPrompt = true;
             txt.ResetOnSpace = true;
             txt.SkipLiterals = true;
-
-            // Si copian/pegan o si haces Trim, te da solo caracteres reales
             txt.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-
-            // Opcional: evita sonidos
             txt.BeepOnError = false;
         }
 
@@ -264,7 +223,5 @@ namespace RTSCon
             if (sender is MaskedTextBox txt && !txt.Visible)
                 txt.Clear();
         }
-
-
     }
 }
