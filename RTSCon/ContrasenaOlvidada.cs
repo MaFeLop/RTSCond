@@ -62,8 +62,8 @@ namespace RTSCon
         {
             try
             {
-                string usuario = txtUsuario.Text.Trim();
-                string correo = txtCorreo.Text.Trim();
+                string usuario = (txtUsuario.Text ?? string.Empty).Trim();
+                string correo = (txtCorreo.Text ?? string.Empty).Trim();
 
                 if (string.IsNullOrWhiteSpace(usuario))
                     throw new InvalidOperationException("Ingrese el usuario.");
@@ -123,7 +123,7 @@ namespace RTSCon
                 if (_usuarioAuthId <= 0)
                     throw new InvalidOperationException("Primero envíe el código.");
 
-                string codigo = txtCodigo.Text.Trim();
+                string codigo = (txtCodigo.Text ?? string.Empty).Trim();
 
                 if (codigo.Length != 6)
                     throw new InvalidOperationException("El código debe tener 6 dígitos.");
@@ -174,8 +174,8 @@ namespace RTSCon
                 if (!_codigoValidado)
                     throw new InvalidOperationException("Primero valide el código.");
 
-                string nueva = txtContrasena.Text.Trim();
-                string confirmar = txtContrasenaNueva.Text.Trim();
+                string nueva = (txtContrasena.Text ?? string.Empty).Trim();
+                string confirmar = (txtContrasenaNueva.Text ?? string.Empty).Trim();
 
                 if (string.IsNullOrWhiteSpace(nueva))
                     throw new InvalidOperationException("Ingrese la nueva contraseña.");
@@ -183,7 +183,7 @@ namespace RTSCon
                 if (nueva != confirmar)
                     throw new InvalidOperationException("Las contraseñas no coinciden.");
 
-                string editor = txtUsuario.Text.Trim();
+                string editor = (txtUsuario.Text ?? string.Empty).Trim();
 
                 _auth.CambiarPasswordPlain(_usuarioAuthId, nueva, editor);
 

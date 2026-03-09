@@ -116,25 +116,24 @@ namespace RTSCon.Datos
         {
             using (var cn = new SqlConnection(_cn))
             using (var cmd = new SqlCommand(@"
-                SELECT ID_usr
-                FROM dbo.tbl_Usuario
-                WHERE usuario = @usuario
-                  AND correo = @correo
-                  AND estado = 'Activo';
-            ", cn))
+        SELECT TOP 1 ID_usr
+        FROM dbo.tbl_Usuario
+        WHERE LTRIM(RTRIM(usuario)) = LTRIM(RTRIM(@usuario))
+          AND LTRIM(RTRIM(correo)) = LTRIM(RTRIM(@correo))
+          AND UPPER(LTRIM(RTRIM(estado))) = 'ACTIVO';
+    ", cn))
             {
                 cmd.CommandType = CommandType.Text;
 
-                cmd.Parameters.Add("@usuario", SqlDbType.VarChar, 60).Value = usuario;
-                cmd.Parameters.Add("@correo", SqlDbType.VarChar, 256).Value = correo;
+                cmd.Parameters.Add("@usuario", SqlDbType.VarChar, 60).Value = (usuario ?? "").Trim();
+                cmd.Parameters.Add("@correo", SqlDbType.VarChar, 256).Value = (correo ?? "").Trim();
 
                 cn.Open();
 
                 object result = cmd.ExecuteScalar();
-                if (result == null || result == DBNull.Value)
-                    return 0;
-
-                return Convert.ToInt32(result);
+                return (result == null || result == DBNull.Value)
+                    ? 0
+                    : Convert.ToInt32(result);
             }
         }
 
