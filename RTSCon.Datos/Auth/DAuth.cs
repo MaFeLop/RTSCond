@@ -93,18 +93,16 @@ namespace RTSCon.Datos
         public int ObtenerIdRol(string nombreRol)
         {
             using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand(@"
-                SELECT TOP 1 ID_rol
-                FROM dbo.tbl_Rol
-                WHERE UPPER(LTRIM(RTRIM(nombre))) = UPPER(LTRIM(RTRIM(@nombre)));
-            ", cn))
+            using (var cmd = new SqlCommand("dbo.sp_rol_obtener_id_por_nombre", cn))
             {
-                cmd.CommandType = CommandType.Text;
+                cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.Add("@nombre", SqlDbType.NVarChar, 100).Value = nombreRol ?? "";
 
                 cn.Open();
 
                 object result = cmd.ExecuteScalar();
+
                 return (result == null || result == DBNull.Value)
                     ? 0
                     : Convert.ToInt32(result);
@@ -115,15 +113,9 @@ namespace RTSCon.Datos
         public int ObtenerUsuarioAuthIdPorUsuarioYCorreo(string usuario, string correo)
         {
             using (var cn = new SqlConnection(_cn))
-            using (var cmd = new SqlCommand(@"
-        SELECT TOP 1 ID_usr
-        FROM dbo.tbl_Usuario
-        WHERE LTRIM(RTRIM(usuario)) = LTRIM(RTRIM(@usuario))
-          AND LTRIM(RTRIM(correo)) = LTRIM(RTRIM(@correo))
-          AND UPPER(LTRIM(RTRIM(estado))) = 'ACTIVO';
-    ", cn))
+            using (var cmd = new SqlCommand("dbo.sp_usuario_obtener_id_por_usuario_correo", cn))
             {
-                cmd.CommandType = CommandType.Text;
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.Add("@usuario", SqlDbType.VarChar, 60).Value = (usuario ?? "").Trim();
                 cmd.Parameters.Add("@correo", SqlDbType.VarChar, 256).Value = (correo ?? "").Trim();
@@ -131,6 +123,7 @@ namespace RTSCon.Datos
                 cn.Open();
 
                 object result = cmd.ExecuteScalar();
+
                 return (result == null || result == DBNull.Value)
                     ? 0
                     : Convert.ToInt32(result);
@@ -165,12 +158,17 @@ namespace RTSCon.Datos
                 cmd.Parameters.Add("@Codigo", SqlDbType.NVarChar, 6).Value = codigo;
                 cmd.Parameters.Add("@MaxIntentos", SqlDbType.Int).Value = maxIntentos;
 
-                cn.Open();
+                var returnParam = cmd.Parameters.Add("@RETURN_VALUE", SqlDbType.Int);
+                returnParam.Direction = ParameterDirection.ReturnValue;
 
-                object result = cmd.ExecuteScalar();
-                return result != null
-                    && result != DBNull.Value
-                    && Convert.ToInt32(result) == 1;
+                cn.Open();
+                cmd.ExecuteNonQuery();
+
+                int retorno = (returnParam.Value == DBNull.Value)
+                    ? -999
+                    : Convert.ToInt32(returnParam.Value);
+
+                return retorno == 1;
             }
         }
 
