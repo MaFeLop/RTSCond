@@ -1,4 +1,5 @@
 ﻿using Krypton.Toolkit;
+using RTSCon.Catalogos;
 using RTSCon.Datos;
 using RTSCon.Negocios;
 using System;
@@ -12,301 +13,286 @@ namespace RTSCon.Catalogos.Condominio
     public partial class CrearCondominio : KryptonForm
     {
         private readonly NCondominio _neg;
-        private int? _propietarioId; // se envía al SP como @ID_propietario
+        private int? _propietarioId;
 
         public CrearCondominio()
         {
             InitializeComponent();
-            var cn = ConfigurationManager.ConnectionStrings["RTSCond"].ConnectionString;
+
+            var cn = ConfigurationManager.ConnectionStrings["RTSCond"]?.ConnectionString;
+            if (string.IsNullOrWhiteSpace(cn))
+                throw new InvalidOperationException("No se encontró la cadena de conexión 'RTSCond'.");
+
             _neg = new NCondominio(new DCondominio(cn));
 
-            this.Shown += (s, e) => InitUi();
+            Shown += (s, e) => InitUi();
 
-            var btnOk = FindCtrl<KryptonButton>("btnConfirmar", "btnGuardar", "btnOk");
-            var btnBack = FindCtrl<KryptonButton>("btnVolver", "btnCancelar", "btnBack");
-            if (btnOk != null) btnOk.Click += btnConfirmar_Click;
-            if (btnBack != null) btnBack.Click += (s, e) => Close();
+            if (btnConfirmar != null)
+                btnConfirmar.Click += btnConfirmar_Click;
 
-            // hookup del botón de búsqueda (si existe)
-            var btnBuscarProp = FindCtrl<KryptonButton>("btnBuscarPropietario", "btnSelPropietario");
-            if (btnBuscarProp != null) btnBuscarProp.Click += btnBuscarPropietario_Click;
+            if (btnVolver != null)
+                btnVolver.Click += (s, e) => Close();
+
+            if (btnBuscarPropietario != null)
+                btnBuscarPropietario.Click += btnBuscarPropietario_Click;
         }
 
-        // ---------- helpers ----------
+        // =========================
+        // Helpers de controles reales
+        // =========================
+
+        private KryptonTextBox TxtNombre => txtBuscar;
+        private KryptonTextBox TxtDireccion => kryptonTextBox1;
+        private KryptonTextBox TxtPropietario => kryptonTextBox2;
+        private KryptonTextBox TxtIdPropietario => txtIdPropietario;
+        private KryptonTextBox TxtCorreoNotif => txtCorreo;
+        private KryptonTextBox TxtCuota => txtMantenimiento;
+        private ComboBox CboTipo => cmbTipoCond;
+        private DateTimePicker DtpFecha => dtpFechaConstitucion;
+        private KryptonCheckBox ChkNotifProp => chkNotificarPropietario;
+
         private T FindCtrl<T>(params string[] names) where T : Control
         {
             foreach (var n in names)
             {
-                var c = this.Controls.Find(n, true).FirstOrDefault() as T;
+                var c = Controls.Find(n, true).FirstOrDefault() as T;
                 if (c != null) return c;
             }
             return null;
         }
-        private string GetText(params string[] names)
+
+        private void SetKeyPressNumeric(TextBoxBase tb)
         {
-            var c = FindCtrl<Control>(names);
-            return c?.Text?.Trim() ?? "";
-        }
-        private void SetText(string value, params string[] names)
-        {
-            var c = FindCtrl<Control>(names);
-            if (c != null) c.Text = value ?? "";
-        }
-        private void SetKeyPressNumeric(params string[] names)
-        {
-            var c = FindCtrl<TextBoxBase>(names);
-            if (c == null) return;
-            c.KeyPress += (s, e) =>
+            if (tb == null) return;
+
+            tb.KeyPress += (s, e) =>
             {
                 char dec = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != dec)
+
+                if (!char.IsControl(e.KeyChar) &&
+                    !char.IsDigit(e.KeyChar) &&
+                    e.KeyChar != dec)
+                {
                     e.Handled = true;
-                if (e.KeyChar == dec && ((TextBoxBase)s).Text.Contains(dec))
+                }
+
+                if (e.KeyChar == dec && tb.Text.Contains(dec))
+                {
                     e.Handled = true;
+                }
             };
         }
-        // -----------------------------
+
+        private bool EsPropietarioActual()
+        {
+            return !string.IsNullOrWhiteSpace(UserContext.Rol) &&
+                   UserContext.Rol.Equals("Propietario", StringComparison.OrdinalIgnoreCase);
+        }
+
+        // =========================
+        // Inicialización
+        // =========================
 
         private void InitUi()
         {
-            // tipo
-            var cboTipo = FindCtrl<ComboBox>("cmbTipoCond", "cboTipo", "cboTipoCondominio");
-            if (cboTipo != null && cboTipo.Items.Count == 0)
+            if (CboTipo != null && CboTipo.Items.Count == 0)
             {
-                cboTipo.Items.AddRange(new object[] { "Residencial", "Comercial", "Mixto" });
-                cboTipo.SelectedIndex = 0;
+                CboTipo.Items.AddRange(new object[]
+                {
+                    "Residencial",
+                    "Comercial",
+                    "Mixto"
+                });
             }
 
-            // fecha hoy
-            var dtp = FindCtrl<DateTimePicker>("dtpFechaConstitucion", "dtpFechaConst");
-            if (dtp != null) dtp.Value = DateTime.Today;
+            if (CboTipo != null && CboTipo.SelectedIndex < 0 && CboTipo.Items.Count > 0)
+                CboTipo.SelectedIndex = 0;
 
-            // numérico en cuota
-            SetKeyPressNumeric("txtCuotaBase", "txtMantenimientoBase", "txtCuota");
+            if (DtpFecha != null)
+                DtpFecha.Value = DateTime.Today;
 
-            // ===== Admin = Propietario =====
-            // Si el usuario actual es Admin o Propietario, precargamos su info
-            if (UserContext.EsPropietarioActual)
+            SetKeyPressNumeric(TxtCuota);
+
+            if (TxtPropietario != null)
+                TxtPropietario.ReadOnly = true;
+
+            if (TxtIdPropietario != null)
+                TxtIdPropietario.ReadOnly = true;
+
+            if (EsPropietarioActual())
             {
                 _propietarioId = UserContext.UsuarioAuthId;
-                SetText(UserContext.Usuario, "txtPropietarioResponsable", "txtAdministrador", "txtAdministradorResponsable");
 
-                var btnBuscarProp = FindCtrl<KryptonButton>("btnBuscarPropietario", "btnSelPropietario");
-                if (btnBuscarProp != null) btnBuscarProp.Enabled = true; // permitir cambio si lo desea
+                if (TxtPropietario != null)
+                    TxtPropietario.Text = UserContext.Usuario ?? string.Empty;
+
+                if (TxtIdPropietario != null)
+                    TxtIdPropietario.Text = UserContext.UsuarioAuthId.ToString();
+
+                if (btnBuscarPropietario != null)
+                    btnBuscarPropietario.Enabled = true;
             }
         }
+
+        // =========================
+        // Buscar propietario
+        // =========================
 
         private void btnBuscarPropietario_Click(object sender, EventArgs e)
         {
-            using (var f = new BuscarPropietario())
+            try
             {
-                if (f.ShowDialog(this) == DialogResult.OK)
+                using (var f = new BuscarPropietario())
                 {
+                    if (f.ShowDialog(this) != DialogResult.OK)
+                        return;
+
                     _propietarioId = f.SelectedId;
-                    SetText(f.SelectedUsuario, "txtPropietarioResponsable", "txtAdministrador", "txtAdministradorResponsable");
-                    // si quieres, también muestra el correo en un label/readonly
-                    SetText(f.SelectedCorreo, "txtCorreoNotif", "txtCorreoNotificaciones", "txtCorreo");
+
+                    if (TxtPropietario != null)
+                        TxtPropietario.Text = f.SelectedUsuario ?? string.Empty;
+
+                    if (TxtIdPropietario != null)
+                        TxtIdPropietario.Text = f.SelectedId > 0 ? f.SelectedId.ToString() : string.Empty;
+
+                    if (TxtCorreoNotif != null &&
+                        string.IsNullOrWhiteSpace(TxtCorreoNotif.Text) &&
+                        !string.IsNullOrWhiteSpace(f.SelectedCorreo))
+                    {
+                        TxtCorreoNotif.Text = f.SelectedCorreo;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                KryptonMessageBox.Show(
+                    this,
+                    "Error al seleccionar propietario: " + ex.Message,
+                    "Crear Condominio",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Error);
+            }
         }
+
+        // =========================
+        // Guardar
+        // =========================
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             try
             {
-                var txtNombre = GetText("txtNombreCondominio", "txtNombre");
-                var txtDireccion = GetText("txtDireccionCondominio", "txtDireccion");
-                var cboTipo = FindCtrl<ComboBox>("cmbTipoCond", "cboTipo", "cboTipoCondominio");
-                var txtAdmin = GetText("txtPropietarioResponsable", "txtAdministrador", "txtAdministradorResponsable");
-                var txtCorreo = GetText("txtCorreoNotif", "txtCorreoNotificaciones", "txtCorreo");
-                var txtCuota = GetText("txtCuotaBase", "txtMantenimientoBase", "txtCuota");
-                var dtp = FindCtrl<DateTimePicker>("dtpFechaConstitucion", "dtpFechaConst");
-                var chkNotifProp = FindCtrl<KryptonCheckBox>("chkNotificarPropietario", "chkEnviarNotifsPropietario", "chkEnviarNotificaciones");
+                string nombre = TxtNombre?.Text?.Trim() ?? string.Empty;
+                string direccion = TxtDireccion?.Text?.Trim() ?? string.Empty;
+                string tipo = CboTipo?.SelectedItem?.ToString()?.Trim() ?? string.Empty;
+                string adminResp = TxtPropietario?.Text?.Trim() ?? string.Empty;
+                string correo = TxtCorreoNotif?.Text?.Trim() ?? string.Empty;
+                string cuotaTexto = TxtCuota?.Text?.Trim() ?? string.Empty;
+                DateTime fechaConst = DtpFecha?.Value.Date ?? DateTime.Today;
+                bool enviarNotifProp = ChkNotifProp?.Checked ?? false;
 
-                if (string.IsNullOrWhiteSpace(txtNombre)) throw new InvalidOperationException("Ingrese el nombre del condominio.");
-                if (string.IsNullOrWhiteSpace(txtDireccion)) throw new InvalidOperationException("Ingrese la dirección del condominio.");
-                if (cboTipo == null || string.IsNullOrWhiteSpace(Convert.ToString(cboTipo.SelectedItem)))
+                if (string.IsNullOrWhiteSpace(nombre))
+                    throw new InvalidOperationException("Ingrese el nombre del condominio.");
+
+                if (string.IsNullOrWhiteSpace(direccion))
+                    throw new InvalidOperationException("Ingrese la dirección del condominio.");
+
+                if (string.IsNullOrWhiteSpace(tipo))
                     throw new InvalidOperationException("Seleccione el tipo de condominio.");
-                if (string.IsNullOrWhiteSpace(txtAdmin)) throw new InvalidOperationException("Ingrese el propietario responsable.");
-                if (dtp == null) throw new InvalidOperationException("Seleccione la fecha de constitución.");
-                if (!decimal.TryParse(txtCuota, NumberStyles.Number, CultureInfo.CurrentCulture, out var cuota) || cuota < 0)
+
+                if (string.IsNullOrWhiteSpace(adminResp))
+                    throw new InvalidOperationException("Seleccione el propietario responsable.");
+
+                if (_propietarioId == null || _propietarioId <= 0)
+                {
+                    if (EsPropietarioActual())
+                        _propietarioId = UserContext.UsuarioAuthId;
+                    else
+                        throw new InvalidOperationException("Debe seleccionar un propietario válido.");
+                }
+
+                if (!decimal.TryParse(cuotaTexto, NumberStyles.Number, CultureInfo.CurrentCulture, out decimal cuotaBase) || cuotaBase < 0)
                     throw new InvalidOperationException("Cuota de mantenimiento inválida.");
-                if (string.IsNullOrWhiteSpace(txtCorreo) || !txtCorreo.Contains("@"))
+
+                if (string.IsNullOrWhiteSpace(correo) || !correo.Contains("@"))
                     throw new InvalidOperationException("Correo de notificaciones inválido.");
-
-                // ===== idPropietario al SP =====
-                // Si no se eligió manualmente y el usuario actual es Admin/Propietario, usamos su Id.
-                if (_propietarioId == null && UserContext.EsPropietarioActual)
-                    _propietarioId = UserContext.UsuarioAuthId;
-
-                string nombre = txtNombre;
-                string direccion = txtDireccion;
-                string tipo = Convert.ToString(cboTipo.SelectedItem);
-                string adminResp = txtAdmin;
-                DateTime fechaConst = dtp.Value.Date;
-                decimal cuotaBase = cuota;
-                string emailNotif = txtCorreo;
-                bool enviarNotifProp = chkNotifProp?.Checked ?? false;
 
                 int? reglamentoDocId = null;
                 int? idPropietario = _propietarioId;
-                int? idSec1 = null, idSec2 = null, idSec3 = null;
+                int? idSec1 = null;
+                int? idSec2 = null;
+                int? idSec3 = null;
 
                 string creador = ConfigurationManager.AppSettings["DefaultEjecutor"] ?? "rtscon@local";
 
                 int nuevoId = _neg.Insertar(
-                    nombre, direccion, tipo, adminResp,
-                    fechaConst, cuotaBase,
-                    emailNotif, enviarNotifProp,
-                    reglamentoDocId, idPropietario, idSec1, idSec2, idSec3,
-                    creador);
+                    nombre,
+                    direccion,
+                    tipo,
+                    adminResp,
+                    fechaConst,
+                    cuotaBase,
+                    correo,
+                    enviarNotifProp,
+                    reglamentoDocId,
+                    idPropietario,
+                    idSec1,
+                    idSec2,
+                    idSec3,
+                    creador
+                );
 
-                KryptonMessageBox.Show(this, $"Condominio creado (Id {nuevoId}).",
-                    "Crear Condominio", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information);
+                KryptonMessageBox.Show(
+                    this,
+                    $"Condominio creado correctamente (Id {nuevoId}).",
+                    "Crear Condominio",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Information);
 
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception ex)
             {
-                KryptonMessageBox.Show(this, ex.Message,
-                    "Crear Condominio", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error);
+                KryptonMessageBox.Show(
+                    this,
+                    ex.Message,
+                    "Crear Condominio",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Error);
             }
         }
 
-        private void CrearCondominio_Load(object sender, EventArgs e)
-        {
+        // =========================
+        // Eventos vacíos del diseñador
+        // =========================
 
-        }
-
-        private void txtAdministrador_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void kryptonTextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtpFechaConstitucion_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnVolver_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtSecretario3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtSecretario2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cmbTipoCond_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtIdPropietario_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtSecretario1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void chkNotificarPropietario_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtCorreo_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtMantenimiento_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void kryptonTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtBuscar_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void kryptonLabel1_Click(object sender, EventArgs e)
-        {
-
-        }
+        private void CrearCondominio_Load(object sender, EventArgs e) { }
+        private void txtAdministrador_Click(object sender, EventArgs e) { }
+        private void kryptonTextBox2_TextChanged(object sender, EventArgs e) { }
+        private void dtpFechaConstitucion_ValueChanged(object sender, EventArgs e) { }
+        private void btnVolver_Click(object sender, EventArgs e) { }
+        private void label10_Click(object sender, EventArgs e) { }
+        private void txtSecretario3_TextChanged(object sender, EventArgs e) { }
+        private void label9_Click(object sender, EventArgs e) { }
+        private void txtSecretario2_TextChanged(object sender, EventArgs e) { }
+        private void label8_Click(object sender, EventArgs e) { }
+        private void cmbTipoCond_SelectedIndexChanged(object sender, EventArgs e) { }
+        private void label4_Click(object sender, EventArgs e) { }
+        private void label3_Click(object sender, EventArgs e) { }
+        private void txtIdPropietario_TextChanged(object sender, EventArgs e) { }
+        private void txtSecretario1_TextChanged(object sender, EventArgs e) { }
+        private void chkNotificarPropietario_CheckedChanged(object sender, EventArgs e) { }
+        private void label13_Click(object sender, EventArgs e) { }
+        private void txtCorreo_TextChanged(object sender, EventArgs e) { }
+        private void label11_Click(object sender, EventArgs e) { }
+        private void txtMantenimiento_TextChanged(object sender, EventArgs e) { }
+        private void label7_Click(object sender, EventArgs e) { }
+        private void label12_Click(object sender, EventArgs e) { }
+        private void label1_Click(object sender, EventArgs e) { }
+        private void kryptonTextBox1_TextChanged(object sender, EventArgs e) { }
+        private void label2_Click(object sender, EventArgs e) { }
+        private void txtBuscar_TextChanged(object sender, EventArgs e) { }
+        private void kryptonLabel1_Click(object sender, EventArgs e) { }
     }
 }

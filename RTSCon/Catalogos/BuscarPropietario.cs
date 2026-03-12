@@ -1,36 +1,56 @@
 ﻿using Krypton.Toolkit;
+using RTSCon.Datos;
+using RTSCon.Negocios;
 using System;
+using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace RTSCon.Catalogos // ✅ IMPORTANTE: mismo namespace que estás usando en CrearCondominio / UpdatePropiedad
+namespace RTSCon.Catalogos
 {
     public partial class BuscarPropietario : KryptonForm
     {
         // ===== Contrato esperado por otras pantallas =====
         public int SelectedId => PropietarioIdSeleccionado;
-        public string SelectedUsuario { get; private set; } = "";
-        public string SelectedCorreo { get; private set; } = "";
+        public string SelectedUsuario { get; private set; } = string.Empty;
+        public string SelectedCorreo { get; private set; } = string.Empty;
 
         // ===== Contrato interno =====
         public int PropietarioIdSeleccionado { get; private set; }
 
         private const string COL_SEL = "__sel";
+
+        private readonly NCondominio _negocio;
         private DataTable _dt;
 
         public BuscarPropietario()
+            : this(null)
+        {
+        }
+
+        public BuscarPropietario(NCondominio negocio)
         {
             InitializeComponent();
 
-            this.Load += BuscarPropietario_Load;
+            _negocio = negocio ?? CrearNegocioDesdeConfig();
 
-            if (btnConfirmar != null) btnConfirmar.Click += btnConfirmar_Click;
-            if (btnCancelar != null) btnCancelar.Click += (s, e) => { DialogResult = DialogResult.Cancel; Close(); };
+            Load += BuscarPropietario_Load;
+
+            if (btnConfirmar != null)
+                btnConfirmar.Click += btnConfirmar_Click;
+
+            if (btnCancelar != null)
+                btnCancelar.Click += (s, e) =>
+                {
+                    DialogResult = DialogResult.Cancel;
+                    Close();
+                };
 
             if (txtBuscar != null)
             {
-                txtBuscar.TextChanged += (_, __) => Cargar();
+                txtBuscar.TextChanged += (s, e) => Cargar();
+
                 txtBuscar.KeyDown += (s, e) =>
                 {
                     if (e.KeyCode == Keys.Enter)
@@ -46,14 +66,12 @@ namespace RTSCon.Catalogos // ✅ IMPORTANTE: mismo namespace que estás usando 
                 dgvPropietario.AutoGenerateColumns = true;
                 dgvPropietario.MultiSelect = false;
                 dgvPropietario.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                dgvPropietario.AllowUserToAddRows = false;
+                dgvPropietario.ReadOnly = false;
 
-                dgvPropietario.CurrentCellDirtyStateChanged += (s, e) =>
-                {
-                    if (dgvPropietario.IsCurrentCellDirty)
-                        dgvPropietario.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                };
-
-                dgvPropietario.CellContentClick += Dgv_CellContentClick;
+                dgvPropietario.CurrentCellDirtyStateChanged += dgvPropietario_CurrentCellDirtyStateChanged;
+                dgvPropietario.CellValueChanged += dgvPropietario_CellValueChanged;
+                dgvPropietario.CellClick += dgvPropietario_CellClick;
             }
         }
 
@@ -63,15 +81,61 @@ namespace RTSCon.Catalogos // ✅ IMPORTANTE: mismo namespace que estás usando 
             Cargar();
         }
 
+        private static NCondominio CrearNegocioDesdeConfig()
+        {
+            var cs = ObtenerConnectionString();
+            if (string.IsNullOrWhiteSpace(cs))
+            {
+                throw new InvalidOperationException(
+                    "No se encontró una cadena de conexión válida para cargar propietarios.");
+            }
+
+            return new NCondominio(new DCondominio(cs));
+        }
+
+        private static string ObtenerConnectionString()
+        {
+            var config = ConfigurationManager.ConnectionStrings;
+            if (config == null || config.Count == 0)
+                return null;
+
+            string[] nombresPreferidos =
+            {
+                "cn",
+                "conexion",
+                "RTSCon",
+                "RTSConConnectionString",
+                "DefaultConnection"
+            };
+
+            foreach (var nombre in nombresPreferidos)
+            {
+                var item = config[nombre];
+                if (item != null && !string.IsNullOrWhiteSpace(item.ConnectionString))
+                    return item.ConnectionString;
+            }
+
+            foreach (ConnectionStringSettings item in config)
+            {
+                if (!string.IsNullOrWhiteSpace(item.ConnectionString))
+                    return item.ConnectionString;
+            }
+
+            return null;
+        }
+
         private void EnsureSelectionColumn()
         {
-            if (dgvPropietario == null) return;
-            if (dgvPropietario.Columns.Contains(COL_SEL)) return;
+            if (dgvPropietario == null)
+                return;
+
+            if (dgvPropietario.Columns.Contains(COL_SEL))
+                return;
 
             var col = new DataGridViewCheckBoxColumn
             {
                 Name = COL_SEL,
-                HeaderText = "",
+                HeaderText = string.Empty,
                 Width = 28,
                 ReadOnly = false
             };
@@ -83,72 +147,161 @@ namespace RTSCon.Catalogos // ✅ IMPORTANTE: mismo namespace que estás usando 
         {
             try
             {
-                string filtro = txtBuscar?.Text?.Trim() ?? "";
+                string filtro = txtBuscar != null
+                    ? (txtBuscar.Text ?? string.Empty).Trim()
+                    : string.Empty;
 
-                // TODO: aquí conectas tu negocio real, ejemplo:
-                // _dt = _nPropietario.Buscar(filtro, soloActivos:true, top:50);
+                _dt = _negocio.BuscarPropietarios(filtro, true, 50);
 
-                _dt = new DataTable(); // placeholder seguro mientras conectas
-
+                dgvPropietario.DataSource = null;
                 dgvPropietario.DataSource = _dt;
 
-                bool hay = _dt != null && _dt.Rows.Count > 0;
-                if (lblNoHay != null) lblNoHay.Visible = !hay;
-                if (btnConfirmar != null) btnConfirmar.Enabled = hay;
+                EnsureSelectionColumn();
+                LimpiarChecks();
 
-                // limpiar checks
-                if (dgvPropietario.Columns.Contains(COL_SEL))
-                {
-                    foreach (DataGridViewRow r in dgvPropietario.Rows)
-                    {
-                        if (r.IsNewRow) continue;
-                        r.Cells[COL_SEL].Value = false;
-                    }
-                }
+                AjustarColumnas();
+
+                bool hay = _dt != null && _dt.Rows.Count > 0;
+
+                if (lblNoHay != null)
+                    lblNoHay.Visible = !hay;
+
+                if (btnConfirmar != null)
+                    btnConfirmar.Enabled = hay;
             }
             catch (Exception ex)
             {
-                KryptonMessageBox.Show(this,
+                KryptonMessageBox.Show(
+                    this,
                     "Error al cargar propietarios: " + ex.Message,
                     "Buscar Propietario",
                     KryptonMessageBoxButtons.OK,
                     KryptonMessageBoxIcon.Error);
 
-                if (btnConfirmar != null) btnConfirmar.Enabled = false;
-                if (lblNoHay != null) lblNoHay.Visible = true;
+                if (dgvPropietario != null)
+                    dgvPropietario.DataSource = null;
+
+                if (btnConfirmar != null)
+                    btnConfirmar.Enabled = false;
+
+                if (lblNoHay != null)
+                    lblNoHay.Visible = true;
             }
         }
 
-        private void Dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void AjustarColumnas()
         {
-            if (dgvPropietario == null) return;
-            if (e.RowIndex < 0) return;
-            if (dgvPropietario.Columns[e.ColumnIndex].Name != COL_SEL) return;
+            if (dgvPropietario == null)
+                return;
+
+            if (dgvPropietario.Columns.Contains(COL_SEL))
+            {
+                dgvPropietario.Columns[COL_SEL].DisplayIndex = 0;
+                dgvPropietario.Columns[COL_SEL].Width = 28;
+            }
+
+            if (dgvPropietario.Columns.Contains("Id"))
+                dgvPropietario.Columns["Id"].Visible = false;
+
+            if (dgvPropietario.Columns.Contains("ID_usr"))
+                dgvPropietario.Columns["ID_usr"].Visible = false;
+
+            if (dgvPropietario.Columns.Contains("ID_propietario"))
+                dgvPropietario.Columns["ID_propietario"].Visible = false;
+
+            dgvPropietario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+
+        private void LimpiarChecks()
+        {
+            if (dgvPropietario == null || !dgvPropietario.Columns.Contains(COL_SEL))
+                return;
+
+            foreach (DataGridViewRow row in dgvPropietario.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                row.Cells[COL_SEL].Value = false;
+            }
+        }
+
+        private void dgvPropietario_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dgvPropietario == null)
+                return;
+
+            if (dgvPropietario.IsCurrentCellDirty)
+                dgvPropietario.CommitEdit(DataGridViewDataErrorContexts.Commit);
+        }
+
+        private void dgvPropietario_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvPropietario == null)
+                return;
+
+            if (e.RowIndex < 0)
+                return;
+
+            if (!dgvPropietario.Columns.Contains(COL_SEL))
+                return;
+
+            if (e.ColumnIndex != dgvPropietario.Columns[COL_SEL].Index)
+                return;
+
+            var celda = dgvPropietario.Rows[e.RowIndex].Cells[COL_SEL];
+            bool actual = Convert.ToBoolean(celda.Value ?? false);
+            celda.Value = !actual;
+        }
+
+        private void dgvPropietario_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvPropietario == null)
+                return;
+
+            if (e.RowIndex < 0)
+                return;
+
+            if (!dgvPropietario.Columns.Contains(COL_SEL))
+                return;
+
+            if (e.ColumnIndex != dgvPropietario.Columns[COL_SEL].Index)
+                return;
 
             bool marcado = Convert.ToBoolean(dgvPropietario.Rows[e.RowIndex].Cells[COL_SEL].Value ?? false);
-            if (marcado)
+
+            if (!marcado)
+                return;
+
+            for (int i = 0; i < dgvPropietario.Rows.Count; i++)
             {
-                for (int i = 0; i < dgvPropietario.Rows.Count; i++)
-                {
-                    if (i == e.RowIndex) continue;
-                    if (dgvPropietario.Rows[i].IsNewRow) continue;
-                    dgvPropietario.Rows[i].Cells[COL_SEL].Value = false;
-                }
+                if (i == e.RowIndex)
+                    continue;
+
+                if (dgvPropietario.Rows[i].IsNewRow)
+                    continue;
+
+                dgvPropietario.Rows[i].Cells[COL_SEL].Value = false;
             }
         }
 
         private DataRowView GetMarcado()
         {
-            if (dgvPropietario == null) return null;
+            if (dgvPropietario == null || !dgvPropietario.Columns.Contains(COL_SEL))
+                return null;
 
-            foreach (DataGridViewRow r in dgvPropietario.Rows)
+            foreach (DataGridViewRow row in dgvPropietario.Rows)
             {
-                if (r.IsNewRow) continue;
-                bool marcado = Convert.ToBoolean(r.Cells[COL_SEL].Value ?? false);
-                if (!marcado) continue;
+                if (row.IsNewRow)
+                    continue;
 
-                return r.DataBoundItem as DataRowView;
+                bool marcado = Convert.ToBoolean(row.Cells[COL_SEL].Value ?? false);
+                if (!marcado)
+                    continue;
+
+                return row.DataBoundItem as DataRowView;
             }
+
             return null;
         }
 
@@ -156,7 +309,8 @@ namespace RTSCon.Catalogos // ✅ IMPORTANTE: mismo namespace que estás usando 
         {
             if (_dt == null || _dt.Rows.Count == 0)
             {
-                KryptonMessageBox.Show(this,
+                KryptonMessageBox.Show(
+                    this,
                     "No hay propietarios para seleccionar.",
                     "Buscar Propietario",
                     KryptonMessageBoxButtons.OK,
@@ -167,7 +321,8 @@ namespace RTSCon.Catalogos // ✅ IMPORTANTE: mismo namespace que estás usando 
             var rv = GetMarcado();
             if (rv == null)
             {
-                KryptonMessageBox.Show(this,
+                KryptonMessageBox.Show(
+                    this,
                     "Marque un propietario (checkbox) para confirmar.",
                     "Buscar Propietario",
                     KryptonMessageBoxButtons.OK,
@@ -175,9 +330,10 @@ namespace RTSCon.Catalogos // ✅ IMPORTANTE: mismo namespace que estás usando 
                 return;
             }
 
-            if (!rv.Row.Table.Columns.Contains("Id") || rv["Id"] == DBNull.Value)
+            if (!rv.Row.Table.Columns.Contains("Id") || rv["Id"] == DBNull.Value || string.IsNullOrWhiteSpace(Convert.ToString(rv["Id"])))
             {
-                KryptonMessageBox.Show(this,
+                KryptonMessageBox.Show(
+                    this,
                     "No se pudo obtener el Id del propietario.",
                     "Buscar Propietario",
                     KryptonMessageBoxButtons.OK,
@@ -185,22 +341,19 @@ namespace RTSCon.Catalogos // ✅ IMPORTANTE: mismo namespace que estás usando 
                 return;
             }
 
-            // ===== devolver datos a pantallas llamadoras =====
             PropietarioIdSeleccionado = Convert.ToInt32(rv["Id"]);
 
-            // Usuario / Nombre (tolerante a nombres de columna)
             SelectedUsuario =
                 rv.Row.Table.Columns.Contains("Usuario") ? Convert.ToString(rv["Usuario"]) :
                 rv.Row.Table.Columns.Contains("Nombre") ? Convert.ToString(rv["Nombre"]) :
                 rv.Row.Table.Columns.Contains("NombreCompleto") ? Convert.ToString(rv["NombreCompleto"]) :
-                "";
+                string.Empty;
 
-            // Correo / Email (tolerante a nombres de columna)
             SelectedCorreo =
                 rv.Row.Table.Columns.Contains("Correo") ? Convert.ToString(rv["Correo"]) :
                 rv.Row.Table.Columns.Contains("Email") ? Convert.ToString(rv["Email"]) :
                 rv.Row.Table.Columns.Contains("correo") ? Convert.ToString(rv["correo"]) :
-                "";
+                string.Empty;
 
             DialogResult = DialogResult.OK;
             Close();

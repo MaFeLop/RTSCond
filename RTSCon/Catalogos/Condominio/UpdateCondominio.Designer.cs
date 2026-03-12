@@ -109,7 +109,7 @@
             this.btnVolver.Location = new System.Drawing.Point(672, 510);
             this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
-            this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Office2010BlueDarkMode;
             this.btnVolver.Size = new System.Drawing.Size(205, 55);
             this.btnVolver.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolver.TabIndex = 147;
@@ -254,7 +254,6 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(135, 102);
             this.label7.TabIndex = 135;
-//            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label12
             // 
@@ -403,7 +402,6 @@
             this.btnBuscarPropietario.TabIndex = 152;
             this.btnBuscarPropietario.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnBuscarPropietario.Values.Text = "Buscar Propietario";
-      //      this.btnBuscarPropietario.Click += new System.EventHandler(this.btnBuscarPropietario_Click);
             // 
             // UpdateCondominio
             // 
@@ -440,7 +438,6 @@
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.kryptonLabel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(0, 0);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "UpdateCondominio";
             this.Text = "Update Condominio";
