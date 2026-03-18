@@ -5,7 +5,6 @@ using RTSCon.Negocios;
 using System;
 using System.Configuration;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace RTSCon.Catalogos.Condominio
@@ -38,7 +37,7 @@ namespace RTSCon.Catalogos.Condominio
         }
 
         // =========================
-        // Helpers de controles reales
+        // Controles reales del formulario
         // =========================
 
         private KryptonTextBox TxtNombre => txtBuscar;
@@ -48,20 +47,10 @@ namespace RTSCon.Catalogos.Condominio
         private KryptonTextBox TxtCorreoNotif => txtCorreo;
         private KryptonTextBox TxtCuota => txtMantenimiento;
         private ComboBox CboTipo => cmbTipoCond;
-        private DateTimePicker DtpFecha => dtpFechaConstitucion;
+        private KryptonDateTimePicker DtpFecha => dtpFechaConstitucion;
         private KryptonCheckBox ChkNotifProp => chkNotificarPropietario;
 
-        private T FindCtrl<T>(params string[] names) where T : Control
-        {
-            foreach (var n in names)
-            {
-                var c = Controls.Find(n, true).FirstOrDefault() as T;
-                if (c != null) return c;
-            }
-            return null;
-        }
-
-        private void SetKeyPressNumeric(TextBoxBase tb)
+        private void SetKeyPressNumeric(KryptonTextBox tb)
         {
             if (tb == null) return;
 
@@ -76,7 +65,7 @@ namespace RTSCon.Catalogos.Condominio
                     e.Handled = true;
                 }
 
-                if (e.KeyChar == dec && tb.Text.Contains(dec))
+                if (e.KeyChar == dec && tb.Text.Contains(dec.ToString()))
                 {
                     e.Handled = true;
                 }
@@ -88,10 +77,6 @@ namespace RTSCon.Catalogos.Condominio
             return !string.IsNullOrWhiteSpace(UserContext.Rol) &&
                    UserContext.Rol.Equals("Propietario", StringComparison.OrdinalIgnoreCase);
         }
-
-        // =========================
-        // Inicialización
-        // =========================
 
         private void InitUi()
         {
@@ -134,15 +119,11 @@ namespace RTSCon.Catalogos.Condominio
             }
         }
 
-        // =========================
-        // Buscar propietario
-        // =========================
-
         private void btnBuscarPropietario_Click(object sender, EventArgs e)
         {
             try
             {
-                using (var f = new BuscarPropietario())
+                using (var f = new BuscarPropietario(_neg))
                 {
                     if (f.ShowDialog(this) != DialogResult.OK)
                         return;
@@ -173,10 +154,6 @@ namespace RTSCon.Catalogos.Condominio
                     KryptonMessageBoxIcon.Error);
             }
         }
-
-        // =========================
-        // Guardar
-        // =========================
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
@@ -262,10 +239,6 @@ namespace RTSCon.Catalogos.Condominio
                     KryptonMessageBoxIcon.Error);
             }
         }
-
-        // =========================
-        // Eventos vacíos del diseñador
-        // =========================
 
         private void CrearCondominio_Load(object sender, EventArgs e) { }
         private void txtAdministrador_Click(object sender, EventArgs e) { }

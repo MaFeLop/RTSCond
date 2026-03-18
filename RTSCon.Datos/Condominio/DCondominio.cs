@@ -254,9 +254,13 @@ namespace RTSCon.Datos
             using (var da = new SqlDataAdapter("dbo.sp_propietario_buscar", cn))
             {
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
-                da.SelectCommand.Parameters.AddWithValue("@Buscar", string.IsNullOrWhiteSpace(buscar) ? (object)DBNull.Value : buscar.Trim());
-                da.SelectCommand.Parameters.AddWithValue("@SoloActivos", soloActivos);
-                da.SelectCommand.Parameters.AddWithValue("@Top", top);
+
+                da.SelectCommand.Parameters.AddWithValue(
+                    "@buscar",
+                    string.IsNullOrWhiteSpace(buscar) ? (object)DBNull.Value : buscar.Trim()
+                );
+
+                da.SelectCommand.Parameters.AddWithValue("@soloActivos", soloActivos);
 
                 var dt = new DataTable();
                 da.Fill(dt);

@@ -212,7 +212,8 @@ namespace RTSCon.Catalogos
         {
             using (var dlg = new RTSCon.Catalogos.BuscarPropietario())
             {
-                if (dlg.ShowDialog(this) != DialogResult.OK) return;
+                if (dlg.ShowDialog(this) != DialogResult.OK)
+                    return;
 
                 var txtPropNom = FindCtrl<TextBoxBase>("txtPropietarioResponsable", "txtPropietarioNombre");
                 var txtPropDoc = FindCtrl<TextBoxBase>("txtIdentificacionPropietario", "txtPropietarioIdentificacion");
@@ -223,8 +224,10 @@ namespace RTSCon.Catalogos
                     txtPropNom.Text = dlg.SelectedUsuario;
                     txtPropNom.Tag = dlg.SelectedId;
                 }
+
                 if (txtPropDoc != null)
                     txtPropDoc.Text = dlg.SelectedCorreo;
+
                 if (txtPropId != null)
                     txtPropId.Text = dlg.SelectedId.ToString();
             }

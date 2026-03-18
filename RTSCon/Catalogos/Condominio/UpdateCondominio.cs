@@ -62,16 +62,18 @@ namespace RTSCon.Catalogos.Condominio
         private KryptonTextBox TxtCorreoNotif => txtCorreo;
         private KryptonTextBox TxtCuota => txtMantenimiento;
         private ComboBox CboTipo => cmbTipoCond;
-        private DateTimePicker DtpFecha => dtpFechaConstitucion;
+        private KryptonDateTimePicker DtpFecha => dtpFechaConstitucion;
         private KryptonCheckBox ChkNotifProp => chkNotificarPropietario;
 
-        private void SetKeyPressNumeric(TextBoxBase tb)
+        private void SetKeyPressNumeric(KryptonTextBox tb)
         {
-            if (tb == null) return;
+            if (tb == null)
+                return;
 
             tb.KeyPress += (s, e) =>
             {
-                char dec = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+                string separadorDecimal = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+                char dec = separadorDecimal[0];
 
                 if (!char.IsControl(e.KeyChar) &&
                     !char.IsDigit(e.KeyChar) &&
@@ -80,7 +82,7 @@ namespace RTSCon.Catalogos.Condominio
                     e.Handled = true;
                 }
 
-                if (e.KeyChar == dec && tb.Text.Contains(dec))
+                if (e.KeyChar == dec && tb.Text.Contains(separadorDecimal))
                 {
                     e.Handled = true;
                 }
@@ -219,6 +221,7 @@ namespace RTSCon.Catalogos.Condominio
             if (CboTipo != null)
             {
                 string tipo = GS("Tipo");
+
                 if (!string.IsNullOrWhiteSpace(tipo))
                 {
                     if (!CboTipo.Items.Contains(tipo))
@@ -259,7 +262,7 @@ namespace RTSCon.Catalogos.Condominio
         {
             try
             {
-                using (var f = new BuscarPropietario())
+                using (var f = new BuscarPropietario(_neg))
                 {
                     if (f.ShowDialog(this) != DialogResult.OK)
                         return;
@@ -270,7 +273,9 @@ namespace RTSCon.Catalogos.Condominio
                         TxtPropietario.Text = f.SelectedUsuario ?? string.Empty;
 
                     if (TxtIdPropietario != null)
-                        TxtIdPropietario.Text = f.SelectedId > 0 ? f.SelectedId.ToString() : string.Empty;
+                        TxtIdPropietario.Text = f.SelectedId > 0
+                            ? f.SelectedId.ToString()
+                            : string.Empty;
 
                     if (TxtCorreoNotif != null &&
                         string.IsNullOrWhiteSpace(TxtCorreoNotif.Text) &&

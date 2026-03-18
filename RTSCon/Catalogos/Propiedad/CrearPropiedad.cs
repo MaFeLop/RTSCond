@@ -102,15 +102,24 @@ namespace RTSCon.Catalogos
         {
             using (var dlg = new RTSCon.Catalogos.BuscarPropietario())
             {
-                if (dlg.ShowDialog(this) != DialogResult.OK) return;
+                if (dlg.ShowDialog(this) != DialogResult.OK)
+                    return;
 
                 var txtPropNom = FindCtrl<TextBoxBase>("txtPropietarioResponsable", "txtPropietarioNombre");
                 var txtPropDoc = FindCtrl<TextBoxBase>("txtIdentificacionPropietario", "txtPropietarioIdentificacion");
                 var txtPropId = FindCtrl<TextBoxBase>("txtPropietarioId");
 
-                if (txtPropNom != null) { txtPropNom.Text = dlg.SelectedUsuario; txtPropNom.Tag = dlg.SelectedId; }
-                if (txtPropDoc != null) txtPropDoc.Text = dlg.SelectedCorreo;
-                if (txtPropId != null) txtPropId.Text = dlg.SelectedId.ToString();
+                if (txtPropNom != null)
+                {
+                    txtPropNom.Text = dlg.SelectedUsuario;
+                    txtPropNom.Tag = dlg.SelectedId;
+                }
+
+                if (txtPropDoc != null)
+                    txtPropDoc.Text = dlg.SelectedCorreo;
+
+                if (txtPropId != null)
+                    txtPropId.Text = dlg.SelectedId.ToString();
             }
         }
 
@@ -174,6 +183,31 @@ namespace RTSCon.Catalogos
             {
                 KryptonMessageBox.Show(this, ex.Message,
                     "Crear Propiedad", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error);
+            }
+        }
+
+        private void btnBuscarPropietario_Click_1(object sender, EventArgs e)
+        {
+            using (var dlg = new RTSCon.Catalogos.BuscarPropietario())
+            {
+                if (dlg.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                var txtPropNom = FindCtrl<TextBoxBase>("txtPropietarioResponsable", "txtPropietarioNombre");
+                var txtPropDoc = FindCtrl<TextBoxBase>("txtIdentificacionPropietario", "txtPropietarioIdentificacion");
+                var txtPropId = FindCtrl<TextBoxBase>("txtPropietarioId");
+
+                if (txtPropNom != null)
+                {
+                    txtPropNom.Text = dlg.SelectedUsuario;
+                    txtPropNom.Tag = dlg.SelectedId;
+                }
+
+                if (txtPropDoc != null)
+                    txtPropDoc.Text = dlg.SelectedCorreo;
+
+                if (txtPropId != null)
+                    txtPropId.Text = dlg.SelectedId.ToString();
             }
         }
     }

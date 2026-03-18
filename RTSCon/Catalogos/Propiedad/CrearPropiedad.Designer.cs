@@ -67,6 +67,7 @@
             this.btnBuscarPropietario.TabIndex = 153;
             this.btnBuscarPropietario.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnBuscarPropietario.Values.Text = "Buscar Propietario";
+            this.btnBuscarPropietario.Click += new System.EventHandler(this.btnBuscarPropietario_Click_1);
             // 
             // chkTitular
             // 

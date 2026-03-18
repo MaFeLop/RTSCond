@@ -4,19 +4,16 @@ using RTSCon.Negocios;
 using System;
 using System.Configuration;
 using System.Data;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace RTSCon.Catalogos
 {
     public partial class BuscarPropietario : KryptonForm
     {
-        // ===== Contrato esperado por otras pantallas =====
         public int SelectedId => PropietarioIdSeleccionado;
         public string SelectedUsuario { get; private set; } = string.Empty;
         public string SelectedCorreo { get; private set; } = string.Empty;
 
-        // ===== Contrato interno =====
         public int PropietarioIdSeleccionado { get; private set; }
 
         private const string COL_SEL = "__sel";
@@ -25,7 +22,7 @@ namespace RTSCon.Catalogos
         private DataTable _dt;
 
         public BuscarPropietario()
-            : this(null)
+            : this(CrearNegocio())
         {
         }
 
@@ -33,7 +30,7 @@ namespace RTSCon.Catalogos
         {
             InitializeComponent();
 
-            _negocio = negocio ?? CrearNegocioDesdeConfig();
+            _negocio = negocio ?? throw new ArgumentNullException(nameof(negocio));
 
             Load += BuscarPropietario_Load;
 
@@ -75,53 +72,20 @@ namespace RTSCon.Catalogos
             }
         }
 
+        private static NCondominio CrearNegocio()
+        {
+            var cn = ConfigurationManager.ConnectionStrings["RTSCond"]?.ConnectionString;
+
+            if (string.IsNullOrWhiteSpace(cn))
+                throw new InvalidOperationException("No se encontró la cadena de conexión 'RTSCond'.");
+
+            return new NCondominio(new DCondominio(cn));
+        }
+
         private void BuscarPropietario_Load(object sender, EventArgs e)
         {
             EnsureSelectionColumn();
             Cargar();
-        }
-
-        private static NCondominio CrearNegocioDesdeConfig()
-        {
-            var cs = ObtenerConnectionString();
-            if (string.IsNullOrWhiteSpace(cs))
-            {
-                throw new InvalidOperationException(
-                    "No se encontró una cadena de conexión válida para cargar propietarios.");
-            }
-
-            return new NCondominio(new DCondominio(cs));
-        }
-
-        private static string ObtenerConnectionString()
-        {
-            var config = ConfigurationManager.ConnectionStrings;
-            if (config == null || config.Count == 0)
-                return null;
-
-            string[] nombresPreferidos =
-            {
-                "cn",
-                "conexion",
-                "RTSCon",
-                "RTSConConnectionString",
-                "DefaultConnection"
-            };
-
-            foreach (var nombre in nombresPreferidos)
-            {
-                var item = config[nombre];
-                if (item != null && !string.IsNullOrWhiteSpace(item.ConnectionString))
-                    return item.ConnectionString;
-            }
-
-            foreach (ConnectionStringSettings item in config)
-            {
-                if (!string.IsNullOrWhiteSpace(item.ConnectionString))
-                    return item.ConnectionString;
-            }
-
-            return null;
         }
 
         private void EnsureSelectionColumn()
@@ -158,7 +122,6 @@ namespace RTSCon.Catalogos
 
                 EnsureSelectionColumn();
                 LimpiarChecks();
-
                 AjustarColumnas();
 
                 bool hay = _dt != null && _dt.Rows.Count > 0;
@@ -171,13 +134,6 @@ namespace RTSCon.Catalogos
             }
             catch (Exception ex)
             {
-                KryptonMessageBox.Show(
-                    this,
-                    "Error al cargar propietarios: " + ex.Message,
-                    "Buscar Propietario",
-                    KryptonMessageBoxButtons.OK,
-                    KryptonMessageBoxIcon.Error);
-
                 if (dgvPropietario != null)
                     dgvPropietario.DataSource = null;
 
@@ -186,6 +142,13 @@ namespace RTSCon.Catalogos
 
                 if (lblNoHay != null)
                     lblNoHay.Visible = true;
+
+                KryptonMessageBox.Show(
+                    this,
+                    "Error al cargar propietarios: " + ex.Message,
+                    "Buscar Propietario",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Error);
             }
         }
 
@@ -323,7 +286,7 @@ namespace RTSCon.Catalogos
             {
                 KryptonMessageBox.Show(
                     this,
-                    "Marque un propietario (checkbox) para confirmar.",
+                    "Marque un propietario para confirmar.",
                     "Buscar Propietario",
                     KryptonMessageBoxButtons.OK,
                     KryptonMessageBoxIcon.Information);
