@@ -197,7 +197,7 @@
             // 
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Image = ((System.Drawing.Image)(resources.GetObject("label12.Image")));
-            this.label12.Location = new System.Drawing.Point(296, -1);
+            this.label12.Location = new System.Drawing.Point(385, -1);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(140, 102);
@@ -208,7 +208,7 @@
             // 
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Image = ((System.Drawing.Image)(resources.GetObject("label7.Image")));
-            this.label7.Location = new System.Drawing.Point(416, -1);
+            this.label7.Location = new System.Drawing.Point(522, -1);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(135, 102);
@@ -386,7 +386,7 @@
             this.txtAdministrador.BackColor = System.Drawing.Color.Transparent;
             this.txtAdministrador.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAdministrador.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtAdministrador.Location = new System.Drawing.Point(47, 292);
+            this.txtAdministrador.Location = new System.Drawing.Point(47, 297);
             this.txtAdministrador.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtAdministrador.Name = "txtAdministrador";
             this.txtAdministrador.Size = new System.Drawing.Size(305, 28);
@@ -409,7 +409,7 @@
             // chkNotificarPropietario
             // 
             this.chkNotificarPropietario.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
-            this.chkNotificarPropietario.Location = new System.Drawing.Point(988, 77);
+            this.chkNotificarPropietario.Location = new System.Drawing.Point(1029, 69);
             this.chkNotificarPropietario.Name = "chkNotificarPropietario";
             this.chkNotificarPropietario.Size = new System.Drawing.Size(280, 24);
             this.chkNotificarPropietario.TabIndex = 123;
@@ -466,7 +466,6 @@
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.kryptonLabel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(0, 0);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CrearCondominio";
             this.Text = "Crear Condominio";

@@ -51,14 +51,10 @@ namespace RTSCon.Catalogos.Condominio
             SetKeyPressNumeric(TxtCuota);
         }
 
-        // =========================
-        // Helpers de controles reales
-        // =========================
-
         private KryptonTextBox TxtNombre => txtBuscar;
         private KryptonTextBox TxtDireccion => kryptonTextBox1;
         private KryptonTextBox TxtPropietario => kryptonTextBox2;
-        private KryptonTextBox TxtIdPropietario => txtIdPropietario;
+        private KryptonTextBox TxtIdPropietario => txtIdPropietario; // visual: documento
         private KryptonTextBox TxtCorreoNotif => txtCorreo;
         private KryptonTextBox TxtCuota => txtMantenimiento;
         private ComboBox CboTipo => cmbTipoCond;
@@ -87,35 +83,6 @@ namespace RTSCon.Catalogos.Condominio
                     e.Handled = true;
                 }
             };
-        }
-
-        private bool EsPropietarioActual()
-        {
-            return !string.IsNullOrWhiteSpace(UserContext.Rol) &&
-                   UserContext.Rol.Equals("Propietario", StringComparison.OrdinalIgnoreCase);
-        }
-
-        // =========================
-        // Inicialización
-        // =========================
-
-        private void InitUi()
-        {
-            if (CboTipo != null && CboTipo.Items.Count == 0)
-            {
-                CboTipo.Items.AddRange(new object[]
-                {
-                    "Residencial",
-                    "Comercial",
-                    "Mixto"
-                });
-            }
-
-            if (TxtPropietario != null)
-                TxtPropietario.ReadOnly = true;
-
-            if (TxtIdPropietario != null)
-                TxtIdPropietario.ReadOnly = true;
         }
 
         private bool ResolverId()
@@ -149,9 +116,24 @@ namespace RTSCon.Catalogos.Condominio
             return false;
         }
 
-        // =========================
-        // Carga de datos
-        // =========================
+        private void InitUi()
+        {
+            if (CboTipo != null && CboTipo.Items.Count == 0)
+            {
+                CboTipo.Items.AddRange(new object[]
+                {
+                    "Residencial",
+                    "Comercial",
+                    "Mixto"
+                });
+            }
+
+            if (TxtPropietario != null)
+                TxtPropietario.ReadOnly = true;
+
+            if (TxtIdPropietario != null)
+                TxtIdPropietario.ReadOnly = true;
+        }
 
         private void CargarDatos()
         {
@@ -243,7 +225,12 @@ namespace RTSCon.Catalogos.Condominio
                 _idPropietarioSel = Convert.ToInt32(r["ID_propietario"]);
 
                 if (TxtIdPropietario != null)
-                    TxtIdPropietario.Text = _idPropietarioSel.ToString();
+                {
+                    if (dt.Columns.Contains("PropietarioDocumento") && r["PropietarioDocumento"] != DBNull.Value)
+                        TxtIdPropietario.Text = Convert.ToString(r["PropietarioDocumento"]);
+                    else
+                        TxtIdPropietario.Text = string.Empty;
+                }
             }
             else
             {
@@ -253,10 +240,6 @@ namespace RTSCon.Catalogos.Condominio
                     TxtIdPropietario.Text = string.Empty;
             }
         }
-
-        // =========================
-        // Buscar propietario
-        // =========================
 
         private void btnBuscarPropietario_Click(object sender, EventArgs e)
         {
@@ -273,9 +256,7 @@ namespace RTSCon.Catalogos.Condominio
                         TxtPropietario.Text = f.SelectedUsuario ?? string.Empty;
 
                     if (TxtIdPropietario != null)
-                        TxtIdPropietario.Text = f.SelectedId > 0
-                            ? f.SelectedId.ToString()
-                            : string.Empty;
+                        TxtIdPropietario.Text = f.SelectedDocumento ?? string.Empty;
 
                     if (TxtCorreoNotif != null &&
                         string.IsNullOrWhiteSpace(TxtCorreoNotif.Text) &&
@@ -295,10 +276,6 @@ namespace RTSCon.Catalogos.Condominio
                     KryptonMessageBoxIcon.Error);
             }
         }
-
-        // =========================
-        // Guardar cambios
-        // =========================
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
@@ -326,12 +303,7 @@ namespace RTSCon.Catalogos.Condominio
                     throw new InvalidOperationException("Seleccione el propietario responsable.");
 
                 if (_idPropietarioSel == null || _idPropietarioSel <= 0)
-                {
-                    if (EsPropietarioActual())
-                        _idPropietarioSel = UserContext.UsuarioAuthId;
-                    else
-                        throw new InvalidOperationException("Debe seleccionar un propietario válido.");
-                }
+                    throw new InvalidOperationException("Debe seleccionar un propietario válido.");
 
                 if (!decimal.TryParse(cuotaTexto, NumberStyles.Number, CultureInfo.CurrentCulture, out decimal cuota) || cuota < 0)
                     throw new InvalidOperationException("Cuota inválida.");

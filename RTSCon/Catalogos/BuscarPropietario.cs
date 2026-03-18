@@ -13,6 +13,7 @@ namespace RTSCon.Catalogos
         public int SelectedId => PropietarioIdSeleccionado;
         public string SelectedUsuario { get; private set; } = string.Empty;
         public string SelectedCorreo { get; private set; } = string.Empty;
+        public string SelectedDocumento { get; private set; } = string.Empty;
 
         public int PropietarioIdSeleccionado { get; private set; }
 
@@ -310,6 +311,10 @@ namespace RTSCon.Catalogos
                 rv.Row.Table.Columns.Contains("Usuario") ? Convert.ToString(rv["Usuario"]) :
                 rv.Row.Table.Columns.Contains("Nombre") ? Convert.ToString(rv["Nombre"]) :
                 rv.Row.Table.Columns.Contains("NombreCompleto") ? Convert.ToString(rv["NombreCompleto"]) :
+                string.Empty;
+
+            SelectedDocumento =
+                rv.Row.Table.Columns.Contains("Documento") ? Convert.ToString(rv["Documento"]) :
                 string.Empty;
 
             SelectedCorreo =

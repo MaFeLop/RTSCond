@@ -36,14 +36,10 @@ namespace RTSCon.Catalogos.Condominio
                 btnBuscarPropietario.Click += btnBuscarPropietario_Click;
         }
 
-        // =========================
-        // Controles reales del formulario
-        // =========================
-
         private KryptonTextBox TxtNombre => txtBuscar;
         private KryptonTextBox TxtDireccion => kryptonTextBox1;
         private KryptonTextBox TxtPropietario => kryptonTextBox2;
-        private KryptonTextBox TxtIdPropietario => txtIdPropietario;
+        private KryptonTextBox TxtIdPropietario => txtIdPropietario; // visual: documento
         private KryptonTextBox TxtCorreoNotif => txtCorreo;
         private KryptonTextBox TxtCuota => txtMantenimiento;
         private ComboBox CboTipo => cmbTipoCond;
@@ -112,7 +108,7 @@ namespace RTSCon.Catalogos.Condominio
                     TxtPropietario.Text = UserContext.Usuario ?? string.Empty;
 
                 if (TxtIdPropietario != null)
-                    TxtIdPropietario.Text = UserContext.UsuarioAuthId.ToString();
+                    TxtIdPropietario.Text = string.Empty;
 
                 if (btnBuscarPropietario != null)
                     btnBuscarPropietario.Enabled = true;
@@ -134,7 +130,7 @@ namespace RTSCon.Catalogos.Condominio
                         TxtPropietario.Text = f.SelectedUsuario ?? string.Empty;
 
                     if (TxtIdPropietario != null)
-                        TxtIdPropietario.Text = f.SelectedId > 0 ? f.SelectedId.ToString() : string.Empty;
+                        TxtIdPropietario.Text = f.SelectedDocumento ?? string.Empty;
 
                     if (TxtCorreoNotif != null &&
                         string.IsNullOrWhiteSpace(TxtCorreoNotif.Text) &&
@@ -181,12 +177,7 @@ namespace RTSCon.Catalogos.Condominio
                     throw new InvalidOperationException("Seleccione el propietario responsable.");
 
                 if (_propietarioId == null || _propietarioId <= 0)
-                {
-                    if (EsPropietarioActual())
-                        _propietarioId = UserContext.UsuarioAuthId;
-                    else
-                        throw new InvalidOperationException("Debe seleccionar un propietario válido.");
-                }
+                    throw new InvalidOperationException("Debe seleccionar un propietario válido.");
 
                 if (!decimal.TryParse(cuotaTexto, NumberStyles.Number, CultureInfo.CurrentCulture, out decimal cuotaBase) || cuotaBase < 0)
                     throw new InvalidOperationException("Cuota de mantenimiento inválida.");
