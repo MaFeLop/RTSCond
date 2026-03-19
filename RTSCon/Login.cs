@@ -21,28 +21,47 @@ namespace RTSCon
             this.FormClosed += (s, e) => Application.Exit();
         }
 
-        private string NormalizarRol(string rol)
+        private void LimpiarCredenciales(bool limpiarUsuario = true)
         {
-            if (string.IsNullOrWhiteSpace(rol))
-                return string.Empty;
+            if (limpiarUsuario && txtCorreo != null)
+                txtCorreo.Clear();
 
-            return rol.Trim().ToUpperInvariant();
+            if (txtContrasena != null)
+            {
+                txtContrasena.Clear();
+                txtContrasena.PasswordChar = '●';
+                txtContrasena.UseSystemPasswordChar = true;
+            }
+
+            if (limpiarUsuario && txtCorreo != null)
+                txtCorreo.Focus();
+            else if (txtContrasena != null)
+                txtContrasena.Focus();
         }
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Al cerrar el dashboard, cerrar también el login
             this.Close();
         }
-
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             try
             {
-                int id = _auth.Login(txtCorreo.Text, txtContrasena.Text);
+                string usuario = txtCorreo?.Text?.Trim() ?? string.Empty;
+                string clave = txtContrasena?.Text ?? string.Empty;
 
-                SessionHelper.Start(txtCorreo.Text, UserContext.Rol, id);
+                if (string.IsNullOrWhiteSpace(usuario))
+                    throw new InvalidOperationException("Ingrese su nombre de usuario.");
+
+                if (string.IsNullOrWhiteSpace(clave))
+                    throw new InvalidOperationException("Ingrese su contraseña.");
+
+                int id = _auth.Login(usuario, clave);
+
+                SessionHelper.Start(usuario, UserContext.Rol, id);
+
+                LimpiarCredenciales();
 
                 this.Hide();
 
@@ -52,16 +71,14 @@ namespace RTSCon
                 }
 
                 this.Show();
+                LimpiarCredenciales();
             }
             catch (Exception ex)
             {
+                LimpiarCredenciales(limpiarUsuario: false);
                 MessageBox.Show(ex.Message);
             }
         }
-
-
-
-
 
         private void lnkForget_LinkClicked(object sender, EventArgs e)
         {
@@ -73,6 +90,9 @@ namespace RTSCon
                 };
 
                 frm.ShowDialog(this);
+
+                if (txtContrasena != null)
+                    txtContrasena.Clear();
             }
             catch (Exception ex)
             {
@@ -84,13 +104,6 @@ namespace RTSCon
                     KryptonMessageBoxIcon.Error
                 );
             }
-        }
-
-        private void kryptonButton1_Click(object sender, EventArgs e)
-        {
-            string hash = BCrypt.Net.BCrypt.HashPassword("sa1234");
-            MessageBox.Show(hash);
-
         }
     }
 }

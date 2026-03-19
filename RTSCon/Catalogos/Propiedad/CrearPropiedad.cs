@@ -98,30 +98,7 @@ namespace RTSCon.Catalogos
             if (txtPropDoc != null) txtPropDoc.ReadOnly = true;
         }
 
-        private void btnBuscarPropietario_Click(object sender, EventArgs e)
-        {
-            using (var dlg = new RTSCon.Catalogos.BuscarPropietario())
-            {
-                if (dlg.ShowDialog(this) != DialogResult.OK)
-                    return;
-
-                var txtPropNom = FindCtrl<TextBoxBase>("txtPropietarioResponsable", "txtPropietarioNombre");
-                var txtPropDoc = FindCtrl<TextBoxBase>("txtIdentificacionPropietario", "txtPropietarioIdentificacion");
-                var txtPropId = FindCtrl<TextBoxBase>("txtPropietarioId");
-
-                if (txtPropNom != null)
-                {
-                    txtPropNom.Text = dlg.SelectedUsuario;
-                    txtPropNom.Tag = dlg.SelectedId;
-                }
-
-                if (txtPropDoc != null)
-                    txtPropDoc.Text = dlg.SelectedCorreo;
-
-                if (txtPropId != null)
-                    txtPropId.Text = dlg.SelectedId.ToString();
-            }
-        }
+       
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
@@ -186,7 +163,7 @@ namespace RTSCon.Catalogos
             }
         }
 
-        private void btnBuscarPropietario_Click_1(object sender, EventArgs e)
+        private void btnBuscarPropietario_Click(object sender, EventArgs e)
         {
             using (var dlg = new RTSCon.Catalogos.BuscarPropietario())
             {
@@ -204,11 +181,16 @@ namespace RTSCon.Catalogos
                 }
 
                 if (txtPropDoc != null)
-                    txtPropDoc.Text = dlg.SelectedCorreo;
+                    txtPropDoc.Text = dlg.SelectedDocumento;
 
                 if (txtPropId != null)
                     txtPropId.Text = dlg.SelectedId.ToString();
             }
+        }
+
+        private void btnBuscarPropietario_Click_1(object sender, EventArgs e)
+        {
+            btnBuscarPropietario_Click(sender, e);
         }
     }
 }
