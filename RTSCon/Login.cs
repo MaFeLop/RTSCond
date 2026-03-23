@@ -75,7 +75,7 @@ namespace RTSCon
             }
             catch (Exception ex)
             {
-                LimpiarCredenciales(limpiarUsuario: false);
+                LimpiarCredenciales(true);
                 MessageBox.Show(ex.Message);
             }
         }

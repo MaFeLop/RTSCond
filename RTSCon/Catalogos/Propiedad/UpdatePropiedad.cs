@@ -5,7 +5,6 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace RTSCon.Catalogos
@@ -15,6 +14,7 @@ namespace RTSCon.Catalogos
         private readonly NPropiedad _neg;
         private int _id;
         private byte[] _rowVersion;
+        private int? _propietarioIdSeleccionado;
 
         public UpdatePropiedad()
         {
@@ -23,130 +23,117 @@ namespace RTSCon.Catalogos
             var cn = ConfigurationManager.ConnectionStrings["RTSCond"].ConnectionString;
             _neg = new NPropiedad(new DPropiedad(cn));
 
-            // Al mostrarse, inicializamos UI y cargamos el registro
             this.Shown += (_, __) => InitUiAndLoad();
 
-            var btnOk = FindCtrl<KryptonButton>("btnConfirmar", "btnGuardar", "btnOk");
-            var btnBack = FindCtrl<KryptonButton>("btnVolver", "btnCancelar", "btnBack");
-            if (btnOk != null) btnOk.Click += btnConfirmar_Click;
-            if (btnBack != null) btnBack.Click += (_, __) => Close();
+            if (btnConfirmar != null)
+                btnConfirmar.Click += btnConfirmar_Click;
 
-            var btnBuscarProp = FindCtrl<KryptonButton>("btnBuscarPropietario", "btnBuscar", "btnBuscarOwner");
-            if (btnBuscarProp != null) btnBuscarProp.Click += btnBuscarPropietario_Click;
+            if (btnVolver != null)
+                btnVolver.Click += (_, __) => Close();
 
-            SetKeyPressDecimal("txtPorcentaje");
+            if (btnBuscarPropietario != null)
+                btnBuscarPropietario.Click += btnBuscarPropietario_Click;
 
-            var txtUnidadId = FindCtrl<TextBoxBase>("txtIdPropiedad", "txtUnidadId");
-            if (txtUnidadId != null) txtUnidadId.KeyDown += (s, e) =>
+            SetKeyPressDecimal(txtPorcentaje);
+
+            if (txtIdPropiedad != null)
             {
-                if (e.KeyCode == Keys.Enter)
+                txtIdPropiedad.KeyDown += (s, e) =>
                 {
-                    e.SuppressKeyPress = true;
-                    btnOk?.PerformClick();
-                }
-            };
-            var txtPct = FindCtrl<TextBoxBase>("txtPorcentaje");
-            if (txtPct != null) txtPct.KeyDown += (s, e) =>
-            {
-                if (e.KeyCode == Keys.Enter)
-                {
-                    e.SuppressKeyPress = true;
-                    btnOk?.PerformClick();
-                }
-            };
-        }
-
-        // ------------------ Helpers compartidos (igual que en CrearPropiedad) ------------------
-        private T FindCtrl<T>(params string[] names) where T : Control
-        {
-            foreach (var n in names)
-            {
-                var c = this.Controls.Find(n, true).FirstOrDefault() as T;
-                if (c != null) return c;
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        e.SuppressKeyPress = true;
+                        btnConfirmar?.PerformClick();
+                    }
+                };
             }
-            return null;
-        }
 
-        private string GetText(params string[] names)
-        {
-            var c = FindCtrl<Control>(names);
-            return c?.Text?.Trim() ?? "";
-        }
-
-        private int? GetIntFromTextOrTag(params string[] names)
-        {
-            var c = FindCtrl<Control>(names);
-            if (c == null) return null;
-            if (c.Tag is int t) return t;
-            if (int.TryParse(c.Text?.Trim(), out var v)) return v;
-            return null;
-        }
-
-        private void SetText(string value, params string[] names)
-        {
-            var c = FindCtrl<Control>(names);
-            if (c != null) c.Text = value ?? "";
-        }
-
-        private void SetKeyPressDecimal(params string[] names)
-        {
-            var c = FindCtrl<TextBoxBase>(names);
-            if (c == null) return;
-            c.KeyPress += (s, e) =>
+            if (txtPorcentaje != null)
             {
-                char dec = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-                if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != dec)
+                txtPorcentaje.KeyDown += (s, e) =>
+                {
+                    if (e.KeyCode == Keys.Enter)
+                    {
+                        e.SuppressKeyPress = true;
+                        btnConfirmar?.PerformClick();
+                    }
+                };
+            }
+        }
+
+        private void SetKeyPressDecimal(KryptonTextBox tb)
+        {
+            if (tb == null) return;
+
+            tb.KeyPress += (s, e) =>
+            {
+                string separadorDecimal = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+                char dec = separadorDecimal[0];
+
+                if (!char.IsControl(e.KeyChar) &&
+                    !char.IsDigit(e.KeyChar) &&
+                    e.KeyChar != dec)
+                {
                     e.Handled = true;
-                if (e.KeyChar == dec && ((TextBoxBase)s).Text.Contains(dec))
+                }
+
+                if (e.KeyChar == dec && tb.Text.Contains(separadorDecimal))
+                {
                     e.Handled = true;
+                }
             };
         }
-        // ---------------------------------------------------------------------------------------
 
-        /// <summary>
-        /// Inicializa la UI y carga la propiedad según el Id que viene en Tag.
-        /// (PropiedadRead hace: new UpdatePropiedad() { Tag = id } )
-        /// </summary>
         private void InitUiAndLoad()
         {
-            // Leer el Id desde this.Tag
             if (Tag == null)
             {
-                KryptonMessageBox.Show(this, "No se recibió el Id de la propiedad.",
-                    "Actualizar Propiedad", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error);
+                KryptonMessageBox.Show(
+                    this,
+                    "No se recibió el Id de la propiedad.",
+                    "Actualizar Propiedad",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Error);
+
                 Close();
                 return;
             }
 
             try
             {
-                if (Tag is int i) _id = i;
+                if (Tag is int i)
+                    _id = i;
                 else if (!int.TryParse(Tag.ToString(), out _id))
                     throw new InvalidOperationException("Id de propiedad inválido.");
             }
             catch
             {
-                KryptonMessageBox.Show(this, "Id de propiedad inválido.",
-                    "Actualizar Propiedad", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error);
+                KryptonMessageBox.Show(
+                    this,
+                    "Id de propiedad inválido.",
+                    "Actualizar Propiedad",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Error);
+
                 Close();
                 return;
             }
 
-            // Ajustes iniciales de UI igual que en CrearPropiedad
-            var dtpIni = FindCtrl<DateTimePicker>("dtpFechaInicio", "dtpInicio");
-            var dtpFin = FindCtrl<DateTimePicker>("dtpFechaFin", "dtpTermino", "dtpFin");
-            if (dtpIni != null && dtpIni.Value == default) dtpIni.Value = DateTime.Today;
-            if (dtpFin != null && dtpFin.Value == default) dtpFin.Value = DateTime.Today;
+            if (dtpFechaInicio != null)
+                dtpFechaInicio.Value = DateTime.Today;
 
-            var txtNom = FindCtrl<TextBoxBase>("txtNombrePropiedad", "txtNombre", "txtUnidadNombre");
-            if (txtNom != null) txtNom.ReadOnly = false;
+            if (dtpFechaFin != null)
+                dtpFechaFin.Value = DateTime.Today;
 
-            var txtPropNom = FindCtrl<TextBoxBase>("txtPropietarioResponsable", "txtPropietarioNombre");
-            var txtPropDoc = FindCtrl<TextBoxBase>("txtIdentificacionPropietario", "txtPropietarioIdentificacion");
-            if (txtPropNom != null) txtPropNom.ReadOnly = true;
-            if (txtPropDoc != null) txtPropDoc.ReadOnly = true;
+            if (txtNombrePropiedad != null)
+                txtNombrePropiedad.ReadOnly = false;
 
-            // Ahora sí cargamos datos de BD
+            if (txtNombrePropietario != null)
+                txtNombrePropietario.ReadOnly = true;
+
+            if (txtIdPropietario != null)
+                txtIdPropietario.ReadOnly = true;
+
             CargarDatos();
         }
 
@@ -155,57 +142,49 @@ namespace RTSCon.Catalogos
             DataRow row = _neg.PorId(_id);
             if (row == null)
             {
-                KryptonMessageBox.Show(this, "No se encontró la propiedad.",
-                    "Actualizar Propiedad", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error);
+                KryptonMessageBox.Show(
+                    this,
+                    "No se encontró la propiedad.",
+                    "Actualizar Propiedad",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Error);
+
                 Close();
                 return;
             }
 
-            // RowVersion
             if (row.Table.Columns.Contains("RowVersion") && row["RowVersion"] != DBNull.Value)
                 _rowVersion = (byte[])row["RowVersion"];
 
-            // Nombre
             if (row.Table.Columns.Contains("Nombre"))
-                SetText(Convert.ToString(row["Nombre"]), "txtNombrePropiedad", "txtNombre", "txtUnidadNombre");
+                txtNombrePropiedad.Text = Convert.ToString(row["Nombre"]);
 
-            // UnidadId
             if (row.Table.Columns.Contains("UnidadId"))
-                SetText(Convert.ToString(row["UnidadId"]), "txtIdPropiedad", "txtUnidadId");
+                txtIdPropiedad.Text = Convert.ToString(row["UnidadId"]);
 
-            // PropietarioId
-            if (row.Table.Columns.Contains("PropietarioId"))
-                SetText(Convert.ToString(row["PropietarioId"]), "txtPropietarioId");
+            if (row.Table.Columns.Contains("PropietarioId") && row["PropietarioId"] != DBNull.Value)
+                _propietarioIdSeleccionado = Convert.ToInt32(row["PropietarioId"]);
 
-            // Si tu consulta devuelve nombre/doc del propietario, los usamos (si no, simplemente se quedan en blanco)
-            var txtPropNom = FindCtrl<TextBoxBase>("txtPropietarioResponsable", "txtPropietarioNombre");
-            var txtPropDoc = FindCtrl<TextBoxBase>("txtIdentificacionPropietario", "txtPropietarioIdentificacion");
-            if (txtPropNom != null && row.Table.Columns.Contains("PropietarioNombre"))
-                txtPropNom.Text = Convert.ToString(row["PropietarioNombre"]);
-            if (txtPropDoc != null && row.Table.Columns.Contains("PropietarioDocumento"))
-                txtPropDoc.Text = Convert.ToString(row["PropietarioDocumento"]);
+            if (row.Table.Columns.Contains("PropietarioNombre"))
+                txtNombrePropietario.Text = Convert.ToString(row["PropietarioNombre"]);
 
-            // Porcentaje
+            if (row.Table.Columns.Contains("PropietarioDocumento"))
+                txtIdPropietario.Text = Convert.ToString(row["PropietarioDocumento"]);
+
+            if (row.Table.Columns.Contains("Correo") && row["Correo"] != DBNull.Value)
+                txtCorreo.Text = Convert.ToString(row["Correo"]);
+
             if (row.Table.Columns.Contains("Porcentaje") && row["Porcentaje"] != DBNull.Value)
-                SetText(Convert.ToDecimal(row["Porcentaje"]).ToString(CultureInfo.CurrentCulture), "txtPorcentaje");
+                txtPorcentaje.Text = Convert.ToDecimal(row["Porcentaje"]).ToString(CultureInfo.CurrentCulture);
 
-            // Titular principal
-            var chkTit = FindCtrl<CheckBox>("chkTitularPrincipal", "chkEsTitularPrincipal");
-            if (chkTit != null &&
-                row.Table.Columns.Contains("EsTitularPrincipal") &&
-                row["EsTitularPrincipal"] != DBNull.Value)
-            {
-                chkTit.Checked = Convert.ToBoolean(row["EsTitularPrincipal"]);
-            }
+            if (row.Table.Columns.Contains("EsTitularPrincipal") && row["EsTitularPrincipal"] != DBNull.Value)
+                chkTitular.Checked = Convert.ToBoolean(row["EsTitularPrincipal"]);
 
-            // Fechas
-            var dtpIni = FindCtrl<DateTimePicker>("dtpFechaInicio", "dtpInicio");
-            var dtpFin = FindCtrl<DateTimePicker>("dtpFechaFin", "dtpTermino", "dtpFin");
+            if (row.Table.Columns.Contains("FechaInicio") && row["FechaInicio"] != DBNull.Value)
+                dtpFechaInicio.Value = Convert.ToDateTime(row["FechaInicio"]);
 
-            if (dtpIni != null && row.Table.Columns.Contains("FechaInicio") && row["FechaInicio"] != DBNull.Value)
-                dtpIni.Value = Convert.ToDateTime(row["FechaInicio"]);
-            if (dtpFin != null && row.Table.Columns.Contains("FechaFin") && row["FechaFin"] != DBNull.Value)
-                dtpFin.Value = Convert.ToDateTime(row["FechaFin"]);
+            if (row.Table.Columns.Contains("FechaFin") && row["FechaFin"] != DBNull.Value)
+                dtpFechaFin.Value = Convert.ToDateTime(row["FechaFin"]);
         }
 
         private void btnBuscarPropietario_Click(object sender, EventArgs e)
@@ -215,21 +194,10 @@ namespace RTSCon.Catalogos
                 if (dlg.ShowDialog(this) != DialogResult.OK)
                     return;
 
-                var txtPropNom = FindCtrl<TextBoxBase>("txtPropietarioResponsable", "txtPropietarioNombre");
-                var txtPropDoc = FindCtrl<TextBoxBase>("txtIdentificacionPropietario", "txtPropietarioIdentificacion");
-                var txtPropId = FindCtrl<TextBoxBase>("txtPropietarioId");
-
-                if (txtPropNom != null)
-                {
-                    txtPropNom.Text = dlg.SelectedUsuario;
-                    txtPropNom.Tag = dlg.SelectedId;
-                }
-
-                if (txtPropDoc != null)
-                    txtPropDoc.Text = dlg.SelectedCorreo;
-
-                if (txtPropId != null)
-                    txtPropId.Text = dlg.SelectedId.ToString();
+                _propietarioIdSeleccionado = dlg.SelectedId;
+                txtNombrePropietario.Text = dlg.SelectedUsuario;
+                txtIdPropietario.Text = dlg.SelectedDocumento;
+                txtCorreo.Text = dlg.SelectedCorreo;
             }
         }
 
@@ -237,45 +205,37 @@ namespace RTSCon.Catalogos
         {
             try
             {
-                // NOMBRE
-                var nombre = GetText("txtNombrePropiedad", "txtNombre", "txtUnidadNombre");
+                string nombre = txtNombrePropiedad?.Text?.Trim() ?? string.Empty;
                 if (string.IsNullOrWhiteSpace(nombre))
                     throw new InvalidOperationException("Ingrese el nombre de la propiedad.");
                 if (nombre.Length > 50)
                     throw new InvalidOperationException("El nombre no puede exceder 50 caracteres.");
 
-                // Unidad (Id)
-                var unidadId = GetIntFromTextOrTag("txtIdPropiedad", "txtUnidadId");
-                if (unidadId is null || unidadId <= 0)
+                if (!int.TryParse(txtIdPropiedad?.Text?.Trim(), out int unidadId) || unidadId <= 0)
                     throw new InvalidOperationException("Ingrese el Id de la unidad (vivienda) válido.");
 
-                // Propietario
-                var propietarioId = GetIntFromTextOrTag("txtPropietarioId", "txtPropietarioResponsable", "txtPropietarioNombre");
-                if (propietarioId is null || propietarioId <= 0)
+                if (_propietarioIdSeleccionado is null || _propietarioIdSeleccionado <= 0)
                     throw new InvalidOperationException("Seleccione un propietario con el botón 'Buscar Propietario'.");
 
-                // Porcentaje
-                var sPct = GetText("txtPorcentaje");
-                if (!decimal.TryParse(sPct, NumberStyles.Number, CultureInfo.CurrentCulture, out var porcentaje) ||
+                string sPct = txtPorcentaje?.Text?.Trim() ?? string.Empty;
+                if (!decimal.TryParse(sPct, NumberStyles.Number, CultureInfo.CurrentCulture, out decimal porcentaje) ||
                     porcentaje <= 0 || porcentaje > 100)
+                {
                     throw new InvalidOperationException("Ingrese un porcentaje válido (0 < porcentaje ≤ 100).");
+                }
 
-                // Titular principal
-                var chkTit = FindCtrl<CheckBox>("chkTitularPrincipal", "chkEsTitularPrincipal");
-                bool esTitular = chkTit?.Checked ?? false;
+                bool esTitular = chkTitular?.Checked ?? false;
 
-                // Fechas
-                var dtpIni = FindCtrl<DateTimePicker>("dtpFechaInicio", "dtpInicio");
-                var dtpFin = FindCtrl<DateTimePicker>("dtpFechaFin", "dtpTermino", "dtpFin");
-                DateTime? fIni = dtpIni?.Value.Date;
-                DateTime? fFin = dtpFin?.Value.Date;
+                DateTime? fIni = dtpFechaInicio?.Value.Date;
+                DateTime? fFin = dtpFechaFin?.Value.Date;
+
                 if (fIni.HasValue && fFin.HasValue && fIni.Value > fFin.Value)
                     throw new InvalidOperationException("La fecha de inicio no puede ser mayor que la fecha de terminación.");
 
                 if (_rowVersion == null || _rowVersion.Length == 0)
                     throw new InvalidOperationException("No se pudo recuperar la versión de la fila (RowVersion).");
 
-                var editor =
+                string editor =
                     UserContext.Usuario ??
                     ConfigurationManager.AppSettings["DefaultEjecutor"] ??
                     "rtscon@local";
@@ -283,25 +243,34 @@ namespace RTSCon.Catalogos
                 _neg.Actualizar(
                     _id,
                     nombre,
-                    propietarioId.Value,
-                    unidadId.Value,
-                    fIni, fFin,
+                    _propietarioIdSeleccionado.Value,
+                    unidadId,
+                    fIni,
+                    fFin,
                     porcentaje,
                     esTitular,
                     _rowVersion,
                     editor
                 );
 
-                KryptonMessageBox.Show(this, "Propiedad actualizada correctamente.",
-                    "Actualizar Propiedad", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Information);
+                KryptonMessageBox.Show(
+                    this,
+                    "Propiedad actualizada correctamente.",
+                    "Actualizar Propiedad",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Information);
 
                 this.DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception ex)
             {
-                KryptonMessageBox.Show(this, ex.Message,
-                    "Actualizar Propiedad", KryptonMessageBoxButtons.OK, KryptonMessageBoxIcon.Error);
+                KryptonMessageBox.Show(
+                    this,
+                    ex.Message,
+                    "Actualizar Propiedad",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Error);
             }
         }
     }

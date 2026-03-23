@@ -48,18 +48,8 @@ namespace RTSCon.Catalogos.Condominio
             if (btnBuscarPropietario != null)
                 btnBuscarPropietario.Click += btnBuscarPropietario_Click;
 
-            SetKeyPressNumeric(TxtCuota);
+            SetKeyPressNumeric(txtMantenimiento);
         }
-
-        private KryptonTextBox TxtNombre => txtBuscar;
-        private KryptonTextBox TxtDireccion => kryptonTextBox1;
-        private KryptonTextBox TxtPropietario => kryptonTextBox2;
-        private KryptonTextBox TxtIdPropietario => txtIdPropietario; // visual: documento
-        private KryptonTextBox TxtCorreoNotif => txtCorreo;
-        private KryptonTextBox TxtCuota => txtMantenimiento;
-        private ComboBox CboTipo => cmbTipoCond;
-        private KryptonDateTimePicker DtpFecha => dtpFechaConstitucion;
-        private KryptonCheckBox ChkNotifProp => chkNotificarPropietario;
 
         private void SetKeyPressNumeric(KryptonTextBox tb)
         {
@@ -83,6 +73,30 @@ namespace RTSCon.Catalogos.Condominio
                     e.Handled = true;
                 }
             };
+        }
+
+        private void InitUi()
+        {
+            if (cmbTipoCond != null)
+            {
+                cmbTipoCond.Items.Clear();
+                cmbTipoCond.Items.AddRange(new object[]
+                {
+                    "Casas",
+                    "Apartamentos",
+                    "Apartaestudios",
+                    "Penthouses"
+                });
+
+                if (cmbTipoCond.SelectedIndex < 0 && cmbTipoCond.Items.Count > 0)
+                    cmbTipoCond.SelectedIndex = 0;
+            }
+
+            if (kryptonTextBox2 != null)
+                kryptonTextBox2.ReadOnly = true;
+
+            if (txtIdPropietario != null)
+                txtIdPropietario.ReadOnly = true;
         }
 
         private bool ResolverId()
@@ -114,25 +128,6 @@ namespace RTSCon.Catalogos.Condominio
 
             Close();
             return false;
-        }
-
-        private void InitUi()
-        {
-            if (CboTipo != null && CboTipo.Items.Count == 0)
-            {
-                CboTipo.Items.AddRange(new object[]
-                {
-                    "Residencial",
-                    "Comercial",
-                    "Mixto"
-                });
-            }
-
-            if (TxtPropietario != null)
-                TxtPropietario.ReadOnly = true;
-
-            if (TxtIdPropietario != null)
-                TxtIdPropietario.ReadOnly = true;
         }
 
         private void CargarDatos()
@@ -182,39 +177,23 @@ namespace RTSCon.Catalogos.Condominio
                        Convert.ToBoolean(r[col]);
             }
 
-            if (TxtNombre != null)
-                TxtNombre.Text = GS("Nombre");
+            txtBuscar.Text = GS("Nombre");
+            kryptonTextBox1.Text = GS("Direccion");
+            kryptonTextBox2.Text = GS("AdministradorResponsable");
+            txtCorreo.Text = GS("EmailNotificaciones");
+            txtMantenimiento.Text = GD("CuotaMantenimientoBase").ToString(CultureInfo.CurrentCulture);
+            dtpFechaConstitucion.Value = GDT("FechaConstitucion");
 
-            if (TxtDireccion != null)
-                TxtDireccion.Text = GS("Direccion");
-
-            if (TxtPropietario != null)
-                TxtPropietario.Text = GS("AdministradorResponsable");
-
-            if (TxtCorreoNotif != null)
-                TxtCorreoNotif.Text = GS("EmailNotificaciones");
-
-            if (TxtCuota != null)
-                TxtCuota.Text = GD("CuotaMantenimientoBase").ToString(CultureInfo.CurrentCulture);
-
-            if (DtpFecha != null)
-                DtpFecha.Value = GDT("FechaConstitucion");
-
-            if (CboTipo != null)
+            string tipo = GS("Tipo");
+            if (!string.IsNullOrWhiteSpace(tipo))
             {
-                string tipo = GS("Tipo");
+                if (!cmbTipoCond.Items.Contains(tipo))
+                    cmbTipoCond.Items.Add(tipo);
 
-                if (!string.IsNullOrWhiteSpace(tipo))
-                {
-                    if (!CboTipo.Items.Contains(tipo))
-                        CboTipo.Items.Add(tipo);
-
-                    CboTipo.SelectedItem = tipo;
-                }
+                cmbTipoCond.SelectedItem = tipo;
             }
 
-            if (ChkNotifProp != null)
-                ChkNotifProp.Checked = GB("EnviarNotifsAlPropietario");
+            chkNotificarPropietario.Checked = GB("EnviarNotifsAlPropietario");
 
             _rowVersion = dt.Columns.Contains("RowVersion") && r["RowVersion"] != DBNull.Value
                 ? (byte[])r["RowVersion"]
@@ -224,20 +203,15 @@ namespace RTSCon.Catalogos.Condominio
             {
                 _idPropietarioSel = Convert.ToInt32(r["ID_propietario"]);
 
-                if (TxtIdPropietario != null)
-                {
-                    if (dt.Columns.Contains("PropietarioDocumento") && r["PropietarioDocumento"] != DBNull.Value)
-                        TxtIdPropietario.Text = Convert.ToString(r["PropietarioDocumento"]);
-                    else
-                        TxtIdPropietario.Text = string.Empty;
-                }
+                if (dt.Columns.Contains("PropietarioDocumento") && r["PropietarioDocumento"] != DBNull.Value)
+                    txtIdPropietario.Text = Convert.ToString(r["PropietarioDocumento"]);
+                else
+                    txtIdPropietario.Text = string.Empty;
             }
             else
             {
                 _idPropietarioSel = null;
-
-                if (TxtIdPropietario != null)
-                    TxtIdPropietario.Text = string.Empty;
+                txtIdPropietario.Text = string.Empty;
             }
         }
 
@@ -245,25 +219,17 @@ namespace RTSCon.Catalogos.Condominio
         {
             try
             {
-                using (var f = new BuscarPropietario(_neg))
+                using (var dlg = new RTSCon.Catalogos.BuscarPropietario())
                 {
-                    if (f.ShowDialog(this) != DialogResult.OK)
+                    if (dlg.ShowDialog(this) != DialogResult.OK)
                         return;
 
-                    _idPropietarioSel = f.SelectedId;
+                    _idPropietarioSel = dlg.SelectedId;
+                    kryptonTextBox2.Text = dlg.SelectedUsuario;
+                    txtIdPropietario.Text = dlg.SelectedDocumento;
 
-                    if (TxtPropietario != null)
-                        TxtPropietario.Text = f.SelectedUsuario ?? string.Empty;
-
-                    if (TxtIdPropietario != null)
-                        TxtIdPropietario.Text = f.SelectedDocumento ?? string.Empty;
-
-                    if (TxtCorreoNotif != null &&
-                        string.IsNullOrWhiteSpace(TxtCorreoNotif.Text) &&
-                        !string.IsNullOrWhiteSpace(f.SelectedCorreo))
-                    {
-                        TxtCorreoNotif.Text = f.SelectedCorreo;
-                    }
+                    if (string.IsNullOrWhiteSpace(txtCorreo.Text) && !string.IsNullOrWhiteSpace(dlg.SelectedCorreo))
+                        txtCorreo.Text = dlg.SelectedCorreo;
                 }
             }
             catch (Exception ex)
@@ -281,14 +247,14 @@ namespace RTSCon.Catalogos.Condominio
         {
             try
             {
-                string nombre = TxtNombre?.Text?.Trim() ?? string.Empty;
-                string direccion = TxtDireccion?.Text?.Trim() ?? string.Empty;
-                string tipo = CboTipo?.SelectedItem?.ToString()?.Trim() ?? string.Empty;
-                string adminResp = TxtPropietario?.Text?.Trim() ?? string.Empty;
-                string correo = TxtCorreoNotif?.Text?.Trim() ?? string.Empty;
-                string cuotaTexto = TxtCuota?.Text?.Trim() ?? string.Empty;
-                DateTime fechaConst = DtpFecha?.Value.Date ?? DateTime.Today;
-                bool enviarNotifProp = ChkNotifProp?.Checked ?? false;
+                string nombre = txtBuscar?.Text?.Trim() ?? string.Empty;
+                string direccion = kryptonTextBox1?.Text?.Trim() ?? string.Empty;
+                string tipo = cmbTipoCond?.SelectedItem?.ToString()?.Trim() ?? string.Empty;
+                string adminResp = kryptonTextBox2?.Text?.Trim() ?? string.Empty;
+                string correo = txtCorreo?.Text?.Trim() ?? string.Empty;
+                string cuotaTexto = txtMantenimiento?.Text?.Trim() ?? string.Empty;
+                DateTime fechaConst = dtpFechaConstitucion?.Value.Date ?? DateTime.Today;
+                bool enviarNotifProp = chkNotificarPropietario?.Checked ?? false;
 
                 if (string.IsNullOrWhiteSpace(nombre))
                     throw new InvalidOperationException("Ingrese el nombre del condominio.");

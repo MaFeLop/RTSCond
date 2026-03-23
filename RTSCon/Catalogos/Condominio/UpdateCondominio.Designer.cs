@@ -249,7 +249,7 @@
             // 
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Image = ((System.Drawing.Image)(resources.GetObject("label7.Image")));
-            this.label7.Location = new System.Drawing.Point(428, 1);
+            this.label7.Location = new System.Drawing.Point(525, -2);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(135, 102);
@@ -259,7 +259,7 @@
             // 
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Image = ((System.Drawing.Image)(resources.GetObject("label12.Image")));
-            this.label12.Location = new System.Drawing.Point(308, 1);
+            this.label12.Location = new System.Drawing.Point(403, -2);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(140, 102);
@@ -338,7 +338,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(50, 136);
+            this.label1.Location = new System.Drawing.Point(50, 141);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(345, 28);
