@@ -23,7 +23,7 @@ namespace RTSCon.Catalogos
             var cn = ConfigurationManager.ConnectionStrings["RTSCond"].ConnectionString;
             _neg = new NPropiedad(new DPropiedad(cn));
 
-            this.Shown += (_, __) => InitUiAndLoad();
+            Shown += (_, __) => InitUiAndLoad();
 
             if (btnConfirmar != null)
                 btnConfirmar.Click += btnConfirmar_Click;
@@ -36,9 +36,9 @@ namespace RTSCon.Catalogos
 
             SetKeyPressDecimal(txtPorcentaje);
 
-            if (txtIdPropiedad != null)
+            if (txtIdUnidad != null)
             {
-                txtIdPropiedad.KeyDown += (s, e) =>
+                txtIdUnidad.KeyDown += (s, e) =>
                 {
                     if (e.KeyCode == Keys.Enter)
                     {
@@ -63,7 +63,8 @@ namespace RTSCon.Catalogos
 
         private void SetKeyPressDecimal(KryptonTextBox tb)
         {
-            if (tb == null) return;
+            if (tb == null)
+                return;
 
             tb.KeyPress += (s, e) =>
             {
@@ -131,8 +132,8 @@ namespace RTSCon.Catalogos
             if (txtNombrePropietario != null)
                 txtNombrePropietario.ReadOnly = true;
 
-            if (txtIdPropietario != null)
-                txtIdPropietario.ReadOnly = true;
+            if (txtPropietarioDocumento != null)
+                txtPropietarioDocumento.ReadOnly = true;
 
             CargarDatos();
         }
@@ -156,20 +157,20 @@ namespace RTSCon.Catalogos
             if (row.Table.Columns.Contains("RowVersion") && row["RowVersion"] != DBNull.Value)
                 _rowVersion = (byte[])row["RowVersion"];
 
-            if (row.Table.Columns.Contains("Nombre"))
+            if (row.Table.Columns.Contains("Nombre") && row["Nombre"] != DBNull.Value)
                 txtNombrePropiedad.Text = Convert.ToString(row["Nombre"]);
 
-            if (row.Table.Columns.Contains("UnidadId"))
-                txtIdPropiedad.Text = Convert.ToString(row["UnidadId"]);
+            if (row.Table.Columns.Contains("UnidadId") && row["UnidadId"] != DBNull.Value)
+                txtIdUnidad.Text = Convert.ToString(row["UnidadId"]);
 
             if (row.Table.Columns.Contains("PropietarioId") && row["PropietarioId"] != DBNull.Value)
                 _propietarioIdSeleccionado = Convert.ToInt32(row["PropietarioId"]);
 
-            if (row.Table.Columns.Contains("PropietarioNombre"))
+            if (row.Table.Columns.Contains("PropietarioNombre") && row["PropietarioNombre"] != DBNull.Value)
                 txtNombrePropietario.Text = Convert.ToString(row["PropietarioNombre"]);
 
-            if (row.Table.Columns.Contains("PropietarioDocumento"))
-                txtIdPropietario.Text = Convert.ToString(row["PropietarioDocumento"]);
+            if (row.Table.Columns.Contains("PropietarioDocumento") && row["PropietarioDocumento"] != DBNull.Value)
+                txtPropietarioDocumento.Text = Convert.ToString(row["PropietarioDocumento"]);
 
             if (row.Table.Columns.Contains("Correo") && row["Correo"] != DBNull.Value)
                 txtCorreo.Text = Convert.ToString(row["Correo"]);
@@ -189,15 +190,21 @@ namespace RTSCon.Catalogos
 
         private void btnBuscarPropietario_Click(object sender, EventArgs e)
         {
-            using (var dlg = new RTSCon.Catalogos.BuscarPropietario())
+            using (var dlg = new BuscarPropietario())
             {
                 if (dlg.ShowDialog(this) != DialogResult.OK)
                     return;
 
                 _propietarioIdSeleccionado = dlg.SelectedId;
-                txtNombrePropietario.Text = dlg.SelectedUsuario;
-                txtIdPropietario.Text = dlg.SelectedDocumento;
-                txtCorreo.Text = dlg.SelectedCorreo;
+
+                if (txtNombrePropietario != null)
+                    txtNombrePropietario.Text = dlg.SelectedUsuario;
+
+                if (txtPropietarioDocumento != null)
+                    txtPropietarioDocumento.Text = dlg.SelectedDocumento;
+
+                if (txtCorreo != null)
+                    txtCorreo.Text = dlg.SelectedCorreo;
             }
         }
 
@@ -208,11 +215,12 @@ namespace RTSCon.Catalogos
                 string nombre = txtNombrePropiedad?.Text?.Trim() ?? string.Empty;
                 if (string.IsNullOrWhiteSpace(nombre))
                     throw new InvalidOperationException("Ingrese el nombre de la propiedad.");
+
                 if (nombre.Length > 50)
                     throw new InvalidOperationException("El nombre no puede exceder 50 caracteres.");
 
-                if (!int.TryParse(txtIdPropiedad?.Text?.Trim(), out int unidadId) || unidadId <= 0)
-                    throw new InvalidOperationException("Ingrese el Id de la unidad (vivienda) válido.");
+                if (!int.TryParse(txtIdUnidad?.Text?.Trim(), out int unidadId) || unidadId <= 0)
+                    throw new InvalidOperationException("Ingrese el Id de la unidad válido.");
 
                 if (_propietarioIdSeleccionado is null || _propietarioIdSeleccionado <= 0)
                     throw new InvalidOperationException("Seleccione un propietario con el botón 'Buscar Propietario'.");
@@ -260,7 +268,7 @@ namespace RTSCon.Catalogos
                     KryptonMessageBoxButtons.OK,
                     KryptonMessageBoxIcon.Information);
 
-                this.DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception ex)

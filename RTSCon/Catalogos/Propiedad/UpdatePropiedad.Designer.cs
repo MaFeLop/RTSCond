@@ -31,11 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdatePropiedad));
             this.dtpFechaFin = new Krypton.Toolkit.KryptonDateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtPorcentaje = new Krypton.Toolkit.KryptonTextBox();
-            this.btnBuscarPropietario = new Krypton.Toolkit.KryptonButton();
-            this.chkTitular = new Krypton.Toolkit.KryptonCheckBox();
-            this.txtAdministrador = new System.Windows.Forms.Label();
-            this.txtNombrePropietario = new Krypton.Toolkit.KryptonTextBox();
             this.dtpFechaInicio = new Krypton.Toolkit.KryptonDateTimePicker();
             this.btnVolver = new Krypton.Toolkit.KryptonButton();
             this.btnConfirmar = new Krypton.Toolkit.KryptonButton();
@@ -43,15 +38,20 @@
             this.txtCorreo = new Krypton.Toolkit.KryptonTextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtIdPropietario = new Krypton.Toolkit.KryptonTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtIdPropiedad = new Krypton.Toolkit.KryptonTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtNombrePropiedad = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             this.label7 = new System.Windows.Forms.Label();
+            this.txtPorcentaje = new Krypton.Toolkit.KryptonTextBox();
+            this.btnBuscarPropietario = new Krypton.Toolkit.KryptonButton();
+            this.chkTitular = new Krypton.Toolkit.KryptonCheckBox();
+            this.lblPropietarioResponsable = new System.Windows.Forms.Label();
+            this.txtNombrePropietario = new Krypton.Toolkit.KryptonTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtPropietarioDocumento = new Krypton.Toolkit.KryptonTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtIdUnidad = new Krypton.Toolkit.KryptonTextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtNombrePropiedad = new Krypton.Toolkit.KryptonTextBox();
             this.SuspendLayout();
             // 
             // dtpFechaFin
@@ -76,63 +76,6 @@
             this.label6.TabIndex = 178;
             this.label6.Text = "Fecha de Terminación:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtPorcentaje
-            // 
-            this.txtPorcentaje.Location = new System.Drawing.Point(52, 270);
-            this.txtPorcentaje.Margin = new System.Windows.Forms.Padding(4);
-            this.txtPorcentaje.Name = "txtPorcentaje";
-            this.txtPorcentaje.Size = new System.Drawing.Size(541, 30);
-            this.txtPorcentaje.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPorcentaje.TabIndex = 177;
-            // 
-            // btnBuscarPropietario
-            // 
-            this.btnBuscarPropietario.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnBuscarPropietario.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnBuscarPropietario.Location = new System.Drawing.Point(416, 358);
-            this.btnBuscarPropietario.Margin = new System.Windows.Forms.Padding(4);
-            this.btnBuscarPropietario.Name = "btnBuscarPropietario";
-            this.btnBuscarPropietario.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.btnBuscarPropietario.Size = new System.Drawing.Size(177, 37);
-            this.btnBuscarPropietario.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarPropietario.TabIndex = 176;
-            this.btnBuscarPropietario.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnBuscarPropietario.Values.Text = "Buscar Propietario";
-            this.btnBuscarPropietario.Click += new System.EventHandler(this.btnBuscarPropietario_Click);
-            // 
-            // chkTitular
-            // 
-            this.chkTitular.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
-            this.chkTitular.Location = new System.Drawing.Point(56, 324);
-            this.chkTitular.Name = "chkTitular";
-            this.chkTitular.Size = new System.Drawing.Size(350, 24);
-            this.chkTitular.TabIndex = 175;
-            this.chkTitular.Values.Text = "Usted es Titular Principal de esta Propiedad?";
-            // 
-            // txtAdministrador
-            // 
-            this.txtAdministrador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAdministrador.BackColor = System.Drawing.Color.Transparent;
-            this.txtAdministrador.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAdministrador.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtAdministrador.Location = new System.Drawing.Point(52, 367);
-            this.txtAdministrador.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.txtAdministrador.Name = "txtAdministrador";
-            this.txtAdministrador.Size = new System.Drawing.Size(303, 28);
-            this.txtAdministrador.TabIndex = 174;
-            this.txtAdministrador.Text = "Propietario Responsable:";
-            this.txtAdministrador.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtNombrePropietario
-            // 
-            this.txtNombrePropietario.Location = new System.Drawing.Point(52, 399);
-            this.txtNombrePropietario.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNombrePropietario.Name = "txtNombrePropietario";
-            this.txtNombrePropietario.ReadOnly = true;
-            this.txtNombrePropietario.Size = new System.Drawing.Size(541, 30);
-            this.txtNombrePropietario.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombrePropietario.TabIndex = 173;
             // 
             // dtpFechaInicio
             // 
@@ -219,90 +162,6 @@
             this.label5.Text = "Fecha de Inicio:";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label4
-            // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label4.BackColor = System.Drawing.Color.Transparent;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(52, 238);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(303, 28);
-            this.label4.TabIndex = 164;
-            this.label4.Text = "Porcentaje:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.BackColor = System.Drawing.Color.Transparent;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(52, 433);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(303, 28);
-            this.label3.TabIndex = 163;
-            this.label3.Text = "Identificacion del Propietario:";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtIdPropietario
-            // 
-            this.txtIdPropietario.Location = new System.Drawing.Point(52, 465);
-            this.txtIdPropietario.Margin = new System.Windows.Forms.Padding(4);
-            this.txtIdPropietario.Name = "txtIdPropietario";
-            this.txtIdPropietario.ReadOnly = true;
-            this.txtIdPropietario.Size = new System.Drawing.Size(541, 30);
-            this.txtIdPropietario.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdPropietario.TabIndex = 162;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(52, 160);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(303, 28);
-            this.label1.TabIndex = 161;
-            this.label1.Text = "Id de la propiedad:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtIdPropiedad
-            // 
-            this.txtIdPropiedad.Location = new System.Drawing.Point(52, 192);
-            this.txtIdPropiedad.Margin = new System.Windows.Forms.Padding(4);
-            this.txtIdPropiedad.Name = "txtIdPropiedad";
-            this.txtIdPropiedad.Size = new System.Drawing.Size(541, 30);
-            this.txtIdPropiedad.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdPropiedad.TabIndex = 160;
-            // 
-            // label2
-            // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(48, 83);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(303, 28);
-            this.label2.TabIndex = 159;
-            this.label2.Text = "Nombre de Propiedad:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtNombrePropiedad
-            // 
-            this.txtNombrePropiedad.Location = new System.Drawing.Point(52, 115);
-            this.txtNombrePropiedad.Margin = new System.Windows.Forms.Padding(4);
-            this.txtNombrePropiedad.Name = "txtNombrePropiedad";
-            this.txtNombrePropiedad.Size = new System.Drawing.Size(541, 30);
-            this.txtNombrePropiedad.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombrePropiedad.TabIndex = 158;
-            // 
             // kryptonLabel1
             // 
             this.kryptonLabel1.AutoSize = false;
@@ -324,19 +183,166 @@
             this.label7.Size = new System.Drawing.Size(135, 102);
             this.label7.TabIndex = 180;
             // 
+            // txtPorcentaje
+            // 
+            this.txtPorcentaje.Location = new System.Drawing.Point(29, 270);
+            this.txtPorcentaje.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPorcentaje.Name = "txtPorcentaje";
+            this.txtPorcentaje.Size = new System.Drawing.Size(541, 30);
+            this.txtPorcentaje.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPorcentaje.TabIndex = 192;
+            // 
+            // btnBuscarPropietario
+            // 
+            this.btnBuscarPropietario.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnBuscarPropietario.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnBuscarPropietario.Location = new System.Drawing.Point(393, 358);
+            this.btnBuscarPropietario.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscarPropietario.Name = "btnBuscarPropietario";
+            this.btnBuscarPropietario.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnBuscarPropietario.Size = new System.Drawing.Size(177, 37);
+            this.btnBuscarPropietario.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarPropietario.TabIndex = 191;
+            this.btnBuscarPropietario.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnBuscarPropietario.Values.Text = "Buscar Propietario";
+            // 
+            // chkTitular
+            // 
+            this.chkTitular.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
+            this.chkTitular.Location = new System.Drawing.Point(33, 324);
+            this.chkTitular.Name = "chkTitular";
+            this.chkTitular.Size = new System.Drawing.Size(350, 24);
+            this.chkTitular.TabIndex = 190;
+            this.chkTitular.Values.Text = "Usted es Titular Principal de esta Propiedad?";
+            // 
+            // lblPropietarioResponsable
+            // 
+            this.lblPropietarioResponsable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPropietarioResponsable.BackColor = System.Drawing.Color.Transparent;
+            this.lblPropietarioResponsable.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPropietarioResponsable.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblPropietarioResponsable.Location = new System.Drawing.Point(29, 367);
+            this.lblPropietarioResponsable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPropietarioResponsable.Name = "lblPropietarioResponsable";
+            this.lblPropietarioResponsable.Size = new System.Drawing.Size(303, 28);
+            this.lblPropietarioResponsable.TabIndex = 189;
+            this.lblPropietarioResponsable.Text = "Propietario Responsable:";
+            this.lblPropietarioResponsable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtNombrePropietario
+            // 
+            this.txtNombrePropietario.Location = new System.Drawing.Point(29, 399);
+            this.txtNombrePropietario.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNombrePropietario.Name = "txtNombrePropietario";
+            this.txtNombrePropietario.ReadOnly = true;
+            this.txtNombrePropietario.Size = new System.Drawing.Size(541, 30);
+            this.txtNombrePropietario.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombrePropietario.TabIndex = 188;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label4.Location = new System.Drawing.Point(29, 238);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(303, 28);
+            this.label4.TabIndex = 187;
+            this.label4.Text = "Porcentaje:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Location = new System.Drawing.Point(29, 433);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(303, 28);
+            this.label3.TabIndex = 186;
+            this.label3.Text = "Identificación del Propietario:";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtPropietarioDocumento
+            // 
+            this.txtPropietarioDocumento.Location = new System.Drawing.Point(29, 465);
+            this.txtPropietarioDocumento.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPropietarioDocumento.Name = "txtPropietarioDocumento";
+            this.txtPropietarioDocumento.ReadOnly = true;
+            this.txtPropietarioDocumento.Size = new System.Drawing.Size(541, 30);
+            this.txtPropietarioDocumento.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPropietarioDocumento.TabIndex = 185;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.Location = new System.Drawing.Point(29, 160);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(303, 28);
+            this.label1.TabIndex = 184;
+            this.label1.Text = "Id de la Unidad:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtIdUnidad
+            // 
+            this.txtIdUnidad.Location = new System.Drawing.Point(29, 192);
+            this.txtIdUnidad.Margin = new System.Windows.Forms.Padding(4);
+            this.txtIdUnidad.Name = "txtIdUnidad";
+            this.txtIdUnidad.Size = new System.Drawing.Size(541, 30);
+            this.txtIdUnidad.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIdUnidad.TabIndex = 183;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(25, 83);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(303, 28);
+            this.label2.TabIndex = 182;
+            this.label2.Text = "Nombre de Propiedad:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtNombrePropiedad
+            // 
+            this.txtNombrePropiedad.Location = new System.Drawing.Point(29, 115);
+            this.txtNombrePropiedad.Margin = new System.Windows.Forms.Padding(4);
+            this.txtNombrePropiedad.Name = "txtNombrePropiedad";
+            this.txtNombrePropiedad.Size = new System.Drawing.Size(541, 30);
+            this.txtNombrePropiedad.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNombrePropiedad.TabIndex = 181;
+            // 
             // UpdatePropiedad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1517, 676);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.dtpFechaFin);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtPorcentaje);
             this.Controls.Add(this.btnBuscarPropietario);
             this.Controls.Add(this.chkTitular);
-            this.Controls.Add(this.txtAdministrador);
+            this.Controls.Add(this.lblPropietarioResponsable);
             this.Controls.Add(this.txtNombrePropietario);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtPropietarioDocumento);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtIdUnidad);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.txtNombrePropiedad);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dtpFechaFin);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.dtpFechaInicio);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnConfirmar);
@@ -344,13 +350,6 @@
             this.Controls.Add(this.txtCorreo);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtIdPropietario);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtIdPropiedad);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtNombrePropiedad);
             this.Controls.Add(this.kryptonLabel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UpdatePropiedad";
@@ -364,11 +363,6 @@
 
         private Krypton.Toolkit.KryptonDateTimePicker dtpFechaFin;
         private System.Windows.Forms.Label label6;
-        private Krypton.Toolkit.KryptonTextBox txtPorcentaje;
-        private Krypton.Toolkit.KryptonButton btnBuscarPropietario;
-        private Krypton.Toolkit.KryptonCheckBox chkTitular;
-        private System.Windows.Forms.Label txtAdministrador;
-        private Krypton.Toolkit.KryptonTextBox txtNombrePropietario;
         private Krypton.Toolkit.KryptonDateTimePicker dtpFechaInicio;
         private Krypton.Toolkit.KryptonButton btnVolver;
         private Krypton.Toolkit.KryptonButton btnConfirmar;
@@ -376,14 +370,19 @@
         private Krypton.Toolkit.KryptonTextBox txtCorreo;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private Krypton.Toolkit.KryptonTextBox txtIdPropietario;
-        private System.Windows.Forms.Label label1;
-        private Krypton.Toolkit.KryptonTextBox txtIdPropiedad;
-        private System.Windows.Forms.Label label2;
-        private Krypton.Toolkit.KryptonTextBox txtNombrePropiedad;
         private Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private System.Windows.Forms.Label label7;
+        private Krypton.Toolkit.KryptonTextBox txtPorcentaje;
+        private Krypton.Toolkit.KryptonButton btnBuscarPropietario;
+        private Krypton.Toolkit.KryptonCheckBox chkTitular;
+        private System.Windows.Forms.Label lblPropietarioResponsable;
+        private Krypton.Toolkit.KryptonTextBox txtNombrePropietario;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private Krypton.Toolkit.KryptonTextBox txtPropietarioDocumento;
+        private System.Windows.Forms.Label label1;
+        private Krypton.Toolkit.KryptonTextBox txtIdUnidad;
+        private System.Windows.Forms.Label label2;
+        private Krypton.Toolkit.KryptonTextBox txtNombrePropiedad;
     }
 }

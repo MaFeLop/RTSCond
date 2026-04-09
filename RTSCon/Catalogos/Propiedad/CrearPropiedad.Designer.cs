@@ -31,21 +31,21 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CrearPropiedad));
             this.btnBuscarPropietario = new Krypton.Toolkit.KryptonButton();
             this.chkTitular = new Krypton.Toolkit.KryptonCheckBox();
-            this.txtAdministrador = new System.Windows.Forms.Label();
+            this.lblPropietarioResponsable = new System.Windows.Forms.Label();
             this.txtNombrePropietario = new Krypton.Toolkit.KryptonTextBox();
             this.dtpFechaInicio = new Krypton.Toolkit.KryptonDateTimePicker();
             this.btnVolver = new Krypton.Toolkit.KryptonButton();
             this.btnConfirmar = new Krypton.Toolkit.KryptonButton();
             this.label13 = new System.Windows.Forms.Label();
-            this.txtCorreo = new Krypton.Toolkit.KryptonTextBox();
+            this.txtCorreoNotificacion = new Krypton.Toolkit.KryptonTextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtIdPropietario = new Krypton.Toolkit.KryptonTextBox();
+            this.txtPropietarioDocumento = new Krypton.Toolkit.KryptonTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtIdPropiedad = new Krypton.Toolkit.KryptonTextBox();
+            this.txtIdUnidad = new Krypton.Toolkit.KryptonTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNombrePropiedad = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
@@ -78,19 +78,19 @@
             this.chkTitular.TabIndex = 152;
             this.chkTitular.Values.Text = "Usted es Titular Principal de esta Propiedad?";
             // 
-            // txtAdministrador
+            // lblPropietarioResponsable
             // 
-            this.txtAdministrador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAdministrador.BackColor = System.Drawing.Color.Transparent;
-            this.txtAdministrador.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAdministrador.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtAdministrador.Location = new System.Drawing.Point(52, 374);
-            this.txtAdministrador.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.txtAdministrador.Name = "txtAdministrador";
-            this.txtAdministrador.Size = new System.Drawing.Size(303, 28);
-            this.txtAdministrador.TabIndex = 151;
-            this.txtAdministrador.Text = "Propietario Responsable:";
-            this.txtAdministrador.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPropietarioResponsable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPropietarioResponsable.BackColor = System.Drawing.Color.Transparent;
+            this.lblPropietarioResponsable.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPropietarioResponsable.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblPropietarioResponsable.Location = new System.Drawing.Point(52, 374);
+            this.lblPropietarioResponsable.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblPropietarioResponsable.Name = "lblPropietarioResponsable";
+            this.lblPropietarioResponsable.Size = new System.Drawing.Size(303, 28);
+            this.lblPropietarioResponsable.TabIndex = 151;
+            this.lblPropietarioResponsable.Text = "Propietario Responsable:";
+            this.lblPropietarioResponsable.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtNombrePropietario
             // 
@@ -153,14 +153,14 @@
             this.label13.Text = "Correo donde recibirá Notificaciones:";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtCorreo
+            // txtCorreoNotificacion
             // 
-            this.txtCorreo.Location = new System.Drawing.Point(672, 122);
-            this.txtCorreo.Margin = new System.Windows.Forms.Padding(4);
-            this.txtCorreo.Name = "txtCorreo";
-            this.txtCorreo.Size = new System.Drawing.Size(541, 30);
-            this.txtCorreo.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCorreo.TabIndex = 145;
+            this.txtCorreoNotificacion.Location = new System.Drawing.Point(672, 122);
+            this.txtCorreoNotificacion.Margin = new System.Windows.Forms.Padding(4);
+            this.txtCorreoNotificacion.Name = "txtCorreoNotificacion";
+            this.txtCorreoNotificacion.Size = new System.Drawing.Size(541, 30);
+            this.txtCorreoNotificacion.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCorreoNotificacion.TabIndex = 145;
             // 
             // label7
             // 
@@ -221,18 +221,18 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(303, 28);
             this.label3.TabIndex = 131;
-            this.label3.Text = "Identificacion del Propietario:";
+            this.label3.Text = "Identificación del Propietario:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtIdPropietario
+            // txtPropietarioDocumento
             // 
-            this.txtIdPropietario.Location = new System.Drawing.Point(52, 472);
-            this.txtIdPropietario.Margin = new System.Windows.Forms.Padding(4);
-            this.txtIdPropietario.Name = "txtIdPropietario";
-            this.txtIdPropietario.ReadOnly = true;
-            this.txtIdPropietario.Size = new System.Drawing.Size(541, 30);
-            this.txtIdPropietario.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdPropietario.TabIndex = 130;
+            this.txtPropietarioDocumento.Location = new System.Drawing.Point(52, 472);
+            this.txtPropietarioDocumento.Margin = new System.Windows.Forms.Padding(4);
+            this.txtPropietarioDocumento.Name = "txtPropietarioDocumento";
+            this.txtPropietarioDocumento.ReadOnly = true;
+            this.txtPropietarioDocumento.Size = new System.Drawing.Size(541, 30);
+            this.txtPropietarioDocumento.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPropietarioDocumento.TabIndex = 130;
             // 
             // label1
             // 
@@ -245,17 +245,17 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(303, 28);
             this.label1.TabIndex = 129;
-            this.label1.Text = "Id de la propiedad:";
+            this.label1.Text = "Id de la Unidad:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtIdPropiedad
+            // txtIdUnidad
             // 
-            this.txtIdPropiedad.Location = new System.Drawing.Point(52, 199);
-            this.txtIdPropiedad.Margin = new System.Windows.Forms.Padding(4);
-            this.txtIdPropiedad.Name = "txtIdPropiedad";
-            this.txtIdPropiedad.Size = new System.Drawing.Size(541, 30);
-            this.txtIdPropiedad.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdPropiedad.TabIndex = 128;
+            this.txtIdUnidad.Location = new System.Drawing.Point(52, 199);
+            this.txtIdUnidad.Margin = new System.Windows.Forms.Padding(4);
+            this.txtIdUnidad.Name = "txtIdUnidad";
+            this.txtIdUnidad.Size = new System.Drawing.Size(541, 30);
+            this.txtIdUnidad.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtIdUnidad.TabIndex = 128;
             // 
             // label2
             // 
@@ -333,21 +333,21 @@
             this.Controls.Add(this.txtPorcentaje);
             this.Controls.Add(this.btnBuscarPropietario);
             this.Controls.Add(this.chkTitular);
-            this.Controls.Add(this.txtAdministrador);
+            this.Controls.Add(this.lblPropietarioResponsable);
             this.Controls.Add(this.txtNombrePropietario);
             this.Controls.Add(this.dtpFechaInicio);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.txtCorreo);
+            this.Controls.Add(this.txtCorreoNotificacion);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtIdPropietario);
+            this.Controls.Add(this.txtPropietarioDocumento);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtIdPropiedad);
+            this.Controls.Add(this.txtIdUnidad);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNombrePropiedad);
             this.Controls.Add(this.kryptonLabel1);
@@ -363,21 +363,21 @@
 
         private Krypton.Toolkit.KryptonButton btnBuscarPropietario;
         private Krypton.Toolkit.KryptonCheckBox chkTitular;
-        private System.Windows.Forms.Label txtAdministrador;
+        private System.Windows.Forms.Label lblPropietarioResponsable;
         private Krypton.Toolkit.KryptonTextBox txtNombrePropietario;
         private Krypton.Toolkit.KryptonDateTimePicker dtpFechaInicio;
         private Krypton.Toolkit.KryptonButton btnVolver;
         private Krypton.Toolkit.KryptonButton btnConfirmar;
         private System.Windows.Forms.Label label13;
-        private Krypton.Toolkit.KryptonTextBox txtCorreo;
+        private Krypton.Toolkit.KryptonTextBox txtCorreoNotificacion;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private Krypton.Toolkit.KryptonTextBox txtIdPropietario;
+        private Krypton.Toolkit.KryptonTextBox txtPropietarioDocumento;
         private System.Windows.Forms.Label label1;
-        private Krypton.Toolkit.KryptonTextBox txtIdPropiedad;
+        private Krypton.Toolkit.KryptonTextBox txtIdUnidad;
         private System.Windows.Forms.Label label2;
         private Krypton.Toolkit.KryptonTextBox txtNombrePropiedad;
         private Krypton.Toolkit.KryptonLabel kryptonLabel1;
