@@ -1,5 +1,4 @@
-﻿// RTSCon.Catalogos\BloqueRead.cs
-using System;
+﻿using System;
 using System.Data;
 using System.Windows.Forms;
 using RTSCon.Datos;
@@ -11,13 +10,12 @@ namespace RTSCon.Catalogos
     {
         private int _condominioId;
         private readonly NBloque _nBloque;
+        private bool _eventosInicializados;
 
-        // ✅ Ctor SIN parámetros (para CatalogoCRUD)
         public BloqueRead() : this(0)
         {
         }
 
-        // ✅ Ctor con Id (por si vienes desde otra pantalla con condominio preseleccionado)
         public BloqueRead(int condominioId)
         {
             InitializeComponent();
@@ -27,13 +25,55 @@ namespace RTSCon.Catalogos
             var dBloque = new DBloque(Conexion.CadenaConexion);
             _nBloque = new NBloque(dBloque);
 
-            dgvBloques.AutoGenerateColumns = false;
+            dgvBloques.AutoGenerateColumns = true;
+
+            Load -= BloqueRead_Load;
+            Load += BloqueRead_Load;
         }
 
         private void BloqueRead_Load(object sender, EventArgs e)
         {
+            InicializarEventosUnaSolaVez();
             chkSoloActivos.Checked = true;
             CargarBloques();
+        }
+
+        private void InicializarEventosUnaSolaVez()
+        {
+            if (_eventosInicializados)
+                return;
+
+            btnCrear.Click -= btnNuevo_Click;
+            btnCrear.Click += btnNuevo_Click;
+
+            btnUpdate.Click -= btnEditar_Click;
+            btnUpdate.Click += btnEditar_Click;
+
+            btnDesactivar.Click -= btnDesactivar_Click;
+            btnDesactivar.Click += btnDesactivar_Click;
+
+            btnLimpiarFiltros.Click -= btnLimpiarFiltros_Click;
+            btnLimpiarFiltros.Click += btnLimpiarFiltros_Click;
+
+            txtBuscar.TextChanged -= txtBuscar_TextChanged;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
+
+            txtBuscar.KeyDown -= txtBuscar_KeyDown;
+            txtBuscar.KeyDown += txtBuscar_KeyDown;
+
+            chkSoloActivos.CheckedChanged -= chkSoloActivos_CheckedChanged;
+            chkSoloActivos.CheckedChanged += chkSoloActivos_CheckedChanged;
+
+            dgvBloques.CellDoubleClick -= dgvBloques_CellDoubleClick;
+            dgvBloques.CellDoubleClick += dgvBloques_CellDoubleClick;
+
+            dgvBloques.MultiSelect = false;
+            dgvBloques.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvBloques.AllowUserToAddRows = false;
+            dgvBloques.ReadOnly = true;
+            dgvBloques.RowHeadersVisible = false;
+
+            _eventosInicializados = true;
         }
 
         private void CargarBloques()
@@ -49,6 +89,10 @@ namespace RTSCon.Catalogos
 
                 DataTable dt = _nBloque.Buscar(condominioFiltro, texto, soloActivos, 50);
                 dgvBloques.DataSource = dt;
+
+                AjustarGrid();
+
+                lblTotal.Text = $"Total: {(dt?.Rows.Count ?? 0)}";
             }
             catch (Exception ex)
             {
@@ -58,6 +102,46 @@ namespace RTSCon.Catalogos
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+        }
+
+        private void AjustarGrid()
+        {
+            if (dgvBloques.DataSource == null)
+                return;
+
+            if (dgvBloques.Columns.Contains("Id"))
+                dgvBloques.Columns["Id"].Visible = false;
+
+            if (dgvBloques.Columns.Contains("CondominioId"))
+                dgvBloques.Columns["CondominioId"].Visible = false;
+
+            if (dgvBloques.Columns.Contains("RowVersion"))
+                dgvBloques.Columns["RowVersion"].Visible = false;
+
+            if (dgvBloques.Columns.Contains("CreatedBy"))
+                dgvBloques.Columns["CreatedBy"].Visible = false;
+
+            if (dgvBloques.Columns.Contains("UpdatedBy"))
+                dgvBloques.Columns["UpdatedBy"].Visible = false;
+
+            if (dgvBloques.Columns.Contains("UpdatedAt"))
+                dgvBloques.Columns["UpdatedAt"].Visible = false;
+
+            if (dgvBloques.Columns.Contains("Identificador"))
+                dgvBloques.Columns["Identificador"].HeaderText = "Bloque";
+
+            if (dgvBloques.Columns.Contains("NumeroPisos"))
+                dgvBloques.Columns["NumeroPisos"].HeaderText = "Pisos";
+
+            if (dgvBloques.Columns.Contains("UnidadesPorPiso"))
+                dgvBloques.Columns["UnidadesPorPiso"].HeaderText = "Unidades por Piso";
+
+            if (dgvBloques.Columns.Contains("IsActive"))
+                dgvBloques.Columns["IsActive"].HeaderText = "Activo";
+
+            dgvBloques.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvBloques.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvBloques.AllowUserToResizeRows = false;
         }
 
         private DataRow FilaSeleccionada()
@@ -103,7 +187,7 @@ namespace RTSCon.Catalogos
                 return;
             }
 
-            int id = (int)row["Id"];
+            int id = Convert.ToInt32(row["Id"]);
 
             using (var frm = new UpdateBloque(id))
             {
@@ -132,10 +216,12 @@ namespace RTSCon.Catalogos
                 return;
             }
 
-            int id = (int)row["Id"];
-            byte[] rowVersion = (byte[])row["RowVersion"];
-            string identificador = row["Identificador"].ToString();
+            int id = Convert.ToInt32(row["Id"]);
+            byte[] rowVersion = row["RowVersion"] != DBNull.Value
+                ? (byte[])row["RowVersion"]
+                : null;
 
+            string identificador = Convert.ToString(row["Identificador"]) ?? string.Empty;
             string mensaje = $"¿Deseas desactivar el bloque '{identificador}'?";
 
             using (var frm = new BloqueConfirmarDesactivacion(mensaje))
@@ -151,14 +237,12 @@ namespace RTSCon.Catalogos
                         var dAuth = new DAuth(Conexion.CadenaConexion);
                         var nAuth = new NAuth(dAuth);
 
-                        // Validación explícita
                         bool valido = nAuth.ValidarPassword(usuarioId, password);
 
                         if (!valido)
                             throw new InvalidOperationException("Contraseña incorrecta.");
 
                         _nBloque.Desactivar(id, rowVersion, usuarioLogin);
-
                         CargarBloques();
                     }
                     catch (Exception ex)
@@ -173,9 +257,16 @@ namespace RTSCon.Catalogos
             }
         }
 
-        private void btnVolver_Click(object sender, EventArgs e)
+        private void btnLimpiarFiltros_Click(object sender, EventArgs e)
         {
-            Close();
+            txtBuscar.Clear();
+            chkSoloActivos.Checked = true;
+            CargarBloques();
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            CargarBloques();
         }
 
         private void txtBuscar_KeyDown(object sender, KeyEventArgs e)

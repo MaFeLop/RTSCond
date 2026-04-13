@@ -52,6 +52,7 @@
             this.txtPorcentaje = new Krypton.Toolkit.KryptonTextBox();
             this.dtpFechaFin = new Krypton.Toolkit.KryptonDateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
+            this.btnBuscarUnidad = new Krypton.Toolkit.KryptonButton();
             this.SuspendLayout();
             // 
             // btnBuscarPropietario
@@ -67,7 +68,7 @@
             this.btnBuscarPropietario.TabIndex = 153;
             this.btnBuscarPropietario.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnBuscarPropietario.Values.Text = "Buscar Propietario";
-            this.btnBuscarPropietario.Click += new System.EventHandler(this.btnBuscarPropietario_Click_1);
+            this.btnBuscarPropietario.Click += new System.EventHandler(this.btnBuscarPropietario_Click);
             // 
             // chkTitular
             // 
@@ -253,6 +254,7 @@
             this.txtIdUnidad.Location = new System.Drawing.Point(52, 199);
             this.txtIdUnidad.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdUnidad.Name = "txtIdUnidad";
+            this.txtIdUnidad.ReadOnly = true;
             this.txtIdUnidad.Size = new System.Drawing.Size(541, 30);
             this.txtIdUnidad.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdUnidad.TabIndex = 128;
@@ -323,11 +325,27 @@
             this.label6.Text = "Fecha de Terminación:";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // btnBuscarUnidad
+            // 
+            this.btnBuscarUnidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnBuscarUnidad.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnBuscarUnidad.Location = new System.Drawing.Point(449, 160);
+            this.btnBuscarUnidad.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscarUnidad.Name = "btnBuscarUnidad";
+            this.btnBuscarUnidad.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnBuscarUnidad.Size = new System.Drawing.Size(144, 37);
+            this.btnBuscarUnidad.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarUnidad.TabIndex = 157;
+            this.btnBuscarUnidad.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnBuscarUnidad.Values.Text = "Buscar Unidad";
+            this.btnBuscarUnidad.Click += new System.EventHandler(this.btnBuscarUnidad_Click);
+            // 
             // CrearPropiedad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1517, 676);
+            this.Controls.Add(this.btnBuscarUnidad);
             this.Controls.Add(this.dtpFechaFin);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtPorcentaje);
@@ -384,5 +402,6 @@
         private Krypton.Toolkit.KryptonTextBox txtPorcentaje;
         private Krypton.Toolkit.KryptonDateTimePicker dtpFechaFin;
         private System.Windows.Forms.Label label6;
+        private Krypton.Toolkit.KryptonButton btnBuscarUnidad;
     }
 }

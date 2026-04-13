@@ -21,6 +21,7 @@ namespace RTSCon.Catalogos
 
         private readonly NCondominio _negocio;
         private DataTable _dt;
+        private bool _eventosInicializados;
 
         public BuscarPropietario()
             : this(CrearNegocio())
@@ -33,44 +34,8 @@ namespace RTSCon.Catalogos
 
             _negocio = negocio ?? throw new ArgumentNullException(nameof(negocio));
 
+            Load -= BuscarPropietario_Load;
             Load += BuscarPropietario_Load;
-
-            if (btnConfirmar != null)
-                btnConfirmar.Click += btnConfirmar_Click;
-
-            if (btnCancelar != null)
-                btnCancelar.Click += (s, e) =>
-                {
-                    DialogResult = DialogResult.Cancel;
-                    Close();
-                };
-
-            if (txtBuscar != null)
-            {
-                txtBuscar.TextChanged += (s, e) => Cargar();
-
-                txtBuscar.KeyDown += (s, e) =>
-                {
-                    if (e.KeyCode == Keys.Enter)
-                    {
-                        e.SuppressKeyPress = true;
-                        Cargar();
-                    }
-                };
-            }
-
-            if (dgvPropietario != null)
-            {
-                dgvPropietario.AutoGenerateColumns = true;
-                dgvPropietario.MultiSelect = false;
-                dgvPropietario.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                dgvPropietario.AllowUserToAddRows = false;
-                dgvPropietario.ReadOnly = false;
-
-                dgvPropietario.CurrentCellDirtyStateChanged += dgvPropietario_CurrentCellDirtyStateChanged;
-                dgvPropietario.CellValueChanged += dgvPropietario_CellValueChanged;
-                dgvPropietario.CellClick += dgvPropietario_CellClick;
-            }
         }
 
         private static NCondominio CrearNegocio()
@@ -85,15 +50,88 @@ namespace RTSCon.Catalogos
 
         private void BuscarPropietario_Load(object sender, EventArgs e)
         {
+            InicializarEventosUnaSolaVez();
+            chkSoloActivos.Checked = true;
             EnsureSelectionColumn();
             Cargar();
         }
 
-        private void EnsureSelectionColumn()
+        private void InicializarEventosUnaSolaVez()
         {
-            if (dgvPropietario == null)
+            if (_eventosInicializados)
                 return;
 
+            btnConfirmar.Click -= btnConfirmar_Click;
+            btnConfirmar.Click += btnConfirmar_Click;
+
+            btnCancelar.Click -= btnCancelar_Click;
+            btnCancelar.Click += btnCancelar_Click;
+
+            btnLimpiarFiltros.Click -= btnLimpiarFiltros_Click;
+            btnLimpiarFiltros.Click += btnLimpiarFiltros_Click;
+
+            txtBuscar.TextChanged -= txtBuscar_TextChanged;
+            txtBuscar.TextChanged += txtBuscar_TextChanged;
+
+            txtBuscar.KeyDown -= txtBuscar_KeyDown;
+            txtBuscar.KeyDown += txtBuscar_KeyDown;
+
+            chkSoloActivos.CheckedChanged -= chkSoloActivos_CheckedChanged;
+            chkSoloActivos.CheckedChanged += chkSoloActivos_CheckedChanged;
+
+            dgvPropietario.CurrentCellDirtyStateChanged -= dgvPropietario_CurrentCellDirtyStateChanged;
+            dgvPropietario.CurrentCellDirtyStateChanged += dgvPropietario_CurrentCellDirtyStateChanged;
+
+            dgvPropietario.CellValueChanged -= dgvPropietario_CellValueChanged;
+            dgvPropietario.CellValueChanged += dgvPropietario_CellValueChanged;
+
+            dgvPropietario.CellClick -= dgvPropietario_CellClick;
+            dgvPropietario.CellClick += dgvPropietario_CellClick;
+
+            dgvPropietario.MultiSelect = false;
+            dgvPropietario.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPropietario.AllowUserToAddRows = false;
+            dgvPropietario.ReadOnly = false;
+            dgvPropietario.RowHeadersVisible = false;
+            dgvPropietario.AutoGenerateColumns = true;
+
+            _eventosInicializados = true;
+        }
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            Cargar();
+        }
+
+        private void txtBuscar_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                Cargar();
+            }
+        }
+
+        private void chkSoloActivos_CheckedChanged(object sender, EventArgs e)
+        {
+            Cargar();
+        }
+
+        private void btnLimpiarFiltros_Click(object sender, EventArgs e)
+        {
+            txtBuscar.Clear();
+            chkSoloActivos.Checked = true;
+            Cargar();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
+        }
+
+        private void EnsureSelectionColumn()
+        {
             if (dgvPropietario.Columns.Contains(COL_SEL))
                 return;
 
@@ -112,11 +150,10 @@ namespace RTSCon.Catalogos
         {
             try
             {
-                string filtro = txtBuscar != null
-                    ? (txtBuscar.Text ?? string.Empty).Trim()
-                    : string.Empty;
+                string filtro = txtBuscar.Text.Trim();
+                bool soloActivos = chkSoloActivos.Checked;
 
-                _dt = _negocio.BuscarPropietarios(filtro, true, 50);
+                _dt = _negocio.BuscarPropietarios(filtro, soloActivos, 50);
 
                 dgvPropietario.DataSource = null;
                 dgvPropietario.DataSource = _dt;
@@ -126,23 +163,14 @@ namespace RTSCon.Catalogos
                 AjustarColumnas();
 
                 bool hay = _dt != null && _dt.Rows.Count > 0;
-
-                if (lblNoHay != null)
-                    lblNoHay.Visible = !hay;
-
-                if (btnConfirmar != null)
-                    btnConfirmar.Enabled = hay;
+                lblNoHay.Visible = !hay;
+                btnConfirmar.Enabled = hay;
             }
             catch (Exception ex)
             {
-                if (dgvPropietario != null)
-                    dgvPropietario.DataSource = null;
-
-                if (btnConfirmar != null)
-                    btnConfirmar.Enabled = false;
-
-                if (lblNoHay != null)
-                    lblNoHay.Visible = true;
+                dgvPropietario.DataSource = null;
+                btnConfirmar.Enabled = false;
+                lblNoHay.Visible = true;
 
                 KryptonMessageBox.Show(
                     this,
@@ -155,9 +183,6 @@ namespace RTSCon.Catalogos
 
         private void AjustarColumnas()
         {
-            if (dgvPropietario == null)
-                return;
-
             if (dgvPropietario.Columns.Contains(COL_SEL))
             {
                 dgvPropietario.Columns[COL_SEL].DisplayIndex = 0;
@@ -173,12 +198,26 @@ namespace RTSCon.Catalogos
             if (dgvPropietario.Columns.Contains("ID_propietario"))
                 dgvPropietario.Columns["ID_propietario"].Visible = false;
 
+            if (dgvPropietario.Columns.Contains("Usuario"))
+                dgvPropietario.Columns["Usuario"].HeaderText = "Usuario";
+
+            if (dgvPropietario.Columns.Contains("Documento"))
+                dgvPropietario.Columns["Documento"].HeaderText = "Documento";
+
+            if (dgvPropietario.Columns.Contains("Correo"))
+                dgvPropietario.Columns["Correo"].HeaderText = "Correo";
+
+            if (dgvPropietario.Columns.Contains("estado"))
+                dgvPropietario.Columns["estado"].HeaderText = "Estado";
+
             dgvPropietario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvPropietario.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dgvPropietario.AllowUserToResizeRows = false;
         }
 
         private void LimpiarChecks()
         {
-            if (dgvPropietario == null || !dgvPropietario.Columns.Contains(COL_SEL))
+            if (!dgvPropietario.Columns.Contains(COL_SEL))
                 return;
 
             foreach (DataGridViewRow row in dgvPropietario.Rows)
@@ -192,18 +231,12 @@ namespace RTSCon.Catalogos
 
         private void dgvPropietario_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (dgvPropietario == null)
-                return;
-
             if (dgvPropietario.IsCurrentCellDirty)
                 dgvPropietario.CommitEdit(DataGridViewDataErrorContexts.Commit);
         }
 
         private void dgvPropietario_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvPropietario == null)
-                return;
-
             if (e.RowIndex < 0)
                 return;
 
@@ -220,9 +253,6 @@ namespace RTSCon.Catalogos
 
         private void dgvPropietario_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvPropietario == null)
-                return;
-
             if (e.RowIndex < 0)
                 return;
 
@@ -251,7 +281,7 @@ namespace RTSCon.Catalogos
 
         private DataRowView GetMarcado()
         {
-            if (dgvPropietario == null || !dgvPropietario.Columns.Contains(COL_SEL))
+            if (!dgvPropietario.Columns.Contains(COL_SEL))
                 return null;
 
             foreach (DataGridViewRow row in dgvPropietario.Rows)
@@ -314,8 +344,7 @@ namespace RTSCon.Catalogos
                 string.Empty;
 
             SelectedDocumento =
-                rv.Row.Table.Columns.Contains("Documento") ? Convert.ToString(rv["Documento"]) :
-                string.Empty;
+                rv.Row.Table.Columns.Contains("Documento") ? Convert.ToString(rv["Documento"]) : string.Empty;
 
             SelectedCorreo =
                 rv.Row.Table.Columns.Contains("Correo") ? Convert.ToString(rv["Correo"]) :

@@ -237,8 +237,8 @@ namespace RTSCon.Catalogos
                 DateTime? fIni = dtpFechaInicio?.Value.Date;
                 DateTime? fFin = dtpFechaFin?.Value.Date;
 
-                if (fIni.HasValue && fFin.HasValue && fIni.Value > fFin.Value)
-                    throw new InvalidOperationException("La fecha de inicio no puede ser mayor que la fecha de terminación.");
+                if (fIni.HasValue && fFin.HasValue && fFin.Value <= fIni.Value)
+                    throw new InvalidOperationException("La fecha de terminación debe ser mayor o igual que la fecha de inicio.");
 
                 if (_rowVersion == null || _rowVersion.Length == 0)
                     throw new InvalidOperationException("No se pudo recuperar la versión de la fila (RowVersion).");

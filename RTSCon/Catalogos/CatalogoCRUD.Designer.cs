@@ -36,7 +36,7 @@
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             this.btnBloques = new Krypton.Toolkit.KryptonButton();
             this.kryptonLabel2 = new Krypton.Toolkit.KryptonLabel();
-            this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
+            this.btnUnidades = new Krypton.Toolkit.KryptonButton();
             this.btnCondominio = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.kryptonPanel1)).BeginInit();
             this.kryptonPanel1.SuspendLayout();
@@ -53,7 +53,7 @@
             this.kryptonPanel1.Controls.Add(this.kryptonLabel1);
             this.kryptonPanel1.Controls.Add(this.btnBloques);
             this.kryptonPanel1.Controls.Add(this.kryptonLabel2);
-            this.kryptonPanel1.Controls.Add(this.kryptonButton2);
+            this.kryptonPanel1.Controls.Add(this.btnUnidades);
             this.kryptonPanel1.Controls.Add(this.btnCondominio);
             this.kryptonPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.kryptonPanel1.Location = new System.Drawing.Point(0, 0);
@@ -141,20 +141,20 @@
             this.kryptonLabel2.TabIndex = 30;
             this.kryptonLabel2.Values.Text = "Selección de Catálogo";
             // 
-            // kryptonButton2
+            // btnUnidades
             // 
-            this.kryptonButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.kryptonButton2.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.kryptonButton2.Location = new System.Drawing.Point(616, 308);
-            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(4);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.kryptonButton2.Size = new System.Drawing.Size(205, 55);
-            this.kryptonButton2.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kryptonButton2.TabIndex = 32;
-            this.kryptonButton2.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.kryptonButton2.Values.Text = "Unidades";
-            this.kryptonButton2.Click += new System.EventHandler(this.btnUnidades_Click);
+            this.btnUnidades.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUnidades.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnUnidades.Location = new System.Drawing.Point(616, 308);
+            this.btnUnidades.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUnidades.Name = "btnUnidades";
+            this.btnUnidades.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnUnidades.Size = new System.Drawing.Size(205, 55);
+            this.btnUnidades.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUnidades.TabIndex = 32;
+            this.btnUnidades.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnUnidades.Values.Text = "Unidades";
+            this.btnUnidades.Click += new System.EventHandler(this.btnUnidades_Click);
             // 
             // btnCondominio
             // 
@@ -198,7 +198,7 @@
         private Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private Krypton.Toolkit.KryptonButton btnBloques;
         private Krypton.Toolkit.KryptonLabel kryptonLabel2;
-        private Krypton.Toolkit.KryptonButton kryptonButton2;
+        private Krypton.Toolkit.KryptonButton btnUnidades;
         private Krypton.Toolkit.KryptonButton btnCondominio;
     }
 }

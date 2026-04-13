@@ -52,6 +52,7 @@
             this.txtIdUnidad = new Krypton.Toolkit.KryptonTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtNombrePropiedad = new Krypton.Toolkit.KryptonTextBox();
+            this.btnBuscarUnidad = new Krypton.Toolkit.KryptonButton();
             this.SuspendLayout();
             // 
             // dtpFechaFin
@@ -296,6 +297,7 @@
             this.txtIdUnidad.Location = new System.Drawing.Point(29, 192);
             this.txtIdUnidad.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdUnidad.Name = "txtIdUnidad";
+            this.txtIdUnidad.ReadOnly = true;
             this.txtIdUnidad.Size = new System.Drawing.Size(541, 30);
             this.txtIdUnidad.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdUnidad.TabIndex = 183;
@@ -323,11 +325,26 @@
             this.txtNombrePropiedad.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNombrePropiedad.TabIndex = 181;
             // 
+            // btnBuscarUnidad
+            // 
+            this.btnBuscarUnidad.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnBuscarUnidad.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnBuscarUnidad.Location = new System.Drawing.Point(426, 153);
+            this.btnBuscarUnidad.Margin = new System.Windows.Forms.Padding(4);
+            this.btnBuscarUnidad.Name = "btnBuscarUnidad";
+            this.btnBuscarUnidad.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnBuscarUnidad.Size = new System.Drawing.Size(144, 37);
+            this.btnBuscarUnidad.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarUnidad.TabIndex = 193;
+            this.btnBuscarUnidad.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnBuscarUnidad.Values.Text = "Buscar Unidad";
+            // 
             // UpdatePropiedad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1517, 676);
+            this.Controls.Add(this.btnBuscarUnidad);
             this.Controls.Add(this.txtPorcentaje);
             this.Controls.Add(this.btnBuscarPropietario);
             this.Controls.Add(this.chkTitular);
@@ -384,5 +401,6 @@
         private Krypton.Toolkit.KryptonTextBox txtIdUnidad;
         private System.Windows.Forms.Label label2;
         private Krypton.Toolkit.KryptonTextBox txtNombrePropiedad;
+        private Krypton.Toolkit.KryptonButton btnBuscarUnidad;
     }
 }

@@ -143,6 +143,12 @@
     <Compile Include="Catalogos\BuscarPropietario.Designer.cs">
       <DependentUpon>BuscarPropietario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Catalogos\BuscarUnidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Catalogos\BuscarUnidad.Designer.cs">
+      <DependentUpon>BuscarUnidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Catalogos\CatalogoCRUD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -282,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\BuscarPropietario.resx">
       <DependentUpon>BuscarPropietario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Catalogos\BuscarUnidad.resx">
+      <DependentUpon>BuscarUnidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Catalogos\CatalogoCRUD.resx">
       <DependentUpon>CatalogoCRUD.cs</DependentUpon>

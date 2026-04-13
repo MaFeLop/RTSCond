@@ -12,6 +12,8 @@ namespace RTSCon.Catalogos
     {
         private readonly NPropiedad _neg;
         private int? _propietarioIdSeleccionado;
+        private int? _unidadIdSeleccionada;
+        private bool _eventosInicializados;
 
         public CrearPropiedad()
         {
@@ -20,42 +22,48 @@ namespace RTSCon.Catalogos
             var cn = ConfigurationManager.ConnectionStrings["RTSCond"].ConnectionString;
             _neg = new NPropiedad(new DPropiedad(cn));
 
-            Shown += (_, __) => InitUi();
+            Shown -= CrearPropiedad_Shown;
+            Shown += CrearPropiedad_Shown;
+        }
 
-            if (btnConfirmar != null)
-                btnConfirmar.Click += btnConfirmar_Click;
+        private void CrearPropiedad_Shown(object sender, EventArgs e)
+        {
+            InicializarEventosUnaSolaVez();
+            InitUi();
+        }
 
-            if (btnVolver != null)
-                btnVolver.Click += (_, __) => Close();
+        private void InicializarEventosUnaSolaVez()
+        {
+            if (_eventosInicializados)
+                return;
 
-            if (btnBuscarPropietario != null)
-                btnBuscarPropietario.Click += btnBuscarPropietario_Click;
+            btnConfirmar.Click -= btnConfirmar_Click;
+            btnConfirmar.Click += btnConfirmar_Click;
+
+            btnVolver.Click -= btnVolver_Click;
+            btnVolver.Click += btnVolver_Click;
+
+            btnBuscarPropietario.Click -= btnBuscarPropietario_Click;
+            btnBuscarPropietario.Click += btnBuscarPropietario_Click;
+
+            btnBuscarUnidad.Click -= btnBuscarUnidad_Click;
+            btnBuscarUnidad.Click += btnBuscarUnidad_Click;
 
             SetKeyPressDecimal(txtPorcentaje);
 
             if (txtIdUnidad != null)
             {
-                txtIdUnidad.KeyDown += (s, e) =>
-                {
-                    if (e.KeyCode == Keys.Enter)
-                    {
-                        e.SuppressKeyPress = true;
-                        btnConfirmar?.PerformClick();
-                    }
-                };
+                txtIdUnidad.KeyDown -= txtIdUnidad_KeyDown;
+                txtIdUnidad.KeyDown += txtIdUnidad_KeyDown;
             }
 
             if (txtPorcentaje != null)
             {
-                txtPorcentaje.KeyDown += (s, e) =>
-                {
-                    if (e.KeyCode == Keys.Enter)
-                    {
-                        e.SuppressKeyPress = true;
-                        btnConfirmar?.PerformClick();
-                    }
-                };
+                txtPorcentaje.KeyDown -= txtPorcentaje_KeyDown;
+                txtPorcentaje.KeyDown += txtPorcentaje_KeyDown;
             }
+
+            _eventosInicializados = true;
         }
 
         private void SetKeyPressDecimal(KryptonTextBox tb)
@@ -63,41 +71,59 @@ namespace RTSCon.Catalogos
             if (tb == null)
                 return;
 
-            tb.KeyPress += (s, e) =>
+            tb.KeyPress -= Decimal_KeyPress;
+            tb.KeyPress += Decimal_KeyPress;
+        }
+
+        private void Decimal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            KryptonTextBox tb = sender as KryptonTextBox;
+            if (tb == null)
+                return;
+
+            string separadorDecimal = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+            char dec = separadorDecimal[0];
+
+            if (!char.IsControl(e.KeyChar) &&
+                !char.IsDigit(e.KeyChar) &&
+                e.KeyChar != dec)
             {
-                string separadorDecimal = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
-                char dec = separadorDecimal[0];
+                e.Handled = true;
+            }
 
-                if (!char.IsControl(e.KeyChar) &&
-                    !char.IsDigit(e.KeyChar) &&
-                    e.KeyChar != dec)
-                {
-                    e.Handled = true;
-                }
+            if (e.KeyChar == dec && tb.Text.Contains(separadorDecimal))
+            {
+                e.Handled = true;
+            }
+        }
 
-                if (e.KeyChar == dec && tb.Text.Contains(separadorDecimal))
-                {
-                    e.Handled = true;
-                }
-            };
+        private void txtIdUnidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btnConfirmar.PerformClick();
+            }
+        }
+
+        private void txtPorcentaje_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btnConfirmar.PerformClick();
+            }
         }
 
         private void InitUi()
         {
-            if (dtpFechaInicio != null)
-                dtpFechaInicio.Value = DateTime.Today;
+            dtpFechaInicio.Value = DateTime.Today;
+            dtpFechaFin.Value = DateTime.Today;
 
-            if (dtpFechaFin != null)
-                dtpFechaFin.Value = DateTime.Today;
-
-            if (txtNombrePropiedad != null)
-                txtNombrePropiedad.ReadOnly = false;
-
-            if (txtNombrePropietario != null)
-                txtNombrePropietario.ReadOnly = true;
-
-            if (txtPropietarioDocumento != null)
-                txtPropietarioDocumento.ReadOnly = true;
+            txtNombrePropiedad.ReadOnly = false;
+            txtNombrePropietario.ReadOnly = true;
+            txtPropietarioDocumento.ReadOnly = true;
+            txtIdUnidad.ReadOnly = true;
         }
 
         private void btnBuscarPropietario_Click(object sender, EventArgs e)
@@ -109,20 +135,27 @@ namespace RTSCon.Catalogos
 
                 _propietarioIdSeleccionado = dlg.SelectedId;
 
-                if (txtNombrePropietario != null)
-                    txtNombrePropietario.Text = dlg.SelectedUsuario;
-
-                if (txtPropietarioDocumento != null)
-                    txtPropietarioDocumento.Text = dlg.SelectedDocumento;
-
-                if (txtCorreoNotificacion != null)
-                    txtCorreoNotificacion.Text = dlg.SelectedCorreo;
+                txtNombrePropietario.Text = dlg.SelectedUsuario;
+                txtPropietarioDocumento.Text = dlg.SelectedDocumento;
+                txtCorreoNotificacion.Text = dlg.SelectedCorreo;
             }
         }
 
-        private void btnBuscarPropietario_Click_1(object sender, EventArgs e)
+        private void btnBuscarUnidad_Click(object sender, EventArgs e)
         {
-            btnBuscarPropietario_Click(sender, e);
+            using (var dlg = new BuscarUnidad())
+            {
+                if (dlg.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                _unidadIdSeleccionada = dlg.SelectedId;
+                txtIdUnidad.Text = dlg.SelectedId.ToString();
+            }
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            Close();
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
@@ -136,8 +169,8 @@ namespace RTSCon.Catalogos
                 if (nombre.Length > 50)
                     throw new InvalidOperationException("El nombre no puede exceder 50 caracteres.");
 
-                if (!int.TryParse(txtIdUnidad?.Text?.Trim(), out int unidadId) || unidadId <= 0)
-                    throw new InvalidOperationException("Ingrese el Id de la unidad válido.");
+                if (_unidadIdSeleccionada is null || _unidadIdSeleccionada <= 0)
+                    throw new InvalidOperationException("Seleccione una unidad con el botón 'Buscar Unidad'.");
 
                 if (_propietarioIdSeleccionado is null || _propietarioIdSeleccionado <= 0)
                     throw new InvalidOperationException("Seleccione un propietario con el botón 'Buscar Propietario'.");
@@ -154,15 +187,15 @@ namespace RTSCon.Catalogos
                 DateTime? fIni = dtpFechaInicio?.Value.Date;
                 DateTime? fFin = dtpFechaFin?.Value.Date;
 
-                if (fIni.HasValue && fFin.HasValue && fIni.Value > fFin.Value)
-                    throw new InvalidOperationException("La fecha de inicio no puede ser mayor que la fecha de terminación.");
+                if (fIni.HasValue && fFin.HasValue && fFin.Value < fIni.Value)
+                    throw new InvalidOperationException("La fecha de terminación no puede ser menor que la fecha de inicio.");
 
                 string creador = ConfigurationManager.AppSettings["DefaultEjecutor"] ?? "rtscon@local";
 
                 int nuevoId = _neg.Insertar(
                     nombre,
                     _propietarioIdSeleccionado.Value,
-                    unidadId,
+                    _unidadIdSeleccionada.Value,
                     fIni,
                     fFin,
                     porcentaje,

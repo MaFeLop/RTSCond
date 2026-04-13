@@ -1,6 +1,6 @@
 ﻿namespace RTSCon.Catalogos
 {
-    partial class BuscarBloque
+    partial class BuscarUnidad
     {
         /// <summary>
         /// Required designer variable.
@@ -28,52 +28,64 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BuscarBloque));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(BuscarUnidad));
+            this.lblNoHay = new System.Windows.Forms.Label();
             this.chkSoloActivos = new Krypton.Toolkit.KryptonCheckBox();
             this.btnCancelar = new Krypton.Toolkit.KryptonButton();
             this.btnConfirmar = new Krypton.Toolkit.KryptonButton();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBuscar = new Krypton.Toolkit.KryptonTextBox();
             this.btnLimpiarFiltros = new Krypton.Toolkit.KryptonButton();
-            this.dgvBloques = new Krypton.Toolkit.KryptonDataGridView();
-            this.lblSinResultados = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBloques)).BeginInit();
+            this.dgvUnidad = new Krypton.Toolkit.KryptonDataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUnidad)).BeginInit();
             this.SuspendLayout();
+            // 
+            // lblNoHay
+            // 
+            this.lblNoHay.AutoSize = true;
+            this.lblNoHay.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoHay.Location = new System.Drawing.Point(349, 230);
+            this.lblNoHay.Name = "lblNoHay";
+            this.lblNoHay.Size = new System.Drawing.Size(492, 32);
+            this.lblNoHay.TabIndex = 109;
+            this.lblNoHay.Text = "No se pudieron encontrar registros!";
             // 
             // chkSoloActivos
             // 
             this.chkSoloActivos.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
-            this.chkSoloActivos.Location = new System.Drawing.Point(911, 78);
+            this.chkSoloActivos.Location = new System.Drawing.Point(911, 57);
             this.chkSoloActivos.Name = "chkSoloActivos";
             this.chkSoloActivos.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
             this.chkSoloActivos.Size = new System.Drawing.Size(117, 24);
-            this.chkSoloActivos.TabIndex = 114;
+            this.chkSoloActivos.TabIndex = 108;
             this.chkSoloActivos.Values.Text = "Solo Activos";
+            this.chkSoloActivos.CheckedChanged += new System.EventHandler(this.chkSoloActivos_CheckedChanged);
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(791, 471);
+            this.btnCancelar.Location = new System.Drawing.Point(791, 440);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
             this.btnCancelar.Size = new System.Drawing.Size(237, 63);
             this.btnCancelar.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.TabIndex = 113;
+            this.btnCancelar.TabIndex = 107;
             this.btnCancelar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCancelar.Values.Text = "Cancelar";
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnConfirmar
             // 
-            this.btnConfirmar.Location = new System.Drawing.Point(435, 471);
+            this.btnConfirmar.Location = new System.Drawing.Point(435, 440);
             this.btnConfirmar.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
             this.btnConfirmar.Size = new System.Drawing.Size(237, 63);
             this.btnConfirmar.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmar.TabIndex = 112;
+            this.btnConfirmar.TabIndex = 106;
             this.btnConfirmar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnConfirmar.Values.Text = "Confirmar";
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // label2
             // 
@@ -81,77 +93,65 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(13, 11);
+            this.label2.Location = new System.Drawing.Point(13, 8);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(333, 28);
-            this.label2.TabIndex = 111;
+            this.label2.Size = new System.Drawing.Size(327, 28);
+            this.label2.TabIndex = 105;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(13, 78);
+            this.txtBuscar.Location = new System.Drawing.Point(13, 57);
             this.txtBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(743, 27);
-            this.txtBuscar.TabIndex = 110;
+            this.txtBuscar.TabIndex = 104;
+            this.txtBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // btnLimpiarFiltros
             // 
             this.btnLimpiarFiltros.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnLimpiarFiltros.Location = new System.Drawing.Point(764, 78);
+            this.btnLimpiarFiltros.Location = new System.Drawing.Point(764, 57);
             this.btnLimpiarFiltros.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiarFiltros.Name = "btnLimpiarFiltros";
             this.btnLimpiarFiltros.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
             this.btnLimpiarFiltros.Size = new System.Drawing.Size(140, 28);
-            this.btnLimpiarFiltros.TabIndex = 109;
+            this.btnLimpiarFiltros.TabIndex = 103;
             this.btnLimpiarFiltros.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnLimpiarFiltros.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnLimpiarFiltros.Values.Image")));
             this.btnLimpiarFiltros.Values.Text = "Limpiar Filtros";
+            this.btnLimpiarFiltros.Click += new System.EventHandler(this.btnLimpiarFiltros_Click);
             // 
-            // dgvBloques
+            // dgvUnidad
             // 
-            this.dgvBloques.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvBloques.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBloques.Location = new System.Drawing.Point(13, 113);
-            this.dgvBloques.Margin = new System.Windows.Forms.Padding(4);
-            this.dgvBloques.Name = "dgvBloques";
-            this.dgvBloques.RowHeadersWidth = 51;
-            this.dgvBloques.Size = new System.Drawing.Size(1431, 340);
-            this.dgvBloques.TabIndex = 108;
+            this.dgvUnidad.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvUnidad.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvUnidad.Location = new System.Drawing.Point(13, 92);
+            this.dgvUnidad.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvUnidad.Name = "dgvUnidad";
+            this.dgvUnidad.RowHeadersWidth = 51;
+            this.dgvUnidad.Size = new System.Drawing.Size(1431, 340);
+            this.dgvUnidad.TabIndex = 102;
             // 
-            // lblSinResultados
-            // 
-            this.lblSinResultados.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSinResultados.BackColor = System.Drawing.Color.Transparent;
-            this.lblSinResultados.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSinResultados.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblSinResultados.Location = new System.Drawing.Point(459, 246);
-            this.lblSinResultados.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblSinResultados.Name = "lblSinResultados";
-            this.lblSinResultados.Size = new System.Drawing.Size(333, 28);
-            this.lblSinResultados.TabIndex = 115;
-            this.lblSinResultados.Text = "No se han encontrado registros";
-            this.lblSinResultados.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // BuscarBloque
+            // BuscarUnidad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1526, 531);
-            this.Controls.Add(this.lblSinResultados);
+            this.ClientSize = new System.Drawing.Size(1524, 523);
+            this.Controls.Add(this.lblNoHay);
             this.Controls.Add(this.chkSoloActivos);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtBuscar);
             this.Controls.Add(this.btnLimpiarFiltros);
-            this.Controls.Add(this.dgvBloques);
+            this.Controls.Add(this.dgvUnidad);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "BuscarBloque";
-            this.Text = "Buscar Bloque";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvBloques)).EndInit();
+            this.Name = "BuscarUnidad";
+            this.Text = "Buscar Unidad";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUnidad)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -159,13 +159,13 @@
 
         #endregion
 
+        private System.Windows.Forms.Label lblNoHay;
         private Krypton.Toolkit.KryptonCheckBox chkSoloActivos;
         private Krypton.Toolkit.KryptonButton btnCancelar;
         private Krypton.Toolkit.KryptonButton btnConfirmar;
         private System.Windows.Forms.Label label2;
         private Krypton.Toolkit.KryptonTextBox txtBuscar;
         private Krypton.Toolkit.KryptonButton btnLimpiarFiltros;
-        private Krypton.Toolkit.KryptonDataGridView dgvBloques;
-        private System.Windows.Forms.Label lblSinResultados;
+        private Krypton.Toolkit.KryptonDataGridView dgvUnidad;
     }
 }

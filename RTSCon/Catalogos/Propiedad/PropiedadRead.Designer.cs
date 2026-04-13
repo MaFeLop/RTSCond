@@ -47,7 +47,7 @@
             this.lblTotal.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTotal.Location = new System.Drawing.Point(1131, 414);
+            this.lblTotal.Location = new System.Drawing.Point(1118, 416);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
             this.lblTotal.Size = new System.Drawing.Size(341, 28);
@@ -72,13 +72,14 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(13, -13);
+            this.label2.Location = new System.Drawing.Point(13, 9);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(341, 28);
             this.label2.TabIndex = 102;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+           // this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // txtBuscar
             // 
@@ -103,7 +104,7 @@
             // 
             // btnDesactivar
             // 
-            this.btnDesactivar.Location = new System.Drawing.Point(964, 479);
+            this.btnDesactivar.Location = new System.Drawing.Point(963, 448);
             this.btnDesactivar.Margin = new System.Windows.Forms.Padding(4);
             this.btnDesactivar.Name = "btnDesactivar";
             this.btnDesactivar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -115,7 +116,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(601, 479);
+            this.btnUpdate.Location = new System.Drawing.Point(600, 448);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -127,7 +128,7 @@
             // 
             // btnCrear
             // 
-            this.btnCrear.Location = new System.Drawing.Point(238, 479);
+            this.btnCrear.Location = new System.Drawing.Point(237, 448);
             this.btnCrear.Margin = new System.Windows.Forms.Padding(4);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -145,7 +146,7 @@
             this.dgvPropiedad.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPropiedad.Name = "dgvPropiedad";
             this.dgvPropiedad.RowHeadersWidth = 51;
-            this.dgvPropiedad.Size = new System.Drawing.Size(1431, 340);
+            this.dgvPropiedad.Size = new System.Drawing.Size(1431, 320);
             this.dgvPropiedad.TabIndex = 96;
             // 
             // PropiedadRead
@@ -163,7 +164,6 @@
             this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.dgvPropiedad);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "PropiedadRead";
             this.Text = "Propiedades";
             ((System.ComponentModel.ISupportInitialize)(this.dgvPropiedad)).EndInit();

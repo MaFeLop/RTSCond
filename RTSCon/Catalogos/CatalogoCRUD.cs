@@ -8,45 +8,103 @@ namespace RTSCon
     public partial class CatalogoCRUD : Form
     {
         private Form _childActual;
+        private bool _abriendoChild;
+        private bool _eventosInicializados;
 
         public CatalogoCRUD()
         {
             InitializeComponent();
+            InicializarEventosUnaSolaVez();
+        }
+
+        private void InicializarEventosUnaSolaVez()
+        {
+            if (_eventosInicializados)
+                return;
+
+            btnCondominio.Click -= btnCondominios_Click;
+            btnCondominio.Click += btnCondominios_Click;
+
+            btnBloques.Click -= btnBloques_Click;
+            btnBloques.Click += btnBloques_Click;
+
+            btnUnidades.Click -= btnUnidades_Click;
+            btnUnidades.Click += btnUnidades_Click;
+
+            btnPropiedad.Click -= btnPropiedad_Click;
+            btnPropiedad.Click += btnPropiedad_Click;
+
+            btnVolver.Click -= btnVolver_Click;
+            btnVolver.Click += btnVolver_Click;
+
+            _eventosInicializados = true;
         }
 
         private void AbrirChild(Form child)
         {
-            if (child == null) return;
+            if (child == null)
+                return;
 
-            _childActual = child;
+            if (_abriendoChild)
+                return;
 
-            // Ocultar el hub mientras el child está abierto
-            this.Hide();
-
-            child.FormClosed += (s, e) =>
+            if (_childActual != null && !_childActual.IsDisposed)
             {
-                _childActual = null;
-
-                // Si estamos cerrando sesión, NO re-mostrar el hub
-                if (SessionHelper.IsLoggingOut) return;
-
-                // Si el hub ya se cerró/dispuso, no intentes Show/Activate
-                if (this.IsDisposed) return;
-                if (!this.IsHandleCreated) return;
-
                 try
                 {
-                    this.BeginInvoke((Action)(() =>
-                    {
-                        if (this.IsDisposed) return;
-                        this.Show();
-                        this.Activate();
-                    }));
+                    _childActual.Activate();
+                    _childActual.BringToFront();
                 }
-                catch { }
-            };
+                catch
+                {
+                    // ignorar; evita romper navegación visual
+                }
+                return;
+            }
 
-            child.Show();
+            try
+            {
+                _abriendoChild = true;
+                _childActual = child;
+
+                this.Enabled = false;
+                this.Hide();
+
+                child.FormClosed -= Child_FormClosed;
+                child.FormClosed += Child_FormClosed;
+
+                child.Show();
+            }
+            finally
+            {
+                _abriendoChild = false;
+            }
+        }
+
+        private void Child_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (sender is Form frm)
+                frm.FormClosed -= Child_FormClosed;
+
+            _childActual = null;
+
+            if (SessionHelper.IsLoggingOut)
+                return;
+
+            if (this.IsDisposed)
+                return;
+
+            try
+            {
+                this.Enabled = true;
+                this.Show();
+                this.Activate();
+                this.BringToFront();
+            }
+            catch
+            {
+                // no romper el flujo del hub
+            }
         }
 
         private void btnCondominios_Click(object sender, EventArgs e)
@@ -71,9 +129,7 @@ namespace RTSCon
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            // Volver al Dashboard sin duplicar instancias es mejor,
-            // pero por ahora, simple:
-            this.Close();
+            Close();
         }
     }
 }
