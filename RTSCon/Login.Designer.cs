@@ -44,10 +44,10 @@
             // kryptonPictureBox1
             // 
             this.kryptonPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("kryptonPictureBox1.Image")));
-            this.kryptonPictureBox1.Location = new System.Drawing.Point(468, 85);
+            this.kryptonPictureBox1.Location = new System.Drawing.Point(439, 50);
             this.kryptonPictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonPictureBox1.Name = "kryptonPictureBox1";
-            this.kryptonPictureBox1.Size = new System.Drawing.Size(96, 103);
+            this.kryptonPictureBox1.Size = new System.Drawing.Size(140, 129);
             this.kryptonPictureBox1.TabIndex = 0;
             this.kryptonPictureBox1.TabStop = false;
             // 

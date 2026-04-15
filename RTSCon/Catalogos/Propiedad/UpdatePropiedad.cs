@@ -15,74 +15,72 @@ namespace RTSCon.Catalogos
         private int _id;
         private byte[] _rowVersion;
         private int? _propietarioIdSeleccionado;
+        private int? _unidadIdSeleccionada;
+        private bool _eventosInicializados;
 
         public UpdatePropiedad()
         {
             InitializeComponent();
 
-            var cn = ConfigurationManager.ConnectionStrings["RTSCond"].ConnectionString;
+            string cn = ConfigurationManager.ConnectionStrings["RTSCond"].ConnectionString;
             _neg = new NPropiedad(new DPropiedad(cn));
 
-            Shown += (_, __) => InitUiAndLoad();
+            InicializarEventosUnaSolaVez();
+        }
+
+        private void InicializarEventosUnaSolaVez()
+        {
+            if (_eventosInicializados)
+                return;
+
+            Shown -= UpdatePropiedad_Shown;
+            Shown += UpdatePropiedad_Shown;
 
             if (btnConfirmar != null)
+            {
+                btnConfirmar.Click -= btnConfirmar_Click;
                 btnConfirmar.Click += btnConfirmar_Click;
+            }
 
             if (btnVolver != null)
-                btnVolver.Click += (_, __) => Close();
+            {
+                btnVolver.Click -= btnVolver_Click;
+                btnVolver.Click += btnVolver_Click;
+            }
 
             if (btnBuscarPropietario != null)
+            {
+                btnBuscarPropietario.Click -= btnBuscarPropietario_Click;
                 btnBuscarPropietario.Click += btnBuscarPropietario_Click;
+            }
 
-            SetKeyPressDecimal(txtPorcentaje);
+            if (btnBuscarUnidad != null)
+            {
+                btnBuscarUnidad.Click -= btnBuscarUnidad_Click;
+                btnBuscarUnidad.Click += btnBuscarUnidad_Click;
+            }
 
             if (txtIdUnidad != null)
             {
-                txtIdUnidad.KeyDown += (s, e) =>
-                {
-                    if (e.KeyCode == Keys.Enter)
-                    {
-                        e.SuppressKeyPress = true;
-                        btnConfirmar?.PerformClick();
-                    }
-                };
+                txtIdUnidad.KeyDown -= txtIdUnidad_KeyDown;
+                txtIdUnidad.KeyDown += txtIdUnidad_KeyDown;
             }
 
             if (txtPorcentaje != null)
             {
-                txtPorcentaje.KeyDown += (s, e) =>
-                {
-                    if (e.KeyCode == Keys.Enter)
-                    {
-                        e.SuppressKeyPress = true;
-                        btnConfirmar?.PerformClick();
-                    }
-                };
+                txtPorcentaje.KeyDown -= txtPorcentaje_KeyDown;
+                txtPorcentaje.KeyDown += txtPorcentaje_KeyDown;
+
+                txtPorcentaje.KeyPress -= Decimal_KeyPress;
+                txtPorcentaje.KeyPress += Decimal_KeyPress;
             }
+
+            _eventosInicializados = true;
         }
 
-        private void SetKeyPressDecimal(KryptonTextBox tb)
+        private void UpdatePropiedad_Shown(object sender, EventArgs e)
         {
-            if (tb == null)
-                return;
-
-            tb.KeyPress += (s, e) =>
-            {
-                string separadorDecimal = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
-                char dec = separadorDecimal[0];
-
-                if (!char.IsControl(e.KeyChar) &&
-                    !char.IsDigit(e.KeyChar) &&
-                    e.KeyChar != dec)
-                {
-                    e.Handled = true;
-                }
-
-                if (e.KeyChar == dec && tb.Text.Contains(separadorDecimal))
-                {
-                    e.Handled = true;
-                }
-            };
+            InitUiAndLoad();
         }
 
         private void InitUiAndLoad()
@@ -135,6 +133,9 @@ namespace RTSCon.Catalogos
             if (txtPropietarioDocumento != null)
                 txtPropietarioDocumento.ReadOnly = true;
 
+            if (txtIdUnidad != null)
+                txtIdUnidad.ReadOnly = true;
+
             CargarDatos();
         }
 
@@ -161,7 +162,10 @@ namespace RTSCon.Catalogos
                 txtNombrePropiedad.Text = Convert.ToString(row["Nombre"]);
 
             if (row.Table.Columns.Contains("UnidadId") && row["UnidadId"] != DBNull.Value)
+            {
+                _unidadIdSeleccionada = Convert.ToInt32(row["UnidadId"]);
                 txtIdUnidad.Text = Convert.ToString(row["UnidadId"]);
+            }
 
             if (row.Table.Columns.Contains("PropietarioId") && row["PropietarioId"] != DBNull.Value)
                 _propietarioIdSeleccionado = Convert.ToInt32(row["PropietarioId"]);
@@ -172,7 +176,7 @@ namespace RTSCon.Catalogos
             if (row.Table.Columns.Contains("PropietarioDocumento") && row["PropietarioDocumento"] != DBNull.Value)
                 txtPropietarioDocumento.Text = Convert.ToString(row["PropietarioDocumento"]);
 
-            if (row.Table.Columns.Contains("Correo") && row["Correo"] != DBNull.Value)
+            if (row.Table.Columns.Contains("Correo") && row["Correo"] != DBNull.Value && txtCorreo != null)
                 txtCorreo.Text = Convert.ToString(row["Correo"]);
 
             if (row.Table.Columns.Contains("Porcentaje") && row["Porcentaje"] != DBNull.Value)
@@ -186,6 +190,46 @@ namespace RTSCon.Catalogos
 
             if (row.Table.Columns.Contains("FechaFin") && row["FechaFin"] != DBNull.Value)
                 dtpFechaFin.Value = Convert.ToDateTime(row["FechaFin"]);
+        }
+
+        private void Decimal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            KryptonTextBox tb = sender as KryptonTextBox;
+            if (tb == null)
+                return;
+
+            string separadorDecimal = CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator;
+            char dec = separadorDecimal[0];
+
+            if (!char.IsControl(e.KeyChar) &&
+                !char.IsDigit(e.KeyChar) &&
+                e.KeyChar != dec)
+            {
+                e.Handled = true;
+            }
+
+            if (e.KeyChar == dec && tb.Text.Contains(separadorDecimal))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtIdUnidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btnConfirmar?.PerformClick();
+            }
+        }
+
+        private void txtPorcentaje_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                btnConfirmar?.PerformClick();
+            }
         }
 
         private void btnBuscarPropietario_Click(object sender, EventArgs e)
@@ -208,6 +252,25 @@ namespace RTSCon.Catalogos
             }
         }
 
+        private void btnBuscarUnidad_Click(object sender, EventArgs e)
+        {
+            using (var dlg = new BuscarUnidad())
+            {
+                if (dlg.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                _unidadIdSeleccionada = dlg.SelectedId;
+
+                if (txtIdUnidad != null)
+                    txtIdUnidad.Text = dlg.SelectedId.ToString();
+            }
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
             try
@@ -219,10 +282,10 @@ namespace RTSCon.Catalogos
                 if (nombre.Length > 50)
                     throw new InvalidOperationException("El nombre no puede exceder 50 caracteres.");
 
-                if (!int.TryParse(txtIdUnidad?.Text?.Trim(), out int unidadId) || unidadId <= 0)
-                    throw new InvalidOperationException("Ingrese el Id de la unidad válido.");
+                if (_unidadIdSeleccionada == null || _unidadIdSeleccionada <= 0)
+                    throw new InvalidOperationException("Seleccione una unidad con el botón 'Buscar Unidad'.");
 
-                if (_propietarioIdSeleccionado is null || _propietarioIdSeleccionado <= 0)
+                if (_propietarioIdSeleccionado == null || _propietarioIdSeleccionado <= 0)
                     throw new InvalidOperationException("Seleccione un propietario con el botón 'Buscar Propietario'.");
 
                 string sPct = txtPorcentaje?.Text?.Trim() ?? string.Empty;
@@ -232,13 +295,13 @@ namespace RTSCon.Catalogos
                     throw new InvalidOperationException("Ingrese un porcentaje válido (0 < porcentaje ≤ 100).");
                 }
 
-                bool esTitular = chkTitular?.Checked ?? false;
+                bool esTitular = chkTitular != null && chkTitular.Checked;
 
                 DateTime? fIni = dtpFechaInicio?.Value.Date;
                 DateTime? fFin = dtpFechaFin?.Value.Date;
 
-                if (fIni.HasValue && fFin.HasValue && fFin.Value <= fIni.Value)
-                    throw new InvalidOperationException("La fecha de terminación debe ser mayor o igual que la fecha de inicio.");
+                if (fIni.HasValue && fFin.HasValue && fFin.Value < fIni.Value)
+                    throw new InvalidOperationException("La fecha de terminación no puede ser menor que la fecha de inicio.");
 
                 if (_rowVersion == null || _rowVersion.Length == 0)
                     throw new InvalidOperationException("No se pudo recuperar la versión de la fila (RowVersion).");
@@ -252,7 +315,7 @@ namespace RTSCon.Catalogos
                     _id,
                     nombre,
                     _propietarioIdSeleccionado.Value,
-                    unidadId,
+                    _unidadIdSeleccionada.Value,
                     fIni,
                     fFin,
                     porcentaje,

@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CrearBloque));
             this.btnBuscarCondominio = new Krypton.Toolkit.KryptonButton();
             this.label = new System.Windows.Forms.Label();
-            this.btnVolver = new Krypton.Toolkit.KryptonButton();
-            this.btnConfirmar = new Krypton.Toolkit.KryptonButton();
+            this.btnCancelar = new Krypton.Toolkit.KryptonButton();
+            this.btnGuardar = new Krypton.Toolkit.KryptonButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -40,7 +40,6 @@
             this.txtIdCondominio = new Krypton.Toolkit.KryptonTextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtIdentificador = new Krypton.Toolkit.KryptonTextBox();
-            this.lblBloque = new System.Windows.Forms.Label();
             this.nudNumPisos = new Krypton.Toolkit.KryptonNumericUpDown();
             this.nudUnidadesPiso = new Krypton.Toolkit.KryptonNumericUpDown();
             this.SuspendLayout();
@@ -58,7 +57,7 @@
             this.btnBuscarCondominio.TabIndex = 152;
             this.btnBuscarCondominio.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnBuscarCondominio.Values.Text = "Buscar Condominio";
-            this.btnBuscarCondominio.Click += new System.EventHandler(this.btnBuscarCondominio_Click_1);
+            this.btnBuscarCondominio.Click += new System.EventHandler(this.btnBuscarCondominio_Click);
             // 
             // label
             // 
@@ -74,33 +73,35 @@
             this.label.Text = "Unidades por Piso:";
             this.label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnVolver
+            // btnCancelar
             // 
-            this.btnVolver.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnVolver.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnVolver.Location = new System.Drawing.Point(671, 358);
-            this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
-            this.btnVolver.Name = "btnVolver";
-            this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.btnVolver.Size = new System.Drawing.Size(205, 55);
-            this.btnVolver.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVolver.TabIndex = 147;
-            this.btnVolver.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnVolver.Values.Text = "Volver";
+            this.btnCancelar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnCancelar.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnCancelar.Location = new System.Drawing.Point(671, 407);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnCancelar.Size = new System.Drawing.Size(205, 55);
+            this.btnCancelar.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.TabIndex = 147;
+            this.btnCancelar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnCancelar.Values.Text = "Volver";
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
-            // btnConfirmar
+            // btnGuardar
             // 
-            this.btnConfirmar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnConfirmar.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnConfirmar.Location = new System.Drawing.Point(325, 358);
-            this.btnConfirmar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnConfirmar.Name = "btnConfirmar";
-            this.btnConfirmar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.btnConfirmar.Size = new System.Drawing.Size(205, 55);
-            this.btnConfirmar.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirmar.TabIndex = 146;
-            this.btnConfirmar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnConfirmar.Values.Text = "Confirmar";
+            this.btnGuardar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnGuardar.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnGuardar.Location = new System.Drawing.Point(325, 407);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnGuardar.Size = new System.Drawing.Size(205, 55);
+            this.btnGuardar.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.TabIndex = 146;
+            this.btnGuardar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnGuardar.Values.Text = "Confirmar";
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // label7
             // 
@@ -155,6 +156,7 @@
             this.txtIdCondominio.Location = new System.Drawing.Point(13, 271);
             this.txtIdCondominio.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdCondominio.Name = "txtIdCondominio";
+            this.txtIdCondominio.ReadOnly = true;
             this.txtIdCondominio.Size = new System.Drawing.Size(541, 30);
             this.txtIdCondominio.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdCondominio.TabIndex = 127;
@@ -181,20 +183,6 @@
             this.txtIdentificador.Size = new System.Drawing.Size(541, 30);
             this.txtIdentificador.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtIdentificador.TabIndex = 125;
-            // 
-            // lblBloque
-            // 
-            this.lblBloque.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblBloque.BackColor = System.Drawing.Color.Transparent;
-            this.lblBloque.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBloque.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblBloque.Location = new System.Drawing.Point(13, 305);
-            this.lblBloque.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBloque.Name = "lblBloque";
-            this.lblBloque.Size = new System.Drawing.Size(268, 28);
-            this.lblBloque.TabIndex = 154;
-            this.lblBloque.Text = "Nombre:";
-            this.lblBloque.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // nudNumPisos
             // 
@@ -259,11 +247,10 @@
             this.ClientSize = new System.Drawing.Size(1529, 603);
             this.Controls.Add(this.nudUnidadesPiso);
             this.Controls.Add(this.nudNumPisos);
-            this.Controls.Add(this.lblBloque);
             this.Controls.Add(this.btnBuscarCondominio);
             this.Controls.Add(this.label);
-            this.Controls.Add(this.btnVolver);
-            this.Controls.Add(this.btnConfirmar);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label4);
@@ -283,8 +270,8 @@
 
         private Krypton.Toolkit.KryptonButton btnBuscarCondominio;
         private System.Windows.Forms.Label label;
-        private Krypton.Toolkit.KryptonButton btnVolver;
-        private Krypton.Toolkit.KryptonButton btnConfirmar;
+        private Krypton.Toolkit.KryptonButton btnCancelar;
+        private Krypton.Toolkit.KryptonButton btnGuardar;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label4;
@@ -292,7 +279,6 @@
         private Krypton.Toolkit.KryptonTextBox txtIdCondominio;
         private System.Windows.Forms.Label label2;
         private Krypton.Toolkit.KryptonTextBox txtIdentificador;
-        private System.Windows.Forms.Label lblBloque;
         private Krypton.Toolkit.KryptonNumericUpDown nudNumPisos;
         private Krypton.Toolkit.KryptonNumericUpDown nudUnidadesPiso;
     }

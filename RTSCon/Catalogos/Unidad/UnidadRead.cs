@@ -12,6 +12,7 @@ namespace RTSCon.Catalogos
         private readonly NUnidad _nUnidad;
         private readonly NBloque _nBloque;
         private bool _eventosInicializados;
+        private bool _inicializando;
 
         private enum ModoAccion { Ninguno, Editar, Desactivar }
         private ModoAccion _modo = ModoAccion.Ninguno;
@@ -28,10 +29,10 @@ namespace RTSCon.Catalogos
 
             _bloqueId = bloqueId;
 
-            var dUnidad = new DUnidad(Conexion.CadenaConexion);
+            DUnidad dUnidad = new DUnidad(Conexion.CadenaConexion);
             _nUnidad = new NUnidad(dUnidad);
 
-            var dBloque = new DBloque(Conexion.CadenaConexion);
+            DBloque dBloque = new DBloque(Conexion.CadenaConexion);
             _nBloque = new NBloque(dBloque);
 
             dgvUnidades.AutoGenerateColumns = true;
@@ -42,13 +43,26 @@ namespace RTSCon.Catalogos
 
         private void UnidadRead_Load(object sender, EventArgs e)
         {
-            InicializarEventosUnaSolaVez();
-            EnsureSelectionColumn();
+            _inicializando = true;
 
-            chkSoloActivos.Checked = true;
-            CargarBloque();
+            try
+            {
+                InicializarEventosUnaSolaVez();
+                EnsureSelectionColumn();
+
+                CargarBloque();
+
+                if (!chkSoloActivos.Checked)
+                    chkSoloActivos.Checked = true;
+
+                SalirModoSeleccion();
+            }
+            finally
+            {
+                _inicializando = false;
+            }
+
             CargarUnidades();
-            SalirModoSeleccion();
         }
 
         private void InicializarEventosUnaSolaVez()
@@ -104,9 +118,9 @@ namespace RTSCon.Catalogos
                 if (_bloqueId <= 0)
                     return;
 
-                var rowBloque = _nBloque.PorId(_bloqueId);
+                DataRow rowBloque = _nBloque.PorId(_bloqueId);
                 if (rowBloque != null)
-                    Text = $"Unidades del bloque {rowBloque["Identificador"]}";
+                    Text = string.Format("Unidades del bloque {0}", rowBloque["Identificador"]);
             }
             catch
             {
@@ -126,7 +140,7 @@ namespace RTSCon.Catalogos
                 dgvUnidades.DataSource = dt;
                 AjustarGrid();
 
-                lblTotal.Text = $"Total: {(dt?.Rows.Count ?? 0)}";
+                lblTotal.Text = string.Format("Total: {0}", dt != null ? dt.Rows.Count : 0);
 
                 SetSelectionColumnVisible(_modo != ModoAccion.Ninguno);
             }
@@ -188,8 +202,8 @@ namespace RTSCon.Catalogos
             if (dgvUnidades.CurrentRow == null)
                 return null;
 
-            var view = dgvUnidades.CurrentRow.DataBoundItem as DataRowView;
-            return view?.Row;
+            DataRowView view = dgvUnidades.CurrentRow.DataBoundItem as DataRowView;
+            return view != null ? view.Row : null;
         }
 
         private void EnsureSelectionColumn()
@@ -197,14 +211,12 @@ namespace RTSCon.Catalogos
             if (dgvUnidades.Columns.Contains(COL_SEL))
                 return;
 
-            var col = new DataGridViewCheckBoxColumn
-            {
-                Name = COL_SEL,
-                HeaderText = "",
-                Width = 28,
-                ReadOnly = false,
-                Visible = false
-            };
+            DataGridViewCheckBoxColumn col = new DataGridViewCheckBoxColumn();
+            col.Name = COL_SEL;
+            col.HeaderText = "";
+            col.Width = 28;
+            col.ReadOnly = false;
+            col.Visible = false;
 
             dgvUnidades.Columns.Insert(0, col);
         }
@@ -234,10 +246,11 @@ namespace RTSCon.Catalogos
             if (dgvUnidades.Columns[e.ColumnIndex].Name != COL_SEL)
                 return;
 
-            var marcado = Convert.ToBoolean(dgvUnidades.Rows[e.RowIndex].Cells[COL_SEL].Value ?? false);
+            bool marcado = Convert.ToBoolean(dgvUnidades.Rows[e.RowIndex].Cells[COL_SEL].Value ?? false);
             if (marcado)
             {
-                for (int i = 0; i < dgvUnidades.Rows.Count; i++)
+                int i;
+                for (i = 0; i < dgvUnidades.Rows.Count; i++)
                 {
                     if (i == e.RowIndex)
                         continue;
@@ -264,8 +277,8 @@ namespace RTSCon.Catalogos
                 if (!marcado)
                     continue;
 
-                var view = gridRow.DataBoundItem as DataRowView;
-                return view?.Row;
+                DataRowView view = gridRow.DataBoundItem as DataRowView;
+                return view != null ? view.Row : null;
             }
 
             return null;
@@ -320,7 +333,7 @@ namespace RTSCon.Catalogos
 
             if (_bloqueId <= 0)
             {
-                using (var frmBuscar = new BuscarBloque())
+                using (BuscarBloque frmBuscar = new BuscarBloque())
                 {
                     if (frmBuscar.ShowDialog(this) != DialogResult.OK)
                         return;
@@ -330,7 +343,7 @@ namespace RTSCon.Catalogos
                 }
             }
 
-            using (var frm = new CrearUnidad(_bloqueId))
+            using (CrearUnidad frm = new CrearUnidad(_bloqueId))
             {
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     CargarUnidades();
@@ -348,7 +361,7 @@ namespace RTSCon.Catalogos
             if (_modo != ModoAccion.Editar)
                 return;
 
-            var row = GetRowMarcado();
+            DataRow row = GetRowMarcado();
             if (row == null)
             {
                 MessageBox.Show(
@@ -363,7 +376,7 @@ namespace RTSCon.Catalogos
 
             SalirModoSeleccion();
 
-            using (var frm = new UpdateUnidad(id))
+            using (UpdateUnidad frm = new UpdateUnidad(id))
             {
                 if (frm.ShowDialog(this) == DialogResult.OK)
                     CargarUnidades();
@@ -387,7 +400,7 @@ namespace RTSCon.Catalogos
             if (_modo != ModoAccion.Desactivar)
                 return;
 
-            var row = GetRowMarcado();
+            DataRow row = GetRowMarcado();
             if (row == null)
             {
                 MessageBox.Show(
@@ -404,9 +417,9 @@ namespace RTSCon.Catalogos
 
             SalirModoSeleccion();
 
-            string mensaje = $"¿Deseas desactivar la unidad '{numero}'?";
+            string mensaje = string.Format("¿Deseas desactivar la unidad '{0}'?", numero);
 
-            using (var frm = new UnidadConfirmarDesactivacion(mensaje))
+            using (UnidadConfirmarDesactivacion frm = new UnidadConfirmarDesactivacion(mensaje))
             {
                 if (frm.ShowDialog(this) == DialogResult.OK)
                 {
@@ -416,10 +429,10 @@ namespace RTSCon.Catalogos
                         string usuarioLogin = UserContext.Usuario;
                         string password = frm.Password;
 
-                        var dAuth = new DAuth(Conexion.CadenaConexion);
-                        var nAuth = new NAuth(dAuth);
+                        DAuth dAuth = new DAuth(Conexion.CadenaConexion);
+                        NAuth nAuth = new NAuth(dAuth);
 
-                        var ok = nAuth.ValidarPassword(usuarioId, password);
+                        bool ok = nAuth.ValidarPassword(usuarioId, password);
                         if (!ok)
                             throw new InvalidOperationException("Contraseña inválida.");
 
@@ -458,6 +471,9 @@ namespace RTSCon.Catalogos
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
+            if (_inicializando)
+                return;
+
             CargarUnidades();
         }
 
@@ -473,6 +489,9 @@ namespace RTSCon.Catalogos
 
         private void chkSoloActivos_CheckedChanged(object sender, EventArgs e)
         {
+            if (_inicializando)
+                return;
+
             CargarUnidades();
         }
     }
