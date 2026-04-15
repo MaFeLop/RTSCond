@@ -42,6 +42,7 @@
             this.txtIdentificador = new Krypton.Toolkit.KryptonTextBox();
             this.nudNumPisos = new Krypton.Toolkit.KryptonNumericUpDown();
             this.nudUnidadesPiso = new Krypton.Toolkit.KryptonNumericUpDown();
+            this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             this.SuspendLayout();
             // 
             // btnBuscarCondominio
@@ -240,11 +241,23 @@
             0,
             0});
             // 
+            // kryptonLabel1
+            // 
+            this.kryptonLabel1.AutoSize = false;
+            this.kryptonLabel1.Location = new System.Drawing.Point(17, 45);
+            this.kryptonLabel1.Margin = new System.Windows.Forms.Padding(4);
+            this.kryptonLabel1.Name = "kryptonLabel1";
+            this.kryptonLabel1.Size = new System.Drawing.Size(272, 31);
+            this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.kryptonLabel1.TabIndex = 157;
+            this.kryptonLabel1.Values.Text = "Crear Bloque";
+            // 
             // CrearBloque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1529, 603);
+            this.Controls.Add(this.kryptonLabel1);
             this.Controls.Add(this.nudUnidadesPiso);
             this.Controls.Add(this.nudNumPisos);
             this.Controls.Add(this.btnBuscarCondominio);
@@ -281,5 +294,6 @@
         private Krypton.Toolkit.KryptonTextBox txtIdentificador;
         private Krypton.Toolkit.KryptonNumericUpDown nudNumPisos;
         private Krypton.Toolkit.KryptonNumericUpDown nudUnidadesPiso;
+        private Krypton.Toolkit.KryptonLabel kryptonLabel1;
     }
 }

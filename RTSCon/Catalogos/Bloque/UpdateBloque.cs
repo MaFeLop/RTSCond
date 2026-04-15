@@ -70,32 +70,7 @@ namespace RTSCon.Catalogos
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string identificador = txtIdentificador.Text.Trim();
-                int numeroPisos = (int)nudNumPisos.Value;
-                int unidadesPorPiso = (int)nudUnidadesPiso.Value;
 
-                if (numeroPisos <= 0)
-                    throw new ArgumentException("El número de pisos debe ser mayor que 0.");
-                if (unidadesPorPiso <= 0)
-                    throw new ArgumentException("Las unidades por piso deben ser mayores que 0.");
-
-                string usuario = UserContext.Usuario;
-
-                _nBloque.Actualizar(_id, identificador, numeroPisos, unidadesPorPiso, _rowVersion, usuario);
-
-                MessageBox.Show("Bloque actualizado correctamente.", "Éxito",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                DialogResult = DialogResult.OK;
-                Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("No se pudo actualizar el bloque: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -106,14 +81,7 @@ namespace RTSCon.Catalogos
 
         private void btnBuscarCondominio_Click(object sender, EventArgs e)
         {
-            using (var frm = new BuscarCondominio())
-            {
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                {
-                    _condominioId = frm.CondominioIdSeleccionado;
-                    CargarCondominio();
-                }
-            }
+
         }
 
         private void btnBuscarCondominio_Click_1(object sender, EventArgs e)
