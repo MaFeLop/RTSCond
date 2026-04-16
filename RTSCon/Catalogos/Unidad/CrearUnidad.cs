@@ -11,6 +11,7 @@ namespace RTSCon.Catalogos
         private int _bloqueId;
         private readonly NUnidad _nUnidad;
         private readonly NBloque _nBloque;
+        private bool _eventosInicializados;
 
         public CrearUnidad(int bloqueId)
         {
@@ -23,87 +24,242 @@ namespace RTSCon.Catalogos
 
             var dBloque = new DBloque(Conexion.CadenaConexion);
             _nBloque = new NBloque(dBloque);
+
+            InicializarEventosUnaSolaVez();
+        }
+
+        private void InicializarEventosUnaSolaVez()
+        {
+            if (_eventosInicializados)
+                return;
+
+            this.Load -= CrearUnidad_Load_1;
+            this.Load += CrearUnidad_Load_1;
+
+            if (btnConfirmar != null)
+            {
+                btnConfirmar.Click -= btnConfirmar_Click;
+                btnConfirmar.Click += btnConfirmar_Click;
+            }
+
+            if (btnVolver != null)
+            {
+                btnVolver.Click -= btnVolver_Click;
+                btnVolver.Click += btnVolver_Click;
+            }
+
+            if (btnBuscarBloque != null)
+            {
+                btnBuscarBloque.Click -= btnBuscarBloque_Click;
+                btnBuscarBloque.Click += btnBuscarBloque_Click;
+            }
+
+            if (chkAmueblada != null)
+            {
+                chkAmueblada.CheckedChanged -= chkTitular_CheckedChanged;
+                chkAmueblada.CheckedChanged += chkTitular_CheckedChanged;
+            }
+
+            _eventosInicializados = true;
         }
 
         private void CrearUnidad_Load(object sender, EventArgs e)
         {
+            InicializarFormulario();
+        }
+
+        private void CrearUnidad_Load_1(object sender, EventArgs e)
+        {
+            InicializarFormulario();
+        }
+
+        private void InicializarFormulario()
+        {
             CargarBloque();
+            ActualizarEstadoMuebles();
+
+            if (txtUnidadEnlazada != null)
+                txtUnidadEnlazada.ReadOnly = true;
+
+            if (txtMetros2 != null)
+                txtMetros2.ReadOnly = false;
+
+            if (txtEstacionamiento != null)
+                txtEstacionamiento.ReadOnly = false;
         }
 
         private void CargarBloque()
         {
-            if (_bloqueId <= 0) return;
-
-            var row = _nBloque.PorId(_bloqueId);
-            if (row != null)
+            if (_bloqueId <= 0)
             {
-                // muestra el identificador del bloque en un label
-                lblBloque.Text = row["Identificador"].ToString();
+                if (txtUnidadEnlazada != null)
+                    txtUnidadEnlazada.Text = string.Empty;
+
+                return;
+            }
+
+            try
+            {
+                var row = _nBloque.PorId(_bloqueId);
+                if (row != null)
+                {
+                    string identificador = Convert.ToString(row["Identificador"]) ?? string.Empty;
+
+                    if (txtUnidadEnlazada != null)
+                        txtUnidadEnlazada.Text = identificador;
+                }
+                else
+                {
+                    if (txtUnidadEnlazada != null)
+                        txtUnidadEnlazada.Text = string.Empty;
+                }
+            }
+            catch
+            {
+                if (txtUnidadEnlazada != null)
+                    txtUnidadEnlazada.Text = string.Empty;
             }
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private void ActualizarEstadoMuebles()
+        {
+            bool visible = chkAmueblada != null && chkAmueblada.Checked;
+
+            if (lblMuebles != null)
+                lblMuebles.Visible = visible;
+
+            if (txtCantidadMuebles != null)
+            {
+                txtCantidadMuebles.Visible = visible;
+
+                if (!visible)
+                    txtCantidadMuebles.Text = string.Empty;
+            }
+        }
+
+        private bool TryParseDecimalFlexible(string texto, out decimal valor)
+        {
+            if (decimal.TryParse(texto, NumberStyles.Number, CultureInfo.CurrentCulture, out valor))
+                return true;
+
+            if (decimal.TryParse(texto, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
+                return true;
+
+            return false;
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
         {
             try
             {
+                if (_bloqueId <= 0)
+                {
+                    MessageBox.Show(
+                        "Debe seleccionar un bloque.",
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
                 string numero = txtNumero.Text.Trim();
                 string tipologia = txtTipologia.Text.Trim();
                 string estacionamiento = txtEstacionamiento.Text.Trim();
                 string observaciones = txtObservaciones.Text.Trim();
 
-                // Piso (int)
-                if (!int.TryParse(txtPiso.Text.Trim(), out int piso) || piso < 0)
+                if (string.IsNullOrWhiteSpace(numero))
                 {
-                    MessageBox.Show("El piso debe ser un número entero (>= 0).", "Validación",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(
+                        "Debe ingresar el número de la unidad.",
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    txtNumero.Focus();
+                    return;
+                }
+
+                int piso;
+                if (!int.TryParse(txtPiso.Text.Trim(), out piso) || piso < 0)
+                {
+                    MessageBox.Show(
+                        "El piso debe ser un número entero (>= 0).",
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
                     txtPiso.Focus();
                     return;
                 }
 
-                // Metros2 (decimal?)
                 decimal? metros2 = null;
                 if (!string.IsNullOrWhiteSpace(txtMetros2.Text))
                 {
-                    if (!decimal.TryParse(txtMetros2.Text.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out var m2))
+                    decimal m2;
+                    if (!TryParseDecimalFlexible(txtMetros2.Text.Trim(), out m2))
                     {
-                        MessageBox.Show("Metros2 debe ser un número decimal válido.", "Validación",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(
+                            "Metros cuadrados debe ser un número decimal válido.",
+                            "Validación",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
                         txtMetros2.Focus();
                         return;
                     }
+
                     metros2 = m2;
                 }
 
-                // Amueblada / CantidadMuebles
                 bool? amueblada = chkAmueblada.Checked;
                 int? cantidadMuebles = null;
-                if (!string.IsNullOrWhiteSpace(txtCantidadMuebles.Text))
+
+                if (chkAmueblada.Checked)
                 {
-                    if (!int.TryParse(txtCantidadMuebles.Text.Trim(), out var cm) || cm < 0)
+                    if (string.IsNullOrWhiteSpace(txtCantidadMuebles.Text))
                     {
-                        MessageBox.Show("Cantidad de muebles debe ser un número entero (>= 0).", "Validación",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(
+                            "Debe indicar la cantidad de muebles.",
+                            "Validación",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
                         txtCantidadMuebles.Focus();
                         return;
                     }
+
+                    int cm;
+                    if (!int.TryParse(txtCantidadMuebles.Text.Trim(), out cm) || cm < 0)
+                    {
+                        MessageBox.Show(
+                            "Cantidad de muebles debe ser un número entero (>= 0).",
+                            "Validación",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                        txtCantidadMuebles.Focus();
+                        return;
+                    }
+
                     cantidadMuebles = cm;
                 }
 
-                // CuotaMantenimientoEspecifica (decimal?)
                 decimal? cuotaEspecifica = null;
                 if (!string.IsNullOrWhiteSpace(txtCuotaMantenimientoEspecifica.Text))
                 {
-                    if (!decimal.TryParse(txtCuotaMantenimientoEspecifica.Text.Trim(), NumberStyles.Any, CultureInfo.InvariantCulture, out var cu))
+                    decimal cu;
+                    if (!TryParseDecimalFlexible(txtCuotaMantenimientoEspecifica.Text.Trim(), out cu))
                     {
-                        MessageBox.Show("La cuota específica debe ser un número decimal válido.", "Validación",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show(
+                            "La cuota de mantenimiento debe ser un número decimal válido.",
+                            "Validación",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
                         txtCuotaMantenimientoEspecifica.Focus();
                         return;
                     }
+
                     cuotaEspecifica = cu;
                 }
 
                 string usuario = UserContext.Usuario;
+                if (string.IsNullOrWhiteSpace(usuario))
+                    usuario = "rtscon@local";
 
                 _nUnidad.Insertar(
                     _bloqueId,
@@ -118,57 +274,46 @@ namespace RTSCon.Catalogos
                     observaciones,
                     usuario);
 
-                MessageBox.Show("Unidad creada correctamente.", "Éxito",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(
+                    "Unidad creada correctamente.",
+                    "Éxito",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
 
                 DialogResult = DialogResult.OK;
                 Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("No se pudo crear la unidad: " + ex.Message,
-                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "No se pudo crear la unidad: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void btnVolver_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
             Close();
         }
 
-        private void CrearUnidad_Load_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void label3_Click(object sender, EventArgs e)
         {
-
         }
 
         private void txtIdPropietario_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void txtObservaciones_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void chkTitular_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkAmueblada.Checked)
-            {
-                lblMuebles.Visible = true;
-                txtCantidadMuebles.Visible = true;
-            }
-            else 
-            {
-                lblMuebles.Visible = false;
-                txtCantidadMuebles.Visible = false;
-            }
+            ActualizarEstadoMuebles();
         }
 
         private void btnBuscarBloque_Click(object sender, EventArgs e)
@@ -178,7 +323,7 @@ namespace RTSCon.Catalogos
                 if (frm.ShowDialog(this) == DialogResult.OK)
                 {
                     _bloqueId = frm.BloqueIdSeleccionado;
-                    lblBloque.Text = frm.BloqueIdentificadorSeleccionado;
+                    CargarBloque();
                 }
             }
         }

@@ -46,7 +46,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtNumero = new Krypton.Toolkit.KryptonTextBox();
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
-            this.lblBloque = new System.Windows.Forms.Label();
             this.chkAmueblada = new Krypton.Toolkit.KryptonCheckBox();
             this.lblMuebles = new System.Windows.Forms.Label();
             this.txtCantidadMuebles = new Krypton.Toolkit.KryptonTextBox();
@@ -85,7 +84,6 @@
             this.txtMetros2.Location = new System.Drawing.Point(64, 397);
             this.txtMetros2.Margin = new System.Windows.Forms.Padding(4);
             this.txtMetros2.Name = "txtMetros2";
-            this.txtMetros2.ReadOnly = true;
             this.txtMetros2.Size = new System.Drawing.Size(541, 30);
             this.txtMetros2.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMetros2.TabIndex = 173;
@@ -147,7 +145,7 @@
             // 
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Image = ((System.Drawing.Image)(resources.GetObject("label7.Image")));
-            this.label7.Location = new System.Drawing.Point(421, 13);
+            this.label7.Location = new System.Drawing.Point(1036, 18);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(135, 102);
@@ -157,7 +155,7 @@
             // 
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Image = ((System.Drawing.Image)(resources.GetObject("label12.Image")));
-            this.label12.Location = new System.Drawing.Point(301, 13);
+            this.label12.Location = new System.Drawing.Point(916, 18);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(140, 102);
@@ -197,7 +195,6 @@
             this.txtEstacionamiento.Location = new System.Drawing.Point(64, 478);
             this.txtEstacionamiento.Margin = new System.Windows.Forms.Padding(4);
             this.txtEstacionamiento.Name = "txtEstacionamiento";
-            this.txtEstacionamiento.ReadOnly = true;
             this.txtEstacionamiento.Size = new System.Drawing.Size(541, 30);
             this.txtEstacionamiento.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEstacionamiento.TabIndex = 162;
@@ -214,7 +211,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(303, 28);
             this.label1.TabIndex = 161;
-            this.label1.Text = "Cantidad de Pisos:";
+            this.label1.Text = "Pisos de la Unidad:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtPiso
@@ -252,27 +249,13 @@
             // kryptonLabel1
             // 
             this.kryptonLabel1.AutoSize = false;
-            this.kryptonLabel1.Location = new System.Drawing.Point(21, 40);
+            this.kryptonLabel1.Location = new System.Drawing.Point(13, 18);
             this.kryptonLabel1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.Size = new System.Drawing.Size(272, 31);
             this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel1.TabIndex = 157;
             this.kryptonLabel1.Values.Text = "Crear Unidad";
-            // 
-            // lblBloque
-            // 
-            this.lblBloque.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblBloque.BackColor = System.Drawing.Color.Transparent;
-            this.lblBloque.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBloque.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblBloque.Location = new System.Drawing.Point(56, 96);
-            this.lblBloque.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblBloque.Name = "lblBloque";
-            this.lblBloque.Size = new System.Drawing.Size(268, 28);
-            this.lblBloque.TabIndex = 180;
-            this.lblBloque.Text = "Nombre:";
-            this.lblBloque.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // chkAmueblada
             // 
@@ -337,7 +320,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(656, 27);
+            this.label6.Location = new System.Drawing.Point(56, 64);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(355, 28);
@@ -347,7 +330,7 @@
             // 
             // txtUnidadEnlazada
             // 
-            this.txtUnidadEnlazada.Location = new System.Drawing.Point(660, 59);
+            this.txtUnidadEnlazada.Location = new System.Drawing.Point(60, 96);
             this.txtUnidadEnlazada.Margin = new System.Windows.Forms.Padding(4);
             this.txtUnidadEnlazada.Name = "txtUnidadEnlazada";
             this.txtUnidadEnlazada.Size = new System.Drawing.Size(541, 30);
@@ -358,7 +341,7 @@
             // 
             this.btnBuscarBloque.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnBuscarBloque.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnBuscarBloque.Location = new System.Drawing.Point(1024, 18);
+            this.btnBuscarBloque.Location = new System.Drawing.Point(424, 55);
             this.btnBuscarBloque.Margin = new System.Windows.Forms.Padding(4);
             this.btnBuscarBloque.Name = "btnBuscarBloque";
             this.btnBuscarBloque.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -382,7 +365,6 @@
             this.Controls.Add(this.lblMuebles);
             this.Controls.Add(this.txtCantidadMuebles);
             this.Controls.Add(this.chkAmueblada);
-            this.Controls.Add(this.lblBloque);
             this.Controls.Add(this.txtTipologia);
             this.Controls.Add(this.label80);
             this.Controls.Add(this.txtMetros2);
@@ -427,7 +409,6 @@
         private System.Windows.Forms.Label label2;
         private Krypton.Toolkit.KryptonTextBox txtNumero;
         private Krypton.Toolkit.KryptonLabel kryptonLabel1;
-        private System.Windows.Forms.Label lblBloque;
         private Krypton.Toolkit.KryptonCheckBox chkAmueblada;
         private System.Windows.Forms.Label lblMuebles;
         private Krypton.Toolkit.KryptonTextBox txtCantidadMuebles;

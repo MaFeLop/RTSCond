@@ -49,7 +49,6 @@ namespace RTSCon.Catalogos
             {
                 InicializarEventosUnaSolaVez();
                 EnsureSelectionColumn();
-
                 CargarBloque();
 
                 if (!chkSoloActivos.Checked)
@@ -116,14 +115,20 @@ namespace RTSCon.Catalogos
             try
             {
                 if (_bloqueId <= 0)
+                {
+                    Text = "Unidades";
                     return;
+                }
 
                 DataRow rowBloque = _nBloque.PorId(_bloqueId);
                 if (rowBloque != null)
                     Text = string.Format("Unidades del bloque {0}", rowBloque["Identificador"]);
+                else
+                    Text = "Unidades";
             }
             catch
             {
+                Text = "Unidades";
             }
         }
 
@@ -133,7 +138,6 @@ namespace RTSCon.Catalogos
             {
                 string texto = txtBuscar.Text.Trim();
                 bool soloActivos = chkSoloActivos.Checked;
-
                 int? bloqueFiltro = _bloqueId > 0 ? (int?)_bloqueId : null;
 
                 DataTable dt = _nUnidad.Buscar(bloqueFiltro, texto, soloActivos, 50);
@@ -141,7 +145,6 @@ namespace RTSCon.Catalogos
                 AjustarGrid();
 
                 lblTotal.Text = string.Format("Total: {0}", dt != null ? dt.Rows.Count : 0);
-
                 SetSelectionColumnVisible(_modo != ModoAccion.Ninguno);
             }
             catch (Exception ex)
@@ -195,15 +198,6 @@ namespace RTSCon.Catalogos
             dgvUnidades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvUnidades.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvUnidades.AllowUserToResizeRows = false;
-        }
-
-        private DataRow FilaSeleccionada()
-        {
-            if (dgvUnidades.CurrentRow == null)
-                return null;
-
-            DataRowView view = dgvUnidades.CurrentRow.DataBoundItem as DataRowView;
-            return view != null ? view.Row : null;
         }
 
         private void EnsureSelectionColumn()
@@ -330,18 +324,6 @@ namespace RTSCon.Catalogos
         {
             if (_modo != ModoAccion.Ninguno)
                 return;
-
-            if (_bloqueId <= 0)
-            {
-                using (BuscarBloque frmBuscar = new BuscarBloque())
-                {
-                    if (frmBuscar.ShowDialog(this) != DialogResult.OK)
-                        return;
-
-                    _bloqueId = frmBuscar.BloqueIdSeleccionado;
-                    CargarBloque();
-                }
-            }
 
             using (CrearUnidad frm = new CrearUnidad(_bloqueId))
             {
