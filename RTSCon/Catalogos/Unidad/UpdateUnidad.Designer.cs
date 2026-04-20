@@ -69,6 +69,7 @@
             this.btnBuscarBloque.TabIndex = 213;
             this.btnBuscarBloque.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnBuscarBloque.Values.Text = "Buscar Bloque";
+            this.btnBuscarBloque.Visible = false;
             // 
             // label6
             // 
@@ -146,9 +147,9 @@
             this.chkAmueblada.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
             this.chkAmueblada.Location = new System.Drawing.Point(662, 92);
             this.chkAmueblada.Name = "chkAmueblada";
-            this.chkAmueblada.Size = new System.Drawing.Size(237, 24);
+            this.chkAmueblada.Size = new System.Drawing.Size(243, 24);
             this.chkAmueblada.TabIndex = 206;
-            this.chkAmueblada.Values.Text = "Esta unidad esta amueblada?";
+            this.chkAmueblada.Values.Text = "¿Esta unidad esta amueblada?";
             // 
             // txtTipologia
             // 
@@ -302,7 +303,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(303, 28);
             this.label1.TabIndex = 193;
-            this.label1.Text = "Pisos de la Unidad:";
+            this.label1.Text = "Piso de la Unidad:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtPiso

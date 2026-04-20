@@ -211,7 +211,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(303, 28);
             this.label1.TabIndex = 161;
-            this.label1.Text = "Pisos de la Unidad:";
+            this.label1.Text = "Piso de la Unidad:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtPiso

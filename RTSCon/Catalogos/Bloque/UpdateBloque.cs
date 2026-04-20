@@ -13,7 +13,7 @@ namespace RTSCon.Catalogos
         private byte[] _rowVersion;
 
         private readonly NBloque _nBloque;
-        private readonly NCondominio _nCondominio;
+        private bool _eventosInicializados;
 
         public UpdateBloque(int id)
         {
@@ -24,13 +24,65 @@ namespace RTSCon.Catalogos
             var dBloque = new DBloque(Conexion.CadenaConexion);
             _nBloque = new NBloque(dBloque);
 
-            var dCondo = new DCondominio(Conexion.CadenaConexion);
-            _nCondominio = new NCondominio(dCondo);
+            InicializarEventosUnaSolaVez();
+        }
+
+        private void InicializarEventosUnaSolaVez()
+        {
+            if (_eventosInicializados)
+                return;
+
+            this.Load -= UpdateBloque_Load;
+            this.Load += UpdateBloque_Load;
+
+            if (btnGuardar != null)
+            {
+                btnGuardar.Click -= btnGuardar_Click;
+                btnGuardar.Click += btnGuardar_Click;
+            }
+
+            if (btnCancelar != null)
+            {
+                btnCancelar.Click -= btnCancelar_Click;
+                btnCancelar.Click += btnCancelar_Click;
+            }
+
+            if (btnBuscarCondominio != null)
+            {
+                btnBuscarCondominio.Click -= btnBuscarCondominio_Click;
+                btnBuscarCondominio.Click += btnBuscarCondominio_Click;
+            }
+
+            _eventosInicializados = true;
         }
 
         private void UpdateBloque_Load(object sender, EventArgs e)
         {
+            ConfigurarUi();
             CargarDatos();
+        }
+
+        private void ConfigurarUi()
+        {
+            if (txtIdCondominio != null)
+                txtIdCondominio.ReadOnly = true;
+
+            if (nudNumPisos != null)
+            {
+                nudNumPisos.Minimum = 1;
+                if (nudNumPisos.Value < 1)
+                    nudNumPisos.Value = 1;
+            }
+
+            if (nudUnidadesPiso != null)
+            {
+                nudUnidadesPiso.Minimum = 1;
+                if (nudUnidadesPiso.Value < 1)
+                    nudUnidadesPiso.Value = 1;
+            }
+
+            if (btnBuscarCondominio != null)
+                btnBuscarCondominio.Enabled = false;
         }
 
         private void CargarDatos()
@@ -38,39 +90,138 @@ namespace RTSCon.Catalogos
             DataRow row = _nBloque.PorId(_id);
             if (row == null)
             {
-                MessageBox.Show("No se encontró el bloque.", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(
+                    "No se encontró el bloque.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
                 DialogResult = DialogResult.Cancel;
                 Close();
                 return;
             }
 
-            _condominioId = (int)row["CondominioId"];
-            _rowVersion = (byte[])row["RowVersion"];
+            if (row.Table.Columns.Contains("CondominioId") && row["CondominioId"] != DBNull.Value)
+                _condominioId = Convert.ToInt32(row["CondominioId"]);
 
-            lblId.Text = _id.ToString();
-            txtIdentificador.Text = row["Identificador"].ToString();
+            if (row.Table.Columns.Contains("RowVersion") && row["RowVersion"] != DBNull.Value)
+                _rowVersion = (byte[])row["RowVersion"];
 
-            // Asegúrate de que Maximum de los NumericUpDown sea >= a estos valores
-            nudNumPisos.Value = Math.Min(nudNumPisos.Maximum, Math.Max(nudNumPisos.Minimum,
-                                    Convert.ToInt32(row["NumeroPisos"])));
+            if (txtIdCondominio != null)
+                txtIdCondominio.Text = _condominioId > 0 ? _condominioId.ToString() : string.Empty;
 
-            nudUnidadesPiso.Value = Math.Min(nudUnidadesPiso.Maximum, Math.Max(nudUnidadesPiso.Minimum,
-                                           Convert.ToInt32(row["UnidadesPorPiso"])));
+            if (row.Table.Columns.Contains("Identificador") && row["Identificador"] != DBNull.Value)
+                txtIdentificador.Text = Convert.ToString(row["Identificador"]);
+            else
+                txtIdentificador.Text = string.Empty;
 
-            CargarCondominio();
-        }
+            if (row.Table.Columns.Contains("NumeroPisos") && row["NumeroPisos"] != DBNull.Value)
+            {
+                decimal valor = Convert.ToDecimal(row["NumeroPisos"]);
+                if (valor < nudNumPisos.Minimum)
+                    valor = nudNumPisos.Minimum;
+                if (valor > nudNumPisos.Maximum)
+                    valor = nudNumPisos.Maximum;
 
-        private void CargarCondominio()
-        {
-            var rowCondo = _nCondominio.PorId(_condominioId);
-            if (rowCondo != null)
-                lblCondominio.Text = rowCondo["Nombre"].ToString();
+                nudNumPisos.Value = valor;
+            }
+
+            if (row.Table.Columns.Contains("UnidadesPorPiso") && row["UnidadesPorPiso"] != DBNull.Value)
+            {
+                decimal valor = Convert.ToDecimal(row["UnidadesPorPiso"]);
+                if (valor < nudUnidadesPiso.Minimum)
+                    valor = nudUnidadesPiso.Minimum;
+                if (valor > nudUnidadesPiso.Maximum)
+                    valor = nudUnidadesPiso.Maximum;
+
+                nudUnidadesPiso.Value = valor;
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string identificador = txtIdentificador.Text.Trim();
+                if (string.IsNullOrWhiteSpace(identificador))
+                {
+                    MessageBox.Show(
+                        "Debe ingresar el identificador del bloque.",
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    txtIdentificador.Focus();
+                    return;
+                }
 
+                if (identificador.Length > 50)
+                {
+                    MessageBox.Show(
+                        "El identificador no puede exceder 50 caracteres.",
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    txtIdentificador.Focus();
+                    return;
+                }
+
+                int numeroPisos = Decimal.ToInt32(nudNumPisos.Value);
+                int unidadesPorPiso = Decimal.ToInt32(nudUnidadesPiso.Value);
+
+                if (numeroPisos <= 0)
+                {
+                    MessageBox.Show(
+                        "El número de pisos debe ser mayor que 0.",
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    nudNumPisos.Focus();
+                    return;
+                }
+
+                if (unidadesPorPiso <= 0)
+                {
+                    MessageBox.Show(
+                        "Las unidades por piso deben ser mayores que 0.",
+                        "Validación",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    nudUnidadesPiso.Focus();
+                    return;
+                }
+
+                if (_rowVersion == null || _rowVersion.Length == 0)
+                    throw new InvalidOperationException("No se pudo recuperar la RowVersion del bloque.");
+
+                string usuario = UserContext.Usuario;
+                if (string.IsNullOrWhiteSpace(usuario))
+                    usuario = "rtscon@local";
+
+                _nBloque.Actualizar(
+                    _id,
+                    identificador,
+                    numeroPisos,
+                    unidadesPorPiso,
+                    _rowVersion,
+                    usuario);
+
+                MessageBox.Show(
+                    "Bloque actualizado correctamente.",
+                    "Éxito",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Information);
+
+                DialogResult = DialogResult.OK;
+                Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    "No se pudo actualizar el bloque: " + ex.Message,
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
@@ -81,19 +232,11 @@ namespace RTSCon.Catalogos
 
         private void btnBuscarCondominio_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnBuscarCondominio_Click_1(object sender, EventArgs e)
-        {
-            using (var frm = new BuscarCondominio())
-            {
-                if (frm.ShowDialog(this) == DialogResult.OK)
-                {
-                    _condominioId = frm.CondominioIdSeleccionado;
-                    lblCondominio.Text = frm.CondominioNombreSeleccionado;
-                }
-            }
+            MessageBox.Show(
+                "El condominio no se puede cambiar desde esta pantalla por el momento.",
+                "Información",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
     }
 }

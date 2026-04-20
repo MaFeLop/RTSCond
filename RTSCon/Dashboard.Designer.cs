@@ -420,19 +420,19 @@
             this.panelSideBar.Controls.Add(this.label20);
             this.panelSideBar.Controls.Add(this.kryptonButton4);
             this.panelSideBar.Controls.Add(this.label19);
-            this.panelSideBar.Controls.Add(this.kryptonButton3);
-            this.panelSideBar.Controls.Add(this.label18);
-            this.panelSideBar.Controls.Add(this.kryptonButton2);
-            this.panelSideBar.Controls.Add(this.label17);
-            this.panelSideBar.Controls.Add(this.kryptonButton1);
-            this.panelSideBar.Controls.Add(this.label16);
-            this.panelSideBar.Controls.Add(this.btnFacturacion);
-            this.panelSideBar.Controls.Add(this.label15);
-            this.panelSideBar.Controls.Add(this.btnCierreDeMes);
             this.panelSideBar.Controls.Add(this.label12);
             this.panelSideBar.Controls.Add(this.label9);
+            this.panelSideBar.Controls.Add(this.kryptonButton3);
             this.panelSideBar.Controls.Add(this.kryptonPictureBox1);
             this.panelSideBar.Controls.Add(this.btnDashboard);
+            this.panelSideBar.Controls.Add(this.label18);
+            this.panelSideBar.Controls.Add(this.kryptonButton1);
+            this.panelSideBar.Controls.Add(this.btnCierreDeMes);
+            this.panelSideBar.Controls.Add(this.kryptonButton2);
+            this.panelSideBar.Controls.Add(this.label15);
+            this.panelSideBar.Controls.Add(this.btnFacturacion);
+            this.panelSideBar.Controls.Add(this.label17);
+            this.panelSideBar.Controls.Add(this.label16);
             this.panelSideBar.Location = new System.Drawing.Point(9, 4);
             this.panelSideBar.Margin = new System.Windows.Forms.Padding(4);
             this.panelSideBar.Name = "panelSideBar";
@@ -444,16 +444,16 @@
             // 
             this.label22.BackColor = System.Drawing.Color.Transparent;
             this.label22.Image = ((System.Drawing.Image)(resources.GetObject("label22.Image")));
-            this.label22.Location = new System.Drawing.Point(4, 465);
+            this.label22.Location = new System.Drawing.Point(4, 123);
             this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(39, 28);
+            this.label22.Size = new System.Drawing.Size(38, 28);
             this.label22.TabIndex = 62;
             // 
             // btnCrearPropietario
             // 
             this.btnCrearPropietario.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnCrearPropietario.Location = new System.Drawing.Point(38, 465);
+            this.btnCrearPropietario.Location = new System.Drawing.Point(37, 123);
             this.btnCrearPropietario.Margin = new System.Windows.Forms.Padding(4);
             this.btnCrearPropietario.Name = "btnCrearPropietario";
             this.btnCrearPropietario.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
@@ -491,7 +491,7 @@
             // 
             this.label20.BackColor = System.Drawing.Color.Transparent;
             this.label20.Image = ((System.Drawing.Image)(resources.GetObject("label20.Image")));
-            this.label20.Location = new System.Drawing.Point(4, 345);
+            this.label20.Location = new System.Drawing.Point(4, 84);
             this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(39, 28);
@@ -500,7 +500,7 @@
             // kryptonButton4
             // 
             this.kryptonButton4.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.kryptonButton4.Location = new System.Drawing.Point(48, 345);
+            this.kryptonButton4.Location = new System.Drawing.Point(48, 84);
             this.kryptonButton4.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton4.Name = "kryptonButton4";
             this.kryptonButton4.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
@@ -514,7 +514,7 @@
             // 
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Image = ((System.Drawing.Image)(resources.GetObject("label19.Image")));
-            this.label19.Location = new System.Drawing.Point(4, 299);
+            this.label19.Location = new System.Drawing.Point(3, 371);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(39, 28);
@@ -524,7 +524,7 @@
             // kryptonButton3
             // 
             this.kryptonButton3.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.kryptonButton3.Location = new System.Drawing.Point(48, 299);
+            this.kryptonButton3.Location = new System.Drawing.Point(47, 371);
             this.kryptonButton3.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton3.Name = "kryptonButton3";
             this.kryptonButton3.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
@@ -538,7 +538,7 @@
             // 
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.Image = ((System.Drawing.Image)(resources.GetObject("label18.Image")));
-            this.label18.Location = new System.Drawing.Point(4, 254);
+            this.label18.Location = new System.Drawing.Point(3, 326);
             this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(39, 28);
@@ -548,7 +548,7 @@
             // kryptonButton2
             // 
             this.kryptonButton2.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.kryptonButton2.Location = new System.Drawing.Point(48, 254);
+            this.kryptonButton2.Location = new System.Drawing.Point(47, 326);
             this.kryptonButton2.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton2.Name = "kryptonButton2";
             this.kryptonButton2.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
@@ -562,7 +562,7 @@
             // 
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Image = ((System.Drawing.Image)(resources.GetObject("label17.Image")));
-            this.label17.Location = new System.Drawing.Point(4, 201);
+            this.label17.Location = new System.Drawing.Point(3, 273);
             this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(39, 28);
@@ -572,7 +572,7 @@
             // kryptonButton1
             // 
             this.kryptonButton1.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.kryptonButton1.Location = new System.Drawing.Point(48, 201);
+            this.kryptonButton1.Location = new System.Drawing.Point(47, 273);
             this.kryptonButton1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton1.Name = "kryptonButton1";
             this.kryptonButton1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
@@ -586,7 +586,7 @@
             // 
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.Image = ((System.Drawing.Image)(resources.GetObject("label16.Image")));
-            this.label16.Location = new System.Drawing.Point(4, 149);
+            this.label16.Location = new System.Drawing.Point(3, 221);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(39, 28);
@@ -596,7 +596,7 @@
             // btnFacturacion
             // 
             this.btnFacturacion.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnFacturacion.Location = new System.Drawing.Point(48, 149);
+            this.btnFacturacion.Location = new System.Drawing.Point(47, 221);
             this.btnFacturacion.Margin = new System.Windows.Forms.Padding(4);
             this.btnFacturacion.Name = "btnFacturacion";
             this.btnFacturacion.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
@@ -610,7 +610,7 @@
             // 
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Image = ((System.Drawing.Image)(resources.GetObject("label15.Image")));
-            this.label15.Location = new System.Drawing.Point(4, 98);
+            this.label15.Location = new System.Drawing.Point(3, 170);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(39, 28);
@@ -620,7 +620,7 @@
             // btnCierreDeMes
             // 
             this.btnCierreDeMes.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnCierreDeMes.Location = new System.Drawing.Point(48, 98);
+            this.btnCierreDeMes.Location = new System.Drawing.Point(47, 170);
             this.btnCierreDeMes.Margin = new System.Windows.Forms.Padding(4);
             this.btnCierreDeMes.Name = "btnCierreDeMes";
             this.btnCierreDeMes.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;

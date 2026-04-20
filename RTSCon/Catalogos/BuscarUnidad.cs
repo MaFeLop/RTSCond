@@ -59,6 +59,9 @@ namespace RTSCon.Catalogos
             dgvUnidad.CellDoubleClick -= dgvUnidad_CellDoubleClick;
             dgvUnidad.CellDoubleClick += dgvUnidad_CellDoubleClick;
 
+            dgvUnidad.DataError -= dgvUnidad_DataError;
+            dgvUnidad.DataError += dgvUnidad_DataError;
+
             dgvUnidad.MultiSelect = false;
             dgvUnidad.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUnidad.AllowUserToAddRows = false;
@@ -69,6 +72,19 @@ namespace RTSCon.Catalogos
             _eventosInicializados = true;
         }
 
+        private DataTable PrepararTablaParaGrid(DataTable origen)
+        {
+            if (origen == null)
+                return null;
+
+            DataTable dt = origen.Copy();
+
+            if (dt.Columns.Contains("RowVersion"))
+                dt.Columns.Remove("RowVersion");
+
+            return dt;
+        }
+
         private void Cargar()
         {
             try
@@ -76,7 +92,8 @@ namespace RTSCon.Catalogos
                 string filtro = txtBuscar.Text.Trim();
                 bool soloActivos = chkSoloActivos.Checked;
 
-                _dt = _negocio.Buscar(null, filtro, soloActivos, 50);
+                DataTable dtOriginal = _negocio.Buscar(null, filtro, soloActivos, 50);
+                _dt = PrepararTablaParaGrid(dtOriginal);
 
                 dgvUnidad.DataSource = null;
                 dgvUnidad.DataSource = _dt;
@@ -108,13 +125,10 @@ namespace RTSCon.Catalogos
                 return;
 
             if (dgvUnidad.Columns.Contains("Id"))
-                dgvUnidad.Columns["Id"].HeaderText = "Id";
+                dgvUnidad.Columns["Id"].Visible = false;
 
             if (dgvUnidad.Columns.Contains("BloqueId"))
                 dgvUnidad.Columns["BloqueId"].Visible = false;
-
-            if (dgvUnidad.Columns.Contains("RowVersion"))
-                dgvUnidad.Columns["RowVersion"].Visible = false;
 
             if (dgvUnidad.Columns.Contains("CreatedBy"))
                 dgvUnidad.Columns["CreatedBy"].Visible = false;
@@ -128,14 +142,14 @@ namespace RTSCon.Catalogos
             if (dgvUnidad.Columns.Contains("Numero"))
                 dgvUnidad.Columns["Numero"].HeaderText = "Número";
 
-            if (dgvUnidad.Columns.Contains("Tipo"))
-                dgvUnidad.Columns["Tipo"].HeaderText = "Tipo";
+            if (dgvUnidad.Columns.Contains("Tipologia"))
+                dgvUnidad.Columns["Tipologia"].HeaderText = "Tipología";
 
             if (dgvUnidad.Columns.Contains("Piso"))
                 dgvUnidad.Columns["Piso"].HeaderText = "Piso";
 
-            if (dgvUnidad.Columns.Contains("MetrosCuadrados"))
-                dgvUnidad.Columns["MetrosCuadrados"].HeaderText = "M²";
+            if (dgvUnidad.Columns.Contains("Metros2"))
+                dgvUnidad.Columns["Metros2"].HeaderText = "M²";
 
             if (dgvUnidad.Columns.Contains("IsActive"))
                 dgvUnidad.Columns["IsActive"].HeaderText = "Activo";
@@ -214,11 +228,16 @@ namespace RTSCon.Catalogos
 
             if (view.Row.Table.Columns.Contains("Numero"))
                 SelectedTexto = Convert.ToString(view["Numero"]) ?? string.Empty;
-            else if (view.Row.Table.Columns.Contains("Id"))
+            else
                 SelectedTexto = Convert.ToString(view["Id"]) ?? string.Empty;
 
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void dgvUnidad_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.ThrowException = false;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

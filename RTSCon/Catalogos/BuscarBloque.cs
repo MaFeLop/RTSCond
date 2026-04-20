@@ -61,6 +61,9 @@ namespace RTSCon.Catalogos
             dgvBloques.CellDoubleClick -= dgvBloques_CellDoubleClick;
             dgvBloques.CellDoubleClick += dgvBloques_CellDoubleClick;
 
+            dgvBloques.DataError -= dgvBloques_DataError;
+            dgvBloques.DataError += dgvBloques_DataError;
+
             dgvBloques.MultiSelect = false;
             dgvBloques.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBloques.AllowUserToAddRows = false;
@@ -70,12 +73,28 @@ namespace RTSCon.Catalogos
             _eventosInicializados = true;
         }
 
+        private DataTable PrepararTablaParaGrid(DataTable origen)
+        {
+            if (origen == null)
+                return null;
+
+            DataTable dt = origen.Copy();
+
+            if (dt.Columns.Contains("RowVersion"))
+                dt.Columns.Remove("RowVersion");
+
+            return dt;
+        }
+
         private void CargarBloques()
         {
             string texto = txtBuscar.Text.Trim();
             bool soloActivos = chkSoloActivos.Checked;
 
-            DataTable dt = _nBloque.Buscar(null, texto, soloActivos, 50);
+            DataTable dtOriginal = _nBloque.Buscar(null, texto, soloActivos, 50);
+            DataTable dt = PrepararTablaParaGrid(dtOriginal);
+
+            dgvBloques.DataSource = null;
             dgvBloques.DataSource = dt;
 
             AjustarGrid();
@@ -95,9 +114,6 @@ namespace RTSCon.Catalogos
 
             if (dgvBloques.Columns.Contains("CondominioId"))
                 dgvBloques.Columns["CondominioId"].Visible = false;
-
-            if (dgvBloques.Columns.Contains("RowVersion"))
-                dgvBloques.Columns["RowVersion"].Visible = false;
 
             if (dgvBloques.Columns.Contains("CreatedBy"))
                 dgvBloques.Columns["CreatedBy"].Visible = false;
@@ -177,6 +193,11 @@ namespace RTSCon.Catalogos
 
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void dgvBloques_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.ThrowException = false;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

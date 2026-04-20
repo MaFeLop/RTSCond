@@ -88,6 +88,9 @@ namespace RTSCon.Catalogos
             dgvPropietario.CellClick -= dgvPropietario_CellClick;
             dgvPropietario.CellClick += dgvPropietario_CellClick;
 
+            dgvPropietario.DataError -= dgvPropietario_DataError;
+            dgvPropietario.DataError += dgvPropietario_DataError;
+
             dgvPropietario.MultiSelect = false;
             dgvPropietario.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPropietario.AllowUserToAddRows = false;
@@ -146,6 +149,19 @@ namespace RTSCon.Catalogos
             dgvPropietario.Columns.Insert(0, col);
         }
 
+        private DataTable PrepararTablaParaGrid(DataTable origen)
+        {
+            if (origen == null)
+                return null;
+
+            DataTable dt = origen.Copy();
+
+            if (dt.Columns.Contains("RowVersion"))
+                dt.Columns.Remove("RowVersion");
+
+            return dt;
+        }
+
         private void Cargar()
         {
             try
@@ -153,7 +169,8 @@ namespace RTSCon.Catalogos
                 string filtro = txtBuscar.Text.Trim();
                 bool soloActivos = chkSoloActivos.Checked;
 
-                _dt = _negocio.BuscarPropietarios(filtro, soloActivos, 50);
+                DataTable dtOriginal = _negocio.BuscarPropietarios(filtro, soloActivos, 50);
+                _dt = PrepararTablaParaGrid(dtOriginal);
 
                 dgvPropietario.DataSource = null;
                 dgvPropietario.DataSource = _dt;
@@ -324,18 +341,18 @@ namespace RTSCon.Catalogos
                 return;
             }
 
-            if (!rv.Row.Table.Columns.Contains("Id") || rv["Id"] == DBNull.Value || string.IsNullOrWhiteSpace(Convert.ToString(rv["Id"])))
+            if (!rv.Row.Table.Columns.Contains("ID_usr") || rv["ID_usr"] == DBNull.Value || string.IsNullOrWhiteSpace(Convert.ToString(rv["ID_usr"])))
             {
                 KryptonMessageBox.Show(
                     this,
-                    "No se pudo obtener el Id del propietario.",
+                    "No se pudo obtener el ID de usuario del propietario.",
                     "Buscar Propietario",
                     KryptonMessageBoxButtons.OK,
                     KryptonMessageBoxIcon.Warning);
                 return;
             }
 
-            PropietarioIdSeleccionado = Convert.ToInt32(rv["Id"]);
+            PropietarioIdSeleccionado = Convert.ToInt32(rv["ID_usr"]);
 
             SelectedUsuario =
                 rv.Row.Table.Columns.Contains("Usuario") ? Convert.ToString(rv["Usuario"]) :
@@ -354,6 +371,11 @@ namespace RTSCon.Catalogos
 
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void dgvPropietario_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.ThrowException = false;
         }
     }
 }
