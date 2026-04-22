@@ -109,6 +109,7 @@
             this.btnConfirmar.TabIndex = 98;
             this.btnConfirmar.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnConfirmar.Values.Text = "Confirmar";
+            this.btnConfirmar.Click += new System.EventHandler(this.btnConfirmar_Click);
             // 
             // chkSoloActivos
             // 

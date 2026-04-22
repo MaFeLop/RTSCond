@@ -40,7 +40,9 @@ namespace RTSCon.Catalogos
 
         private static NCondominio CrearNegocio()
         {
-            var cn = ConfigurationManager.ConnectionStrings["RTSCond"]?.ConnectionString;
+            string cn = ConfigurationManager.ConnectionStrings["RTSCond"] != null
+                ? ConfigurationManager.ConnectionStrings["RTSCond"].ConnectionString
+                : null;
 
             if (string.IsNullOrWhiteSpace(cn))
                 throw new InvalidOperationException("No se encontró la cadena de conexión 'RTSCond'.");
@@ -138,13 +140,11 @@ namespace RTSCon.Catalogos
             if (dgvPropietario.Columns.Contains(COL_SEL))
                 return;
 
-            var col = new DataGridViewCheckBoxColumn
-            {
-                Name = COL_SEL,
-                HeaderText = string.Empty,
-                Width = 28,
-                ReadOnly = false
-            };
+            DataGridViewCheckBoxColumn col = new DataGridViewCheckBoxColumn();
+            col.Name = COL_SEL;
+            col.HeaderText = string.Empty;
+            col.Width = 28;
+            col.ReadOnly = false;
 
             dgvPropietario.Columns.Insert(0, col);
         }
@@ -227,6 +227,14 @@ namespace RTSCon.Catalogos
             if (dgvPropietario.Columns.Contains("estado"))
                 dgvPropietario.Columns["estado"].HeaderText = "Estado";
 
+            foreach (DataGridViewColumn col in dgvPropietario.Columns)
+            {
+                if (col.Name == COL_SEL)
+                    continue;
+
+                col.ReadOnly = true;
+            }
+
             dgvPropietario.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPropietario.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvPropietario.AllowUserToResizeRows = false;
@@ -263,7 +271,7 @@ namespace RTSCon.Catalogos
             if (e.ColumnIndex != dgvPropietario.Columns[COL_SEL].Index)
                 return;
 
-            var celda = dgvPropietario.Rows[e.RowIndex].Cells[COL_SEL];
+            DataGridViewCell celda = dgvPropietario.Rows[e.RowIndex].Cells[COL_SEL];
             bool actual = Convert.ToBoolean(celda.Value ?? false);
             celda.Value = !actual;
         }
@@ -280,7 +288,6 @@ namespace RTSCon.Catalogos
                 return;
 
             bool marcado = Convert.ToBoolean(dgvPropietario.Rows[e.RowIndex].Cells[COL_SEL].Value ?? false);
-
             if (!marcado)
                 return;
 
@@ -329,7 +336,7 @@ namespace RTSCon.Catalogos
                 return;
             }
 
-            var rv = GetMarcado();
+            DataRowView rv = GetMarcado();
             if (rv == null)
             {
                 KryptonMessageBox.Show(
@@ -341,18 +348,28 @@ namespace RTSCon.Catalogos
                 return;
             }
 
-            if (!rv.Row.Table.Columns.Contains("ID_usr") || rv["ID_usr"] == DBNull.Value || string.IsNullOrWhiteSpace(Convert.ToString(rv["ID_usr"])))
+            if (rv.Row.Table.Columns.Contains("ID_propietario") &&
+                rv["ID_propietario"] != DBNull.Value &&
+                !string.IsNullOrWhiteSpace(Convert.ToString(rv["ID_propietario"])))
+            {
+                PropietarioIdSeleccionado = Convert.ToInt32(rv["ID_propietario"]);
+            }
+            else if (rv.Row.Table.Columns.Contains("Id") &&
+                     rv["Id"] != DBNull.Value &&
+                     !string.IsNullOrWhiteSpace(Convert.ToString(rv["Id"])))
+            {
+                PropietarioIdSeleccionado = Convert.ToInt32(rv["Id"]);
+            }
+            else
             {
                 KryptonMessageBox.Show(
                     this,
-                    "No se pudo obtener el ID de usuario del propietario.",
+                    "No se pudo obtener el ID del propietario.",
                     "Buscar Propietario",
                     KryptonMessageBoxButtons.OK,
                     KryptonMessageBoxIcon.Warning);
                 return;
             }
-
-            PropietarioIdSeleccionado = Convert.ToInt32(rv["ID_usr"]);
 
             SelectedUsuario =
                 rv.Row.Table.Columns.Contains("Usuario") ? Convert.ToString(rv["Usuario"]) :

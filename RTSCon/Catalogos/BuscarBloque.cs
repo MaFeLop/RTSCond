@@ -9,7 +9,10 @@ namespace RTSCon.Catalogos
 {
     public partial class BuscarBloque : KryptonForm
     {
+        private const string COL_SEL = "__sel";
+
         private readonly NBloque _nBloque;
+        private DataTable _dt;
         private bool _eventosInicializados;
 
         public int BloqueIdSeleccionado { get; private set; }
@@ -19,10 +22,8 @@ namespace RTSCon.Catalogos
         {
             InitializeComponent();
 
-            var dBloque = new DBloque(Conexion.CadenaConexion);
+            DBloque dBloque = new DBloque(Conexion.CadenaConexion);
             _nBloque = new NBloque(dBloque);
-
-            dgvBloques.AutoGenerateColumns = true;
 
             Load -= BuscarBloque_Load;
             Load += BuscarBloque_Load;
@@ -32,6 +33,7 @@ namespace RTSCon.Catalogos
         {
             InicializarEventosUnaSolaVez();
             chkSoloActivos.Checked = true;
+            EnsureSelectionColumn();
             CargarBloques();
         }
 
@@ -58,8 +60,14 @@ namespace RTSCon.Catalogos
             chkSoloActivos.CheckedChanged -= chkSoloActivos_CheckedChanged;
             chkSoloActivos.CheckedChanged += chkSoloActivos_CheckedChanged;
 
-            dgvBloques.CellDoubleClick -= dgvBloques_CellDoubleClick;
-            dgvBloques.CellDoubleClick += dgvBloques_CellDoubleClick;
+            dgvBloques.CurrentCellDirtyStateChanged -= dgvBloques_CurrentCellDirtyStateChanged;
+            dgvBloques.CurrentCellDirtyStateChanged += dgvBloques_CurrentCellDirtyStateChanged;
+
+            dgvBloques.CellClick -= dgvBloques_CellClick;
+            dgvBloques.CellClick += dgvBloques_CellClick;
+
+            dgvBloques.CellValueChanged -= dgvBloques_CellValueChanged;
+            dgvBloques.CellValueChanged += dgvBloques_CellValueChanged;
 
             dgvBloques.DataError -= dgvBloques_DataError;
             dgvBloques.DataError += dgvBloques_DataError;
@@ -67,8 +75,9 @@ namespace RTSCon.Catalogos
             dgvBloques.MultiSelect = false;
             dgvBloques.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBloques.AllowUserToAddRows = false;
-            dgvBloques.ReadOnly = true;
+            dgvBloques.ReadOnly = false;
             dgvBloques.RowHeadersVisible = false;
+            dgvBloques.AutoGenerateColumns = true;
 
             _eventosInicializados = true;
         }
@@ -86,28 +95,80 @@ namespace RTSCon.Catalogos
             return dt;
         }
 
+        private void EnsureSelectionColumn()
+        {
+            if (dgvBloques.Columns.Contains(COL_SEL))
+                return;
+
+            DataGridViewCheckBoxColumn col = new DataGridViewCheckBoxColumn();
+            col.Name = COL_SEL;
+            col.HeaderText = string.Empty;
+            col.Width = 28;
+            col.ReadOnly = false;
+
+            dgvBloques.Columns.Insert(0, col);
+        }
+
+        private void LimpiarChecks()
+        {
+            if (!dgvBloques.Columns.Contains(COL_SEL))
+                return;
+
+            foreach (DataGridViewRow row in dgvBloques.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                row.Cells[COL_SEL].Value = false;
+            }
+        }
+
         private void CargarBloques()
         {
-            string texto = txtBuscar.Text.Trim();
-            bool soloActivos = chkSoloActivos.Checked;
+            try
+            {
+                string texto = txtBuscar.Text.Trim();
+                bool soloActivos = chkSoloActivos.Checked;
 
-            DataTable dtOriginal = _nBloque.Buscar(null, texto, soloActivos, 50);
-            DataTable dt = PrepararTablaParaGrid(dtOriginal);
+                DataTable dtOriginal = _nBloque.Buscar(null, texto, soloActivos, 50);
+                _dt = PrepararTablaParaGrid(dtOriginal);
 
-            dgvBloques.DataSource = null;
-            dgvBloques.DataSource = dt;
+                dgvBloques.DataSource = null;
+                dgvBloques.DataSource = _dt;
 
-            AjustarGrid();
+                EnsureSelectionColumn();
+                LimpiarChecks();
+                AjustarGrid();
 
-            bool hay = dt != null && dt.Rows.Count > 0;
-            lblSinResultados.Visible = !hay;
-            btnConfirmar.Enabled = hay;
+                bool hay = _dt != null && _dt.Rows.Count > 0;
+                lblSinResultados.Visible = !hay;
+                btnConfirmar.Enabled = hay;
+            }
+            catch (Exception ex)
+            {
+                dgvBloques.DataSource = null;
+                btnConfirmar.Enabled = false;
+                lblSinResultados.Visible = true;
+
+                KryptonMessageBox.Show(
+                    this,
+                    "Error al cargar bloques: " + ex.Message,
+                    "Buscar Bloque",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Error);
+            }
         }
 
         private void AjustarGrid()
         {
             if (dgvBloques.DataSource == null)
                 return;
+
+            if (dgvBloques.Columns.Contains(COL_SEL))
+            {
+                dgvBloques.Columns[COL_SEL].DisplayIndex = 0;
+                dgvBloques.Columns[COL_SEL].Width = 28;
+            }
 
             if (dgvBloques.Columns.Contains("Id"))
                 dgvBloques.Columns["Id"].Visible = false;
@@ -136,14 +197,17 @@ namespace RTSCon.Catalogos
             if (dgvBloques.Columns.Contains("IsActive"))
                 dgvBloques.Columns["IsActive"].HeaderText = "Activo";
 
+            foreach (DataGridViewColumn col in dgvBloques.Columns)
+            {
+                if (col.Name == COL_SEL)
+                    continue;
+
+                col.ReadOnly = true;
+            }
+
             dgvBloques.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBloques.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvBloques.AllowUserToResizeRows = false;
-        }
-
-        private void btnConfirmar_Click(object sender, EventArgs e)
-        {
-            SeleccionarActual();
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -173,23 +237,105 @@ namespace RTSCon.Catalogos
             }
         }
 
-        private void dgvBloques_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvBloques_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (e.RowIndex >= 0)
-                SeleccionarActual();
+            if (dgvBloques.IsCurrentCellDirty)
+                dgvBloques.CommitEdit(DataGridViewDataErrorContexts.Commit);
         }
 
-        private void SeleccionarActual()
+        private void dgvBloques_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dgvBloques.CurrentRow == null)
+            if (e.RowIndex < 0)
                 return;
 
-            var rowView = dgvBloques.CurrentRow.DataBoundItem as DataRowView;
-            if (rowView == null)
+            if (!dgvBloques.Columns.Contains(COL_SEL))
                 return;
 
-            BloqueIdSeleccionado = Convert.ToInt32(rowView["Id"]);
-            BloqueIdentificadorSeleccionado = Convert.ToString(rowView["Identificador"]) ?? string.Empty;
+            if (e.ColumnIndex != dgvBloques.Columns[COL_SEL].Index)
+                return;
+
+            DataGridViewCell celda = dgvBloques.Rows[e.RowIndex].Cells[COL_SEL];
+            bool actual = Convert.ToBoolean(celda.Value ?? false);
+            celda.Value = !actual;
+        }
+
+        private void dgvBloques_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            if (!dgvBloques.Columns.Contains(COL_SEL))
+                return;
+
+            if (e.ColumnIndex != dgvBloques.Columns[COL_SEL].Index)
+                return;
+
+            bool marcado = Convert.ToBoolean(dgvBloques.Rows[e.RowIndex].Cells[COL_SEL].Value ?? false);
+            if (!marcado)
+                return;
+
+            for (int i = 0; i < dgvBloques.Rows.Count; i++)
+            {
+                if (i == e.RowIndex)
+                    continue;
+
+                if (dgvBloques.Rows[i].IsNewRow)
+                    continue;
+
+                dgvBloques.Rows[i].Cells[COL_SEL].Value = false;
+            }
+        }
+
+        private DataRowView GetMarcado()
+        {
+            if (!dgvBloques.Columns.Contains(COL_SEL))
+                return null;
+
+            foreach (DataGridViewRow row in dgvBloques.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                bool marcado = Convert.ToBoolean(row.Cells[COL_SEL].Value ?? false);
+                if (!marcado)
+                    continue;
+
+                return row.DataBoundItem as DataRowView;
+            }
+
+            return null;
+        }
+
+        private void btnConfirmar_Click(object sender, EventArgs e)
+        {
+            DataRowView rv = GetMarcado();
+            if (rv == null)
+            {
+                KryptonMessageBox.Show(
+                    this,
+                    "Marque un bloque para confirmar.",
+                    "Buscar Bloque",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Information);
+                return;
+            }
+
+            if (!rv.Row.Table.Columns.Contains("Id") || rv["Id"] == DBNull.Value)
+            {
+                KryptonMessageBox.Show(
+                    this,
+                    "No se pudo obtener el ID del bloque.",
+                    "Buscar Bloque",
+                    KryptonMessageBoxButtons.OK,
+                    KryptonMessageBoxIcon.Warning);
+                return;
+            }
+
+            BloqueIdSeleccionado = Convert.ToInt32(rv["Id"]);
+            BloqueIdentificadorSeleccionado =
+                rv.Row.Table.Columns.Contains("Identificador")
+                    ? Convert.ToString(rv["Identificador"]) ?? string.Empty
+                    : string.Empty;
 
             DialogResult = DialogResult.OK;
             Close();

@@ -28,6 +28,12 @@ namespace RTSCon.Catalogos
             InicializarEventosUnaSolaVez();
         }
 
+        public UpdatePropiedad(int id)
+            : this()
+        {
+            Tag = id;
+        }
+
         private void InicializarEventosUnaSolaVez()
         {
             if (_eventosInicializados)
@@ -75,6 +81,12 @@ namespace RTSCon.Catalogos
                 txtPorcentaje.KeyPress += Decimal_KeyPress;
             }
 
+            if (dtpFechaInicio != null)
+            {
+                dtpFechaInicio.ValueChanged -= dtpFechaInicio_ValueChanged;
+                dtpFechaInicio.ValueChanged += dtpFechaInicio_ValueChanged;
+            }
+
             _eventosInicializados = true;
         }
 
@@ -100,8 +112,8 @@ namespace RTSCon.Catalogos
 
             try
             {
-                if (Tag is int i)
-                    _id = i;
+                if (Tag is int)
+                    _id = (int)Tag;
                 else if (!int.TryParse(Tag.ToString(), out _id))
                     throw new InvalidOperationException("Id de propiedad inválido.");
             }
@@ -118,12 +130,6 @@ namespace RTSCon.Catalogos
                 return;
             }
 
-            if (dtpFechaInicio != null)
-                dtpFechaInicio.Value = DateTime.Today;
-
-            if (dtpFechaFin != null)
-                dtpFechaFin.Value = DateTime.Today;
-
             if (txtNombrePropiedad != null)
                 txtNombrePropiedad.ReadOnly = false;
 
@@ -136,7 +142,76 @@ namespace RTSCon.Catalogos
             if (txtIdUnidad != null)
                 txtIdUnidad.ReadOnly = true;
 
+            if (txtCorreo != null)
+                txtCorreo.ReadOnly = true;
+
+            if (dtpFechaInicio != null)
+                dtpFechaInicio.Value = DateTime.Today;
+
+            if (dtpFechaFin != null)
+                dtpFechaFin.Value = DateTime.Today.AddDays(1);
+
             CargarDatos();
+            AplicarReglaFechas();
+        }
+
+        private void AplicarReglaFechas()
+        {
+            if (dtpFechaInicio == null || dtpFechaFin == null)
+                return;
+
+            DateTime minimoFin = dtpFechaInicio.Value.Date.AddDays(1);
+
+            if (minimoFin < dtpFechaFin.MinDate)
+                minimoFin = dtpFechaFin.MinDate;
+
+            if (minimoFin > dtpFechaFin.MaxDate)
+                minimoFin = dtpFechaFin.MaxDate;
+
+            dtpFechaFin.MinDate = minimoFin;
+
+            if (dtpFechaFin.Value.Date < minimoFin)
+                dtpFechaFin.Value = minimoFin;
+        }
+
+        private bool ValidarFechas(out DateTime fechaInicio, out DateTime fechaFin, out string mensaje)
+        {
+            fechaInicio = DateTime.MinValue;
+            fechaFin = DateTime.MinValue;
+            mensaje = string.Empty;
+
+            if (dtpFechaInicio == null || dtpFechaFin == null)
+            {
+                mensaje = "No se pudieron leer las fechas del formulario.";
+                return false;
+            }
+
+            fechaInicio = dtpFechaInicio.Value.Date;
+            fechaFin = dtpFechaFin.Value.Date;
+
+            if (fechaFin <= fechaInicio)
+            {
+                mensaje = "La fecha de terminación debe ser posterior a la fecha de inicio; no puede vencer el mismo día.";
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool TryParseDecimalFlexible(string texto, out decimal valor)
+        {
+            if (decimal.TryParse(texto, NumberStyles.Number, CultureInfo.CurrentCulture, out valor))
+                return true;
+
+            if (decimal.TryParse(texto, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
+                return true;
+
+            return false;
+        }
+
+        private void dtpFechaInicio_ValueChanged(object sender, EventArgs e)
+        {
+            AplicarReglaFechas();
         }
 
         private void CargarDatos()
@@ -185,11 +260,22 @@ namespace RTSCon.Catalogos
             if (row.Table.Columns.Contains("EsTitularPrincipal") && row["EsTitularPrincipal"] != DBNull.Value)
                 chkTitular.Checked = Convert.ToBoolean(row["EsTitularPrincipal"]);
 
+            DateTime fechaInicio = DateTime.Today;
+            DateTime fechaFin = DateTime.Today.AddDays(1);
+
             if (row.Table.Columns.Contains("FechaInicio") && row["FechaInicio"] != DBNull.Value)
-                dtpFechaInicio.Value = Convert.ToDateTime(row["FechaInicio"]);
+                fechaInicio = Convert.ToDateTime(row["FechaInicio"]).Date;
 
             if (row.Table.Columns.Contains("FechaFin") && row["FechaFin"] != DBNull.Value)
-                dtpFechaFin.Value = Convert.ToDateTime(row["FechaFin"]);
+                fechaFin = Convert.ToDateTime(row["FechaFin"]).Date;
+            else
+                fechaFin = fechaInicio.AddDays(1);
+
+            if (fechaFin <= fechaInicio)
+                fechaFin = fechaInicio.AddDays(1);
+
+            dtpFechaInicio.Value = fechaInicio;
+            dtpFechaFin.Value = fechaFin;
         }
 
         private void Decimal_KeyPress(object sender, KeyPressEventArgs e)
@@ -275,7 +361,10 @@ namespace RTSCon.Catalogos
         {
             try
             {
-                string nombre = txtNombrePropiedad?.Text?.Trim() ?? string.Empty;
+                string nombre = txtNombrePropiedad != null
+                    ? txtNombrePropiedad.Text.Trim()
+                    : string.Empty;
+
                 if (string.IsNullOrWhiteSpace(nombre))
                     throw new InvalidOperationException("Ingrese el nombre de la propiedad.");
 
@@ -288,20 +377,22 @@ namespace RTSCon.Catalogos
                 if (_propietarioIdSeleccionado == null || _propietarioIdSeleccionado <= 0)
                     throw new InvalidOperationException("Seleccione un propietario con el botón 'Buscar Propietario'.");
 
-                string sPct = txtPorcentaje?.Text?.Trim() ?? string.Empty;
-                if (!decimal.TryParse(sPct, NumberStyles.Number, CultureInfo.CurrentCulture, out decimal porcentaje) ||
-                    porcentaje <= 0 || porcentaje > 100)
-                {
+                string sPct = txtPorcentaje != null
+                    ? txtPorcentaje.Text.Trim()
+                    : string.Empty;
+
+                decimal porcentaje;
+                if (!TryParseDecimalFlexible(sPct, out porcentaje) || porcentaje <= 0 || porcentaje > 100)
                     throw new InvalidOperationException("Ingrese un porcentaje válido (0 < porcentaje ≤ 100).");
-                }
 
                 bool esTitular = chkTitular != null && chkTitular.Checked;
 
-                DateTime? fIni = dtpFechaInicio?.Value.Date;
-                DateTime? fFin = dtpFechaFin?.Value.Date;
+                DateTime fechaInicio;
+                DateTime fechaFin;
+                string mensajeFechas;
 
-                if (fIni.HasValue && fFin.HasValue && fFin.Value < fIni.Value)
-                    throw new InvalidOperationException("La fecha de terminación no puede ser menor que la fecha de inicio.");
+                if (!ValidarFechas(out fechaInicio, out fechaFin, out mensajeFechas))
+                    throw new InvalidOperationException(mensajeFechas);
 
                 if (_rowVersion == null || _rowVersion.Length == 0)
                     throw new InvalidOperationException("No se pudo recuperar la versión de la fila (RowVersion).");
@@ -316,8 +407,8 @@ namespace RTSCon.Catalogos
                     nombre,
                     _propietarioIdSeleccionado.Value,
                     _unidadIdSeleccionada.Value,
-                    fIni,
-                    fFin,
+                    fechaInicio,
+                    fechaFin,
                     porcentaje,
                     esTitular,
                     _rowVersion,

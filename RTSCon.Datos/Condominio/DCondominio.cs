@@ -246,8 +246,6 @@ namespace RTSCon.Datos
             }
         }
 
-        // --------- BÚSQUEDA DE PROPIETARIOS ----------
-        // Ajusta únicamente el nombre del SP si en tu BD se llama distinto.
         public DataTable BuscarPropietarios(string buscar, bool soloActivos, int top = 50)
         {
             using (var cn = new SqlConnection(_cn))
@@ -275,14 +273,41 @@ namespace RTSCon.Datos
             if (dt == null)
                 return;
 
+            // ID real de propietario, el que Propiedad debe usar
+            if (!dt.Columns.Contains("ID_propietario"))
+            {
+                if (dt.Columns.Contains("IdPropietario"))
+                    AgregarColumnaAlias(dt, "ID_propietario", "IdPropietario");
+                else if (dt.Columns.Contains("PropietarioId"))
+                    AgregarColumnaAlias(dt, "ID_propietario", "PropietarioId");
+                else if (dt.Columns.Contains("Id"))
+                    AgregarColumnaAlias(dt, "ID_propietario", "Id");
+            }
+
+            // ID de usuario, separado del de propietario
+            if (!dt.Columns.Contains("ID_usr"))
+            {
+                if (dt.Columns.Contains("IdUsuario"))
+                    AgregarColumnaAlias(dt, "ID_usr", "IdUsuario");
+                else if (dt.Columns.Contains("UsuarioId"))
+                    AgregarColumnaAlias(dt, "ID_usr", "UsuarioId");
+            }
+
+            // Alias genérico Id, pero priorizando SIEMPRE el ID del propietario
             if (!dt.Columns.Contains("Id"))
             {
-                if (dt.Columns.Contains("ID_usr"))
+                if (dt.Columns.Contains("ID_propietario"))
+                    AgregarColumnaAlias(dt, "Id", "ID_propietario");
+                else if (dt.Columns.Contains("IdPropietario"))
+                    AgregarColumnaAlias(dt, "Id", "IdPropietario");
+                else if (dt.Columns.Contains("PropietarioId"))
+                    AgregarColumnaAlias(dt, "Id", "PropietarioId");
+                else if (dt.Columns.Contains("ID_usr"))
                     AgregarColumnaAlias(dt, "Id", "ID_usr");
                 else if (dt.Columns.Contains("IdUsuario"))
                     AgregarColumnaAlias(dt, "Id", "IdUsuario");
-                else if (dt.Columns.Contains("ID_propietario"))
-                    AgregarColumnaAlias(dt, "Id", "ID_propietario");
+                else if (dt.Columns.Contains("UsuarioId"))
+                    AgregarColumnaAlias(dt, "Id", "UsuarioId");
             }
 
             if (!dt.Columns.Contains("Usuario"))
@@ -309,13 +334,14 @@ namespace RTSCon.Datos
             if (dt.Columns.Contains(nuevaColumna) || !dt.Columns.Contains(columnaOrigen))
                 return;
 
-            dt.Columns.Add(nuevaColumna, typeof(string));
+            Type tipo = dt.Columns[columnaOrigen].DataType;
+            dt.Columns.Add(nuevaColumna, tipo);
 
             foreach (DataRow row in dt.Rows)
             {
                 row[nuevaColumna] = row[columnaOrigen] == DBNull.Value
-                    ? string.Empty
-                    : Convert.ToString(row[columnaOrigen]);
+                    ? DBNull.Value
+                    : row[columnaOrigen];
             }
         }
 

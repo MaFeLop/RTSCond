@@ -9,6 +9,8 @@ namespace RTSCon.Catalogos
 {
     public partial class BuscarUnidad : KryptonForm
     {
+        private const string COL_SEL = "__sel";
+
         public int SelectedId { get; private set; }
         public string SelectedTexto { get; private set; } = string.Empty;
 
@@ -30,6 +32,7 @@ namespace RTSCon.Catalogos
         {
             InicializarEventosUnaSolaVez();
             chkSoloActivos.Checked = true;
+            EnsureSelectionColumn();
             Cargar();
         }
 
@@ -56,8 +59,14 @@ namespace RTSCon.Catalogos
             chkSoloActivos.CheckedChanged -= chkSoloActivos_CheckedChanged;
             chkSoloActivos.CheckedChanged += chkSoloActivos_CheckedChanged;
 
-            dgvUnidad.CellDoubleClick -= dgvUnidad_CellDoubleClick;
-            dgvUnidad.CellDoubleClick += dgvUnidad_CellDoubleClick;
+            dgvUnidad.CurrentCellDirtyStateChanged -= dgvUnidad_CurrentCellDirtyStateChanged;
+            dgvUnidad.CurrentCellDirtyStateChanged += dgvUnidad_CurrentCellDirtyStateChanged;
+
+            dgvUnidad.CellClick -= dgvUnidad_CellClick;
+            dgvUnidad.CellClick += dgvUnidad_CellClick;
+
+            dgvUnidad.CellValueChanged -= dgvUnidad_CellValueChanged;
+            dgvUnidad.CellValueChanged += dgvUnidad_CellValueChanged;
 
             dgvUnidad.DataError -= dgvUnidad_DataError;
             dgvUnidad.DataError += dgvUnidad_DataError;
@@ -65,7 +74,7 @@ namespace RTSCon.Catalogos
             dgvUnidad.MultiSelect = false;
             dgvUnidad.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUnidad.AllowUserToAddRows = false;
-            dgvUnidad.ReadOnly = true;
+            dgvUnidad.ReadOnly = false;
             dgvUnidad.RowHeadersVisible = false;
             dgvUnidad.AutoGenerateColumns = true;
 
@@ -85,6 +94,34 @@ namespace RTSCon.Catalogos
             return dt;
         }
 
+        private void EnsureSelectionColumn()
+        {
+            if (dgvUnidad.Columns.Contains(COL_SEL))
+                return;
+
+            DataGridViewCheckBoxColumn col = new DataGridViewCheckBoxColumn();
+            col.Name = COL_SEL;
+            col.HeaderText = string.Empty;
+            col.Width = 28;
+            col.ReadOnly = false;
+
+            dgvUnidad.Columns.Insert(0, col);
+        }
+
+        private void LimpiarChecks()
+        {
+            if (!dgvUnidad.Columns.Contains(COL_SEL))
+                return;
+
+            foreach (DataGridViewRow row in dgvUnidad.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                row.Cells[COL_SEL].Value = false;
+            }
+        }
+
         private void Cargar()
         {
             try
@@ -98,6 +135,8 @@ namespace RTSCon.Catalogos
                 dgvUnidad.DataSource = null;
                 dgvUnidad.DataSource = _dt;
 
+                EnsureSelectionColumn();
+                LimpiarChecks();
                 AjustarColumnas();
 
                 bool hay = _dt != null && _dt.Rows.Count > 0;
@@ -123,6 +162,12 @@ namespace RTSCon.Catalogos
         {
             if (dgvUnidad.DataSource == null)
                 return;
+
+            if (dgvUnidad.Columns.Contains(COL_SEL))
+            {
+                dgvUnidad.Columns[COL_SEL].DisplayIndex = 0;
+                dgvUnidad.Columns[COL_SEL].Width = 28;
+            }
 
             if (dgvUnidad.Columns.Contains("Id"))
                 dgvUnidad.Columns["Id"].Visible = false;
@@ -153,6 +198,14 @@ namespace RTSCon.Catalogos
 
             if (dgvUnidad.Columns.Contains("IsActive"))
                 dgvUnidad.Columns["IsActive"].HeaderText = "Activo";
+
+            foreach (DataGridViewColumn col in dgvUnidad.Columns)
+            {
+                if (col.Name == COL_SEL)
+                    continue;
+
+                col.ReadOnly = true;
+            }
 
             dgvUnidad.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvUnidad.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
@@ -185,33 +238,88 @@ namespace RTSCon.Catalogos
             Cargar();
         }
 
-        private void dgvUnidad_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvUnidad_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (e.RowIndex >= 0)
-                ConfirmarSeleccion();
+            if (dgvUnidad.IsCurrentCellDirty)
+                dgvUnidad.CommitEdit(DataGridViewDataErrorContexts.Commit);
+        }
+
+        private void dgvUnidad_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            if (!dgvUnidad.Columns.Contains(COL_SEL))
+                return;
+
+            if (e.ColumnIndex != dgvUnidad.Columns[COL_SEL].Index)
+                return;
+
+            DataGridViewCell celda = dgvUnidad.Rows[e.RowIndex].Cells[COL_SEL];
+            bool actual = Convert.ToBoolean(celda.Value ?? false);
+            celda.Value = !actual;
+        }
+
+        private void dgvUnidad_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0)
+                return;
+
+            if (!dgvUnidad.Columns.Contains(COL_SEL))
+                return;
+
+            if (e.ColumnIndex != dgvUnidad.Columns[COL_SEL].Index)
+                return;
+
+            bool marcado = Convert.ToBoolean(dgvUnidad.Rows[e.RowIndex].Cells[COL_SEL].Value ?? false);
+            if (!marcado)
+                return;
+
+            for (int i = 0; i < dgvUnidad.Rows.Count; i++)
+            {
+                if (i == e.RowIndex)
+                    continue;
+
+                if (dgvUnidad.Rows[i].IsNewRow)
+                    continue;
+
+                dgvUnidad.Rows[i].Cells[COL_SEL].Value = false;
+            }
+        }
+
+        private DataRowView GetMarcado()
+        {
+            if (!dgvUnidad.Columns.Contains(COL_SEL))
+                return null;
+
+            foreach (DataGridViewRow row in dgvUnidad.Rows)
+            {
+                if (row.IsNewRow)
+                    continue;
+
+                bool marcado = Convert.ToBoolean(row.Cells[COL_SEL].Value ?? false);
+                if (!marcado)
+                    continue;
+
+                return row.DataBoundItem as DataRowView;
+            }
+
+            return null;
         }
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            ConfirmarSeleccion();
-        }
-
-        private void ConfirmarSeleccion()
-        {
-            if (dgvUnidad.CurrentRow == null)
+            DataRowView view = GetMarcado();
+            if (view == null)
             {
                 KryptonMessageBox.Show(
                     this,
-                    "Seleccione una unidad.",
+                    "Marque una unidad para confirmar.",
                     "Buscar Unidad",
                     KryptonMessageBoxButtons.OK,
                     KryptonMessageBoxIcon.Information);
                 return;
             }
-
-            var view = dgvUnidad.CurrentRow.DataBoundItem as DataRowView;
-            if (view == null)
-                return;
 
             if (!view.Row.Table.Columns.Contains("Id") || view["Id"] == DBNull.Value)
             {
