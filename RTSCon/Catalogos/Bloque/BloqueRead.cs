@@ -67,13 +67,30 @@ namespace RTSCon.Catalogos
             dgvBloques.CellDoubleClick -= dgvBloques_CellDoubleClick;
             dgvBloques.CellDoubleClick += dgvBloques_CellDoubleClick;
 
+            dgvBloques.DataError -= dgvBloques_DataError;
+            dgvBloques.DataError += dgvBloques_DataError;
+
             dgvBloques.MultiSelect = false;
             dgvBloques.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvBloques.AllowUserToAddRows = false;
             dgvBloques.ReadOnly = true;
             dgvBloques.RowHeadersVisible = false;
+            dgvBloques.AutoGenerateColumns = true;
 
             _eventosInicializados = true;
+        }
+
+        private DataTable PrepararTablaParaGrid(DataTable origen)
+        {
+            if (origen == null)
+                return null;
+
+            DataTable dt = origen.Copy();
+
+            if (dt.Columns.Contains("RowVersion"))
+                dt.Columns.Remove("RowVersion");
+
+            return dt;
         }
 
         private void CargarBloques()
@@ -87,12 +104,15 @@ namespace RTSCon.Catalogos
                     ? (int?)_condominioId
                     : null;
 
-                DataTable dt = _nBloque.Buscar(condominioFiltro, texto, soloActivos, 50);
+                DataTable dtOriginal = _nBloque.Buscar(condominioFiltro, texto, soloActivos, 50);
+                DataTable dt = PrepararTablaParaGrid(dtOriginal);
+
+                dgvBloques.DataSource = null;
                 dgvBloques.DataSource = dt;
 
                 AjustarGrid();
 
-                lblTotal.Text = $"Total: {(dt?.Rows.Count ?? 0)}";
+                lblTotal.Text = "Total: " + (dt != null ? dt.Rows.Count : 0);
             }
             catch (Exception ex)
             {
@@ -114,9 +134,6 @@ namespace RTSCon.Catalogos
 
             if (dgvBloques.Columns.Contains("CondominioId"))
                 dgvBloques.Columns["CondominioId"].Visible = false;
-
-            if (dgvBloques.Columns.Contains("RowVersion"))
-                dgvBloques.Columns["RowVersion"].Visible = false;
 
             if (dgvBloques.Columns.Contains("CreatedBy"))
                 dgvBloques.Columns["CreatedBy"].Visible = false;
@@ -142,6 +159,8 @@ namespace RTSCon.Catalogos
             dgvBloques.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBloques.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvBloques.AllowUserToResizeRows = false;
+            dgvBloques.RowHeadersVisible = false;
+            dgvBloques.ReadOnly = true;
         }
 
         private DataRow FilaSeleccionada()
@@ -149,8 +168,23 @@ namespace RTSCon.Catalogos
             if (dgvBloques.CurrentRow == null)
                 return null;
 
-            var view = dgvBloques.CurrentRow.DataBoundItem as DataRowView;
-            return view?.Row;
+            DataRowView view = dgvBloques.CurrentRow.DataBoundItem as DataRowView;
+            return view != null ? view.Row : null;
+        }
+
+        private byte[] ObtenerRowVersionPorId(int id)
+        {
+            DataRow row = _nBloque.PorId(id);
+            if (row == null)
+                return null;
+
+            if (!row.Table.Columns.Contains("RowVersion"))
+                return null;
+
+            if (row["RowVersion"] == DBNull.Value)
+                return null;
+
+            return (byte[])row["RowVersion"];
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
@@ -175,7 +209,7 @@ namespace RTSCon.Catalogos
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            var row = FilaSeleccionada();
+            DataRow row = FilaSeleccionada();
 
             if (row == null)
             {
@@ -204,7 +238,7 @@ namespace RTSCon.Catalogos
 
         private void btnDesactivar_Click(object sender, EventArgs e)
         {
-            var row = FilaSeleccionada();
+            DataRow row = FilaSeleccionada();
 
             if (row == null)
             {
@@ -217,12 +251,20 @@ namespace RTSCon.Catalogos
             }
 
             int id = Convert.ToInt32(row["Id"]);
-            byte[] rowVersion = row["RowVersion"] != DBNull.Value
-                ? (byte[])row["RowVersion"]
-                : null;
+            byte[] rowVersion = ObtenerRowVersionPorId(id);
+
+            if (rowVersion == null || rowVersion.Length == 0)
+            {
+                MessageBox.Show(
+                    "No se pudo recuperar la RowVersion del bloque.",
+                    "Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
 
             string identificador = Convert.ToString(row["Identificador"]) ?? string.Empty;
-            string mensaje = $"¿Deseas desactivar el bloque '{identificador}'?";
+            string mensaje = "¿Deseas desactivar el bloque '" + identificador + "'?";
 
             using (var frm = new BloqueConfirmarDesactivacion(mensaje))
             {
@@ -231,6 +273,9 @@ namespace RTSCon.Catalogos
                     try
                     {
                         int usuarioId = UserContext.UsuarioAuthId;
+                        if (usuarioId <= 0)
+                            throw new InvalidOperationException("La sesión actual no tiene un Id de usuario válido.");
+
                         string usuarioLogin = UserContext.Usuario;
                         string password = frm.Password;
 
@@ -282,6 +327,11 @@ namespace RTSCon.Catalogos
         private void chkSoloActivos_CheckedChanged(object sender, EventArgs e)
         {
             CargarBloques();
+        }
+
+        private void dgvBloques_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.ThrowException = false;
         }
     }
 }

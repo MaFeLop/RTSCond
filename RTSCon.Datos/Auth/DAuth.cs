@@ -43,14 +43,14 @@ namespace RTSCon.Datos
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@id_usr", SqlDbType.Int).Value = usuarioId;
+                cmd.Parameters.Add("@IdUsuario", SqlDbType.Int).Value = usuarioId;
                 cmd.Parameters.Add("@Password", SqlDbType.NVarChar, 400).Value = password;
 
                 cn.Open();
 
                 object result = cmd.ExecuteScalar();
 
-                return result != null && Convert.ToInt32(result) == 1;
+                return result != null && result != DBNull.Value && Convert.ToInt32(result) == 1;
             }
         }
 
