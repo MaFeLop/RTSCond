@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using RTSCon.Datos;
 using RTSCon.Negocios;
@@ -13,13 +14,10 @@ namespace RTSCon.Catalogos
         private readonly NBloque _nBloque;
         private bool _eventosInicializados;
         private bool _inicializando;
+        private DataTable _dtDatos;
 
-        private enum ModoAccion { Ninguno, Editar, Desactivar }
-        private ModoAccion _modo = ModoAccion.Ninguno;
-
-        private const string COL_SEL = "__sel";
-
-        public UnidadRead() : this(0)
+        public UnidadRead()
+            : this(0)
         {
         }
 
@@ -48,13 +46,11 @@ namespace RTSCon.Catalogos
             try
             {
                 InicializarEventosUnaSolaVez();
-                EnsureSelectionColumn();
+                ConfigurarVista();
                 CargarBloque();
 
                 if (!chkSoloActivos.Checked)
                     chkSoloActivos.Checked = true;
-
-                SalirModoSeleccion();
             }
             finally
             {
@@ -69,19 +65,20 @@ namespace RTSCon.Catalogos
             if (_eventosInicializados)
                 return;
 
-            dgvUnidades.CurrentCellDirtyStateChanged -= dgvUnidades_CurrentCellDirtyStateChanged;
-            dgvUnidades.CurrentCellDirtyStateChanged += dgvUnidades_CurrentCellDirtyStateChanged;
-
-            dgvUnidades.CellContentClick -= dgvUnidades_CellContentClick;
-            dgvUnidades.CellContentClick += dgvUnidades_CellContentClick;
-
             dgvUnidades.CellDoubleClick -= dgvUnidades_CellDoubleClick;
             dgvUnidades.CellDoubleClick += dgvUnidades_CellDoubleClick;
+
+            dgvUnidades.CellFormatting -= dgvUnidades_CellFormatting;
+            dgvUnidades.CellFormatting += dgvUnidades_CellFormatting;
+
+            dgvUnidades.DataError -= dgvUnidades_DataError;
+            dgvUnidades.DataError += dgvUnidades_DataError;
 
             dgvUnidades.MultiSelect = false;
             dgvUnidades.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUnidades.AllowUserToAddRows = false;
             dgvUnidades.RowHeadersVisible = false;
+            dgvUnidades.ReadOnly = true;
 
             btnCrear.Click -= btnNuevo_Click;
             btnCrear.Click += btnNuevo_Click;
@@ -110,6 +107,24 @@ namespace RTSCon.Catalogos
             _eventosInicializados = true;
         }
 
+        private void ConfigurarVista()
+        {
+            dgvUnidades.ReadOnly = true;
+            dgvUnidades.MultiSelect = false;
+            dgvUnidades.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvUnidades.AllowUserToAddRows = false;
+            dgvUnidades.RowHeadersVisible = false;
+            dgvUnidades.AutoGenerateColumns = true;
+
+            btnVolver.Visible = true;
+            btnVolver.Text = "Volver";
+
+            if (btnVolver.Left <= btnDesactivar.Right)
+            {
+                btnVolver.Location = new Point(btnDesactivar.Right + 25, btnDesactivar.Top);
+            }
+        }
+
         private void CargarBloque()
         {
             try
@@ -132,6 +147,19 @@ namespace RTSCon.Catalogos
             }
         }
 
+        private DataTable PrepararTablaParaGrid(DataTable origen)
+        {
+            if (origen == null)
+                return null;
+
+            DataTable dt = origen.Copy();
+
+            if (dt.Columns.Contains("RowVersion"))
+                dt.Columns.Remove("RowVersion");
+
+            return dt;
+        }
+
         private void CargarUnidades()
         {
             try
@@ -140,12 +168,20 @@ namespace RTSCon.Catalogos
                 bool soloActivos = chkSoloActivos.Checked;
                 int? bloqueFiltro = _bloqueId > 0 ? (int?)_bloqueId : null;
 
-                DataTable dt = _nUnidad.Buscar(bloqueFiltro, texto, soloActivos, 50);
-                dgvUnidades.DataSource = dt;
+                DataTable dtOriginal = _nUnidad.Buscar(bloqueFiltro, texto, soloActivos, 50);
+                _dtDatos = dtOriginal;
+
+                DataTable dtGrid = PrepararTablaParaGrid(dtOriginal);
+
+                dgvUnidades.DataSource = null;
+                dgvUnidades.DataSource = dtGrid;
+
                 AjustarGrid();
 
-                lblTotal.Text = string.Format("Total: {0}", dt != null ? dt.Rows.Count : 0);
-                SetSelectionColumnVisible(_modo != ModoAccion.Ninguno);
+                lblTotal.Text = string.Format("Total: {0}", dtGrid != null ? dtGrid.Rows.Count : 0);
+
+                if (dgvUnidades.Rows.Count > 0)
+                    dgvUnidades.ClearSelection();
             }
             catch (Exception ex)
             {
@@ -168,9 +204,6 @@ namespace RTSCon.Catalogos
             if (dgvUnidades.Columns.Contains("BloqueId"))
                 dgvUnidades.Columns["BloqueId"].Visible = false;
 
-            if (dgvUnidades.Columns.Contains("RowVersion"))
-                dgvUnidades.Columns["RowVersion"].Visible = false;
-
             if (dgvUnidades.Columns.Contains("CreatedBy"))
                 dgvUnidades.Columns["CreatedBy"].Visible = false;
 
@@ -180,17 +213,35 @@ namespace RTSCon.Catalogos
             if (dgvUnidades.Columns.Contains("UpdatedAt"))
                 dgvUnidades.Columns["UpdatedAt"].Visible = false;
 
+            if (dgvUnidades.Columns.Contains("CreatedAt"))
+                dgvUnidades.Columns["CreatedAt"].Visible = false;
+
             if (dgvUnidades.Columns.Contains("Numero"))
                 dgvUnidades.Columns["Numero"].HeaderText = "Número";
-
-            if (dgvUnidades.Columns.Contains("Tipo"))
-                dgvUnidades.Columns["Tipo"].HeaderText = "Tipo";
 
             if (dgvUnidades.Columns.Contains("Piso"))
                 dgvUnidades.Columns["Piso"].HeaderText = "Piso";
 
-            if (dgvUnidades.Columns.Contains("MetrosCuadrados"))
-                dgvUnidades.Columns["MetrosCuadrados"].HeaderText = "M²";
+            if (dgvUnidades.Columns.Contains("Tipologia"))
+                dgvUnidades.Columns["Tipologia"].HeaderText = "Tipología";
+
+            if (dgvUnidades.Columns.Contains("Metros2"))
+                dgvUnidades.Columns["Metros2"].HeaderText = "Metros2";
+
+            if (dgvUnidades.Columns.Contains("Estacionamiento"))
+                dgvUnidades.Columns["Estacionamiento"].HeaderText = "Estacionamiento";
+
+            if (dgvUnidades.Columns.Contains("Amueblada"))
+                dgvUnidades.Columns["Amueblada"].HeaderText = "Amueblada";
+
+            if (dgvUnidades.Columns.Contains("CantidadMuebles"))
+                dgvUnidades.Columns["CantidadMuebles"].HeaderText = "CantidadMuebles";
+
+            if (dgvUnidades.Columns.Contains("CuotaMantenimientoEspecifica"))
+                dgvUnidades.Columns["CuotaMantenimientoEspecifica"].HeaderText = "CuotaMantenimiento";
+
+            if (dgvUnidades.Columns.Contains("Observaciones"))
+                dgvUnidades.Columns["Observaciones"].HeaderText = "Observaciones";
 
             if (dgvUnidades.Columns.Contains("IsActive"))
                 dgvUnidades.Columns["IsActive"].HeaderText = "Activo";
@@ -198,133 +249,54 @@ namespace RTSCon.Catalogos
             dgvUnidades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvUnidades.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvUnidades.AllowUserToResizeRows = false;
+            dgvUnidades.ReadOnly = true;
         }
 
-        private void EnsureSelectionColumn()
+        private DataRowView GetRowSeleccionada()
         {
-            if (dgvUnidades.Columns.Contains(COL_SEL))
-                return;
+            if (dgvUnidades.SelectedRows != null && dgvUnidades.SelectedRows.Count > 0)
+                return dgvUnidades.SelectedRows[0].DataBoundItem as DataRowView;
 
-            DataGridViewCheckBoxColumn col = new DataGridViewCheckBoxColumn();
-            col.Name = COL_SEL;
-            col.HeaderText = "";
-            col.Width = 28;
-            col.ReadOnly = false;
-            col.Visible = false;
-
-            dgvUnidades.Columns.Insert(0, col);
-        }
-
-        private void SetSelectionColumnVisible(bool visible)
-        {
-            if (!dgvUnidades.Columns.Contains(COL_SEL))
-                return;
-
-            dgvUnidades.Columns[COL_SEL].Visible = visible;
-        }
-
-        private void dgvUnidades_CurrentCellDirtyStateChanged(object sender, EventArgs e)
-        {
-            if (dgvUnidades.IsCurrentCellDirty)
-                dgvUnidades.CommitEdit(DataGridViewDataErrorContexts.Commit);
-        }
-
-        private void dgvUnidades_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (_modo == ModoAccion.Ninguno)
-                return;
-
-            if (e.RowIndex < 0)
-                return;
-
-            if (dgvUnidades.Columns[e.ColumnIndex].Name != COL_SEL)
-                return;
-
-            bool marcado = Convert.ToBoolean(dgvUnidades.Rows[e.RowIndex].Cells[COL_SEL].Value ?? false);
-            if (marcado)
-            {
-                int i;
-                for (i = 0; i < dgvUnidades.Rows.Count; i++)
-                {
-                    if (i == e.RowIndex)
-                        continue;
-
-                    if (dgvUnidades.Rows[i].IsNewRow)
-                        continue;
-
-                    dgvUnidades.Rows[i].Cells[COL_SEL].Value = false;
-                }
-            }
-        }
-
-        private DataRow GetRowMarcado()
-        {
-            if (_modo == ModoAccion.Ninguno)
-                return null;
-
-            foreach (DataGridViewRow gridRow in dgvUnidades.Rows)
-            {
-                if (gridRow.IsNewRow)
-                    continue;
-
-                bool marcado = Convert.ToBoolean(gridRow.Cells[COL_SEL].Value ?? false);
-                if (!marcado)
-                    continue;
-
-                DataRowView view = gridRow.DataBoundItem as DataRowView;
-                return view != null ? view.Row : null;
-            }
+            if (dgvUnidades.CurrentRow != null)
+                return dgvUnidades.CurrentRow.DataBoundItem as DataRowView;
 
             return null;
         }
 
-        private void EntrarModoSeleccion(ModoAccion modo)
+        private int ObtenerIdDesdeRow(DataRowView row)
         {
-            _modo = modo;
-            SetSelectionColumnVisible(true);
+            if (row == null)
+                return 0;
 
-            foreach (DataGridViewRow r in dgvUnidades.Rows)
-            {
-                if (r.IsNewRow)
-                    continue;
+            if (!row.Row.Table.Columns.Contains("Id"))
+                return 0;
 
-                r.Cells[COL_SEL].Value = false;
-            }
+            if (row["Id"] == DBNull.Value)
+                return 0;
 
-            if (modo == ModoAccion.Editar)
-            {
-                btnUpdate.Text = "Confirmar";
-                btnDesactivar.Enabled = false;
-                btnCrear.Enabled = false;
-            }
-            else if (modo == ModoAccion.Desactivar)
-            {
-                btnDesactivar.Text = "Confirmar";
-                btnUpdate.Enabled = false;
-                btnCrear.Enabled = false;
-            }
-
-            btnVolver.Visible = true;
+            return Convert.ToInt32(row["Id"]);
         }
 
-        private void SalirModoSeleccion()
+        private byte[] ObtenerRowVersionDesdeId(int id)
         {
-            _modo = ModoAccion.Ninguno;
-            SetSelectionColumnVisible(false);
+            if (_dtDatos == null)
+                return null;
 
-            btnUpdate.Text = "Update";
-            btnDesactivar.Text = "Desactivar";
-            btnCrear.Enabled = true;
-            btnUpdate.Enabled = true;
-            btnDesactivar.Enabled = true;
-            btnVolver.Visible = false;
+            DataRow[] rows = _dtDatos.Select("Id = " + id);
+            if (rows == null || rows.Length == 0)
+                return null;
+
+            if (!rows[0].Table.Columns.Contains("RowVersion"))
+                return null;
+
+            if (rows[0]["RowVersion"] == DBNull.Value)
+                return null;
+
+            return (byte[])rows[0]["RowVersion"];
         }
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
-            if (_modo != ModoAccion.Ninguno)
-                return;
-
             using (CrearUnidad frm = new CrearUnidad(_bloqueId))
             {
                 if (frm.ShowDialog(this) == DialogResult.OK)
@@ -334,29 +306,27 @@ namespace RTSCon.Catalogos
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            if (_modo == ModoAccion.Ninguno)
-            {
-                EntrarModoSeleccion(ModoAccion.Editar);
-                return;
-            }
-
-            if (_modo != ModoAccion.Editar)
-                return;
-
-            DataRow row = GetRowMarcado();
+            DataRowView row = GetRowSeleccionada();
             if (row == null)
             {
                 MessageBox.Show(
-                    "Marca una unidad (checkbox) para actualizar.",
+                    "Selecciona una unidad para actualizar.",
                     "Aviso",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 return;
             }
 
-            int id = Convert.ToInt32(row["Id"]);
-
-            SalirModoSeleccion();
+            int id = ObtenerIdDesdeRow(row);
+            if (id <= 0)
+            {
+                MessageBox.Show(
+                    "No se pudo obtener el Id de la unidad.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
 
             using (UpdateUnidad frm = new UpdateUnidad(id))
             {
@@ -367,80 +337,100 @@ namespace RTSCon.Catalogos
 
         private void dgvUnidades_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex >= 0 && _modo == ModoAccion.Ninguno)
-                btnEditar_Click(sender, EventArgs.Empty);
+            if (e.RowIndex < 0)
+                return;
+
+            DataRowView row = dgvUnidades.Rows[e.RowIndex].DataBoundItem as DataRowView;
+            int id = ObtenerIdDesdeRow(row);
+
+            if (id <= 0)
+                return;
+
+            using (UpdateUnidad frm = new UpdateUnidad(id))
+            {
+                if (frm.ShowDialog(this) == DialogResult.OK)
+                    CargarUnidades();
+            }
         }
 
         private void btnDesactivar_Click(object sender, EventArgs e)
         {
-            if (_modo == ModoAccion.Ninguno)
-            {
-                EntrarModoSeleccion(ModoAccion.Desactivar);
-                return;
-            }
-
-            if (_modo != ModoAccion.Desactivar)
-                return;
-
-            DataRow row = GetRowMarcado();
+            DataRowView row = GetRowSeleccionada();
             if (row == null)
             {
                 MessageBox.Show(
-                    "Marca una unidad (checkbox) para desactivar.",
+                    "Selecciona una unidad para desactivar.",
                     "Aviso",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Information);
                 return;
             }
 
-            int id = Convert.ToInt32(row["Id"]);
-            byte[] rowVersion = (byte[])row["RowVersion"];
-            string numero = Convert.ToString(row["Numero"]) ?? string.Empty;
+            int id = ObtenerIdDesdeRow(row);
+            if (id <= 0)
+            {
+                MessageBox.Show(
+                    "No se pudo obtener el Id de la unidad.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
 
-            SalirModoSeleccion();
+            byte[] rowVersion = ObtenerRowVersionDesdeId(id);
+            if (rowVersion == null || rowVersion.Length == 0)
+            {
+                MessageBox.Show(
+                    "No se pudo recuperar la RowVersion de la unidad.",
+                    "Aviso",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            string numero = row.Row.Table.Columns.Contains("Numero") && row["Numero"] != DBNull.Value
+                ? Convert.ToString(row["Numero"])
+                : string.Empty;
 
             string mensaje = string.Format("¿Deseas desactivar la unidad '{0}'?", numero);
 
             using (UnidadConfirmarDesactivacion frm = new UnidadConfirmarDesactivacion(mensaje))
             {
-                if (frm.ShowDialog(this) == DialogResult.OK)
+                if (frm.ShowDialog(this) != DialogResult.OK)
+                    return;
+
+                try
                 {
-                    try
-                    {
-                        int usuarioId = UserContext.UsuarioAuthId;
-                        string usuarioLogin = UserContext.Usuario;
-                        string password = frm.Password;
+                    int usuarioId = UserContext.UsuarioAuthId;
+                    if (usuarioId <= 0)
+                        throw new InvalidOperationException("La sesión actual no tiene un Id de usuario válido.");
 
-                        DAuth dAuth = new DAuth(Conexion.CadenaConexion);
-                        NAuth nAuth = new NAuth(dAuth);
+                    string usuarioLogin = UserContext.Usuario;
+                    string password = frm.Password;
 
-                        bool ok = nAuth.ValidarPassword(usuarioId, password);
-                        if (!ok)
-                            throw new InvalidOperationException("Contraseña inválida.");
+                    DAuth dAuth = new DAuth(Conexion.CadenaConexion);
+                    NAuth nAuth = new NAuth(dAuth);
 
-                        _nUnidad.Desactivar(id, rowVersion, usuarioLogin);
-                        CargarUnidades();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(
-                            "No se pudo desactivar la unidad: " + ex.Message,
-                            "Error",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    }
+                    bool ok = nAuth.ValidarPassword(usuarioId, password);
+                    if (!ok)
+                        throw new InvalidOperationException("Contraseña inválida.");
+
+                    _nUnidad.Desactivar(id, rowVersion, usuarioLogin);
+                    CargarUnidades();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(
+                        "No se pudo desactivar la unidad: " + ex.Message,
+                        "Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
         }
 
         private void btnVolver_Click(object sender, EventArgs e)
         {
-            if (_modo != ModoAccion.Ninguno)
-            {
-                SalirModoSeleccion();
-                return;
-            }
-
             Close();
         }
 
@@ -475,6 +465,27 @@ namespace RTSCon.Catalogos
                 return;
 
             CargarUnidades();
+        }
+
+        private void dgvUnidades_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0)
+                return;
+
+            string columnName = dgvUnidades.Columns[e.ColumnIndex].Name;
+
+            if ((columnName == "IsActive" || columnName == "Amueblada") &&
+                e.Value != null &&
+                e.Value != DBNull.Value)
+            {
+                e.Value = Convert.ToBoolean(e.Value);
+                e.FormattingApplied = false;
+            }
+        }
+
+        private void dgvUnidades_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.ThrowException = false;
         }
     }
 }

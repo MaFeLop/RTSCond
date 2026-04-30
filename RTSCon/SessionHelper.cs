@@ -7,21 +7,12 @@ namespace RTSCon
 {
     public static class SessionHelper
     {
-        // =========================
-        // Identidad de sesión
-        // =========================
         public static string Usuario { get; private set; }
         public static string Rol { get; private set; }
         public static int? UsuarioId { get; private set; }
 
-        // =========================
-        // Estado de logout
-        // =========================
         public static bool IsLoggingOut { get; private set; }
 
-        // =========================
-        // Inicio de sesión
-        // =========================
         public static void Start(string usuario, string rol, int? usuarioId = null)
         {
             Usuario = usuario;
@@ -30,101 +21,189 @@ namespace RTSCon
             IsLoggingOut = false;
         }
 
-        // =========================
-        // Limpieza total
-        // =========================
-        public static void Clear()
+        private static void ClearIdentity()
         {
             Usuario = null;
             Rol = null;
             UsuarioId = null;
+        }
+
+        public static void Clear()
+        {
+            ClearIdentity();
             IsLoggingOut = false;
         }
 
-        // =========================
-        // Logout controlado
-        // =========================
-        public static void BeginLogout() => IsLoggingOut = true;
-        public static void EndLogout() => IsLoggingOut = false;
+        public static void BeginLogout()
+        {
+            IsLoggingOut = true;
+        }
+
+        public static void EndLogout()
+        {
+            IsLoggingOut = false;
+        }
 
         public static void LogoutFrom(Form current)
         {
-            if (current == null) return;
-
-            BeginLogout();
-
-            try { UserContext.Clear(); } catch { }
-            try { current.Close(); } catch { }
+            LogoutGlobal();
         }
 
         public static void LogoutGlobal()
         {
+            LogoutGlobalCore(null);
+        }
+
+        public static void LogoutGlobalPorInactividad()
+        {
+            LogoutGlobalCore("Su sesión fue automáticamente cerrada por inactividad. Vuelva a iniciar sesión.");
+        }
+
+        private static void LogoutGlobalCore(string mensaje)
+        {
+            if (IsLoggingOut)
+                return;
+
             BeginLogout();
 
-            // 🔥 Detener SessionManager
-            SessionManager.Stop();
-
+            try { SessionManager.Stop(); } catch { }
             try { UserContext.Clear(); } catch { }
-            Clear();
+
+            ClearIdentity();
+
+            Form login = null;
 
             try
             {
-                var login = Application.OpenForms
+                login = Application.OpenForms
                     .Cast<Form>()
-                    .FirstOrDefault(f => f is Login);
-
-                if (login == null || login.IsDisposed)
-                {
-                    login = new Login();
-                    login.Show();
-                }
-                else
-                {
-                    login.Show();
-                    login.Activate();
-                }
+                    .FirstOrDefault(delegate (Form f)
+                    {
+                        return f is Login && !f.IsDisposed;
+                    });
             }
-            catch { }
+            catch
+            {
+                login = null;
+            }
 
             try
             {
-                foreach (var f in Application.OpenForms.Cast<Form>().ToList())
+                Form[] forms = Application.OpenForms.Cast<Form>().ToArray();
+
+                foreach (Form f in forms)
                 {
-                    if (f is Login) continue;
+                    if (f is Login)
+                        continue;
+
                     try { f.Close(); } catch { }
                 }
             }
-            catch { }
+            catch
+            {
+            }
+
+            try
+            {
+                if (login == null || login.IsDisposed)
+                    login = new Login();
+
+                if (!login.Visible)
+                    login.Show();
+
+                login.Activate();
+                login.BringToFront();
+            }
+            catch
+            {
+            }
+
+            if (!string.IsNullOrWhiteSpace(mensaje))
+            {
+                try
+                {
+                    Form owner = login;
+
+                    if (owner != null && owner.IsHandleCreated)
+                    {
+                        owner.BeginInvoke((Action)delegate
+                        {
+                            MostrarAvisoSesionExpirada(owner, mensaje);
+                        });
+                    }
+                    else
+                    {
+                        MostrarAvisoSesionExpirada(login, mensaje);
+                    }
+
+                    return;
+                }
+                catch
+                {
+                }
+            }
+
+            EndLogout();
         }
 
+        private static void MostrarAvisoSesionExpirada(Form owner, string mensaje)
+        {
+            try
+            {
+                using (FrmSesionExpirada frm = new FrmSesionExpirada(mensaje))
+                {
+                    frm.ShowDialog(owner);
+                }
+            }
+            finally
+            {
+                EndLogout();
+            }
+        }
 
-        // =========================
-        // Helpers de sesión
-        // =========================
-        public static bool IsLogged =>
-            !string.IsNullOrWhiteSpace(Usuario);
+        public static bool IsLogged
+        {
+            get { return !string.IsNullOrWhiteSpace(Usuario); }
+        }
 
-        // =========================
-        // Helpers de rol
-        // =========================
-        public static bool IsSA =>
-            string.Equals(Rol, "SA", StringComparison.OrdinalIgnoreCase);
+        public static bool IsSA
+        {
+            get { return string.Equals(Rol, "SA", StringComparison.OrdinalIgnoreCase); }
+        }
 
-        public static bool IsPropietario =>
-            string.Equals(Rol, "Propietario", StringComparison.OrdinalIgnoreCase);
+        public static bool IsPropietario
+        {
+            get { return string.Equals(Rol, "Propietario", StringComparison.OrdinalIgnoreCase); }
+        }
 
-        public static bool IsSecretario =>
-            string.Equals(Rol, "Secretario", StringComparison.OrdinalIgnoreCase);
+        public static bool IsSecretario
+        {
+            get { return string.Equals(Rol, "Secretario", StringComparison.OrdinalIgnoreCase); }
+        }
 
-        public static bool IsInquilino =>
-            string.Equals(Rol, "Inquilino", StringComparison.OrdinalIgnoreCase);
+        public static bool IsInquilino
+        {
+            get { return string.Equals(Rol, "Inquilino", StringComparison.OrdinalIgnoreCase); }
+        }
 
-        // =========================
-        // Permisos por jerarquía
-        // =========================
-        public static bool CanCreateSA => IsSA;
-        public static bool CanCreatePropietario => IsSA;
-        public static bool CanCreateSecretario => IsSA || IsPropietario;
-        public static bool CanCreateInquilino => IsSA || IsPropietario || IsSecretario;
+        public static bool CanCreateSA
+        {
+            get { return IsSA; }
+        }
+
+        public static bool CanCreatePropietario
+        {
+            get { return IsSA; }
+        }
+
+        public static bool CanCreateSecretario
+        {
+            get { return IsSA || IsPropietario; }
+        }
+
+        public static bool CanCreateInquilino
+        {
+            get { return IsSA || IsPropietario || IsSecretario; }
+        }
     }
 }

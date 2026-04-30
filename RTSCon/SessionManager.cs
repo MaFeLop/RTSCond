@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Configuration;
-using System.Linq;
 using System.Windows.Forms;
 using Krypton.Toolkit;
 using RTSCon.Negocios;
@@ -19,7 +17,7 @@ namespace RTSCon
         private static Form _owner;
         private static Action _onTimeout;
 
-        private static ActivityFilter _filter; // 🔥 IMPORTANTE
+        private static ActivityFilter _filter;
 
         private sealed class ActivityFilter : IMessageFilter
         {
@@ -57,7 +55,6 @@ namespace RTSCon
             _lastActivityUtc = DateTime.UtcNow;
             _promptShown = false;
 
-            // 🔥 SOLO AGREGAR FILTRO SI NO EXISTE
             if (_filter == null)
             {
                 _filter = new ActivityFilter();
@@ -66,7 +63,8 @@ namespace RTSCon
 
             if (_timer == null)
             {
-                _timer = new Timer { Interval = 1000 };
+                _timer = new Timer();
+                _timer.Interval = 1000;
                 _timer.Tick += Timer_Tick;
             }
 
@@ -85,7 +83,7 @@ namespace RTSCon
 
             if (_filter != null)
             {
-                Application.RemoveMessageFilter(_filter); // 🔥 CLAVE
+                Application.RemoveMessageFilter(_filter);
                 _filter = null;
             }
 
@@ -97,7 +95,7 @@ namespace RTSCon
             if (UserContext.UsuarioAuthId == 0)
                 return;
 
-            var minutes = (DateTime.UtcNow - _lastActivityUtc).TotalMinutes;
+            double minutes = (DateTime.UtcNow - _lastActivityUtc).TotalMinutes;
 
             if (!_promptShown &&
                 _promptMinutes > 0 &&
@@ -106,11 +104,11 @@ namespace RTSCon
             {
                 _promptShown = true;
 
-                var remaining = TimeSpan.FromMinutes(_idleMinutes) - (DateTime.UtcNow - _lastActivityUtc);
-                var secs = Math.Max(0, (int)remaining.TotalSeconds);
+                TimeSpan remaining = TimeSpan.FromMinutes(_idleMinutes) - (DateTime.UtcNow - _lastActivityUtc);
+                int secs = Math.Max(0, (int)remaining.TotalSeconds);
 
-                var r = KryptonMessageBox.Show(
-                    $"No se detecta actividad.\n¿Desea mantener su sesión?\nTiempo restante: {secs} s.",
+                DialogResult r = KryptonMessageBox.Show(
+                    "No se detecta actividad.\n¿Desea mantener su sesión?\nTiempo restante: " + secs + " s.",
                     "Sesión inactiva",
                     KryptonMessageBoxButtons.YesNo,
                     KryptonMessageBoxIcon.Information);
@@ -135,13 +133,36 @@ namespace RTSCon
         {
             Stop();
 
-            KryptonMessageBox.Show(
-                "Su sesión expiró por inactividad.",
-                "Sesión expirada",
-                KryptonMessageBoxButtons.OK,
-                KryptonMessageBoxIcon.Information);
+            if (_onTimeout != null)
+            {
+                try
+                {
+                    _onTimeout();
+                    return;
+                }
+                catch
+                {
+                }
+            }
 
-            SessionHelper.LogoutGlobal();
+            try
+            {
+                if (_owner != null && !_owner.IsDisposed && _owner.IsHandleCreated)
+                {
+                    _owner.BeginInvoke((Action)delegate
+                    {
+                        SessionHelper.LogoutGlobalPorInactividad();
+                    });
+                }
+                else
+                {
+                    SessionHelper.LogoutGlobalPorInactividad();
+                }
+            }
+            catch
+            {
+                SessionHelper.LogoutGlobalPorInactividad();
+            }
         }
     }
 }
