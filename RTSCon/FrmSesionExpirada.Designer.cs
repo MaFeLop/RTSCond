@@ -37,16 +37,17 @@
             // 
             this.kryptonLabel1.AutoSize = false;
             this.kryptonLabel1.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
-            this.kryptonLabel1.Location = new System.Drawing.Point(12, 25);
+            this.kryptonLabel1.Location = new System.Drawing.Point(12, 112);
             this.kryptonLabel1.Name = "kryptonLabel1";
-            this.kryptonLabel1.Size = new System.Drawing.Size(714, 48);
+            this.kryptonLabel1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.kryptonLabel1.Size = new System.Drawing.Size(965, 48);
             this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel1.TabIndex = 0;
             this.kryptonLabel1.Values.Text = "Su sesión fue expirada por inactividad, por favor vuelva a iniciar sesión";
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(276, 136);
+            this.btnVolver.Location = new System.Drawing.Point(373, 212);
             this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -60,7 +61,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(738, 302);
+            this.ClientSize = new System.Drawing.Size(989, 431);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.kryptonLabel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

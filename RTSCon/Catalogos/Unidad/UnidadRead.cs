@@ -4,10 +4,12 @@ using System.Drawing;
 using System.Windows.Forms;
 using RTSCon.Datos;
 using RTSCon.Negocios;
+using Krypton;
+using Krypton.Toolkit;
 
 namespace RTSCon.Catalogos
 {
-    public partial class UnidadRead : Form
+    public partial class UnidadRead : KryptonForm
     {
         private int _bloqueId;
         private readonly NUnidad _nUnidad;

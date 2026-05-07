@@ -155,7 +155,7 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(1456, 8);
+            this.btnVolver.Location = new System.Drawing.Point(1441, 13);
             this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -165,7 +165,6 @@
             this.btnVolver.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnVolver.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnVolver.Values.Image")));
             this.btnVolver.Values.Text = "Volver";
-            this.btnVolver.Visible = false;
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click_1);
             // 
             // UnidadRead

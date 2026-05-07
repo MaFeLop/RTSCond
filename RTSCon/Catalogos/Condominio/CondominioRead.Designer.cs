@@ -40,6 +40,7 @@
             this.lblTotal = new System.Windows.Forms.Label();
             this.pnlTop = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnVolver = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCondominios)).BeginInit();
             this.pnlTop.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -102,7 +103,7 @@
             this.label2.Location = new System.Drawing.Point(1, 12);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(359, 28);
+            this.label2.Size = new System.Drawing.Size(355, 28);
             this.label2.TabIndex = 93;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -156,15 +157,15 @@
             // 
             // pnlTop
             // 
+            this.pnlTop.Controls.Add(this.btnVolver);
             this.pnlTop.Controls.Add(this.btnLimpiarFiltros);
             this.pnlTop.Controls.Add(this.chkSoloActivos);
             this.pnlTop.Controls.Add(this.label2);
             this.pnlTop.Controls.Add(this.txtBuscar);
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(1567, 74);
+            this.pnlTop.Size = new System.Drawing.Size(1563, 74);
             this.pnlTop.TabIndex = 96;
-            this.pnlTop.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel1
             // 
@@ -177,6 +178,20 @@
             this.panel1.Size = new System.Drawing.Size(1567, 100);
             this.panel1.TabIndex = 97;
             // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(1462, 7);
+            this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnVolver.Size = new System.Drawing.Size(78, 63);
+            this.btnVolver.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.TabIndex = 116;
+            this.btnVolver.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnVolver.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnVolver.Values.Image")));
+            this.btnVolver.Values.Text = "Volver";
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
             // CondominioRead
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -186,7 +201,6 @@
             this.Controls.Add(this.pnlTop);
             this.Controls.Add(this.dgvCondominios);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(0, 0);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "CondominioRead";
             this.Text = "Condominios";
@@ -211,5 +225,6 @@
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.Panel pnlTop;
         private System.Windows.Forms.Panel panel1;
+        private Krypton.Toolkit.KryptonButton btnVolver;
     }
 }

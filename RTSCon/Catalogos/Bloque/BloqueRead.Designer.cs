@@ -38,6 +38,7 @@
             this.btnUpdate = new Krypton.Toolkit.KryptonButton();
             this.btnCrear = new Krypton.Toolkit.KryptonButton();
             this.dgvBloques = new Krypton.Toolkit.KryptonDataGridView();
+            this.btnVolver = new Krypton.Toolkit.KryptonButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBloques)).BeginInit();
             this.SuspendLayout();
             // 
@@ -151,11 +152,26 @@
             this.dgvBloques.Size = new System.Drawing.Size(1315, 340);
             this.dgvBloques.TabIndex = 96;
             // 
+            // btnVolver
+            // 
+            this.btnVolver.Location = new System.Drawing.Point(1323, 17);
+            this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
+            this.btnVolver.Name = "btnVolver";
+            this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
+            this.btnVolver.Size = new System.Drawing.Size(78, 63);
+            this.btnVolver.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVolver.TabIndex = 116;
+            this.btnVolver.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnVolver.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnVolver.Values.Image")));
+            this.btnVolver.Values.Text = "Volver";
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
+            // 
             // BloqueRead
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1430, 770);
+            this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.lblTotal);
             this.Controls.Add(this.chkSoloActivos);
             this.Controls.Add(this.label2);
@@ -185,5 +201,6 @@
         private Krypton.Toolkit.KryptonButton btnUpdate;
         private Krypton.Toolkit.KryptonButton btnCrear;
         private Krypton.Toolkit.KryptonDataGridView dgvBloques;
+        private Krypton.Toolkit.KryptonButton btnVolver;
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace RTSCon.Catalogos
@@ -23,6 +24,8 @@ namespace RTSCon.Catalogos
             string cn = ConfigurationManager.ConnectionStrings["RTSCond"].ConnectionString;
             _neg = new NPropiedad(new DPropiedad(cn));
 
+            ConfigurarEventoVolver();
+
             Load -= PropiedadRead_Load;
             Load += PropiedadRead_Load;
         }
@@ -33,6 +36,12 @@ namespace RTSCon.Catalogos
             Cargar();
         }
 
+        private void ConfigurarEventoVolver() 
+        { 
+            btnVolver.Click -= btnVolver_Click;
+            btnVolver.Click += btnVolver_Click;
+        
+        }
         private void InicializarEventosUnaSolaVez()
         {
             if (_eventosInicializados)
@@ -46,6 +55,8 @@ namespace RTSCon.Catalogos
 
                 txtBuscar.KeyDown -= TxtBuscar_KeyDown;
                 txtBuscar.KeyDown += TxtBuscar_KeyDown;
+
+                
             }
 
             KryptonCheckBox chkSolo = FindCtrl<KryptonCheckBox>("chkSoloActivos", "chkActivos");
@@ -505,6 +516,11 @@ namespace RTSCon.Catalogos
 
             if (lblPagina != null)
                 lblPagina.Text = "Página: " + _page;
+        }
+
+        private void btnVolver_Click_1(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

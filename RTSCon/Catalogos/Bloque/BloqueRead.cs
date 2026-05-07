@@ -3,10 +3,12 @@ using System.Data;
 using System.Windows.Forms;
 using RTSCon.Datos;
 using RTSCon.Negocios;
+using Krypton;
+using Krypton.Toolkit;
 
 namespace RTSCon.Catalogos
 {
-    public partial class BloqueRead : Form
+    public partial class BloqueRead : KryptonForm
     {
         private int _condominioId;
         private readonly NBloque _nBloque;
@@ -332,6 +334,11 @@ namespace RTSCon.Catalogos
         private void dgvBloques_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.ThrowException = false;
+        }
+
+        private void btnVolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
