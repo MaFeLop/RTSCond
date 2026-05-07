@@ -487,5 +487,10 @@ namespace RTSCon.Catalogos
         {
             e.ThrowException = false;
         }
+
+        private void btnVolver_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

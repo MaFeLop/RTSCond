@@ -63,10 +63,11 @@
             // kryptonPictureBox1
             // 
             this.kryptonPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("kryptonPictureBox1.Image")));
-            this.kryptonPictureBox1.Location = new System.Drawing.Point(452, 66);
+            this.kryptonPictureBox1.Location = new System.Drawing.Point(443, 54);
             this.kryptonPictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonPictureBox1.Name = "kryptonPictureBox1";
-            this.kryptonPictureBox1.Size = new System.Drawing.Size(101, 103);
+            this.kryptonPictureBox1.Size = new System.Drawing.Size(102, 102);
+            this.kryptonPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.kryptonPictureBox1.TabIndex = 2;
             this.kryptonPictureBox1.TabStop = false;
             // 
@@ -206,8 +207,6 @@
             this.txtCodigo.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCodigo.TabIndex = 21;
             this.txtCodigo.Visible = false;
-           // this.txtCodigo.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtCodigo_MaskInputRejected);
-            //this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
             // 
             // btnVerificar
             // 
@@ -265,7 +264,6 @@
             this.Controls.Add(this.kryptonLabel1);
             this.Controls.Add(this.kryptonPictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Location = new System.Drawing.Point(0, 0);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ContrasenaOlvidada";
             this.Text = "ContrasenaOlvidada";

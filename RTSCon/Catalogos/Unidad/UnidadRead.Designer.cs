@@ -155,16 +155,18 @@
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(963, 462);
+            this.btnVolver.Location = new System.Drawing.Point(1456, 8);
             this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.btnVolver.Size = new System.Drawing.Size(237, 63);
+            this.btnVolver.Size = new System.Drawing.Size(78, 63);
             this.btnVolver.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVolver.TabIndex = 114;
             this.btnVolver.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnVolver.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnVolver.Values.Image")));
             this.btnVolver.Values.Text = "Volver";
             this.btnVolver.Visible = false;
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click_1);
             // 
             // UnidadRead
             // 
