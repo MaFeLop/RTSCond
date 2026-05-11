@@ -57,19 +57,19 @@
             this.label20 = new System.Windows.Forms.Label();
             this.kryptonButton4 = new Krypton.Toolkit.KryptonButton();
             this.label19 = new System.Windows.Forms.Label();
-            this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
-            this.label18 = new System.Windows.Forms.Label();
-            this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
-            this.label17 = new System.Windows.Forms.Label();
-            this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
-            this.label16 = new System.Windows.Forms.Label();
-            this.btnFacturacion = new Krypton.Toolkit.KryptonButton();
-            this.label15 = new System.Windows.Forms.Label();
-            this.btnCierreDeMes = new Krypton.Toolkit.KryptonButton();
             this.label12 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.kryptonButton3 = new Krypton.Toolkit.KryptonButton();
             this.kryptonPictureBox1 = new Krypton.Toolkit.KryptonPictureBox();
             this.btnDashboard = new Krypton.Toolkit.KryptonButton();
+            this.label18 = new System.Windows.Forms.Label();
+            this.kryptonButton1 = new Krypton.Toolkit.KryptonButton();
+            this.btnCierreDeMes = new Krypton.Toolkit.KryptonButton();
+            this.kryptonButton2 = new Krypton.Toolkit.KryptonButton();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnFacturacion = new Krypton.Toolkit.KryptonButton();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblDeudaVencida = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -453,12 +453,12 @@
             // btnCrearPropietario
             // 
             this.btnCrearPropietario.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnCrearPropietario.Location = new System.Drawing.Point(37, 123);
+            this.btnCrearPropietario.Location = new System.Drawing.Point(43, 123);
             this.btnCrearPropietario.Margin = new System.Windows.Forms.Padding(4);
             this.btnCrearPropietario.Name = "btnCrearPropietario";
             this.btnCrearPropietario.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
-            this.btnCrearPropietario.Size = new System.Drawing.Size(130, 28);
-            this.btnCrearPropietario.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCrearPropietario.Size = new System.Drawing.Size(124, 28);
+            this.btnCrearPropietario.StateCommon.Content.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCrearPropietario.TabIndex = 61;
             this.btnCrearPropietario.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnCrearPropietario.Values.Text = "Agregar Usuario";
@@ -500,11 +500,11 @@
             // kryptonButton4
             // 
             this.kryptonButton4.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.kryptonButton4.Location = new System.Drawing.Point(48, 84);
+            this.kryptonButton4.Location = new System.Drawing.Point(43, 84);
             this.kryptonButton4.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonButton4.Name = "kryptonButton4";
             this.kryptonButton4.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
-            this.kryptonButton4.Size = new System.Drawing.Size(120, 28);
+            this.kryptonButton4.Size = new System.Drawing.Size(125, 28);
             this.kryptonButton4.TabIndex = 57;
             this.kryptonButton4.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.kryptonButton4.Values.Text = "Catalogos";
@@ -520,115 +520,6 @@
             this.label19.Size = new System.Drawing.Size(39, 28);
             this.label19.TabIndex = 56;
             this.label19.Visible = false;
-            // 
-            // kryptonButton3
-            // 
-            this.kryptonButton3.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.kryptonButton3.Location = new System.Drawing.Point(47, 371);
-            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(4);
-            this.kryptonButton3.Name = "kryptonButton3";
-            this.kryptonButton3.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
-            this.kryptonButton3.Size = new System.Drawing.Size(120, 28);
-            this.kryptonButton3.TabIndex = 55;
-            this.kryptonButton3.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.kryptonButton3.Values.Text = "Auditoria";
-            this.kryptonButton3.Visible = false;
-            // 
-            // label18
-            // 
-            this.label18.BackColor = System.Drawing.Color.Transparent;
-            this.label18.Image = ((System.Drawing.Image)(resources.GetObject("label18.Image")));
-            this.label18.Location = new System.Drawing.Point(3, 326);
-            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(39, 28);
-            this.label18.TabIndex = 54;
-            this.label18.Visible = false;
-            // 
-            // kryptonButton2
-            // 
-            this.kryptonButton2.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.kryptonButton2.Location = new System.Drawing.Point(47, 326);
-            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(4);
-            this.kryptonButton2.Name = "kryptonButton2";
-            this.kryptonButton2.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
-            this.kryptonButton2.Size = new System.Drawing.Size(120, 28);
-            this.kryptonButton2.TabIndex = 53;
-            this.kryptonButton2.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.kryptonButton2.Values.Text = "Pagos";
-            this.kryptonButton2.Visible = false;
-            // 
-            // label17
-            // 
-            this.label17.BackColor = System.Drawing.Color.Transparent;
-            this.label17.Image = ((System.Drawing.Image)(resources.GetObject("label17.Image")));
-            this.label17.Location = new System.Drawing.Point(3, 273);
-            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(39, 28);
-            this.label17.TabIndex = 52;
-            this.label17.Visible = false;
-            // 
-            // kryptonButton1
-            // 
-            this.kryptonButton1.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.kryptonButton1.Location = new System.Drawing.Point(47, 273);
-            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(4);
-            this.kryptonButton1.Name = "kryptonButton1";
-            this.kryptonButton1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
-            this.kryptonButton1.Size = new System.Drawing.Size(120, 28);
-            this.kryptonButton1.TabIndex = 51;
-            this.kryptonButton1.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.kryptonButton1.Values.Text = "Cobranza";
-            this.kryptonButton1.Visible = false;
-            // 
-            // label16
-            // 
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.Image = ((System.Drawing.Image)(resources.GetObject("label16.Image")));
-            this.label16.Location = new System.Drawing.Point(3, 221);
-            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(39, 28);
-            this.label16.TabIndex = 50;
-            this.label16.Visible = false;
-            // 
-            // btnFacturacion
-            // 
-            this.btnFacturacion.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnFacturacion.Location = new System.Drawing.Point(47, 221);
-            this.btnFacturacion.Margin = new System.Windows.Forms.Padding(4);
-            this.btnFacturacion.Name = "btnFacturacion";
-            this.btnFacturacion.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
-            this.btnFacturacion.Size = new System.Drawing.Size(120, 28);
-            this.btnFacturacion.TabIndex = 49;
-            this.btnFacturacion.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnFacturacion.Values.Text = "Facturacion";
-            this.btnFacturacion.Visible = false;
-            // 
-            // label15
-            // 
-            this.label15.BackColor = System.Drawing.Color.Transparent;
-            this.label15.Image = ((System.Drawing.Image)(resources.GetObject("label15.Image")));
-            this.label15.Location = new System.Drawing.Point(3, 170);
-            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(39, 28);
-            this.label15.TabIndex = 48;
-            this.label15.Visible = false;
-            // 
-            // btnCierreDeMes
-            // 
-            this.btnCierreDeMes.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnCierreDeMes.Location = new System.Drawing.Point(47, 170);
-            this.btnCierreDeMes.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCierreDeMes.Name = "btnCierreDeMes";
-            this.btnCierreDeMes.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
-            this.btnCierreDeMes.Size = new System.Drawing.Size(120, 28);
-            this.btnCierreDeMes.TabIndex = 47;
-            this.btnCierreDeMes.Values.DropDownArrowColor = System.Drawing.Color.Empty;
-            this.btnCierreDeMes.Values.Text = "Cierre de Mes";
-            this.btnCierreDeMes.Visible = false;
             // 
             // label12
             // 
@@ -654,6 +545,19 @@
             this.label9.Text = "RTSCond";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // kryptonButton3
+            // 
+            this.kryptonButton3.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.kryptonButton3.Location = new System.Drawing.Point(47, 371);
+            this.kryptonButton3.Margin = new System.Windows.Forms.Padding(4);
+            this.kryptonButton3.Name = "kryptonButton3";
+            this.kryptonButton3.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
+            this.kryptonButton3.Size = new System.Drawing.Size(120, 28);
+            this.kryptonButton3.TabIndex = 55;
+            this.kryptonButton3.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.kryptonButton3.Values.Text = "Auditoria";
+            this.kryptonButton3.Visible = false;
+            // 
             // kryptonPictureBox1
             // 
             this.kryptonPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("kryptonPictureBox1.Image")));
@@ -669,14 +573,110 @@
             // btnDashboard
             // 
             this.btnDashboard.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnDashboard.Location = new System.Drawing.Point(48, 44);
+            this.btnDashboard.Location = new System.Drawing.Point(43, 44);
             this.btnDashboard.Margin = new System.Windows.Forms.Padding(4);
             this.btnDashboard.Name = "btnDashboard";
             this.btnDashboard.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
-            this.btnDashboard.Size = new System.Drawing.Size(120, 28);
+            this.btnDashboard.Size = new System.Drawing.Size(125, 28);
             this.btnDashboard.TabIndex = 46;
             this.btnDashboard.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnDashboard.Values.Text = "Dashboard";
+            // 
+            // label18
+            // 
+            this.label18.BackColor = System.Drawing.Color.Transparent;
+            this.label18.Image = ((System.Drawing.Image)(resources.GetObject("label18.Image")));
+            this.label18.Location = new System.Drawing.Point(3, 326);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(39, 28);
+            this.label18.TabIndex = 54;
+            this.label18.Visible = false;
+            // 
+            // kryptonButton1
+            // 
+            this.kryptonButton1.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.kryptonButton1.Location = new System.Drawing.Point(47, 273);
+            this.kryptonButton1.Margin = new System.Windows.Forms.Padding(4);
+            this.kryptonButton1.Name = "kryptonButton1";
+            this.kryptonButton1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
+            this.kryptonButton1.Size = new System.Drawing.Size(120, 28);
+            this.kryptonButton1.TabIndex = 51;
+            this.kryptonButton1.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.kryptonButton1.Values.Text = "Cobranza";
+            this.kryptonButton1.Visible = false;
+            // 
+            // btnCierreDeMes
+            // 
+            this.btnCierreDeMes.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnCierreDeMes.Location = new System.Drawing.Point(47, 170);
+            this.btnCierreDeMes.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCierreDeMes.Name = "btnCierreDeMes";
+            this.btnCierreDeMes.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
+            this.btnCierreDeMes.Size = new System.Drawing.Size(120, 28);
+            this.btnCierreDeMes.TabIndex = 47;
+            this.btnCierreDeMes.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnCierreDeMes.Values.Text = "Cierre de Mes";
+            this.btnCierreDeMes.Visible = false;
+            // 
+            // kryptonButton2
+            // 
+            this.kryptonButton2.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.kryptonButton2.Location = new System.Drawing.Point(47, 326);
+            this.kryptonButton2.Margin = new System.Windows.Forms.Padding(4);
+            this.kryptonButton2.Name = "kryptonButton2";
+            this.kryptonButton2.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
+            this.kryptonButton2.Size = new System.Drawing.Size(120, 28);
+            this.kryptonButton2.TabIndex = 53;
+            this.kryptonButton2.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.kryptonButton2.Values.Text = "Pagos";
+            this.kryptonButton2.Visible = false;
+            // 
+            // label15
+            // 
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.Image = ((System.Drawing.Image)(resources.GetObject("label15.Image")));
+            this.label15.Location = new System.Drawing.Point(3, 170);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(39, 28);
+            this.label15.TabIndex = 48;
+            this.label15.Visible = false;
+            // 
+            // btnFacturacion
+            // 
+            this.btnFacturacion.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
+            this.btnFacturacion.Location = new System.Drawing.Point(47, 221);
+            this.btnFacturacion.Margin = new System.Windows.Forms.Padding(4);
+            this.btnFacturacion.Name = "btnFacturacion";
+            this.btnFacturacion.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
+            this.btnFacturacion.Size = new System.Drawing.Size(120, 28);
+            this.btnFacturacion.TabIndex = 49;
+            this.btnFacturacion.Values.DropDownArrowColor = System.Drawing.Color.Empty;
+            this.btnFacturacion.Values.Text = "Facturacion";
+            this.btnFacturacion.Visible = false;
+            // 
+            // label17
+            // 
+            this.label17.BackColor = System.Drawing.Color.Transparent;
+            this.label17.Image = ((System.Drawing.Image)(resources.GetObject("label17.Image")));
+            this.label17.Location = new System.Drawing.Point(3, 273);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(39, 28);
+            this.label17.TabIndex = 52;
+            this.label17.Visible = false;
+            // 
+            // label16
+            // 
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.Image = ((System.Drawing.Image)(resources.GetObject("label16.Image")));
+            this.label16.Location = new System.Drawing.Point(3, 221);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(39, 28);
+            this.label16.TabIndex = 50;
+            this.label16.Visible = false;
             // 
             // label6
             // 
@@ -889,7 +889,6 @@
             this.lblCondnum.Size = new System.Drawing.Size(76, 28);
             this.lblCondnum.TabIndex = 10;
             this.lblCondnum.Text = "N/A";
-            this.lblCondnum.Visible = false;
             // 
             // label2
             // 
@@ -900,7 +899,6 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 28);
             this.label2.TabIndex = 9;
-            this.label2.Visible = false;
             // 
             // label1
             // 
@@ -915,7 +913,6 @@
             this.label1.TabIndex = 8;
             this.label1.Text = "Condominios Activos:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.label1.Visible = false;
             // 
             // CondominiosBorde
             // 
@@ -926,7 +923,6 @@
             this.CondominiosBorde.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.CondominiosBorde.Size = new System.Drawing.Size(217, 155);
             this.CondominiosBorde.Text = "kryptonBorderEdge1";
-            this.CondominiosBorde.Visible = false;
             // 
             // kryptonLabel1
             // 
@@ -941,7 +937,6 @@
             this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel1.TabIndex = 4;
             this.kryptonLabel1.Values.Text = "Vista previa del periodo: ";
-            this.kryptonLabel1.Visible = false;
             // 
             // DashboardName
             // 
