@@ -39,7 +39,11 @@
             this.btnCrear = new Krypton.Toolkit.KryptonButton();
             this.dgvBloques = new Krypton.Toolkit.KryptonDataGridView();
             this.btnVolver = new Krypton.Toolkit.KryptonButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBloques)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTotal
@@ -48,18 +52,19 @@
             this.lblTotal.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTotal.Location = new System.Drawing.Point(1036, 443);
+            this.lblTotal.Location = new System.Drawing.Point(1098, 2);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(292, 28);
+            this.lblTotal.Size = new System.Drawing.Size(289, 28);
             this.lblTotal.TabIndex = 104;
             this.lblTotal.Text = "Total: ";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblTotal.Click += new System.EventHandler(this.lblTotal_Click);
             // 
             // chkSoloActivos
             // 
             this.chkSoloActivos.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
-            this.chkSoloActivos.Location = new System.Drawing.Point(762, 53);
+            this.chkSoloActivos.Location = new System.Drawing.Point(765, 39);
             this.chkSoloActivos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkSoloActivos.Name = "chkSoloActivos";
             this.chkSoloActivos.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -73,7 +78,7 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(10, 12);
+            this.label2.Location = new System.Drawing.Point(10, -97);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(408, 28);
@@ -83,7 +88,7 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(13, 53);
+            this.txtBuscar.Location = new System.Drawing.Point(16, 39);
             this.txtBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(743, 27);
@@ -92,7 +97,7 @@
             // btnLimpiarFiltros
             // 
             this.btnLimpiarFiltros.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnLimpiarFiltros.Location = new System.Drawing.Point(888, 53);
+            this.btnLimpiarFiltros.Location = new System.Drawing.Point(891, 39);
             this.btnLimpiarFiltros.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiarFiltros.Name = "btnLimpiarFiltros";
             this.btnLimpiarFiltros.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
@@ -104,7 +109,7 @@
             // 
             // btnDesactivar
             // 
-            this.btnDesactivar.Location = new System.Drawing.Point(964, 485);
+            this.btnDesactivar.Location = new System.Drawing.Point(927, 32);
             this.btnDesactivar.Margin = new System.Windows.Forms.Padding(4);
             this.btnDesactivar.Name = "btnDesactivar";
             this.btnDesactivar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -117,7 +122,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(601, 485);
+            this.btnUpdate.Location = new System.Drawing.Point(545, 32);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -130,7 +135,7 @@
             // 
             // btnCrear
             // 
-            this.btnCrear.Location = new System.Drawing.Point(238, 485);
+            this.btnCrear.Location = new System.Drawing.Point(146, 32);
             this.btnCrear.Margin = new System.Windows.Forms.Padding(4);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -145,16 +150,16 @@
             // 
             this.dgvBloques.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvBloques.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvBloques.Location = new System.Drawing.Point(13, 88);
+            this.dgvBloques.Location = new System.Drawing.Point(13, 107);
             this.dgvBloques.Margin = new System.Windows.Forms.Padding(4);
             this.dgvBloques.Name = "dgvBloques";
             this.dgvBloques.RowHeadersWidth = 51;
-            this.dgvBloques.Size = new System.Drawing.Size(1315, 340);
+            this.dgvBloques.Size = new System.Drawing.Size(1315, 306);
             this.dgvBloques.TabIndex = 96;
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(1323, 17);
+            this.btnVolver.Location = new System.Drawing.Point(1313, 15);
             this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -166,27 +171,47 @@
             this.btnVolver.Values.Text = "Volver";
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtBuscar);
+            this.panel1.Controls.Add(this.btnVolver);
+            this.panel1.Controls.Add(this.btnLimpiarFiltros);
+            this.panel1.Controls.Add(this.chkSoloActivos);
+            this.panel1.Location = new System.Drawing.Point(13, 12);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1406, 88);
+            this.panel1.TabIndex = 118;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.lblTotal);
+            this.panel2.Controls.Add(this.btnDesactivar);
+            this.panel2.Controls.Add(this.btnUpdate);
+            this.panel2.Controls.Add(this.btnCrear);
+            this.panel2.Location = new System.Drawing.Point(28, 420);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1391, 100);
+            this.panel2.TabIndex = 119;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
             // BloqueRead
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1430, 770);
-            this.Controls.Add(this.btnVolver);
-            this.Controls.Add(this.lblTotal);
-            this.Controls.Add(this.chkSoloActivos);
+            this.ClientSize = new System.Drawing.Size(1430, 552);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtBuscar);
-            this.Controls.Add(this.btnLimpiarFiltros);
-            this.Controls.Add(this.btnDesactivar);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnCrear);
             this.Controls.Add(this.dgvBloques);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "BloqueRead";
             this.Text = "Bloques";
+            this.Load += new System.EventHandler(this.BloqueRead_Load_1);
             ((System.ComponentModel.ISupportInitialize)(this.dgvBloques)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -202,5 +227,7 @@
         private Krypton.Toolkit.KryptonButton btnCrear;
         private Krypton.Toolkit.KryptonDataGridView dgvBloques;
         private Krypton.Toolkit.KryptonButton btnVolver;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }

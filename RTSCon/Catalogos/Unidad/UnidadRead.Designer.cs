@@ -39,7 +39,11 @@
             this.btnCrear = new Krypton.Toolkit.KryptonButton();
             this.dgvUnidades = new Krypton.Toolkit.KryptonDataGridView();
             this.btnVolver = new Krypton.Toolkit.KryptonButton();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUnidades)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTotal
@@ -48,10 +52,10 @@
             this.lblTotal.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.lblTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTotal.Location = new System.Drawing.Point(1130, 426);
+            this.lblTotal.Location = new System.Drawing.Point(1227, 9);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(329, 28);
+            this.lblTotal.Size = new System.Drawing.Size(278, 28);
             this.lblTotal.TabIndex = 113;
             this.lblTotal.Text = "Total: ";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -59,7 +63,7 @@
             // chkSoloActivos
             // 
             this.chkSoloActivos.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
-            this.chkSoloActivos.Location = new System.Drawing.Point(762, 43);
+            this.chkSoloActivos.Location = new System.Drawing.Point(753, 38);
             this.chkSoloActivos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.chkSoloActivos.Name = "chkSoloActivos";
             this.chkSoloActivos.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -74,7 +78,7 @@
             this.label2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(13, 12);
+            this.label2.Location = new System.Drawing.Point(4, -2);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(329, 28);
@@ -84,7 +88,7 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(13, 43);
+            this.txtBuscar.Location = new System.Drawing.Point(4, 38);
             this.txtBuscar.Margin = new System.Windows.Forms.Padding(4);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(743, 27);
@@ -93,7 +97,7 @@
             // btnLimpiarFiltros
             // 
             this.btnLimpiarFiltros.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnLimpiarFiltros.Location = new System.Drawing.Point(888, 43);
+            this.btnLimpiarFiltros.Location = new System.Drawing.Point(879, 38);
             this.btnLimpiarFiltros.Margin = new System.Windows.Forms.Padding(4);
             this.btnLimpiarFiltros.Name = "btnLimpiarFiltros";
             this.btnLimpiarFiltros.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
@@ -105,7 +109,7 @@
             // 
             // btnDesactivar
             // 
-            this.btnDesactivar.Location = new System.Drawing.Point(963, 462);
+            this.btnDesactivar.Location = new System.Drawing.Point(923, 20);
             this.btnDesactivar.Margin = new System.Windows.Forms.Padding(4);
             this.btnDesactivar.Name = "btnDesactivar";
             this.btnDesactivar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -118,7 +122,7 @@
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(600, 462);
+            this.btnUpdate.Location = new System.Drawing.Point(566, 20);
             this.btnUpdate.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -131,7 +135,7 @@
             // 
             // btnCrear
             // 
-            this.btnCrear.Location = new System.Drawing.Point(237, 462);
+            this.btnCrear.Location = new System.Drawing.Point(188, 20);
             this.btnCrear.Margin = new System.Windows.Forms.Padding(4);
             this.btnCrear.Name = "btnCrear";
             this.btnCrear.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -146,16 +150,16 @@
             // 
             this.dgvUnidades.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvUnidades.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUnidades.Location = new System.Drawing.Point(13, 78);
+            this.dgvUnidades.Location = new System.Drawing.Point(13, 93);
             this.dgvUnidades.Margin = new System.Windows.Forms.Padding(4);
             this.dgvUnidades.Name = "dgvUnidades";
             this.dgvUnidades.RowHeadersWidth = 51;
-            this.dgvUnidades.Size = new System.Drawing.Size(1431, 340);
+            this.dgvUnidades.Size = new System.Drawing.Size(1498, 348);
             this.dgvUnidades.TabIndex = 105;
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(1441, 13);
+            this.btnVolver.Location = new System.Drawing.Point(1425, 10);
             this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -167,27 +171,45 @@
             this.btnVolver.Values.Text = "Volver";
             this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click_1);
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.txtBuscar);
+            this.panel1.Controls.Add(this.btnVolver);
+            this.panel1.Controls.Add(this.btnLimpiarFiltros);
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.chkSoloActivos);
+            this.panel1.Location = new System.Drawing.Point(12, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1507, 83);
+            this.panel1.TabIndex = 116;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.btnCrear);
+            this.panel2.Controls.Add(this.btnUpdate);
+            this.panel2.Controls.Add(this.lblTotal);
+            this.panel2.Controls.Add(this.btnDesactivar);
+            this.panel2.Location = new System.Drawing.Point(6, 448);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1509, 100);
+            this.panel2.TabIndex = 117;
+            // 
             // UnidadRead
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1547, 548);
-            this.Controls.Add(this.btnVolver);
-            this.Controls.Add(this.lblTotal);
-            this.Controls.Add(this.chkSoloActivos);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtBuscar);
-            this.Controls.Add(this.btnLimpiarFiltros);
-            this.Controls.Add(this.btnDesactivar);
-            this.Controls.Add(this.btnUpdate);
-            this.Controls.Add(this.btnCrear);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvUnidades);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UnidadRead";
             this.Text = "Unidades";
             ((System.ComponentModel.ISupportInitialize)(this.dgvUnidades)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -203,5 +225,7 @@
         private Krypton.Toolkit.KryptonButton btnCrear;
         private Krypton.Toolkit.KryptonDataGridView dgvUnidades;
         private Krypton.Toolkit.KryptonButton btnVolver;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
     }
 }
