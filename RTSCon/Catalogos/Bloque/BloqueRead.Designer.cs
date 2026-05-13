@@ -81,7 +81,7 @@
             this.label2.Location = new System.Drawing.Point(10, -97);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(408, 28);
+            this.label2.Size = new System.Drawing.Size(430, 28);
             this.label2.TabIndex = 102;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -154,7 +154,7 @@
             this.dgvBloques.Margin = new System.Windows.Forms.Padding(4);
             this.dgvBloques.Name = "dgvBloques";
             this.dgvBloques.RowHeadersWidth = 51;
-            this.dgvBloques.Size = new System.Drawing.Size(1315, 306);
+            this.dgvBloques.Size = new System.Drawing.Size(1402, 306);
             this.dgvBloques.TabIndex = 96;
             // 
             // btnVolver
@@ -198,7 +198,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1430, 552);
+            this.ClientSize = new System.Drawing.Size(1452, 552);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);

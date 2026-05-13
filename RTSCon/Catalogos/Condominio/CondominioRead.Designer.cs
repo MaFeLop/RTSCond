@@ -54,7 +54,7 @@
             this.dgvCondominios.Margin = new System.Windows.Forms.Padding(4);
             this.dgvCondominios.Name = "dgvCondominios";
             this.dgvCondominios.RowHeadersWidth = 51;
-            this.dgvCondominios.Size = new System.Drawing.Size(1567, 371);
+            this.dgvCondominios.Size = new System.Drawing.Size(1587, 371);
             this.dgvCondominios.TabIndex = 0;
             // 
             // btnCrear
@@ -103,7 +103,7 @@
             this.label2.Location = new System.Drawing.Point(1, 12);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(359, 28);
+            this.label2.Size = new System.Drawing.Size(383, 28);
             this.label2.TabIndex = 93;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -150,7 +150,7 @@
             this.lblTotal.Location = new System.Drawing.Point(1201, 16);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(362, 28);
+            this.lblTotal.Size = new System.Drawing.Size(386, 28);
             this.lblTotal.TabIndex = 95;
             this.lblTotal.Text = "Total: ";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -164,12 +164,12 @@
             this.pnlTop.Controls.Add(this.txtBuscar);
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(1567, 74);
+            this.pnlTop.Size = new System.Drawing.Size(1591, 74);
             this.pnlTop.TabIndex = 96;
             // 
             // btnVolver
             // 
-            this.btnVolver.Location = new System.Drawing.Point(1476, 4);
+            this.btnVolver.Location = new System.Drawing.Point(1489, 7);
             this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -189,14 +189,14 @@
             this.panel1.Controls.Add(this.btnCrear);
             this.panel1.Location = new System.Drawing.Point(0, 451);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1567, 100);
+            this.panel1.Size = new System.Drawing.Size(1591, 100);
             this.panel1.TabIndex = 97;
             // 
             // CondominioRead
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1567, 551);
+            this.ClientSize = new System.Drawing.Size(1583, 551);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlTop);
             this.Controls.Add(this.dgvCondominios);

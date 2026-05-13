@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.DashboardPanel = new Krypton.Toolkit.KryptonPanel();
+            this.lblEstatusUsuario = new Krypton.Toolkit.KryptonLabel();
             this.kryptonBorderEdge11 = new Krypton.Toolkit.KryptonBorderEdge();
             this.StatusInicioMes = new System.Windows.Forms.Label();
             this.lblInicioMes = new System.Windows.Forms.Label();
@@ -94,7 +95,6 @@
             this.DashboardName = new Krypton.Toolkit.KryptonLabel();
             this.BorderTopBar = new Krypton.Toolkit.KryptonBorderEdge();
             this.BorderDashboard = new Krypton.Toolkit.KryptonBorderEdge();
-            this.lblEstatusUsuario = new Krypton.Toolkit.KryptonLabel();
             ((System.ComponentModel.ISupportInitialize)(this.DashboardPanel)).BeginInit();
             this.DashboardPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.panelSideBar)).BeginInit();
@@ -153,8 +153,23 @@
             this.DashboardPanel.Margin = new System.Windows.Forms.Padding(4);
             this.DashboardPanel.Name = "DashboardPanel";
             this.DashboardPanel.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverLightMode;
-            this.DashboardPanel.Size = new System.Drawing.Size(1601, 778);
+            this.DashboardPanel.Size = new System.Drawing.Size(1661, 778);
             this.DashboardPanel.TabIndex = 0;
+            // 
+            // lblEstatusUsuario
+            // 
+            this.lblEstatusUsuario.AutoSize = false;
+            this.lblEstatusUsuario.LabelStyle = Krypton.Toolkit.LabelStyle.BoldControl;
+            this.lblEstatusUsuario.Location = new System.Drawing.Point(830, 72);
+            this.lblEstatusUsuario.Margin = new System.Windows.Forms.Padding(4);
+            this.lblEstatusUsuario.Name = "lblEstatusUsuario";
+            this.lblEstatusUsuario.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverLightMode;
+            this.lblEstatusUsuario.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblEstatusUsuario.Size = new System.Drawing.Size(755, 70);
+            this.lblEstatusUsuario.StateCommon.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstatusUsuario.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstatusUsuario.TabIndex = 82;
+            this.lblEstatusUsuario.Values.Text = "Bienvenido:";
             // 
             // kryptonBorderEdge11
             // 
@@ -176,7 +191,7 @@
             this.StatusInicioMes.Location = new System.Drawing.Point(1521, 720);
             this.StatusInicioMes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.StatusInicioMes.Name = "StatusInicioMes";
-            this.StatusInicioMes.Size = new System.Drawing.Size(39, 28);
+            this.StatusInicioMes.Size = new System.Drawing.Size(35, 28);
             this.StatusInicioMes.TabIndex = 68;
             this.StatusInicioMes.Text = "N/A";
             this.StatusInicioMes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -191,7 +206,7 @@
             this.lblInicioMes.Location = new System.Drawing.Point(1144, 720);
             this.lblInicioMes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInicioMes.Name = "lblInicioMes";
-            this.lblInicioMes.Size = new System.Drawing.Size(111, 28);
+            this.lblInicioMes.Size = new System.Drawing.Size(171, 28);
             this.lblInicioMes.TabIndex = 67;
             this.lblInicioMes.Text = "Inicio del Mes:";
             this.lblInicioMes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -217,7 +232,7 @@
             this.StatusValidacion.Location = new System.Drawing.Point(1521, 652);
             this.StatusValidacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.StatusValidacion.Name = "StatusValidacion";
-            this.StatusValidacion.Size = new System.Drawing.Size(39, 28);
+            this.StatusValidacion.Size = new System.Drawing.Size(35, 28);
             this.StatusValidacion.TabIndex = 64;
             this.StatusValidacion.Text = "N/A";
             this.StatusValidacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -232,7 +247,7 @@
             this.lblValidacion.Location = new System.Drawing.Point(1144, 652);
             this.lblValidacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblValidacion.Name = "lblValidacion";
-            this.lblValidacion.Size = new System.Drawing.Size(91, 28);
+            this.lblValidacion.Size = new System.Drawing.Size(151, 28);
             this.lblValidacion.TabIndex = 63;
             this.lblValidacion.Text = "Validacion:";
             this.lblValidacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -258,7 +273,7 @@
             this.StatusPagos.Location = new System.Drawing.Point(1521, 585);
             this.StatusPagos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.StatusPagos.Name = "StatusPagos";
-            this.StatusPagos.Size = new System.Drawing.Size(39, 28);
+            this.StatusPagos.Size = new System.Drawing.Size(35, 28);
             this.StatusPagos.TabIndex = 60;
             this.StatusPagos.Text = "N/A";
             this.StatusPagos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -273,7 +288,7 @@
             this.lblPagos.Location = new System.Drawing.Point(1144, 585);
             this.lblPagos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPagos.Name = "lblPagos";
-            this.lblPagos.Size = new System.Drawing.Size(91, 28);
+            this.lblPagos.Size = new System.Drawing.Size(151, 28);
             this.lblPagos.TabIndex = 59;
             this.lblPagos.Text = "Pagos:";
             this.lblPagos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -299,7 +314,7 @@
             this.StatusDunning.Location = new System.Drawing.Point(1521, 517);
             this.StatusDunning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.StatusDunning.Name = "StatusDunning";
-            this.StatusDunning.Size = new System.Drawing.Size(39, 28);
+            this.StatusDunning.Size = new System.Drawing.Size(35, 28);
             this.StatusDunning.TabIndex = 56;
             this.StatusDunning.Text = "N/A";
             this.StatusDunning.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -314,7 +329,7 @@
             this.lblDunning.Location = new System.Drawing.Point(1144, 517);
             this.lblDunning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDunning.Name = "lblDunning";
-            this.lblDunning.Size = new System.Drawing.Size(91, 28);
+            this.lblDunning.Size = new System.Drawing.Size(151, 28);
             this.lblDunning.TabIndex = 55;
             this.lblDunning.Text = "Dunning:";
             this.lblDunning.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -340,7 +355,7 @@
             this.StatusFactura.Location = new System.Drawing.Point(1521, 449);
             this.StatusFactura.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.StatusFactura.Name = "StatusFactura";
-            this.StatusFactura.Size = new System.Drawing.Size(39, 28);
+            this.StatusFactura.Size = new System.Drawing.Size(35, 28);
             this.StatusFactura.TabIndex = 53;
             this.StatusFactura.Text = "N/A";
             this.StatusFactura.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -355,7 +370,7 @@
             this.lblFacturacion.Location = new System.Drawing.Point(1144, 449);
             this.lblFacturacion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFacturacion.Name = "lblFacturacion";
-            this.lblFacturacion.Size = new System.Drawing.Size(91, 28);
+            this.lblFacturacion.Size = new System.Drawing.Size(151, 28);
             this.lblFacturacion.TabIndex = 52;
             this.lblFacturacion.Text = "Facturacion: ";
             this.lblFacturacion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -381,7 +396,7 @@
             this.label14.Location = new System.Drawing.Point(1145, 405);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(129, 28);
+            this.label14.Size = new System.Drawing.Size(189, 28);
             this.label14.TabIndex = 49;
             this.label14.Text = "Periodo:";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -411,7 +426,6 @@
             this.kryptonBorderEdge5.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.kryptonBorderEdge5.Size = new System.Drawing.Size(469, 418);
             this.kryptonBorderEdge5.Text = "kryptonBorderEdge5";
-            this.kryptonBorderEdge5.Visible = false;
             // 
             // panelSideBar
             // 
@@ -439,7 +453,7 @@
             this.panelSideBar.Margin = new System.Windows.Forms.Padding(4);
             this.panelSideBar.Name = "panelSideBar";
             this.panelSideBar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
-            this.panelSideBar.Size = new System.Drawing.Size(172, 718);
+            this.panelSideBar.Size = new System.Drawing.Size(172, 756);
             this.panelSideBar.TabIndex = 45;
             // 
             // label22
@@ -479,7 +493,7 @@
             // btnLogout
             // 
             this.btnLogout.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnLogout.Location = new System.Drawing.Point(48, 668);
+            this.btnLogout.Location = new System.Drawing.Point(43, 668);
             this.btnLogout.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueLightMode;
@@ -539,10 +553,10 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(55, 1);
+            this.label9.Location = new System.Drawing.Point(55, 5);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(103, 39);
+            this.label9.Size = new System.Drawing.Size(103, 29);
             this.label9.TabIndex = 36;
             this.label9.Text = "RTSCond";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -711,7 +725,7 @@
             this.lblUsuAct.Location = new System.Drawing.Point(1377, 185);
             this.lblUsuAct.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsuAct.Name = "lblUsuAct";
-            this.lblUsuAct.Size = new System.Drawing.Size(129, 28);
+            this.lblUsuAct.Size = new System.Drawing.Size(135, 28);
             this.lblUsuAct.TabIndex = 32;
             this.lblUsuAct.Text = "Usuarios Activos:";
             this.lblUsuAct.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -757,7 +771,7 @@
             this.lblPropAct.Location = new System.Drawing.Point(1109, 185);
             this.lblPropAct.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPropAct.Name = "lblPropAct";
-            this.lblPropAct.Size = new System.Drawing.Size(165, 28);
+            this.lblPropAct.Size = new System.Drawing.Size(161, 28);
             this.lblPropAct.TabIndex = 27;
             this.lblPropAct.Text = "Propiedades Activas:";
             this.lblPropAct.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -803,7 +817,7 @@
             this.lblUniActiv.Location = new System.Drawing.Point(827, 185);
             this.lblUniActiv.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUniActiv.Name = "lblUniActiv";
-            this.lblUniActiv.Size = new System.Drawing.Size(137, 28);
+            this.lblUniActiv.Size = new System.Drawing.Size(148, 28);
             this.lblUniActiv.TabIndex = 22;
             this.lblUniActiv.Text = "Unidades Activas:";
             this.lblUniActiv.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -849,7 +863,7 @@
             this.lblBloquesActivos.Location = new System.Drawing.Point(544, 187);
             this.lblBloquesActivos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBloquesActivos.Name = "lblBloquesActivos";
-            this.lblBloquesActivos.Size = new System.Drawing.Size(118, 28);
+            this.lblBloquesActivos.Size = new System.Drawing.Size(137, 28);
             this.lblBloquesActivos.TabIndex = 12;
             this.lblBloquesActivos.Text = "Bloques activos:";
             this.lblBloquesActivos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -895,7 +909,7 @@
             this.lblCondActivos.Location = new System.Drawing.Point(247, 185);
             this.lblCondActivos.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCondActivos.Name = "lblCondActivos";
-            this.lblCondActivos.Size = new System.Drawing.Size(147, 28);
+            this.lblCondActivos.Size = new System.Drawing.Size(146, 28);
             this.lblCondActivos.TabIndex = 8;
             this.lblCondActivos.Text = "Condominios Activos:";
             this.lblCondActivos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -918,7 +932,7 @@
             this.kryptonLabel1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonLabel1.Name = "kryptonLabel1";
             this.kryptonLabel1.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverLightMode;
-            this.kryptonLabel1.Size = new System.Drawing.Size(336, 54);
+            this.kryptonLabel1.Size = new System.Drawing.Size(547, 54);
             this.kryptonLabel1.StateCommon.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel1.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kryptonLabel1.TabIndex = 4;
@@ -946,7 +960,7 @@
             this.BorderTopBar.Margin = new System.Windows.Forms.Padding(4);
             this.BorderTopBar.Name = "BorderTopBar";
             this.BorderTopBar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkModeAlternate;
-            this.BorderTopBar.Size = new System.Drawing.Size(1412, 53);
+            this.BorderTopBar.Size = new System.Drawing.Size(1472, 53);
             this.BorderTopBar.Text = "kryptonBorderEdge1";
             // 
             // BorderDashboard
@@ -959,25 +973,11 @@
             this.BorderDashboard.Size = new System.Drawing.Size(189, 774);
             this.BorderDashboard.Text = "kryptonBorderEdge1";
             // 
-            // lblEstatusUsuario
-            // 
-            this.lblEstatusUsuario.AutoSize = false;
-            this.lblEstatusUsuario.LabelStyle = Krypton.Toolkit.LabelStyle.BoldControl;
-            this.lblEstatusUsuario.Location = new System.Drawing.Point(830, 72);
-            this.lblEstatusUsuario.Margin = new System.Windows.Forms.Padding(4);
-            this.lblEstatusUsuario.Name = "lblEstatusUsuario";
-            this.lblEstatusUsuario.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365SilverLightMode;
-            this.lblEstatusUsuario.Size = new System.Drawing.Size(755, 70);
-            this.lblEstatusUsuario.StateCommon.LongText.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstatusUsuario.StateCommon.ShortText.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstatusUsuario.TabIndex = 82;
-            this.lblEstatusUsuario.Values.Text = "Bienvenido:";
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1661, 733);
+            this.ClientSize = new System.Drawing.Size(1661, 773);
             this.Controls.Add(this.DashboardPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);

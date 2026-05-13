@@ -63,7 +63,7 @@
             // chkNotificarPropietario
             // 
             this.chkNotificarPropietario.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
-            this.chkNotificarPropietario.Location = new System.Drawing.Point(987, 76);
+            this.chkNotificarPropietario.Location = new System.Drawing.Point(1072, 63);
             this.chkNotificarPropietario.Name = "chkNotificarPropietario";
             this.chkNotificarPropietario.Size = new System.Drawing.Size(280, 24);
             this.chkNotificarPropietario.TabIndex = 151;
@@ -75,7 +75,7 @@
             this.txtAdministrador.BackColor = System.Drawing.Color.Transparent;
             this.txtAdministrador.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAdministrador.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtAdministrador.Location = new System.Drawing.Point(50, 287);
+            this.txtAdministrador.Location = new System.Drawing.Point(50, 276);
             this.txtAdministrador.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtAdministrador.Name = "txtAdministrador";
             this.txtAdministrador.Size = new System.Drawing.Size(345, 28);
@@ -85,7 +85,7 @@
             // 
             // kryptonTextBox2
             // 
-            this.kryptonTextBox2.Location = new System.Drawing.Point(48, 330);
+            this.kryptonTextBox2.Location = new System.Drawing.Point(48, 318);
             this.kryptonTextBox2.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonTextBox2.Name = "kryptonTextBox2";
             this.kryptonTextBox2.ReadOnly = true;
@@ -96,7 +96,7 @@
             // dtpFechaConstitucion
             // 
             this.dtpFechaConstitucion.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaConstitucion.Location = new System.Drawing.Point(668, 250);
+            this.dtpFechaConstitucion.Location = new System.Drawing.Point(668, 233);
             this.dtpFechaConstitucion.Name = "dtpFechaConstitucion";
             this.dtpFechaConstitucion.Size = new System.Drawing.Size(541, 30);
             this.dtpFechaConstitucion.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -106,7 +106,7 @@
             // 
             this.btnVolver.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnVolver.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnVolver.Location = new System.Drawing.Point(672, 510);
+            this.btnVolver.Location = new System.Drawing.Point(672, 499);
             this.btnVolver.Margin = new System.Windows.Forms.Padding(4);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.PaletteMode = Krypton.Toolkit.PaletteMode.Office2010BlueDarkMode;
@@ -120,7 +120,7 @@
             // 
             this.btnConfirmar.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnConfirmar.ButtonStyle = Krypton.Toolkit.ButtonStyle.NavigatorStack;
-            this.btnConfirmar.Location = new System.Drawing.Point(358, 510);
+            this.btnConfirmar.Location = new System.Drawing.Point(360, 499);
             this.btnConfirmar.Margin = new System.Windows.Forms.Padding(4);
             this.btnConfirmar.Name = "btnConfirmar";
             this.btnConfirmar.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlueDarkMode;
@@ -146,7 +146,7 @@
             // 
             // txtCorreo
             // 
-            this.txtCorreo.Location = new System.Drawing.Point(668, 107);
+            this.txtCorreo.Location = new System.Drawing.Point(668, 98);
             this.txtCorreo.Margin = new System.Windows.Forms.Padding(4);
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(541, 30);
@@ -169,7 +169,7 @@
             // 
             // txtMantenimiento
             // 
-            this.txtMantenimiento.Location = new System.Drawing.Point(668, 180);
+            this.txtMantenimiento.Location = new System.Drawing.Point(668, 168);
             this.txtMantenimiento.Margin = new System.Windows.Forms.Padding(4);
             this.txtMantenimiento.Name = "txtMantenimiento";
             this.txtMantenimiento.Size = new System.Drawing.Size(541, 30);
@@ -182,7 +182,7 @@
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label10.Location = new System.Drawing.Point(668, 418);
+            this.label10.Location = new System.Drawing.Point(668, 401);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(345, 28);
@@ -192,7 +192,7 @@
             // 
             // txtSecretario3
             // 
-            this.txtSecretario3.Location = new System.Drawing.Point(668, 462);
+            this.txtSecretario3.Location = new System.Drawing.Point(668, 443);
             this.txtSecretario3.Margin = new System.Windows.Forms.Padding(4);
             this.txtSecretario3.Name = "txtSecretario3";
             this.txtSecretario3.Size = new System.Drawing.Size(541, 30);
@@ -205,7 +205,7 @@
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label9.Location = new System.Drawing.Point(668, 352);
+            this.label9.Location = new System.Drawing.Point(668, 333);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(345, 28);
@@ -215,7 +215,7 @@
             // 
             // txtSecretario2
             // 
-            this.txtSecretario2.Location = new System.Drawing.Point(668, 396);
+            this.txtSecretario2.Location = new System.Drawing.Point(668, 367);
             this.txtSecretario2.Margin = new System.Windows.Forms.Padding(4);
             this.txtSecretario2.Name = "txtSecretario2";
             this.txtSecretario2.Size = new System.Drawing.Size(541, 30);
@@ -228,7 +228,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label8.Location = new System.Drawing.Point(668, 286);
+            this.label8.Location = new System.Drawing.Point(668, 267);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(345, 28);
@@ -238,7 +238,7 @@
             // 
             // txtSecretario1
             // 
-            this.txtSecretario1.Location = new System.Drawing.Point(668, 330);
+            this.txtSecretario1.Location = new System.Drawing.Point(668, 299);
             this.txtSecretario1.Margin = new System.Windows.Forms.Padding(4);
             this.txtSecretario1.Name = "txtSecretario1";
             this.txtSecretario1.Size = new System.Drawing.Size(541, 30);
@@ -271,7 +271,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(664, 202);
+            this.label5.Location = new System.Drawing.Point(668, 202);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(345, 28);
@@ -288,7 +288,7 @@
             "Apartamentos",
             "Apartaestudios",
             "Penthouses"});
-            this.cmbTipoCond.Location = new System.Drawing.Point(52, 262);
+            this.cmbTipoCond.Location = new System.Drawing.Point(48, 239);
             this.cmbTipoCond.Margin = new System.Windows.Forms.Padding(4);
             this.cmbTipoCond.Name = "cmbTipoCond";
             this.cmbTipoCond.Size = new System.Drawing.Size(160, 33);
@@ -300,7 +300,7 @@
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(48, 218);
+            this.label4.Location = new System.Drawing.Point(48, 207);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(345, 28);
@@ -314,7 +314,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label3.Location = new System.Drawing.Point(48, 367);
+            this.label3.Location = new System.Drawing.Point(48, 352);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(345, 28);
@@ -324,7 +324,7 @@
             // 
             // txtIdPropietario
             // 
-            this.txtIdPropietario.Location = new System.Drawing.Point(48, 411);
+            this.txtIdPropietario.Location = new System.Drawing.Point(48, 384);
             this.txtIdPropietario.Margin = new System.Windows.Forms.Padding(4);
             this.txtIdPropietario.Name = "txtIdPropietario";
             this.txtIdPropietario.ReadOnly = true;
@@ -348,7 +348,7 @@
             // 
             // kryptonTextBox1
             // 
-            this.kryptonTextBox1.Location = new System.Drawing.Point(48, 184);
+            this.kryptonTextBox1.Location = new System.Drawing.Point(48, 173);
             this.kryptonTextBox1.Margin = new System.Windows.Forms.Padding(4);
             this.kryptonTextBox1.Name = "kryptonTextBox1";
             this.kryptonTextBox1.Size = new System.Drawing.Size(541, 30);
@@ -361,7 +361,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label2.Location = new System.Drawing.Point(50, 63);
+            this.label2.Location = new System.Drawing.Point(48, 67);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(345, 28);

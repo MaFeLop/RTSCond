@@ -55,7 +55,7 @@
             this.lblTotal.Location = new System.Drawing.Point(1210, 1);
             this.lblTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(326, 28);
+            this.lblTotal.Size = new System.Drawing.Size(346, 28);
             this.lblTotal.TabIndex = 104;
             this.lblTotal.Text = "Total: ";
             this.lblTotal.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -80,7 +80,7 @@
             this.label2.Location = new System.Drawing.Point(4, 14);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(341, 28);
+            this.label2.Size = new System.Drawing.Size(356, 28);
             this.label2.TabIndex = 102;
             this.label2.Text = "Buscar por Nombre:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -150,7 +150,7 @@
             this.dgvPropiedad.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPropiedad.Name = "dgvPropiedad";
             this.dgvPropiedad.RowHeadersWidth = 51;
-            this.dgvPropiedad.Size = new System.Drawing.Size(1544, 300);
+            this.dgvPropiedad.Size = new System.Drawing.Size(1564, 300);
             this.dgvPropiedad.TabIndex = 96;
             // 
             // btnVolver
@@ -176,7 +176,7 @@
             this.panel1.Controls.Add(this.chkSoloActivos);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1545, 83);
+            this.panel1.Size = new System.Drawing.Size(1560, 83);
             this.panel1.TabIndex = 117;
             // 
             // panel2
@@ -187,14 +187,14 @@
             this.panel2.Controls.Add(this.btnDesactivar);
             this.panel2.Location = new System.Drawing.Point(12, 412);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1540, 100);
+            this.panel2.Size = new System.Drawing.Size(1560, 100);
             this.panel2.TabIndex = 118;
             // 
             // PropiedadRead
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1561, 524);
+            this.ClientSize = new System.Drawing.Size(1574, 524);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvPropiedad);
