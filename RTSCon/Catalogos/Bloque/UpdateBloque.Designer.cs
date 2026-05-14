@@ -49,7 +49,7 @@
             // 
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
-            this.label2.Location = new System.Drawing.Point(409, 36);
+            this.label2.Location = new System.Drawing.Point(1263, 9);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(140, 102);
@@ -59,7 +59,7 @@
             // 
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Image = ((System.Drawing.Image)(resources.GetObject("label7.Image")));
-            this.label7.Location = new System.Drawing.Point(527, 36);
+            this.label7.Location = new System.Drawing.Point(1381, 9);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(135, 102);

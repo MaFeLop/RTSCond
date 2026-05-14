@@ -63,7 +63,7 @@
             // chkNotificarPropietario
             // 
             this.chkNotificarPropietario.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
-            this.chkNotificarPropietario.Location = new System.Drawing.Point(1072, 63);
+            this.chkNotificarPropietario.Location = new System.Drawing.Point(1066, 63);
             this.chkNotificarPropietario.Name = "chkNotificarPropietario";
             this.chkNotificarPropietario.Size = new System.Drawing.Size(280, 24);
             this.chkNotificarPropietario.TabIndex = 151;
@@ -136,7 +136,7 @@
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label13.Location = new System.Drawing.Point(668, 63);
+            this.label13.Location = new System.Drawing.Point(665, 63);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(397, 28);
@@ -249,20 +249,20 @@
             // 
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Image = ((System.Drawing.Image)(resources.GetObject("label7.Image")));
-            this.label7.Location = new System.Drawing.Point(525, -2);
+            this.label7.Location = new System.Drawing.Point(1435, 9);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(135, 102);
+            this.label7.Size = new System.Drawing.Size(85, 95);
             this.label7.TabIndex = 135;
             // 
             // label12
             // 
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Image = ((System.Drawing.Image)(resources.GetObject("label12.Image")));
-            this.label12.Location = new System.Drawing.Point(403, -2);
+            this.label12.Location = new System.Drawing.Point(1350, 9);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(140, 102);
+            this.label12.Size = new System.Drawing.Size(90, 95);
             this.label12.TabIndex = 134;
             // 
             // label5

@@ -426,6 +426,7 @@
             this.kryptonBorderEdge5.PaletteMode = Krypton.Toolkit.PaletteMode.Microsoft365BlackDarkMode;
             this.kryptonBorderEdge5.Size = new System.Drawing.Size(469, 418);
             this.kryptonBorderEdge5.Text = "kryptonBorderEdge5";
+            this.kryptonBorderEdge5.Visible = false;
             // 
             // panelSideBar
             // 
@@ -707,12 +708,13 @@
             // lblUsuNum
             // 
             this.lblUsuNum.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblUsuNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuNum.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.lblUsuNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold);
             this.lblUsuNum.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblUsuNum.Location = new System.Drawing.Point(1395, 245);
+            this.lblUsuNum.Location = new System.Drawing.Point(1392, 228);
             this.lblUsuNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUsuNum.Name = "lblUsuNum";
-            this.lblUsuNum.Size = new System.Drawing.Size(76, 28);
+            this.lblUsuNum.Size = new System.Drawing.Size(84, 43);
             this.lblUsuNum.TabIndex = 33;
             this.lblUsuNum.Text = "N/A";
             // 
@@ -753,12 +755,12 @@
             // lblPropNum
             // 
             this.lblPropNum.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblPropNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPropNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold);
             this.lblPropNum.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblPropNum.Location = new System.Drawing.Point(1127, 245);
+            this.lblPropNum.Location = new System.Drawing.Point(1122, 228);
             this.lblPropNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPropNum.Name = "lblPropNum";
-            this.lblPropNum.Size = new System.Drawing.Size(76, 28);
+            this.lblPropNum.Size = new System.Drawing.Size(83, 35);
             this.lblPropNum.TabIndex = 28;
             this.lblPropNum.Text = "N/A";
             // 
@@ -799,12 +801,12 @@
             // lblUniNum
             // 
             this.lblUniNum.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblUniNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUniNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold);
             this.lblUniNum.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblUniNum.Location = new System.Drawing.Point(844, 245);
+            this.lblUniNum.Location = new System.Drawing.Point(841, 228);
             this.lblUniNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUniNum.Name = "lblUniNum";
-            this.lblUniNum.Size = new System.Drawing.Size(76, 28);
+            this.lblUniNum.Size = new System.Drawing.Size(78, 35);
             this.lblUniNum.TabIndex = 23;
             this.lblUniNum.Text = "N/A";
             // 
@@ -845,12 +847,12 @@
             // lblBloqNum
             // 
             this.lblBloqNum.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblBloqNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBloqNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold);
             this.lblBloqNum.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblBloqNum.Location = new System.Drawing.Point(560, 245);
+            this.lblBloqNum.Location = new System.Drawing.Point(556, 228);
             this.lblBloqNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBloqNum.Name = "lblBloqNum";
-            this.lblBloqNum.Size = new System.Drawing.Size(76, 28);
+            this.lblBloqNum.Size = new System.Drawing.Size(79, 41);
             this.lblBloqNum.TabIndex = 14;
             this.lblBloqNum.Text = "N/A";
             // 
@@ -881,12 +883,12 @@
             // lblCondNum
             // 
             this.lblCondNum.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lblCondNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCondNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCondNum.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblCondNum.Location = new System.Drawing.Point(263, 245);
+            this.lblCondNum.Location = new System.Drawing.Point(252, 228);
             this.lblCondNum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCondNum.Name = "lblCondNum";
-            this.lblCondNum.Size = new System.Drawing.Size(76, 28);
+            this.lblCondNum.Size = new System.Drawing.Size(80, 44);
             this.lblCondNum.TabIndex = 10;
             this.lblCondNum.Text = "N/A";
             // 
