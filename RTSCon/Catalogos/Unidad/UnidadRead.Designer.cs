@@ -169,7 +169,7 @@
             this.btnVolver.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnVolver.Values.Image = ((System.Drawing.Image)(resources.GetObject("btnVolver.Values.Image")));
             this.btnVolver.Values.Text = "Volver";
-            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click_1);
+            this.btnVolver.Click += new System.EventHandler(this.btnVolver_Click);
             // 
             // panel1
             // 
