@@ -3,6 +3,7 @@ using RTSCon.Datos;
 using RTSCon.Negocios;
 using System;
 using System.Configuration;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace RTSCon
@@ -27,13 +28,7 @@ namespace RTSCon
             ConfigMasked(txtRNC);
             ConfigMasked(txtPasaporte);
 
-            txtCedula.Leave += Masked_ClearIfIncomplete_OnLeave;
-            txtRNC.Leave += Masked_ClearIfIncomplete_OnLeave;
-            txtPasaporte.Leave += Masked_ClearIfIncomplete_OnLeave;
-
-            txtCedula.VisibleChanged += Masked_ClearOnHide;
-            txtRNC.VisibleChanged += Masked_ClearOnHide;
-            txtPasaporte.VisibleChanged += Masked_ClearOnHide;
+            ConfigurarValidacionDocumentos();
 
             // Username NO debe comportarse como contraseña
             txtUsername.PasswordChar = '\0';
@@ -116,6 +111,238 @@ namespace RTSCon
             }
         }
 
+        private void ConfigurarValidacionDocumentos()
+        {
+            txtCedula.Leave -= Masked_ClearIfIncomplete_OnLeave;
+            txtRNC.Leave -= Masked_ClearIfIncomplete_OnLeave;
+            txtPasaporte.Leave -= Masked_ClearIfIncomplete_OnLeave;
+
+            txtCedula.Leave += Masked_ClearIfIncomplete_OnLeave;
+            txtRNC.Leave += Masked_ClearIfIncomplete_OnLeave;
+            txtPasaporte.Leave += Masked_ClearIfIncomplete_OnLeave;
+
+            txtCedula.VisibleChanged -= Masked_ClearOnHide;
+            txtRNC.VisibleChanged -= Masked_ClearOnHide;
+            txtPasaporte.VisibleChanged -= Masked_ClearOnHide;
+
+            txtCedula.VisibleChanged += Masked_ClearOnHide;
+            txtRNC.VisibleChanged += Masked_ClearOnHide;
+            txtPasaporte.VisibleChanged += Masked_ClearOnHide;
+
+            txtCedula.KeyPress -= SoloNumeros_KeyPress;
+            txtRNC.KeyPress -= SoloNumeros_KeyPress;
+
+            txtCedula.KeyPress += SoloNumeros_KeyPress;
+            txtRNC.KeyPress += SoloNumeros_KeyPress;
+
+            txtCedula.KeyDown -= SoloNumeros_KeyDown;
+            txtRNC.KeyDown -= SoloNumeros_KeyDown;
+
+            txtCedula.KeyDown += SoloNumeros_KeyDown;
+            txtRNC.KeyDown += SoloNumeros_KeyDown;
+
+            txtPasaporte.KeyPress -= Pasaporte_KeyPress;
+            txtPasaporte.KeyPress += Pasaporte_KeyPress;
+
+            txtPasaporte.KeyDown -= Pasaporte_KeyDown;
+            txtPasaporte.KeyDown += Pasaporte_KeyDown;
+        }
+
+        private void ConfigMasked(KryptonMaskedTextBox txt)
+        {
+            txt.PromptChar = ' ';
+            txt.HidePromptOnLeave = true;
+            txt.ResetOnPrompt = true;
+            txt.ResetOnSpace = true;
+            txt.SkipLiterals = true;
+            txt.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txt.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            txt.BeepOnError = false;
+        }
+
+        private void SoloNumeros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            if (!char.IsDigit(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void SoloNumeros_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                string texto = Clipboard.ContainsText() ? Clipboard.GetText() : string.Empty;
+
+                if (!SoloContieneDigitos(texto))
+                {
+                    e.SuppressKeyPress = true;
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void Pasaporte_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsControl(e.KeyChar))
+                return;
+
+            if (!char.IsLetterOrDigit(e.KeyChar))
+            {
+                e.Handled = true;
+                return;
+            }
+
+            e.KeyChar = char.ToUpperInvariant(e.KeyChar);
+        }
+
+        private void Pasaporte_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                string texto = Clipboard.ContainsText() ? Clipboard.GetText() : string.Empty;
+                texto = NormalizarPasaporte(texto);
+
+                if (!Regex.IsMatch(texto, @"^[A-Za-z0-9]*$"))
+                {
+                    e.SuppressKeyPress = true;
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void Masked_ClearIfIncomplete_OnLeave(object sender, EventArgs e)
+        {
+            MaskedTextBox txt = sender as MaskedTextBox;
+
+            if (txt == null)
+                return;
+
+            if (!txt.MaskCompleted)
+                txt.Clear();
+        }
+
+        private void Masked_ClearOnHide(object sender, EventArgs e)
+        {
+            MaskedTextBox txt = sender as MaskedTextBox;
+
+            if (txt == null)
+                return;
+
+            if (!txt.Visible)
+                txt.Clear();
+        }
+
+        private string ObtenerTipoDocumento()
+        {
+            string tipo = Convert.ToString(cmbDocumento.SelectedItem) ?? string.Empty;
+
+            if (tipo.StartsWith("Ced", StringComparison.OrdinalIgnoreCase))
+                return "Cedula";
+
+            if (tipo.Equals("RNC", StringComparison.OrdinalIgnoreCase))
+                return "RNC";
+
+            if (tipo.Equals("Pasaporte", StringComparison.OrdinalIgnoreCase))
+                return "Pasaporte";
+
+            return string.Empty;
+        }
+
+        private string ObtenerDocumentoNormalizado(string tipoDoc)
+        {
+            if (tipoDoc == "Cedula")
+                return ExtraerDigitos(txtCedula.Text);
+
+            if (tipoDoc == "RNC")
+                return ExtraerDigitos(txtRNC.Text);
+
+            if (tipoDoc == "Pasaporte")
+                return NormalizarPasaporte(txtPasaporte.Text);
+
+            return string.Empty;
+        }
+
+        private void ValidarDocumento(string tipoDoc, string documento)
+        {
+            if (string.IsNullOrWhiteSpace(tipoDoc))
+                throw new Exception("Seleccione el tipo de documento.");
+
+            if (string.IsNullOrWhiteSpace(documento))
+                throw new Exception("Ingrese el documento.");
+
+            if (tipoDoc == "Cedula")
+            {
+                if (!Regex.IsMatch(documento, @"^\d{11}$"))
+                    throw new Exception("La cédula debe tener exactamente 11 dígitos numéricos.");
+
+                return;
+            }
+
+            if (tipoDoc == "RNC")
+            {
+                if (!Regex.IsMatch(documento, @"^\d{8}$"))
+                    throw new Exception("El RNC debe tener exactamente 8 dígitos numéricos.");
+
+                return;
+            }
+
+            if (tipoDoc == "Pasaporte")
+            {
+                if (!Regex.IsMatch(documento, @"^[A-Za-z0-9]{2}\d{6}$"))
+                    throw new Exception("El pasaporte debe tener 8 caracteres: 2 alfanuméricos y 6 numéricos. Ejemplo: KA126768.");
+
+                return;
+            }
+
+            throw new Exception("Tipo de documento inválido.");
+        }
+
+        private string ExtraerDigitos(string texto)
+        {
+            if (string.IsNullOrWhiteSpace(texto))
+                return string.Empty;
+
+            string resultado = string.Empty;
+
+            int i;
+            for (i = 0; i < texto.Length; i++)
+            {
+                if (char.IsDigit(texto[i]))
+                    resultado += texto[i];
+            }
+
+            return resultado;
+        }
+
+        private string NormalizarPasaporte(string texto)
+        {
+            if (string.IsNullOrWhiteSpace(texto))
+                return string.Empty;
+
+            return texto
+                .Trim()
+                .Replace("-", string.Empty)
+                .Replace(" ", string.Empty)
+                .ToUpperInvariant();
+        }
+
+        private bool SoloContieneDigitos(string texto)
+        {
+            if (string.IsNullOrEmpty(texto))
+                return true;
+
+            int i;
+            for (i = 0; i < texto.Length; i++)
+            {
+                if (!char.IsDigit(texto[i]))
+                    return false;
+            }
+
+            return true;
+        }
+
         // ================= CREAR =================
         private void btnCrear_Click(object sender, EventArgs e)
         {
@@ -148,19 +375,11 @@ namespace RTSCon
                 if (rolItem == null)
                     throw new Exception("Seleccione un rol válido.");
 
-                // Documento
-                string documento = "";
-                string tipoDoc = Convert.ToString(cmbDocumento.SelectedItem) ?? "";
+                string tipoDoc = ObtenerTipoDocumento();
+                string tipoDocNormalizado = ObtenerTipoDocumento();
+                string documento = ObtenerDocumentoNormalizado(tipoDoc);
 
-                if (tipoDoc.StartsWith("Ced", StringComparison.OrdinalIgnoreCase))
-                    documento = txtCedula.Text.Trim();
-                else if (tipoDoc.Equals("RNC", StringComparison.OrdinalIgnoreCase))
-                    documento = txtRNC.Text.Trim();
-                else if (tipoDoc.Equals("Pasaporte", StringComparison.OrdinalIgnoreCase))
-                    documento = txtPasaporte.Text.Trim();
-
-                if (string.IsNullOrWhiteSpace(documento))
-                    throw new Exception("Ingrese el documento.");
+                ValidarDocumento(tipoDoc, documento);
 
                 string creador = SessionHelper.Usuario ?? "SA";
 
@@ -169,8 +388,9 @@ namespace RTSCon
                     correo: correo,
                     rol: rolItem.Valor,
                     password: clave,
-                    creador: creador
-                );
+                    creador: creador,
+                    documentoTipo: tipoDocNormalizado,
+                    documento: documento);
 
                 KryptonMessageBox.Show(
                     this,
@@ -196,32 +416,6 @@ namespace RTSCon
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void ConfigMasked(KryptonMaskedTextBox txt)
-        {
-            txt.PromptChar = ' ';
-            txt.HidePromptOnLeave = true;
-            txt.ResetOnPrompt = true;
-            txt.ResetOnSpace = true;
-            txt.SkipLiterals = true;
-            txt.CutCopyMaskFormat = MaskFormat.ExcludePromptAndLiterals;
-            txt.BeepOnError = false;
-        }
-
-        private void Masked_ClearIfIncomplete_OnLeave(object sender, EventArgs e)
-        {
-            if (sender is MaskedTextBox txt)
-            {
-                if (!txt.MaskCompleted)
-                    txt.Clear();
-            }
-        }
-
-        private void Masked_ClearOnHide(object sender, EventArgs e)
-        {
-            if (sender is MaskedTextBox txt && !txt.Visible)
-                txt.Clear();
         }
     }
 }

@@ -81,7 +81,14 @@ namespace RTSCon.Negocios
         }
 
         // ================= CREAR USUARIO =================
-        public int CrearUsuario(string usuario, string correo, string password, string rol, string creador)
+        public int CrearUsuario(
+            string usuario,
+            string correo,
+            string password,
+            string rol,
+            string creador,
+            string documentoTipo,
+            string documento)
         {
             if (string.IsNullOrWhiteSpace(usuario))
                 throw new ArgumentException("Usuario requerido.");
@@ -89,12 +96,25 @@ namespace RTSCon.Negocios
             if (string.IsNullOrWhiteSpace(password))
                 throw new ArgumentException("Contraseña requerida.");
 
+            if (string.IsNullOrWhiteSpace(documentoTipo))
+                throw new ArgumentException("Tipo de documento requerido.");
+
+            if (string.IsNullOrWhiteSpace(documento))
+                throw new ArgumentException("Documento requerido.");
+
             int idRol = _dal.ObtenerIdRol(rol);
 
             if (idRol == 0)
                 throw new InvalidOperationException("Rol inválido.");
 
-            return _dal.CrearUsuario(usuario.Trim(), correo?.Trim(), password, idRol);
+            return _dal.CrearUsuario(
+                usuario.Trim(),
+                correo != null ? correo.Trim() : null,
+                password,
+                idRol,
+                documentoTipo.Trim(),
+                documento.Trim()
+            );
         }
 
         // ================= RECUPERACIÓN / CÓDIGO =================

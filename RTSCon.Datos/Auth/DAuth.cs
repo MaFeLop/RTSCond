@@ -55,22 +55,37 @@ namespace RTSCon.Datos
         }
 
         // ================= CREAR USUARIO =================
-        public int CrearUsuario(string usuario, string correo, string password, int idRol)
+        public int CrearUsuario(
+            string usuario,
+            string correo,
+            string password,
+            int idRol,
+            string documentoTipo,
+            string documento)
         {
             using (var cn = new SqlConnection(_cn))
             using (var cmd = new SqlCommand("dbo.sp_usuario_crear", cn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.Add("@usuario", SqlDbType.NVarChar, 200).Value = usuario;
-                cmd.Parameters.Add("@correo", SqlDbType.NVarChar, 512).Value =
-                    (object)correo ?? DBNull.Value;
-                cmd.Parameters.Add("@pass_plain", SqlDbType.NVarChar, 400).Value = password;
+                cmd.Parameters.Add("@usuario", SqlDbType.NVarChar, 100).Value = usuario;
+
+                cmd.Parameters.Add("@correo", SqlDbType.NVarChar, 256).Value =
+                    string.IsNullOrWhiteSpace(correo) ? (object)DBNull.Value : correo;
+
+                cmd.Parameters.Add("@pass_plain", SqlDbType.NVarChar, 200).Value = password;
                 cmd.Parameters.Add("@id_rol", SqlDbType.Int).Value = idRol;
+                cmd.Parameters.Add("@DocumentoTipo", SqlDbType.NVarChar, 20).Value = documentoTipo;
+                cmd.Parameters.Add("@Documento", SqlDbType.NVarChar, 30).Value = documento;
 
                 cn.Open();
 
-                return Convert.ToInt32(cmd.ExecuteScalar());
+                object result = cmd.ExecuteScalar();
+
+                if (result == null || result == DBNull.Value)
+                    throw new InvalidOperationException("No se pudo crear el usuario.");
+
+                return Convert.ToInt32(result);
             }
         }
 

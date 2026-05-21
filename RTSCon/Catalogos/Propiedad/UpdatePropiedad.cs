@@ -16,7 +16,9 @@ namespace RTSCon.Catalogos
         private byte[] _rowVersion;
         private int? _propietarioIdSeleccionado;
         private int? _unidadIdSeleccionada;
+
         private bool _eventosInicializados;
+        private bool _guardando;
 
         public UpdatePropiedad()
         {
@@ -33,6 +35,8 @@ namespace RTSCon.Catalogos
         {
             Tag = id;
         }
+
+        #region Configuración inicial
 
         private void InicializarEventosUnaSolaVez()
         {
@@ -85,6 +89,12 @@ namespace RTSCon.Catalogos
             {
                 dtpFechaInicio.ValueChanged -= dtpFechaInicio_ValueChanged;
                 dtpFechaInicio.ValueChanged += dtpFechaInicio_ValueChanged;
+            }
+
+            if (chkRentado != null)
+            {
+                chkRentado.CheckedChanged -= chkRentado_CheckedChanged;
+                chkRentado.CheckedChanged += chkRentado_CheckedChanged;
             }
 
             _eventosInicializados = true;
@@ -152,7 +162,35 @@ namespace RTSCon.Catalogos
                 dtpFechaFin.Value = DateTime.Today.AddDays(1);
 
             CargarDatos();
-            AplicarReglaFechas();
+            ActualizarEstadoFechaFin();
+        }
+
+        #endregion
+
+        #region Tipo de tenencia / fechas
+
+        private bool EstaRentada()
+        {
+            return chkRentado != null && chkRentado.Checked;
+        }
+
+        private string ObtenerTipoTenencia()
+        {
+            return EstaRentada() ? "Rentada" : "Comprada";
+        }
+
+        private void ActualizarEstadoFechaFin()
+        {
+            bool rentada = EstaRentada();
+
+            if (label6 != null)
+                label6.Visible = rentada;
+
+            if (dtpFechaFin != null)
+                dtpFechaFin.Visible = rentada;
+
+            if (rentada)
+                AplicarReglaFechas();
         }
 
         private void AplicarReglaFechas()
@@ -168,28 +206,41 @@ namespace RTSCon.Catalogos
             if (minimoFin > dtpFechaFin.MaxDate)
                 minimoFin = dtpFechaFin.MaxDate;
 
-            dtpFechaFin.MinDate = minimoFin;
-
             if (dtpFechaFin.Value.Date < minimoFin)
                 dtpFechaFin.Value = minimoFin;
+
+            dtpFechaFin.MinDate = minimoFin;
         }
 
-        private bool ValidarFechas(out DateTime fechaInicio, out DateTime fechaFin, out string mensaje)
+        private bool ValidarFechas(out DateTime fechaInicio, out DateTime? fechaFin, out string mensaje)
         {
             fechaInicio = DateTime.MinValue;
-            fechaFin = DateTime.MinValue;
+            fechaFin = null;
             mensaje = string.Empty;
 
-            if (dtpFechaInicio == null || dtpFechaFin == null)
+            if (dtpFechaInicio == null)
             {
-                mensaje = "No se pudieron leer las fechas del formulario.";
+                mensaje = "No se pudo leer la fecha de inicio del formulario.";
                 return false;
             }
 
             fechaInicio = dtpFechaInicio.Value.Date;
+
+            if (!EstaRentada())
+            {
+                fechaFin = null;
+                return true;
+            }
+
+            if (dtpFechaFin == null)
+            {
+                mensaje = "No se pudo leer la fecha de terminación del formulario.";
+                return false;
+            }
+
             fechaFin = dtpFechaFin.Value.Date;
 
-            if (fechaFin <= fechaInicio)
+            if (fechaFin.Value <= fechaInicio)
             {
                 mensaje = "La fecha de terminación debe ser posterior a la fecha de inicio; no puede vencer el mismo día.";
                 return false;
@@ -198,25 +249,14 @@ namespace RTSCon.Catalogos
             return true;
         }
 
-        private bool TryParseDecimalFlexible(string texto, out decimal valor)
-        {
-            if (decimal.TryParse(texto, NumberStyles.Number, CultureInfo.CurrentCulture, out valor))
-                return true;
+        #endregion
 
-            if (decimal.TryParse(texto, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
-                return true;
-
-            return false;
-        }
-
-        private void dtpFechaInicio_ValueChanged(object sender, EventArgs e)
-        {
-            AplicarReglaFechas();
-        }
+        #region Carga de datos
 
         private void CargarDatos()
         {
             DataRow row = _neg.PorId(_id);
+
             if (row == null)
             {
                 KryptonMessageBox.Show(
@@ -274,8 +314,36 @@ namespace RTSCon.Catalogos
             if (fechaFin <= fechaInicio)
                 fechaFin = fechaInicio.AddDays(1);
 
-            dtpFechaInicio.Value = fechaInicio;
-            dtpFechaFin.Value = fechaFin;
+            if (dtpFechaInicio != null)
+                dtpFechaInicio.Value = fechaInicio;
+
+            if (dtpFechaFin != null)
+                dtpFechaFin.Value = fechaFin;
+
+            string tipoTenencia = "Rentada";
+
+            if (row.Table.Columns.Contains("TipoTenencia") && row["TipoTenencia"] != DBNull.Value)
+                tipoTenencia = Convert.ToString(row["TipoTenencia"]);
+
+            if (chkRentado != null)
+                chkRentado.Checked = string.Equals(tipoTenencia, "Rentada", StringComparison.OrdinalIgnoreCase);
+
+            ActualizarEstadoFechaFin();
+        }
+
+        #endregion
+
+        #region Utilidades de validación
+
+        private bool TryParseDecimalFlexible(string texto, out decimal valor)
+        {
+            if (decimal.TryParse(texto, NumberStyles.Number, CultureInfo.CurrentCulture, out valor))
+                return true;
+
+            if (decimal.TryParse(texto, NumberStyles.Number, CultureInfo.InvariantCulture, out valor))
+                return true;
+
+            return false;
         }
 
         private void Decimal_KeyPress(object sender, KeyPressEventArgs e)
@@ -298,6 +366,21 @@ namespace RTSCon.Catalogos
             {
                 e.Handled = true;
             }
+        }
+
+        #endregion
+
+        #region Eventos
+
+        private void dtpFechaInicio_ValueChanged(object sender, EventArgs e)
+        {
+            if (EstaRentada())
+                AplicarReglaFechas();
+        }
+
+        private void chkRentado_CheckedChanged(object sender, EventArgs e)
+        {
+            ActualizarEstadoFechaFin();
         }
 
         private void txtIdUnidad_KeyDown(object sender, KeyEventArgs e)
@@ -359,71 +442,17 @@ namespace RTSCon.Catalogos
 
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
+            if (_guardando)
+                return;
+
+            _guardando = true;
+
+            if (btnConfirmar != null)
+                btnConfirmar.Enabled = false;
+
             try
             {
-                string nombre = txtNombrePropiedad != null
-                    ? txtNombrePropiedad.Text.Trim()
-                    : string.Empty;
-
-                if (string.IsNullOrWhiteSpace(nombre))
-                    throw new InvalidOperationException("Ingrese el nombre de la propiedad.");
-
-                if (nombre.Length > 50)
-                    throw new InvalidOperationException("El nombre no puede exceder 50 caracteres.");
-
-                if (_unidadIdSeleccionada == null || _unidadIdSeleccionada <= 0)
-                    throw new InvalidOperationException("Seleccione una unidad con el botón 'Buscar Unidad'.");
-
-                if (_propietarioIdSeleccionado == null || _propietarioIdSeleccionado <= 0)
-                    throw new InvalidOperationException("Seleccione un propietario con el botón 'Buscar Propietario'.");
-
-                string sPct = txtPorcentaje != null
-                    ? txtPorcentaje.Text.Trim()
-                    : string.Empty;
-
-                decimal porcentaje;
-                if (!TryParseDecimalFlexible(sPct, out porcentaje) || porcentaje <= 0 || porcentaje > 100)
-                    throw new InvalidOperationException("Ingrese un porcentaje válido (0 < porcentaje ≤ 100).");
-
-                bool esTitular = chkTitular != null && chkTitular.Checked;
-
-                DateTime fechaInicio;
-                DateTime fechaFin;
-                string mensajeFechas;
-
-                if (!ValidarFechas(out fechaInicio, out fechaFin, out mensajeFechas))
-                    throw new InvalidOperationException(mensajeFechas);
-
-                if (_rowVersion == null || _rowVersion.Length == 0)
-                    throw new InvalidOperationException("No se pudo recuperar la versión de la fila (RowVersion).");
-
-                string editor =
-                    UserContext.Usuario ??
-                    ConfigurationManager.AppSettings["DefaultEjecutor"] ??
-                    "rtscon@local";
-
-                _neg.Actualizar(
-                    _id,
-                    nombre,
-                    _propietarioIdSeleccionado.Value,
-                    _unidadIdSeleccionada.Value,
-                    fechaInicio,
-                    fechaFin,
-                    porcentaje,
-                    esTitular,
-                    _rowVersion,
-                    editor
-                );
-
-                KryptonMessageBox.Show(
-                    this,
-                    "Propiedad actualizada correctamente.",
-                    "Actualizar Propiedad",
-                    KryptonMessageBoxButtons.OK,
-                    KryptonMessageBoxIcon.Information);
-
-                DialogResult = DialogResult.OK;
-                Close();
+                ActualizarPropiedad();
             }
             catch (Exception ex)
             {
@@ -434,6 +463,90 @@ namespace RTSCon.Catalogos
                     KryptonMessageBoxButtons.OK,
                     KryptonMessageBoxIcon.Error);
             }
+            finally
+            {
+                if (!IsDisposed && btnConfirmar != null)
+                    btnConfirmar.Enabled = true;
+
+                _guardando = false;
+            }
         }
+
+        #endregion
+
+        #region Actualización
+
+        private void ActualizarPropiedad()
+        {
+            string nombre = txtNombrePropiedad != null
+                ? txtNombrePropiedad.Text.Trim()
+                : string.Empty;
+
+            if (string.IsNullOrWhiteSpace(nombre))
+                throw new InvalidOperationException("Ingrese el nombre de la propiedad.");
+
+            if (nombre.Length > 50)
+                throw new InvalidOperationException("El nombre no puede exceder 50 caracteres.");
+
+            if (_unidadIdSeleccionada == null || _unidadIdSeleccionada <= 0)
+                throw new InvalidOperationException("Seleccione una unidad con el botón 'Buscar Unidad'.");
+
+            if (_propietarioIdSeleccionado == null || _propietarioIdSeleccionado <= 0)
+                throw new InvalidOperationException("Seleccione un propietario con el botón 'Buscar Propietario'.");
+
+            string sPct = txtPorcentaje != null
+                ? txtPorcentaje.Text.Trim()
+                : string.Empty;
+
+            decimal porcentaje;
+
+            if (!TryParseDecimalFlexible(sPct, out porcentaje) || porcentaje <= 0 || porcentaje > 100)
+                throw new InvalidOperationException("Ingrese un porcentaje válido (0 < porcentaje ≤ 100).");
+
+            bool esTitular = chkTitular != null && chkTitular.Checked;
+
+            DateTime fechaInicio;
+            DateTime? fechaFin;
+            string mensajeFechas;
+
+            if (!ValidarFechas(out fechaInicio, out fechaFin, out mensajeFechas))
+                throw new InvalidOperationException(mensajeFechas);
+
+            if (_rowVersion == null || _rowVersion.Length == 0)
+                throw new InvalidOperationException("No se pudo recuperar la versión de la fila (RowVersion).");
+
+            string tipoTenencia = ObtenerTipoTenencia();
+
+            string editor =
+                UserContext.Usuario ??
+                ConfigurationManager.AppSettings["DefaultEjecutor"] ??
+                "rtscon@local";
+
+            _neg.Actualizar(
+                _id,
+                nombre,
+                _propietarioIdSeleccionado.Value,
+                _unidadIdSeleccionada.Value,
+                fechaInicio,
+                fechaFin,
+                porcentaje,
+                esTitular,
+                _rowVersion,
+                tipoTenencia,
+                editor
+            );
+
+            KryptonMessageBox.Show(
+                this,
+                "Propiedad actualizada correctamente.",
+                "Actualizar Propiedad",
+                KryptonMessageBoxButtons.OK,
+                KryptonMessageBoxIcon.Information);
+
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        #endregion
     }
 }

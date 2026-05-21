@@ -29,15 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdatePropiedad));
-            this.dtpFechaFin = new Krypton.Toolkit.KryptonDateTimePicker();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dtpFechaInicio = new Krypton.Toolkit.KryptonDateTimePicker();
             this.btnVolver = new Krypton.Toolkit.KryptonButton();
             this.btnConfirmar = new Krypton.Toolkit.KryptonButton();
             this.label13 = new System.Windows.Forms.Label();
             this.txtCorreo = new Krypton.Toolkit.KryptonTextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.kryptonLabel1 = new Krypton.Toolkit.KryptonLabel();
             this.label7 = new System.Windows.Forms.Label();
             this.txtPorcentaje = new Krypton.Toolkit.KryptonTextBox();
@@ -53,39 +49,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtNombrePropiedad = new Krypton.Toolkit.KryptonTextBox();
             this.btnBuscarUnidad = new Krypton.Toolkit.KryptonButton();
+            this.chkRentado = new Krypton.Toolkit.KryptonCheckBox();
+            this.dtpFechaFin = new Krypton.Toolkit.KryptonDateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dtpFechaInicio = new Krypton.Toolkit.KryptonDateTimePicker();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // dtpFechaFin
-            // 
-            this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaFin.Location = new System.Drawing.Point(674, 270);
-            this.dtpFechaFin.Name = "dtpFechaFin";
-            this.dtpFechaFin.Size = new System.Drawing.Size(541, 30);
-            this.dtpFechaFin.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFechaFin.TabIndex = 179;
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.BackColor = System.Drawing.Color.Transparent;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(674, 239);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(303, 28);
-            this.label6.TabIndex = 178;
-            this.label6.Text = "Fecha de Terminación:";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // dtpFechaInicio
-            // 
-            this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaInicio.Location = new System.Drawing.Point(674, 191);
-            this.dtpFechaInicio.Name = "dtpFechaInicio";
-            this.dtpFechaInicio.Size = new System.Drawing.Size(541, 30);
-            this.dtpFechaInicio.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFechaInicio.TabIndex = 172;
             // 
             // btnVolver
             // 
@@ -148,20 +117,6 @@
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(140, 102);
             this.label12.TabIndex = 166;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.BackColor = System.Drawing.Color.Transparent;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(674, 160);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(303, 28);
-            this.label5.TabIndex = 165;
-            this.label5.Text = "Fecha de Inicio:";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // kryptonLabel1
             // 
@@ -339,11 +294,73 @@
             this.btnBuscarUnidad.Values.DropDownArrowColor = System.Drawing.Color.Empty;
             this.btnBuscarUnidad.Values.Text = "Buscar Unidad";
             // 
+            // chkRentado
+            // 
+            this.chkRentado.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
+            this.chkRentado.Location = new System.Drawing.Point(674, 166);
+            this.chkRentado.Name = "chkRentado";
+            this.chkRentado.Size = new System.Drawing.Size(241, 24);
+            this.chkRentado.TabIndex = 198;
+            this.chkRentado.Values.Text = "Esta Propiedad está Rentada?";
+            // 
+            // dtpFechaFin
+            // 
+            this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaFin.Location = new System.Drawing.Point(674, 315);
+            this.dtpFechaFin.Name = "dtpFechaFin";
+            this.dtpFechaFin.Size = new System.Drawing.Size(541, 30);
+            this.dtpFechaFin.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaFin.TabIndex = 197;
+            this.dtpFechaFin.Visible = false;
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(674, 284);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(303, 28);
+            this.label6.TabIndex = 196;
+            this.label6.Text = "Fecha de Terminación:";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label6.Visible = false;
+            // 
+            // dtpFechaInicio
+            // 
+            this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpFechaInicio.Location = new System.Drawing.Point(674, 236);
+            this.dtpFechaInicio.Name = "dtpFechaInicio";
+            this.dtpFechaInicio.Size = new System.Drawing.Size(541, 30);
+            this.dtpFechaInicio.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaInicio.TabIndex = 195;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label5.Location = new System.Drawing.Point(674, 205);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(303, 28);
+            this.label5.TabIndex = 194;
+            this.label5.Text = "Fecha de Inicio:";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // UpdatePropiedad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1517, 676);
+            this.Controls.Add(this.chkRentado);
+            this.Controls.Add(this.dtpFechaFin);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.dtpFechaInicio);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.btnBuscarUnidad);
             this.Controls.Add(this.txtPorcentaje);
             this.Controls.Add(this.btnBuscarPropietario);
@@ -358,15 +375,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtNombrePropiedad);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.dtpFechaFin);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.dtpFechaInicio);
             this.Controls.Add(this.btnVolver);
             this.Controls.Add(this.btnConfirmar);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.txtCorreo);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.kryptonLabel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UpdatePropiedad";
@@ -377,16 +390,11 @@
         }
 
         #endregion
-
-        private Krypton.Toolkit.KryptonDateTimePicker dtpFechaFin;
-        private System.Windows.Forms.Label label6;
-        private Krypton.Toolkit.KryptonDateTimePicker dtpFechaInicio;
         private Krypton.Toolkit.KryptonButton btnVolver;
         private Krypton.Toolkit.KryptonButton btnConfirmar;
         private System.Windows.Forms.Label label13;
         private Krypton.Toolkit.KryptonTextBox txtCorreo;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label5;
         private Krypton.Toolkit.KryptonLabel kryptonLabel1;
         private System.Windows.Forms.Label label7;
         private Krypton.Toolkit.KryptonTextBox txtPorcentaje;
@@ -402,5 +410,10 @@
         private System.Windows.Forms.Label label2;
         private Krypton.Toolkit.KryptonTextBox txtNombrePropiedad;
         private Krypton.Toolkit.KryptonButton btnBuscarUnidad;
+        private Krypton.Toolkit.KryptonCheckBox chkRentado;
+        private Krypton.Toolkit.KryptonDateTimePicker dtpFechaFin;
+        private System.Windows.Forms.Label label6;
+        private Krypton.Toolkit.KryptonDateTimePicker dtpFechaInicio;
+        private System.Windows.Forms.Label label5;
     }
 }

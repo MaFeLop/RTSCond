@@ -53,6 +53,7 @@
             this.dtpFechaFin = new Krypton.Toolkit.KryptonDateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.btnBuscarUnidad = new Krypton.Toolkit.KryptonButton();
+            this.chkRentado = new Krypton.Toolkit.KryptonCheckBox();
             this.SuspendLayout();
             // 
             // btnBuscarPropietario
@@ -106,7 +107,7 @@
             // dtpFechaInicio
             // 
             this.dtpFechaInicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaInicio.Location = new System.Drawing.Point(674, 198);
+            this.dtpFechaInicio.Location = new System.Drawing.Point(672, 241);
             this.dtpFechaInicio.Name = "dtpFechaInicio";
             this.dtpFechaInicio.Size = new System.Drawing.Size(541, 30);
             this.dtpFechaInicio.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -189,7 +190,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label5.Location = new System.Drawing.Point(674, 167);
+            this.label5.Location = new System.Drawing.Point(672, 210);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(303, 28);
@@ -305,7 +306,7 @@
             // dtpFechaFin
             // 
             this.dtpFechaFin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpFechaFin.Location = new System.Drawing.Point(674, 277);
+            this.dtpFechaFin.Location = new System.Drawing.Point(672, 320);
             this.dtpFechaFin.Name = "dtpFechaFin";
             this.dtpFechaFin.Size = new System.Drawing.Size(541, 30);
             this.dtpFechaFin.StateCommon.Content.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -317,7 +318,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label6.Location = new System.Drawing.Point(674, 246);
+            this.label6.Location = new System.Drawing.Point(672, 289);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(303, 28);
@@ -340,11 +341,21 @@
             this.btnBuscarUnidad.Values.Text = "Buscar Unidad";
             this.btnBuscarUnidad.Click += new System.EventHandler(this.btnBuscarUnidad_Click);
             // 
+            // chkRentado
+            // 
+            this.chkRentado.LabelStyle = Krypton.Toolkit.LabelStyle.BoldPanel;
+            this.chkRentado.Location = new System.Drawing.Point(672, 171);
+            this.chkRentado.Name = "chkRentado";
+            this.chkRentado.Size = new System.Drawing.Size(241, 24);
+            this.chkRentado.TabIndex = 158;
+            this.chkRentado.Values.Text = "Esta Propiedad está Rentada?";
+            // 
             // CrearPropiedad
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1517, 676);
+            this.Controls.Add(this.chkRentado);
             this.Controls.Add(this.btnBuscarUnidad);
             this.Controls.Add(this.dtpFechaFin);
             this.Controls.Add(this.label6);
@@ -403,5 +414,6 @@
         private Krypton.Toolkit.KryptonDateTimePicker dtpFechaFin;
         private System.Windows.Forms.Label label6;
         private Krypton.Toolkit.KryptonButton btnBuscarUnidad;
+        private Krypton.Toolkit.KryptonCheckBox chkRentado;
     }
 }
